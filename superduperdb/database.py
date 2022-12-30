@@ -1,6 +1,6 @@
 from pymongo.database import Database as BaseDatabase
 from pymongo.collection import Collection as BaseCollection
-from sddb import collection
+from pinnacledb import collection
 
 
 class Database(BaseDatabase):
