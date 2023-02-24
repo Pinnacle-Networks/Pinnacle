@@ -12,3 +12,4 @@ class Database(BaseDatabase):
 
     def __getitem__(self, name: str):
         return pinnacledb.collection.Collection(self, name)
+
