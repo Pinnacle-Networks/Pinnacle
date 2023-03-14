@@ -6,7 +6,7 @@ from collections import defaultdict
 import pymongo
 import torch.utils.data
 
-from pinnacledb import client
+from pinnacledb.mongodb import client
 from pinnacledb.training.loading import QueryDataset
 from pinnacledb.utils import MongoStyleDict
 from pinnacledb.training.validation import validate_representations, validate_imputation

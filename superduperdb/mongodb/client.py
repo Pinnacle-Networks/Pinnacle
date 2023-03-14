@@ -1,6 +1,6 @@
 from pymongo.mongo_client import MongoClient
 
-import pinnacledb.database
+import pinnacledb.mongodb.database
 from pinnacledb import cf
 
 
@@ -15,7 +15,7 @@ class SuperDuperClient(MongoClient):
         self.kwargs = kwargs
 
     def __getitem__(self, name: str):
-        return pinnacledb.database.Database(self, name)
+        return pinnacledb.mongodb.database.Database(self, name)
 
 
 the_client = SuperDuperClient(**cf['mongodb'])
