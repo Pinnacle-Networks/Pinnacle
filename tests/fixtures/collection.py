@@ -1,6 +1,6 @@
 import random
 
-from pinnacledb.client import the_client
+from pinnacledb.mongodb.client import the_client
 from tests.material.models import BinaryClassifier, BinaryTarget
 from tests.material.types import FloatTensor, Image
 from tests.material.measures import css

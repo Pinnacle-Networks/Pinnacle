@@ -91,7 +91,7 @@ class QueryDataset(data.Dataset):
 
     @property
     def client(self):
-        from pinnacledb.client import SuperDuperClient
+        from pinnacledb.mongodb.client import SuperDuperClient
         return SuperDuperClient(**self._client)
 
     @property

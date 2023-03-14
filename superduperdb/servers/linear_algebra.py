@@ -1,4 +1,4 @@
-from pinnacledb.client import SuperDuperClient
+from pinnacledb.mongodb.client import SuperDuperClient
 from bson import BSON, ObjectId
 from flask import request, Flask, jsonify, make_response
 
