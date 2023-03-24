@@ -2,12 +2,5 @@
 Full usage
 **********
 
-.. autoclass:: pinnacledb.collection.Collection
+.. autoclass:: pinnacledb.mongodb.collection.Collection
   :members:
-
-.. autoclass:: pinnacledb.database.Database
-  :members:
-
-.. autoclass:: pinnacledb.client.SuperDuperClient
-  :members:
-
