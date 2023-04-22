@@ -3,7 +3,6 @@ from pinnacledb.training.validation import validate_representations, validate_im
 
 
 class ImputationTrainer(Trainer):
-
     variety = 'imputation'
 
     def __init__(self, *args, inference_model=None, **kwargs):

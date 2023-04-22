@@ -7,8 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from pinnacledb.mongodb.client import SuperDuperClient
 from pinnacledb import cf
-from pinnacledb.serving.utils import maybe_login_required, decode_args_kwargs
-from pinnacledb.utils import ArgumentDefaultDict
+from pinnacledb.cluster.utils import maybe_login_required, decode_args_kwargs
+from pinnacledb.special_dicts import ArgumentDefaultDict
 
 app = Flask(__name__)
 CORS(app)
