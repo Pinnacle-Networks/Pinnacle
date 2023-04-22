@@ -1,5 +1,4 @@
 import math
-
 import gridfs
 from bson import ObjectId
 from pymongo import UpdateOne
@@ -8,7 +7,7 @@ import pinnacledb.mongodb.collection
 from pinnacledb.database import BaseDatabase
 from pinnacledb.mongodb import loading
 from pinnacledb.training.validation import validate_representations
-from pinnacledb.utils import MongoStyleDict
+from pinnacledb.special_dicts import MongoStyleDict
 
 
 class Database(MongoDatabase, BaseDatabase):

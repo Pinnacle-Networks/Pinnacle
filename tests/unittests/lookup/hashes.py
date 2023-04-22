@@ -2,7 +2,7 @@ import os
 import torch
 import uuid
 
-from pinnacledb.lookup.hashes import FaissHashSet, HashSet
+from pinnacledb.vector_search.hashes import FaissHashSet, HashSet
 
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'

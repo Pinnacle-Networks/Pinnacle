@@ -7,7 +7,7 @@ from bson import BSON, ObjectId
 from flask import request, Flask, jsonify, make_response
 
 from pinnacledb import cf
-from pinnacledb.serving.utils import maybe_login_required
+from pinnacledb.cluster.utils import maybe_login_required
 
 app = Flask(__name__)
 CORS(app)

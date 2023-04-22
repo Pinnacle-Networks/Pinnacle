@@ -8,8 +8,9 @@ import torch.optim
 import torch.utils
 
 from pinnacledb.training.loading import QueryDataset
-from pinnacledb.utils import MongoStyleDict
-from pinnacledb.utils import get_database_from_database_type, to_device
+from pinnacledb.special_dicts import MongoStyleDict
+from pinnacledb.database import get_database_from_database_type
+from pinnacledb.models.utils import to_device
 
 
 class _Mapped:

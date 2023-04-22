@@ -10,9 +10,9 @@ from rq import Queue
 from redis import Redis
 
 from pinnacledb import cf
-from pinnacledb.jobs.process import handle_function_output
-from pinnacledb.serving.utils import encode_ids_parameters
-from pinnacledb.utils import get_database_from_database_type
+from pinnacledb.cluster.process import handle_function_output
+from pinnacledb.cluster.utils import encode_ids_parameters
+from pinnacledb.database import get_database_from_database_type
 
 redis_cf = cf.get('redis', {'port': 6379, 'host': 'localhost'})
 
