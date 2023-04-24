@@ -9,7 +9,7 @@ import torch.utils
 
 from pinnacledb.training.loading import QueryDataset
 from pinnacledb.special_dicts import MongoStyleDict
-from pinnacledb.database import get_database_from_database_type
+from pinnacledb.base.imports import get_database_from_database_type
 from pinnacledb.models.utils import to_device
 
 
