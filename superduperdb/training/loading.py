@@ -1,6 +1,7 @@
 from torch.utils import data
 
-from pinnacledb.utils import get_database_from_database_type, MongoStyleDict
+from pinnacledb.base.imports import get_database_from_database_type
+from pinnacledb.special_dicts import MongoStyleDict
 
 
 class QueryDataset(data.Dataset):
