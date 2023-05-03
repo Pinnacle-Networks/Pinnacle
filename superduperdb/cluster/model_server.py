@@ -8,10 +8,10 @@ from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from pinnacledb.cluster.annotations import decode_args, decode_kwargs, decode_result
-from pinnacledb.mongodb.client import SuperDuperClient
+from pinnacledb.dbs.mongodb.client import SuperDuperClient
 from pinnacledb import cf
 from pinnacledb.cluster.login import maybe_login_required
-from pinnacledb.special_dicts import ArgumentDefaultDict
+from pinnacledb.misc.special_dicts import ArgumentDefaultDict
 
 app = Flask(__name__)
 CORS(app)

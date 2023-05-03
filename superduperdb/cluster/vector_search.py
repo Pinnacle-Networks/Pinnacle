@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash
 
 from pinnacledb.base.imports import get_database_from_database_type
 from pinnacledb.cluster.annotations import decode_args, decode_kwargs, encode_result
-from pinnacledb.mongodb.client import SuperDuperClient
+from pinnacledb.dbs.mongodb.client import SuperDuperClient
 from bson import BSON
 from flask import request, Flask, make_response
 
@@ -47,4 +47,4 @@ def serve():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=cf['linear_algebra']['port'])
+    app.run(host='localhost', port=cf['vector_search']['port'])
