@@ -7,7 +7,6 @@ from typing import List
 
 import click
 import networkx
-import torch
 from bson import ObjectId
 
 import pinnacledb.vector_search.faiss.hashes
@@ -18,11 +17,10 @@ from pinnacledb.cluster.annotations import Convertible
 from pinnacledb.cluster.job_submission import work
 from pinnacledb.cluster.task_workflow import TaskWorkflow
 from pinnacledb.models.base import wrap_model
-from pinnacledb.fetchers.web.downloads import gather_urls
+from pinnacledb.fetchers.downloads import gather_urls
 from pinnacledb.apis.secrets import CallableWithSecret
-from pinnacledb.models.utils import create_container, Container
 from pinnacledb.misc.special_dicts import ArgumentDefaultDict
-from pinnacledb.fetchers.web.downloads import Downloader
+from pinnacledb.fetchers.downloads import Downloader
 from pinnacledb.misc import progress
 from pinnacledb.models.vanilla.wrapper import FunctionWrapper
 
@@ -64,14 +62,20 @@ class BaseDatabase:
         raise NotImplementedError
 
     @model_server
-    def apply_model(self, model, input_: Convertible, **kwargs) -> Convertible:
+    def predict_one(self, model, input_: Convertible, **kwargs) -> Convertible:
+        if isinstance(model, str):
+            model = self.models[model]
+        return model.predict_one(input_, **{k: v for k, v in kwargs.items() if k != 'remote'})
+
+    @model_server
+    def predict(self, model, input_: Convertible, **kwargs) -> Convertible:
         """
         Apply model to input.
 
         :param model: model or ``str`` referring to an uploaded model (see ``self.list_models``)
         :param input_: input_ to be passed to the model.
                        Must be possible to encode with registered types (``self.list_types``)
-        :param kwargs: key-values (see ``pinnacledb.models.utils.apply_model``)
+        :param kwargs: key-values (see ``pinnacledb.models.utils.predict``)
         """
         if isinstance(model, str):
             model = self.models[model]
@@ -153,8 +157,8 @@ class BaseDatabase:
         raise NotImplementedError
 
     def create_learning_task(self, models, keys, *query_params, identifier=None,
-                            configuration=None, verbose=False, validation_sets=(), metrics=(),
-                            keys_to_watch=(), features=None, serializer='pickle'):
+                             configuration=None, verbose=False, validation_sets=(), metrics=(),
+                             keys_to_watch=(), features=None, serializer='pickle'):
 
         if identifier is None:
             identifier = '+'.join([f'{m}/{k}' for m, k in zip(models, keys)])
@@ -180,7 +184,7 @@ class BaseDatabase:
         })
         model_lookup = dict(zip(keys_to_watch, models))
         jobs = []
-        if configuration is not None:
+        if callable(configuration):
             jobs.append(self.fit(identifier))
         for k in keys_to_watch:
             jobs.append(self._create_watcher(
@@ -189,7 +193,7 @@ class BaseDatabase:
                 query_params,
                 key=k,
                 features=features,
-                predict_kwargs=configuration.get('loader_kwargs', {}),
+                predict_kwargs=configuration.get('loader_kwargs', {}) if configuration is not None else {},
                 dependencies=[jobs[0]] if jobs else (),
                 verbose=verbose,
             ))
@@ -215,8 +219,8 @@ class BaseDatabase:
         """
         return self._create_object(identifier, object, 'metric', **kwargs)
 
-    def create_model(self, identifier, object, preprocessor=None, postprocessor=None,
-                     type=None, **kwargs):
+    def create_model(self, identifier, object, preprocessor=None, postprocessor=None, type=None,
+                     **kwargs):
         """
         Create a model registered in the collection directly from a python session.
         The added model will then watch incoming records and add outputs computed on those
@@ -633,12 +637,6 @@ class BaseDatabase:
     def _insert_validation_data(self, tmp, identifier):
         raise NotImplementedError
 
-    def list_imputations(self):
-        """
-        List imputations.
-        """
-        return self._list_objects('learning_task', task_type='imputation')
-
     def list_jobs(self):
         """
         List jobs
@@ -719,8 +717,6 @@ class BaseDatabase:
 
     def _load_hashes(self, identifier):
         info = self.get_object_info(identifier, 'learning_task')
-        index_type = info.get('index_type', 'vanilla')
-        index_kwargs = info.get('index_kwargs', {}) or {}
         key_to_watch = info['keys_to_watch'][0]
         model_identifier = next(m for i, m in enumerate(info['models']) if info['keys'][i] == key_to_watch)
         watcher_info = self.get_object_info(f'[{identifier}]:{model_identifier}/{key_to_watch}', 'watcher')
@@ -728,7 +724,8 @@ class BaseDatabase:
         key = watcher_info.get('key', '_base')
         filter[f'_outputs.{key}.{watcher_info["model"]}'] = {'$exists': 1}
         c = self.execute_query(*watcher_info['query_params'])
-        measure = self.measures[info['measure']]
+
+        configuration = info.get('configuration')
         loaded = []
         ids = []
         docs = progress.progressbar(c)
@@ -737,14 +734,13 @@ class BaseDatabase:
             h = self._get_hash_from_record(r, watcher_info)
             loaded.append(h)
             ids.append(r['_id'])
-        if index_type == 'vanilla':
-            return pinnacledb.vector_search.vanilla.hashes.HashSet(torch.stack(loaded), ids, measure=measure)
-        elif index_type == 'faiss':
-            return pinnacledb.vector_search.faiss.hashes.FaissHashSet(torch.stack(loaded),
-                                                                        ids,
-                                                                        **index_kwargs)
-        else:
-            raise NotImplementedError
+
+        hash_set_cls = configuration.get(
+            'hash_set_cls',
+             pinnacledb.vector_search.vanilla.hashes.VanillaHashSet,
+        )
+        return hash_set_cls(loaded, ids, measure=configuration.get('measure'),
+                            **configuration.get('hash_set_kwargs', {}))
 
     def _load_object(self, identifier, variety):
         info = self.get_object_info(identifier, variety)
@@ -897,13 +893,9 @@ class BaseDatabase:
         if 'serializer_kwargs' not in info:
             info['serializer_kwargs'] = {}
         assert identifier in self.list_models(), f'model "{identifier}" doesn\'t exist to replace'
-        if not isinstance(object, Container):
-            file_id = self._create_serialized_file(object,
-                                                   serializer=info['serializer'],
-                                                   serializer_kwargs=info['serializer_kwargs'])
-            self._replace_object(info['object'], file_id, 'model', identifier)
-            return
-        file_id = self._create_serialized_file(object._forward)
+        file_id = self._create_serialized_file(object,
+                                               serializer=info['serializer'],
+                                               serializer_kwargs=info['serializer_kwargs'])
         self._replace_object(info['object'], file_id, 'model', identifier)
 
     def _replace_object(self, file_id, new_file_id, variety, identifier):

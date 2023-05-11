@@ -1,4 +1,4 @@
-from pinnacledb.base.imports import get_database_from_database_type
+from pinnacledb.datalayer.base.imports import get_database_from_database_type
 from pinnacledb.cluster.annotations import decode_args, decode_kwargs
 import traceback
 from pinnacledb.cluster.logging import handle_function_output

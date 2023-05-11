@@ -1,4 +1,4 @@
-from pinnacledb.base.imports import get_database_from_database_type
+from pinnacledb.datalayer.base.imports import get_database_from_database_type
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
 
