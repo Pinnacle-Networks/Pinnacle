@@ -2,12 +2,11 @@ import gridfs
 from bson import ObjectId
 from pymongo import UpdateOne
 from pymongo.database import Database as MongoDatabase
-import pinnacledb.dbs.mongodb.collection
-from pinnacledb.base.database import BaseDatabase
+import pinnacledb.datalayer.mongodb.collection
+from pinnacledb.datalayer.base.database import BaseDatabase
 from pinnacledb.cluster.annotations import ObjectIdConvertible, List
 from pinnacledb.cluster.job_submission import work
-from pinnacledb.dbs.mongodb import loading
-from pinnacledb.training.validation import validate_semantic_index
+from pinnacledb.datalayer.mongodb import loading
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
 
@@ -111,8 +110,9 @@ class Database(MongoDatabase, BaseDatabase):
             query_params[2]['_id'] = 1
         return self.execute_query(*query_params)
 
-    def execute_query(self, collection, filter_, *args, **kwargs):
-        return self[collection].find(filter_, *args, **kwargs)
+    def execute_query(self, collection, filter_=None, projection=None, **kwargs):
+        filter_ = filter_ or {}
+        return self[collection].find(filter_, projection=projection, **kwargs)
 
     def _format_fold_to_query(self, query_params, fold):
         if not query_params[1:]:

@@ -2,7 +2,7 @@ import inspect
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 
-from pinnacledb.base.imports import get_database_from_database_type
+from pinnacledb.datalayer.base.imports import get_database_from_database_type
 from pinnacledb.training.base.config import TrainerConfiguration
 from pinnacledb.models.torch.utils import eval
 
