@@ -12,6 +12,7 @@ from pinnacledb.training.base.config import TrainerConfiguration
 from pinnacledb.misc.special_dicts import ExtensibleDict
 from pinnacledb.models.torch.utils import to_device, device_of
 from pinnacledb.training.query_dataset import QueryDataset
+from pinnacledb.misc.logger import logging
 
 
 def _default_optimizer():
@@ -90,7 +91,7 @@ class TorchTrainerConfiguration(TrainerConfiguration):
                 to_watch = metrics[watch]
 
             if max(to_watch[-no_improve_then_stop:]) < max(to_watch):
-                print('early stopping triggered!')
+                logging.info('early stopping triggered!')
                 return True
 
         return False
@@ -203,7 +204,7 @@ class Trainer:
                     out += f'{k}/{kk}: {vv}; '
             else:
                 out += f'{k}: {v}; '
-        print(out)
+        logging.info(out)
 
     @staticmethod
     def apply_models_to_batch(batch, models):

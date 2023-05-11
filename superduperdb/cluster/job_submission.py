@@ -3,10 +3,10 @@ import inspect
 from functools import wraps
 import uuid
 
-
 from pinnacledb.cluster.annotations import encode_args, encode_kwargs
 from pinnacledb.cluster.function_job import function_job
 from pinnacledb.cluster.dask.dask_client import dask_client
+from pinnacledb.misc.logger import logging
 
 
 def work(f):
@@ -40,9 +40,9 @@ def work(f):
                 job_id,
             )
         else:
-            print(database)
-            print(args)
-            print(kwargs)
+            logging.debug(database)
+            logging.debug(args)
+            logging.debug(kwargs)
             return f(database, *args, **kwargs)
     work_wrapper.signature = sig
     return work_wrapper
