@@ -17,7 +17,7 @@ from pinnacledb.cluster.annotations import Convertible
 from pinnacledb.cluster.job_submission import work
 from pinnacledb.cluster.task_workflow import TaskWorkflow
 from pinnacledb.models.base import wrap_model
-from pinnacledb.fetchers.downloads import gather_urls
+from pinnacledb.fetchers.downloads import gather_uris
 from pinnacledb.apis.secrets import CallableWithSecret
 from pinnacledb.misc.special_dicts import ArgumentDefaultDict
 from pinnacledb.fetchers.downloads import Downloader
@@ -502,9 +502,9 @@ class BaseDatabase:
                 documents = list(self.execute_query(*query_params))
             else:
                 documents = self._get_docs_from_ids(ids, *query_params, raw=True)
-        urls, keys, place_ids = gather_urls(documents)
-        print(f'found {len(urls)} urls')
-        if not urls:
+        uris, keys, place_ids = gather_uris(documents)
+        print(f'found {len(uris)} uris')
+        if not uris:
             return
 
         if n_download_workers is None:
@@ -528,7 +528,7 @@ class BaseDatabase:
         table = self._get_table_from_query_params(query_params)
         downloader = Downloader(
             table=table,
-            urls=urls,
+            uris=uris,
             ids=place_ids,
             keys=keys,
             update_one=self._download_update,
@@ -558,8 +558,8 @@ class BaseDatabase:
     def _get_content_for_filter(self, filter):
         if '_id' not in filter:
             filter['_id'] = 0
-        urls = gather_urls([filter])[0]
-        if urls:
+        uris = gather_uris([filter])[0]
+        if uris:
             filter = self.download_content(self.name,
                                            documents=[filter],
                                            timeout=None, raises=True)[0]
