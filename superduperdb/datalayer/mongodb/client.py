@@ -2,6 +2,7 @@ import click
 from pymongo.mongo_client import MongoClient
 
 import pinnacledb.datalayer.mongodb.database
+from pinnacledb.misc.logger import logging
 
 
 class SuperDuperClient(MongoClient):
@@ -39,4 +40,4 @@ class SuperDuperClient(MongoClient):
             super().drop_database(f'_{name}:files')
             super().drop_database(name)
         else:
-            print('aborting...')
+            logging.warning('aborting...')
