@@ -28,7 +28,7 @@ class Database(MongoDatabase, BaseDatabase):
     def __getitem__(self, name: str):
         if name != '_validation_sets' and name.startswith('_'):
             return super().__getitem__(name)
-        return pinnacledb.dbs.mongodb.collection.Collection(self, name)
+        return pinnacledb.datalayer.mongodb.collection.Collection(self, name)
 
     @property
     def filesystem(self):
