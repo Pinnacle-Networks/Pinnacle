@@ -7,13 +7,15 @@ from pinnacledb.cluster.annotations import encode_args, encode_kwargs
 from pinnacledb.cluster.function_job import function_job
 from pinnacledb.cluster.dask.dask_client import dask_client
 from pinnacledb.misc.logger import logging
+from pinnacledb import cf
 
 
 def work(f):
     sig = inspect.signature(f)
-    _dask_client = dask_client()
+    if cf['remote']:
+        _dask_client = dask_client()
     @wraps(f)
-    def work_wrapper(database, *args, remote=None, dependencies=(), **kwargs):
+    def work_wrapper(database, *args, remote=None, **kwargs):
         if remote is None:
             remote = database.remote
         if remote:
