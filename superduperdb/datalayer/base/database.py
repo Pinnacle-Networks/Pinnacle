@@ -11,6 +11,7 @@ from bson import ObjectId
 
 import pinnacledb.vector_search.faiss.hashes
 import pinnacledb.vector_search.vanilla.hashes
+import pinnacledb.vector_search.vanilla.measures
 from pinnacledb import cf
 from pinnacledb.cluster.client_decorators import model_server
 from pinnacledb.cluster.annotations import Convertible
@@ -726,7 +727,7 @@ class BaseDatabase:
         filter[f'_outputs.{key}.{watcher_info["model"]}'] = {'$exists': 1}
         c = self.execute_query(*watcher_info['query_params'])
 
-        configuration = info.get('configuration')
+        configuration = info.get('configuration', {}) or {}
         loaded = []
         ids = []
         docs = progress.progressbar(c)
@@ -740,8 +741,12 @@ class BaseDatabase:
             'hash_set_cls',
              pinnacledb.vector_search.vanilla.hashes.VanillaHashSet,
         )
-        return hash_set_cls(loaded, ids, measure=configuration.get('measure'),
-                            **configuration.get('hash_set_kwargs', {}))
+        return hash_set_cls(
+            loaded,
+            ids,
+            measure=configuration.get('measure', pinnacledb.vector_search.vanilla.measures.css),
+            **configuration.get('hash_set_kwargs', {})
+        )
 
     def _load_object(self, identifier, variety):
         info = self.get_object_info(identifier, variety)
@@ -789,7 +794,7 @@ class BaseDatabase:
                     recompute=recompute,
                     watcher_info=watcher_info,
                     remote=False,
-                    **{k: v for k, v in kwargs if k != 'remote'},
+                    **kwargs,
                 )
             return
 
