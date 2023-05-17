@@ -1,8 +1,6 @@
 import importlib
 
-from pinnacledb import cf
-
-api_cf = cf.get('apis', {'providers': {}})
+from . import api_cf
 
 
 def client_init():
