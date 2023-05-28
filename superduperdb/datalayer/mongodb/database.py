@@ -1,4 +1,3 @@
-from typing import Union
 
 import gridfs
 from bson import ObjectId
@@ -8,8 +7,6 @@ from pymongo.database import Database as MongoDatabase
 
 import pinnacledb.datalayer.mongodb.collection
 from pinnacledb.datalayer.base.database import BaseDatabase
-from pinnacledb.cluster.annotations import ObjectIdConvertible, List
-from pinnacledb.cluster.job_submission import work
 from pinnacledb.datalayer.mongodb import loading
 from pinnacledb.datalayer.mongodb.cursor import SuperDuperCursor
 from pinnacledb.misc.special_dicts import MongoStyleDict
@@ -18,7 +15,6 @@ from pinnacledb.datalayer.mongodb.query import (
     Select,
     Delete,
     Insert,
-    set_one_key_in_document,
     Update,
 )
 
