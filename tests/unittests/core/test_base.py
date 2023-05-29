@@ -2,11 +2,11 @@ from pinnacledb.core.base import Component, ComponentList, strip
 
 
 class ComponentA(Component):
-    ...
+    variety = 'a'
 
 
 class ComponentB(Component):
-    ...
+    variety = 'b'
 
 
 class MyComponent(Component):
