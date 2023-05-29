@@ -1,14 +1,14 @@
+from pinnacledb.core.training_configuration import TrainingConfiguration
 from pinnacledb.datalayer.base.imports import get_database_from_database_type
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.misc import progress
-from pinnacledb.training.base.config import TrainerConfiguration
 import numpy
 
 
-class SklearnTrainerConfiguration(TrainerConfiguration):
-    def __init__(self, fit_params=None, predict_params=None):
+class SklearnTrainingConfiguration(TrainingConfiguration):
+    def __init__(self, identifier, fit_params=None, predict_params=None):
         super().__init__(
-            fit_params=fit_params or {}, predict_params=predict_params or {}
+            identifier, fit_params=fit_params or {}, predict_params=predict_params or {}
         )
 
     @classmethod

@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 
 from pinnacledb.datalayer.base.imports import get_database_from_database_type
 from pinnacledb.datalayer.base.query import Select
-from pinnacledb.training.base.config import TrainerConfiguration
+from pinnacledb.core.training_configuration import TrainingConfiguration
 from pinnacledb.misc.special_dicts import ExtensibleDict
 from pinnacledb.models.torch.utils import to_device, device_of
 from pinnacledb.training.query_dataset import QueryDataset
@@ -24,9 +24,10 @@ def _default_kwargs():
     return {'lr': 0.0001}
 
 
-class TorchTrainerConfiguration(TrainerConfiguration):
+class TorchTrainerConfiguration(TrainingConfiguration):
     def __init__(
         self,
+        identifier,
         objective,
         loader_kwargs,
         optimizer_classes=None,
@@ -46,6 +47,7 @@ class TorchTrainerConfiguration(TrainerConfiguration):
         optimizer_kwargs = defaultdict(_default_kwargs)
         optimizer_kwargs.update(_optimizer_kwargs)
         super().__init__(
+            identifier,
             loader_kwargs=loader_kwargs,
             objective=objective,
             optimizer_classes=optimizer_classes or {},
