@@ -2,8 +2,12 @@ from typing import List, Optional, Union
 
 from pinnacledb.core.base import ComponentList, PlaceholderList, Component, Placeholder, \
     is_placeholders_or_components
+from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model
 from pinnacledb.core.watcher import Watcher
+from pinnacledb.datalayer.base.query import Select
+from pinnacledb.training.query_dataset import QueryDataset
+from pinnacledb.training.validation import validate_vector_search
 from pinnacledb.vector_search import VanillaHashSet
 
 
@@ -45,6 +49,33 @@ class VectorIndex(Component):
         assert len(self.keys) == len(self.models)
         self.measure = measure
         self.hash_set_cls = hash_set_cls
+
+    def validate(
+        self,
+        database: 'pinnacledb.datalayer.base.database.Database',
+        validation_selects: List[Select],
+        metrics: List[Metric],
+    ):
+        out = []
+        for vs in validation_selects:
+            validation_data = QueryDataset(
+                vs,
+                database_type=database._database_type,
+                database=database.name,
+                keys=self.keys,
+                fold='valid',
+            )
+            res = validate_vector_search(
+                validation_data=validation_data,
+                models=self.models,
+                keys=self.keys,
+                metrics=metrics,
+                hash_set_cls=self.hash_set_cls,
+                measure=self.measure,
+                predict_kwargs={},
+            )
+            out.append(res)
+        return out
 
     def asdict(self):
         return {

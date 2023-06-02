@@ -7,7 +7,7 @@ from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.mongodb.query import Select, Insert, Update, Delete
 from pinnacledb.models.torch.wrapper import SuperDuperModule
 from pinnacledb.training.torch.trainer import TorchTrainerConfiguration
-from pinnacledb.training.validation import validate_semantic_index
+from pinnacledb.training.validation import validate_vector_search
 from pinnacledb.vector_search import VanillaHashSet
 from pinnacledb.vector_search.vanilla.measures import css
 
@@ -38,6 +38,15 @@ def test_select(with_vector_index):
         )
     )
     assert r['_id'] == s['_id']
+
+
+def test_validate_component(with_vector_index, si_validation, metric):
+    with_vector_index.database.validate_component(
+        'test_vector_search',
+        variety='vector_index',
+        metrics=['p@1'],
+        validation_sets=['my_valid'],
+    )
 
 
 def test_select_faiss(with_vector_index_faiss):
@@ -136,7 +145,7 @@ def test_learning_task(si_validation, a_model, c_model, metric):
             'linear_a': {'lr': 0.001},
             'linear_c': {'lr': 0.001},
         },
-        compute_metrics=validate_semantic_index,
+        compute_metrics=validate_vector_search,
         hash_set_cls=VanillaHashSet,
         measure=css,
     )
