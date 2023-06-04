@@ -7,12 +7,12 @@ from pinnacledb.cluster.annotations import encode_args, encode_kwargs
 from pinnacledb.cluster.function_job import function_job
 from pinnacledb.cluster.dask.dask_client import dask_client
 from pinnacledb.misc.logger import logging
-from pinnacledb import cf
+from pinnacledb import CFG
 
 
 def work(f):
     sig = inspect.signature(f)
-    if cf['remote']:
+    if CFG.remote:
         _dask_client = dask_client()
 
     @wraps(f)

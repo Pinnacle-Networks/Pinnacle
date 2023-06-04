@@ -11,7 +11,7 @@ import click
 import networkx
 from bson import ObjectId
 
-from pinnacledb import cf, misc
+from pinnacledb import CFG, misc
 from pinnacledb.cluster.client_decorators import model_server, vector_search
 from pinnacledb.cluster.annotations import Convertible, Tuple, List
 from pinnacledb.cluster.job_submission import work
@@ -40,7 +40,7 @@ class BaseDatabase:
         self.models = ArgumentDefaultDict(lambda x: self.load_component(x, 'model'))
         self.types = ArgumentDefaultDict(lambda x: self.load_component(x, 'type'))
 
-        self.remote = cf.get('remote', False)
+        self.remote = CFG.remote
         self._type_lookup = None
 
         self._all_hash_sets = {}
