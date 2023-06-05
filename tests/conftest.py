@@ -11,6 +11,7 @@ from pinnacledb.misc import config as _config
 
 pytest_plugins = [
     "tests.conftest_mongodb",
+    "tests.integration.conftest_milvus",
 ]
 
 
