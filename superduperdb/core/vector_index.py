@@ -1,7 +1,12 @@
-from typing import List, Optional, Union
+from typing import List, Union
 
-from pinnacledb.core.base import ComponentList, PlaceholderList, Component, Placeholder, \
-    is_placeholders_or_components
+from pinnacledb.core.base import (
+    ComponentList,
+    PlaceholderList,
+    Component,
+    Placeholder,
+    is_placeholders_or_components,
+)
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model
 from pinnacledb.core.watcher import Watcher
@@ -33,12 +38,14 @@ class VectorIndex(Component):
         keys: List[str],
         watcher: Union[Watcher, str],
         models: Union[List[Model], List[str]] = None,
-        measure: str= 'css',
+        measure: str = 'css',
         hash_set_cls: type = VanillaHashSet,
     ):
         super().__init__(identifier)
         self.keys = keys
-        self.watcher = Placeholder(watcher, 'watcher') if isinstance(watcher, str) else watcher
+        self.watcher = (
+            Placeholder(watcher, 'watcher') if isinstance(watcher, str) else watcher
+        )
 
         is_placeholders, is_components = is_placeholders_or_components(models)
         assert is_placeholders or is_components
@@ -52,7 +59,7 @@ class VectorIndex(Component):
 
     def validate(
         self,
-        database: 'pinnacledb.datalayer.base.database.Database',
+        database: 'pinnacledb.datalayer.base.database.Database',  # noqa: F821  why?
         validation_selects: List[Select],
         metrics: List[Metric],
     ):
