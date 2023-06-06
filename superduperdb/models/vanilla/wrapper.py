@@ -3,7 +3,6 @@ from pinnacledb.core.model import Model
 
 
 class FunctionWrapper(Model):
-
     def predict_one(self, x, **kwargs):
         return self.object(x, **kwargs)
 
