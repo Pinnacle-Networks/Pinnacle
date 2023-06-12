@@ -1,4 +1,3 @@
-from functools import lru_cache
 import os
 
 from openai import ChatCompletion as _ChatCompletion
@@ -8,11 +7,12 @@ from openai.error import Timeout, RateLimitError, TryAgain, ServiceUnavailableEr
 
 from pinnacledb.apis.utils import DoRetry
 from pinnacledb.core.model import Model
+from pinnacledb.misc.compat import cache
 
 do_retry = DoRetry((Timeout, RateLimitError, TryAgain, ServiceUnavailableError))
 
 
-@lru_cache(maxsize=None)
+@cache
 def _available_models():
     return tuple([r['id'] for r in OpenAIModel.list()['data']])
 
