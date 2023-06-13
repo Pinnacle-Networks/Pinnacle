@@ -1,5 +1,6 @@
 from langchain import OpenAI
 import os
+import numpy
 import pytest
 
 from pinnacledb.models.sentence_transformers.wrapper import SentenceTransformer
@@ -7,7 +8,7 @@ from pinnacledb.core.watcher import Watcher
 from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.datalayer.mongodb.query import Select
 from pinnacledb.models.langchain.retriever import DBQAWithSourcesChain
-from pinnacledb.types.numpy.array import Array
+from pinnacledb.types.numpy.array import array
 
 
 SKIP_PAID = os.environ.get('OPENAI_API_KEY') is None
@@ -17,7 +18,7 @@ if not SKIP_PAID:
 
 @pytest.mark.skipif(SKIP_PAID, reason='don\'t test paid API')
 def test_db_qa_with_sources_chain(nursery_rhymes):
-    nursery_rhymes.database.create_component(Array('array', dtype='float32'))
+    nursery_rhymes.database.create_component(array(numpy.float32))
     pl = SentenceTransformer(model_name_or_path='all-MiniLM-L6-v2', type='array')
     nursery_rhymes.database.create_component(pl)
     nursery_rhymes.database.create_component(
