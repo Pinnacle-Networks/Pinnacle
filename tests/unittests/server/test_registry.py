@@ -5,7 +5,7 @@ import pinnacledb as s
 
 
 def setup_registry(register):
-    class One(s.Serializable):
+    class One(s.JSONable):
         one = 'one'
 
     class Two(One):
