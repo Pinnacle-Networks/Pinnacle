@@ -1,9 +1,9 @@
 import importlib
+import pinnacledb as s
+import typing as t
 
-from pinnacledb import CFG
 
-
-def get_database_from_database_type(database_type, database_name):
+def get_database_from_database_type(database_type: str, database_name: str) -> t.Any:
     """
     Import the database connection from ``pinnacledb``
 
@@ -11,14 +11,13 @@ def get_database_from_database_type(database_type, database_name):
     :param database_name: name of database
     """
     module = importlib.import_module(f'pinnacledb.datalayer.{database_type}.client')
-    client_cls = getattr(module, 'SuperDuperClient')
 
     try:
-        cfg = getattr(CFG, database_type)
+        cfg = getattr(s.CFG, database_type)
     except AttributeError:
         kwargs = {}
     else:
         kwargs = cfg.dict()
 
-    client = client_cls(**kwargs)
+    client = module.SuperDuperClient(**kwargs)
     return client.get_database_from_name(database_name)
