@@ -1,7 +1,11 @@
+import typing as t
+
 from pinnacledb import CFG
 from warnings import warn
 
 __all__ = ('logging',)
+
+logging: t.Any
 
 if CFG.logging.type == 'stdout':
 
