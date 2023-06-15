@@ -9,7 +9,7 @@ import torch
 from pinnacledb.core.documents import Document
 from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.core.watcher import Watcher
-from pinnacledb.datalayer.mongodb.client import SuperDuperClient
+from pinnacledb.datalayer.base.database import BaseDatabase
 from pinnacledb.datalayer.mongodb.query import Select, Insert, Delete
 from pinnacledb.models.torch.wrapper import SuperDuperModule
 from pinnacledb.types.numpy.array import array
@@ -23,11 +23,8 @@ n_data_points = 250
 
 
 @pytest.fixture()
-def empty(client: SuperDuperClient):
-    db = client.test_db
-    db.remote = False
-    yield db
-    client.drop_database('test_db', force=True)
+def empty(test_db: BaseDatabase):
+    yield test_db
 
 
 @pytest.fixture()
