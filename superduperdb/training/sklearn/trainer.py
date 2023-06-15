@@ -1,5 +1,5 @@
 from pinnacledb.core.training_configuration import TrainingConfiguration
-from pinnacledb.datalayer.base.imports import get_database_from_database_type
+from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.misc import progress
 import numpy
@@ -33,8 +33,6 @@ class SklearnTrainingConfiguration(TrainingConfiguration):
         models,
         keys,
         model_names,
-        database_type,
-        database_name,
         select: Select,
         splitter=None,
         validation_sets=(),
@@ -42,7 +40,7 @@ class SklearnTrainingConfiguration(TrainingConfiguration):
         features=None,
         download=False,
     ):
-        database = get_database_from_database_type(database_type, database_name)
+        database = build_datalayer()
         X_train, y_train = self._get_data(
             database=database,
             X=keys[0],
