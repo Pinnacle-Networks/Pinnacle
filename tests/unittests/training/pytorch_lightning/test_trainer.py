@@ -4,7 +4,12 @@ from pinnacledb.datalayer.mongodb.query import Select
 from pinnacledb.models.torch.wrapper import SuperDuperModule
 from pinnacledb.training.pytorch_lightning.trainer import LightningConfiguration
 
-from tests.fixtures.collection import random_data, float_tensors, empty
+from tests.fixtures.collection import (
+    random_data,
+    float_tensors_16,
+    float_tensors_32,
+    empty,
+)
 
 import pytorch_lightning as pl
 import pytest
