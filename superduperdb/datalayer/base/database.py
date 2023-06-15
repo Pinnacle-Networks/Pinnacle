@@ -24,6 +24,16 @@ from pinnacledb.misc.special_dicts import ArgumentDefaultDict
 from pinnacledb.fetchers.downloads import Downloader
 from pinnacledb.misc import progress
 from pinnacledb.misc.logger import logging
+from pinnacledb.vector_search.base import VectorDatabase
+
+
+# TODO:
+# This global variable is a temporary solution to make VectorDatabase available
+# to the rest of the code.
+# It should be moved to the Server's initialization code where it can be available to
+# all threads.
+VECTOR_DATABASE = VectorDatabase.create(config=CFG.vector_search)
+VECTOR_DATABASE.init().__enter__()
 
 
 class BaseDatabase:
