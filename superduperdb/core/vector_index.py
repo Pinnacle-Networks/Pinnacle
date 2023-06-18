@@ -10,8 +10,8 @@ from pinnacledb.core.base import (
     DBPlaceholder,
 )
 from pinnacledb.core.documents import Document
+from pinnacledb.core.encoder import Encodable
 from pinnacledb.core.metric import Metric
-from pinnacledb.core.type import DataVar
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.core.model import Model
 from pinnacledb.datalayer.base.query import Select
@@ -90,7 +90,7 @@ class VectorIndex(Component):
                     self.indexing_watcher.key,
                     self.indexing_watcher.model.identifier,
                 )
-                if isinstance(h, DataVar):
+                if isinstance(h, Encodable):
                     h = h.x
                 vector_collection.add(
                     [VectorCollectionItem.create(id=str(id), vector=h)]

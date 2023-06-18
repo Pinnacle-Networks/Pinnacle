@@ -1,7 +1,7 @@
 import numpy
 import typing as t
 
-from pinnacledb.core.type import Type
+from pinnacledb.core.encoder import Encoder
 from pinnacledb.types.utils import str_shape
 
 
@@ -23,7 +23,7 @@ class DecodeArray:
 
 
 def array(dtype: str, shape: t.Tuple):
-    return Type(
+    return Encoder(
         identifier=f'numpy.{dtype}[{str_shape(shape)}]',
         encoder=EncodeArray(dtype),
         decoder=DecodeArray(dtype),
