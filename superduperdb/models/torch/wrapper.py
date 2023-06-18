@@ -5,7 +5,7 @@ import torch
 from torch.utils import data
 
 from pinnacledb.core.documents import Document
-from pinnacledb.core.type import DataVar
+from pinnacledb.core.encoder import Encodable
 from pinnacledb.misc import progress
 from pinnacledb.core.model import Model
 from pinnacledb.models.torch.utils import device_of, to_device, eval
@@ -177,7 +177,7 @@ class BasicDataset(data.Dataset):
         document = self.documents[item]
         if isinstance(document, Document):
             document = document.unpack()
-        elif isinstance(document, DataVar):
+        elif isinstance(document, Encodable):
             document = document.x
         return self.transform(document)
 
