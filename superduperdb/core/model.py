@@ -3,7 +3,7 @@ import typing as t
 from pinnacledb.core.base import Component, Placeholder
 from pinnacledb.core.encoder import Encoder
 
-EncoderArg = t.Union[Encoder, None, str]
+EncoderArg = t.Union[Encoder, Placeholder, None, str]
 
 
 class Model(Component):
