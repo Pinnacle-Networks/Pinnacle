@@ -9,16 +9,14 @@ from pinnacledb.core.base import (
     is_placeholders_or_components,
     DBPlaceholder,
 )
+from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.encoder import Encodable
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model
 from pinnacledb.core.watcher import Watcher
-from pinnacledb.datalayer.base.data_backend import BaseDataBackend
-from pinnacledb.datalayer.base.query import Select
 from pinnacledb.misc.logger import logging
 from pinnacledb.misc.special_dicts import MongoStyleDict
-from pinnacledb.training.query_dataset import QueryDataset
 from pinnacledb.training.validation import validate_vector_search
 from pinnacledb.vector_search import VanillaHashSet
 from pinnacledb.vector_search.base import (
@@ -211,32 +209,26 @@ class VectorIndex(Component):
         keys = [w.key for w in watchers]
         return models, keys
 
+    # ruff: noqa: F821, E501
     def validate(
         self,
-        database: t.Type[BaseDataBackend],  # noqa: F821  why?
-        validation_selects: t.List[Select],
+        database: 'pinnacledb.datalayer.base.database.Database',  # type: ignore[name-defined]
+        validation_data: t.Union[str, Dataset],
         metrics: t.List[Metric],
     ):
         models, keys = self.models_keys
         models = [database.models[m] for m in models]
-        out = []
-        for vs in validation_selects:
-            validation_data = QueryDataset(
-                vs,
-                keys=keys,
-                fold='valid',
-            )
-            res = validate_vector_search(
-                validation_data=validation_data,
-                models=models,
-                keys=keys,
-                metrics=metrics,
-                hash_set_cls=VanillaHashSet,
-                measure=self.measure,
-                predict_kwargs={},
-            )
-            out.append(res)
-        return out
+        if isinstance(validation_data, str):
+            validation_data = database.load('dataset', validation_data)
+        return validate_vector_search(
+            validation_data=validation_data.data,  # type: ignore[union-attr]
+            models=models,
+            keys=keys,
+            metrics=metrics,
+            hash_set_cls=VanillaHashSet,
+            measure=self.measure,
+            predict_kwargs={},
+        )
 
     def asdict(self):
         return {
