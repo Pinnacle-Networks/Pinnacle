@@ -1,4 +1,5 @@
 import typing as t
+from contextlib import contextmanager
 
 from pinnacledb.core.base import Component, Placeholder
 from pinnacledb.core.encoder import Encoder
@@ -45,6 +46,10 @@ class Model(Component):
             except AttributeError:
                 pass
                 self.predict = self._predict
+
+    @contextmanager
+    def saving(self):
+        yield
 
     @property
     def encoder(self) -> EncoderArg:

@@ -12,7 +12,7 @@ from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.base.database import BaseDatabase
 from pinnacledb.datalayer.mongodb.query import Select, Insert, Delete
-from pinnacledb.models.torch.wrapper import SuperDuperModule
+from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb.types.numpy.array import array
 from pinnacledb.types.pillow.image import pil_image
 from pinnacledb.types.torch.tensor import tensor
@@ -200,9 +200,7 @@ def image_type(empty):
 @pytest.fixture()
 def a_model(float_tensors_32, float_tensors_16):
     float_tensors_32.add(
-        SuperDuperModule(
-            torch.nn.Linear(32, 16), 'linear_a', encoder='torch.float32[16]'
-        )
+        TorchModel(torch.nn.Linear(32, 16), 'linear_a', encoder='torch.float32[16]')
     )
     yield float_tensors_32
     try:
@@ -216,9 +214,7 @@ def a_model(float_tensors_32, float_tensors_16):
 @pytest.fixture()
 def a_model_base(float_tensors_32, float_tensors_16):
     float_tensors_32.add(
-        SuperDuperModule(
-            LinearBase(32, 16), 'linear_a_base', encoder='torch.float32[16]'
-        ),
+        TorchModel(LinearBase(32, 16), 'linear_a_base', encoder='torch.float32[16]'),
     )
     yield float_tensors_32
     try:
@@ -253,7 +249,7 @@ def a_watcher_base(a_model_base):
 @pytest.fixture()
 def a_classifier(float_tensors_32):
     float_tensors_32.add(
-        SuperDuperModule(BinaryClassifier(32), 'classifier'),
+        TorchModel(BinaryClassifier(32), 'classifier'),
     )
     yield float_tensors_32
     try:
@@ -267,9 +263,7 @@ def a_classifier(float_tensors_32):
 @pytest.fixture()
 def b_model(float_tensors_32, float_tensors_16, float_tensors_8):
     float_tensors_32.add(
-        SuperDuperModule(
-            torch.nn.Linear(16, 8), 'linear_b', encoder='torch.float32[8]'
-        ),
+        TorchModel(torch.nn.Linear(16, 8), 'linear_b', encoder='torch.float32[8]'),
     )
     yield float_tensors_32
     try:
@@ -283,7 +277,7 @@ def b_model(float_tensors_32, float_tensors_16, float_tensors_8):
 @pytest.fixture()
 def c_model(float_tensors_32, float_tensors_16):
     float_tensors_32.add(
-        SuperDuperModule(
+        TorchModel(
             torch.nn.Linear(32, 16),
             'linear_c',
             encoder='torch.float32[16]',
