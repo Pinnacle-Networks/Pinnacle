@@ -6,6 +6,7 @@ import numpy
 import pytest
 import torch
 
+from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.core.watcher import Watcher
@@ -125,10 +126,12 @@ def with_vector_index(random_data, vector_index_factory):
 
 @pytest.fixture()
 def si_validation(random_data):
-    random_data._add_validation_set(
-        'my_valid',
-        select=Select(collection='documents', filter={'_fold': 'valid'}),
-        chunk_size=100,
+    random_data.add(
+        Dataset(
+            'my_valid',
+            select=Select(collection='documents', filter={'_fold': 'valid'}),
+            sample_size=100,
+        )
     )
 
     yield random_data
