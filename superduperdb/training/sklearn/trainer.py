@@ -1,3 +1,5 @@
+import typing as t
+
 from pinnacledb.core.training_configuration import TrainingConfiguration
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.datalayer.base.query import Select
@@ -6,6 +8,9 @@ import numpy
 
 
 class SklearnTrainingConfiguration(TrainingConfiguration):
+    fit_params: t.Dict
+    predict_params: t.Dict
+
     def __init__(self, identifier, fit_params=None, predict_params=None):
         super().__init__(
             identifier, fit_params=fit_params or {}, predict_params=predict_params or {}

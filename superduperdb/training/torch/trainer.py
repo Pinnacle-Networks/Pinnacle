@@ -1,4 +1,5 @@
 import inspect
+import typing as t
 from collections import defaultdict
 
 import torch.cuda
@@ -7,13 +8,13 @@ import torch.optim
 import torch.utils
 from torch.utils.data import DataLoader
 
+from pinnacledb.core.training_configuration import TrainingConfiguration
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.datalayer.base.query import Select
-from pinnacledb.core.training_configuration import TrainingConfiguration
+from pinnacledb.misc.logger import logging
 from pinnacledb.misc.special_dicts import ExtensibleDict
 from pinnacledb.models.torch.utils import to_device, device_of
 from pinnacledb.training.query_dataset import QueryDataset
-from pinnacledb.misc.logger import logging
 
 
 def _default_optimizer():
@@ -115,7 +116,7 @@ class TorchTrainerConfiguration(TrainingConfiguration):
         return False
 
     @classmethod
-    def get_validation_dataset(cls, validation_set):
+    def get_validation_dataset(cls, validation_set) -> QueryDataset:
         database = build_datalayer()
         select: Select = database.db.get_query_for_validation_set(validation_set)
         return QueryDataset(select, fold='valid')
@@ -135,7 +136,7 @@ class TorchTrainerConfiguration(TrainingConfiguration):
         database = build_datalayer()
 
         lookup = dict(zip(model_names, models))
-        optimizer_classes = defaultdict(lambda: torch.optim.Adam)
+        optimizer_classes: t.Dict = defaultdict(lambda: torch.optim.Adam)
         optimizer_classes.update(self.optimizer_classes)
         optimizers = []
         for k in optimizer_classes:
