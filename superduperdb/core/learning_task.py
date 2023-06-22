@@ -9,7 +9,7 @@ from pinnacledb.core.base import (
 )
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model
-from pinnacledb.core.training_configuration import TrainingConfiguration
+from pinnacledb.core import TrainingConfiguration
 from pinnacledb.datalayer.base.query import Select
 
 

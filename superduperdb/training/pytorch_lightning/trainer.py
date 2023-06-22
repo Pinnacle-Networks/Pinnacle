@@ -3,7 +3,7 @@ import typing as t
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 
-from pinnacledb.core.training_configuration import TrainingConfiguration
+from pinnacledb.core import TrainingConfiguration
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.models.torch.utils import eval

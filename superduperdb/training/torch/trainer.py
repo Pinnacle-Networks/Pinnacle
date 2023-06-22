@@ -8,9 +8,9 @@ import torch.optim
 import torch.utils
 from torch.utils.data import DataLoader
 
-from pinnacledb.core.training_configuration import TrainingConfiguration
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.datalayer.base.query import Select
+from pinnacledb.core import TrainingConfiguration
 from pinnacledb.misc.special_dicts import ExtensibleDict
 from pinnacledb.models.torch.utils import to_device, device_of
 from pinnacledb.misc.logger import logging
