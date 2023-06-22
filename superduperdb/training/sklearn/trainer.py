@@ -1,6 +1,6 @@
 import typing as t
 
-from pinnacledb.core.training_configuration import TrainingConfiguration
+from pinnacledb.core import TrainingConfiguration
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.misc import progress
