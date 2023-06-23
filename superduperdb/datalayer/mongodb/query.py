@@ -2,7 +2,8 @@ from dataclasses import dataclass
 from functools import cached_property
 from bson import ObjectId
 from pydantic import Field
-from pinnacledb.core.documents import Document, URIDocument
+from pinnacledb.core.documents import Document
+from pinnacledb.core.suri import URIDocument
 from pinnacledb.datalayer.base import query
 import pinnacledb as s
 import typing as t
