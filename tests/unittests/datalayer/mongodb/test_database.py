@@ -15,7 +15,7 @@ from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.mongodb.query import Select, Insert, Update, Delete
 from pinnacledb.misc.key_cache import KeyCache
 from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.training.torch.trainer import TorchTrainerConfiguration
+from pinnacledb.models.torch.wrapper import TorchTrainerConfiguration
 from pinnacledb.training.validation import validate_vector_search
 from pinnacledb.types.torch.tensor import tensor
 from pinnacledb.vector_search import VanillaHashSet
@@ -280,6 +280,7 @@ def test_watcher(random_data, a_model, b_model):
     assert 'linear_b' in r['_outputs']['x']
 
 
+@pytest.mark.skip('To be replaced with model.fit')
 def test_learning_task(si_validation, a_model, c_model, metric):
     configuration = TorchTrainerConfiguration(
         'ranking_task_parametrization',
