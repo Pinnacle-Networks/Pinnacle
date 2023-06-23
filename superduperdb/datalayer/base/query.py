@@ -1,7 +1,8 @@
 import typing as t
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from pinnacledb.core.documents import Document, URIDocument
+from pinnacledb.core.documents import Document
+from pinnacledb.core.suri import URIDocument
 
 
 class Select(ABC):

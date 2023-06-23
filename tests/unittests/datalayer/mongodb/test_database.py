@@ -5,12 +5,14 @@ import torch
 import typing as t
 
 from pinnacledb.core.base import Placeholder
-from pinnacledb.core.documents import Document, DocumentCache, URIDocument
+from pinnacledb.core.documents import Document
+from pinnacledb.core.suri import URIDocument
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.core.learning_task import LearningTask
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.mongodb.query import Select, Insert, Update, Delete
+from pinnacledb.misc.key_cache import KeyCache
 from pinnacledb.models.torch.wrapper import SuperDuperModule
 from pinnacledb.training.torch.trainer import TorchTrainerConfiguration
 from pinnacledb.training.validation import validate_vector_search
@@ -118,7 +120,7 @@ def test_select_vanilla(random_data):
 def make_uri_document(**ka):
     # Create a new class each time so the caches don't interfere with each other
     class TestURIDocument(URIDocument):
-        key_cache: t.ClassVar[DocumentCache] = DocumentCache()
+        _cache: t.ClassVar[KeyCache[Document]] = KeyCache[Document]()
 
     return TestURIDocument.add(Document(ka))
 
