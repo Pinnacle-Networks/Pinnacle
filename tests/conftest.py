@@ -8,7 +8,7 @@ import pytest
 
 from pinnacledb.vector_search.base import VectorDatabase
 from pinnacledb.datalayer.base.database import BaseDatabase
-from pinnacledb.misc.config import DataLayer
+from pinnacledb.misc.config import DataLayer, DataLayers
 
 from .conftest_mongodb import MongoDBConfig as TestMongoDBConfig
 from pinnacledb.misc.config import (
@@ -49,16 +49,14 @@ def test_db(mongodb_server: MongoDBConfig) -> Iterator[BaseDatabase]:
 
 @pytest.fixture(autouse=True)
 def config(mongodb_server: MongoDBConfig) -> Iterator[None]:
-    datalayer_cfg = DataLayer(
-        data_backend_kwargs=asdict(TestMongoDBConfig()),
-        data_backend_name='test_db',
-        metadata_kwargs=asdict(TestMongoDBConfig()),
-        metadata_name='test_db',
-        artifact_store_kwargs=asdict(TestMongoDBConfig()),
-        artifact_store_name='_filesystem:test_db',
+    kwargs = asdict(TestMongoDBConfig())
+    data_layers_cfg = DataLayers(
+        artifact=DataLayer(name='_filesystem:test_db', kwargs=kwargs),
+        data_backend=DataLayer(name='test_db', kwargs=kwargs),
+        metadata=DataLayer(name='test_db', kwargs=kwargs),
     )
 
-    with mock.patch('pinnacledb.CFG.datalayer', datalayer_cfg):
+    with mock.patch('pinnacledb.CFG.data_layers', data_layers_cfg):
         yield
 
 
