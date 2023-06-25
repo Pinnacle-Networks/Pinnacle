@@ -6,6 +6,7 @@ import numpy
 import pytest
 import torch
 
+from pinnacledb.core import Metric
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.vector_index import VectorIndex
@@ -30,8 +31,8 @@ def empty(test_db: BaseDatabase):
 
 @pytest.fixture()
 def metric(empty):
-    empty.add(PatK(1))
-    yield PatK
+    empty.add(Metric(identifier='p@1', object=PatK(1)))
+    yield
     empty.remove('metric', 'p@1', force=True)
 
 
