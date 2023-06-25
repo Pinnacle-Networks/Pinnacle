@@ -26,7 +26,7 @@ from pinnacledb.fetchers.downloads import gather_uris
 from pinnacledb.misc.logger import logging
 from pinnacledb.misc.special_dicts import ArgumentDefaultDict
 from pinnacledb.vector_search.base import VectorDatabase
-from pinnacledb.core import components
+from pinnacledb.core.components import components
 
 # TODO:
 # This global variable is a temporary solution to make VectorDatabase available
