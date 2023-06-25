@@ -1,5 +1,6 @@
 import typing as t
 
+from pinnacledb.core import Metric
 from pinnacledb.core.base import Component, Placeholder
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.datalayer.base.query import Select
@@ -87,6 +88,7 @@ class Model(Component):
         training_configuration: t.Optional[TrainingConfiguration] = None,
         training_select: t.Optional[Select] = None,
         training_keys: t.Optional[t.Dict] = None,
+        metrics: t.Optional[t.List[Metric]] = None,
     ):
         super().__init__(identifier)
         self.object = object
@@ -111,7 +113,8 @@ class Model(Component):
         self.training_configuration = training_configuration
         self.training_select = training_select
         self.training_keys = training_keys
-        self.metrics: t.Dict = {}
+        self.metrics = metrics
+        self.metric_values: t.Dict = {}
 
     def _predict(self, inputs, **kwargs):
         return [self.predict_one(x, **kwargs) for x in inputs]
@@ -124,9 +127,9 @@ class Model(Component):
 
     def append_metrics(self, d):
         for k in d:
-            if k not in self.metrics:
-                self.metrics[k] = []
-            self.metrics[k].append(d[k])
+            if k not in self.metric_values:
+                self.metric_values[k] = []
+            self.metric_values[k].append(d[k])
 
 
 class ModelEnsemblePredictionError(Exception):
@@ -144,3 +147,10 @@ class ModelEnsemble:
             elif isinstance(m, str):
                 setattr(self, m, Placeholder('model', m))
                 self._model_ids.append(m)
+
+    def __getitem__(self, submodel: t.Union[int, str]):
+        if isinstance(submodel, int):
+            submodel = next(m for i, m in enumerate(self._model_ids) if i == submodel)
+        submodel = getattr(self, submodel)
+        assert isinstance(submodel, Model)
+        return submodel
