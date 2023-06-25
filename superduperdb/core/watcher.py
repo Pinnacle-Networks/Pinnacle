@@ -2,6 +2,7 @@ import typing as t
 
 from pinnacledb.core.base import Component, Placeholder
 from pinnacledb.core.model import Model
+from pinnacledb.datalayer.base.apply_watcher import apply_watcher
 from pinnacledb.datalayer.base.query import Select
 
 
@@ -60,7 +61,8 @@ class Watcher(Component):
         if not ids:
             return []
         return [
-            database._apply_watcher(
+            apply_watcher(
+                database,
                 self.identifier,
                 ids=ids,
                 verbose=verbose,
