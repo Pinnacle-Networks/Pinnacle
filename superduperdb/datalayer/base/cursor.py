@@ -1,6 +1,6 @@
 import typing as t
 
-from pinnacledb.core import Encoder
+from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.documents import Document
 from pinnacledb.misc.special_dicts import MongoStyleDict
 

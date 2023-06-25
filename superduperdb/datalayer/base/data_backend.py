@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import typing as t
 
-from pinnacledb.core import Model
+from pinnacledb.core.model import Model
 from pinnacledb.core.documents import Document
 from pinnacledb.datalayer.base.cursor import SuperDuperCursor
 from pinnacledb.datalayer.base.query import Insert, Select, Update, Delete
