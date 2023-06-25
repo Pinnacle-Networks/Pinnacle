@@ -17,7 +17,7 @@ from .query import Insert, Select, Delete, Update
 from pinnacledb import CFG
 from pinnacledb.cluster.job_submission import work
 from pinnacledb.cluster.task_workflow import TaskWorkflow
-from pinnacledb.core.base import Component, strip
+from pinnacledb.core.base import Component
 from pinnacledb.core.documents import Document
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.core.learning_task import LearningTask
@@ -473,29 +473,26 @@ class BaseDatabase:
             if p.version is None:
                 p.version = self.metadata.get_latest_version(p.variety, p.identifier)
 
-        print('Stripping sub-components to references')
-        strip(object)
+        with object.saving():
+            serializer_kwargs = serializer_kwargs or {}
+            file_id, sha1 = self.artifact_store.create_artifact(
+                object,
+                serializer=serializer,
+                serializer_kwargs=serializer_kwargs,
+            )
+            self.metadata.create_component(
+                {
+                    **object.asdict(),
+                    'object': file_id,
+                    'variety': object.variety,
+                    'version': version,
+                    'sha1': sha1,
+                }
+            )
+            if parent is not None:
+                self.metadata.create_parent_child(parent, object.unique_id)
+            logging.info(f'Created {object.unique_id}')
 
-        serializer_kwargs = serializer_kwargs or {}
-        file_id, sha1 = self.artifact_store.create_artifact(
-            object,
-            serializer=serializer,
-            serializer_kwargs=serializer_kwargs,
-        )
-        self.metadata.create_component(
-            {
-                **object.asdict(),
-                'object': file_id,
-                'variety': object.variety,
-                'version': version,
-                'sha1': sha1,
-            }
-        )
-        if parent is not None:
-            self.metadata.create_parent_child(parent, object.unique_id)
-        logging.info(f'Created {object.unique_id}')
-
-        object.repopulate(self)
         return object.schedule_jobs(self)
 
     def _create_plan(self):
