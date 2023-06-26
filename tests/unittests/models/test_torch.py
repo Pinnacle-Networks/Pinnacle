@@ -1,7 +1,7 @@
 # ruff: noqa: F401, F811
 import torch
 
-from pinnacledb.core import Metric
+from pinnacledb.core.metric import Metric
 from pinnacledb.datalayer.mongodb.query import Select
 from pinnacledb.metrics.classification import compute_classification_metrics
 from pinnacledb.models.torch.wrapper import (
@@ -10,7 +10,11 @@ from pinnacledb.models.torch.wrapper import (
     TorchModelEnsemble,
 )
 from pinnacledb.models.torch.wrapper import TorchTrainerConfiguration
-from pinnacledb.training.validation import validate_vector_search
+from pinnacledb.metrics.vector_search import (
+    validate_vector_search,
+    VectorSearchPerformance,
+    PatK,
+)
 from pinnacledb.types.torch.tensor import tensor
 from pinnacledb.vector_search import VanillaHashSet
 
@@ -130,12 +134,13 @@ def test_ensemble(si_validation, metric):
         n_iterations=4,
         validation_interval=5,
         loader_kwargs={'batch_size': 10, 'num_workers': 0},
-        optimizer_classes={
-            'linear_a': torch.optim.Adam,
-            'linear_c': torch.optim.Adam,
-        },
+        optimizer_cls=torch.optim.Adam,
         optimizer_kwargs={'lr': 0.001},
-        compute_metrics=validate_vector_search,
+        compute_metrics=VectorSearchPerformance(
+            measure='css',
+            predict_kwargs={'batch_size': 10},
+            index_key='x',
+        ),
         hash_set_cls=VanillaHashSet,
         measure=css,
         max_iterations=20,
@@ -151,4 +156,6 @@ def test_ensemble(si_validation, metric):
         training_configuration=config,
         database=si_validation,
         select=Select(collection='documents'),
+        validation_sets=['my_valid'],
+        metrics=[Metric('p@1', PatK(1))],
     )

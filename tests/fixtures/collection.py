@@ -6,7 +6,7 @@ import numpy
 import pytest
 import torch
 
-from pinnacledb.core import Metric
+from pinnacledb.core.metric import Metric
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.vector_index import VectorIndex
@@ -108,9 +108,13 @@ def vector_index_factory(a_model):
         db.add(
             Watcher(select=Select(collection='documents'), key='x', model='linear_a')
         )
+        db.add(
+            Watcher(select=Select(collection='documents'), key='z', model='linear_a')
+        )
         vi = VectorIndex(
             identifier=identifier,
             indexing_watcher='linear_a/x',
+            compatible_watchers=['linear_a/z'],
             **kwargs,
         )
         db.add(vi)

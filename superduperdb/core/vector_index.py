@@ -14,12 +14,11 @@ from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.encoder import Encodable
 from pinnacledb.core.metric import Metric
-from pinnacledb.core.model import Model
+from pinnacledb.core.model import Model, ModelEnsemble
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.misc.logger import logging
 from pinnacledb.misc.special_dicts import MongoStyleDict
-from pinnacledb.training.validation import validate_vector_search
-from pinnacledb.vector_search import VanillaHashSet
+from pinnacledb.metrics.vector_search import VectorSearchPerformance
 from pinnacledb.vector_search.base import (
     BaseHashSet,
     VectorCollection,
@@ -223,14 +222,17 @@ class VectorIndex(Component):
         if isinstance(validation_data, str):
             validation_data = database.load('dataset', validation_data)
         unpacked = [r.unpack() for r in validation_data.data]  # type: ignore[union-attr]
-        return validate_vector_search(
-            validation_data=unpacked,
-            models=models,
-            keys=keys,
-            metrics=metrics,
-            hash_set_cls=VanillaHashSet,
+        model_ensemble = ModelEnsemble(models)
+        msg = 'Can only evaluate VectorSearch with compatible watchers...'
+        assert len(keys) >= 2, msg
+        return VectorSearchPerformance(
             measure=self.measure,
-            predict_kwargs={},
+            index_key=self.indexing_watcher.key,  # type: ignore[union-attr]
+            compatible_keys=[w.key for w in self.compatible_watchers],
+        )(
+            validation_data=unpacked,
+            model=model_ensemble,
+            metrics=metrics,
         )
 
     def asdict(self):
