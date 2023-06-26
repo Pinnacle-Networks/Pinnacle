@@ -10,13 +10,13 @@ from pinnacledb.core.documents import Document
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
-from pinnacledb.core.learning_task import LearningTask
+from pinnacledb.core.fit import Fit
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.mongodb.query import Select, Insert, Update, Delete
 from pinnacledb.misc.key_cache import KeyCache
 from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb.models.torch.wrapper import TorchTrainerConfiguration
-from pinnacledb.training.validation import validate_vector_search
+from pinnacledb.metrics.vector_search import validate_vector_search
 from pinnacledb.types.torch.tensor import tensor
 from pinnacledb.vector_search import VanillaHashSet
 from pinnacledb.vector_search.vanilla.measures import css
@@ -302,7 +302,7 @@ def test_learning_task(si_validation, a_model, c_model, metric):
     )
 
     si_validation.add(configuration)
-    learning_task = LearningTask(
+    learning_task = Fit(
         'my_index',
         models=['linear_a', 'linear_c'],
         select=Select(collection='documents'),

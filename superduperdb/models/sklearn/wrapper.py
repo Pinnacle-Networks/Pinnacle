@@ -4,12 +4,12 @@ import typing as t
 from sklearn.pipeline import Pipeline as BasePipeline
 from sklearn.base import BaseEstimator
 
-from pinnacledb.core.model import Model
-from pinnacledb.core import TrainingConfiguration
+from pinnacledb.core.model import Model, TrainingConfiguration
+from pinnacledb.core.metric import Metric
 from pinnacledb.datalayer.base.database import BaseDatabase
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.misc import progress
-from pinnacledb.training.query_dataset import QueryDataset
+from pinnacledb.datalayer.query_dataset import QueryDataset
 
 
 # TODO fix the tests for this one, before moving onto PyTorch pipeline etc.
@@ -34,16 +34,16 @@ def get_data_from_query(
     for i in progress.progressbar(range(len(data))):
         r = data[i]
         documents.append(r)
-    X = [r[X] for r in documents]
+    X_arr = [r[X] for r in documents]
     if isinstance(X[0], numpy.ndarray):
-        X = numpy.stack(X)
+        X_arr = numpy.stack(X_arr)
     if y is not None:
-        y = [r[y] for r in documents]
+        y_arr = [r[y] for r in documents]
         if y_preprocess is not None:
-            y = [y_preprocess(item) for item in y]
+            y_arr = [y_preprocess(item) for item in y_arr]
         if isinstance(y[0], numpy.ndarray):
-            y = numpy.stack(y)
-    return X, y
+            y_arr = numpy.stack(y_arr)
+    return X_arr, y_arr
 
 
 class SklearnTrainingConfiguration(TrainingConfiguration):
@@ -70,19 +70,22 @@ class Base(Model):
         select: t.Optional[Select] = None,
         database: t.Optional[BaseDatabase] = None,
         training_configuration: t.Optional[SklearnTrainingConfiguration] = None,
+        validation_sets: t.Optional[t.List[str]] = None,
+        metrics: t.Optional[t.List[Metric]] = None,
     ):
         if training_configuration is not None:
             self.training_configuration = training_configuration
         if select is not None:
             self.training_select = select
         if isinstance(X, str):
-            self.training_keys = {'X': X, 'y': y} if y is not None else {'X': X}
+            self.training_keys = [X, y] if y is not None else [X]
         if isinstance(X, str):
             y_preprocess = None
             if self.training_configuration is not None:
                 y_preprocess = self.training_configuration.get('y_preprocess', None)
+            # ruff: noqa: E501
             X, y = get_data_from_query(
-                select=select, X=X, y=y, y_preprocess=y_preprocess
+                select=select, X=X, y=y, y_preprocess=y_preprocess  # type: ignore[arg-type]
             )
         if self.training_configuration is not None:
             return self.object.fit(
@@ -146,6 +149,12 @@ class Pipeline(Base):
             [steps[i] for i in standard_steps], memory=memory, verbose=verbose
         )
         self.postprocess_steps = [steps[i] for i in postprocess_steps]
+
+        training_keys = None
+        if X and y is None:
+            training_keys = [X]
+        elif X and y:
+            training_keys = [X, y]  # type: ignore[list-item]
         Model.__init__(
             self,
             pipeline,
@@ -153,7 +162,7 @@ class Pipeline(Base):
             encoder=encoder,
             training_configuration=training_configuration,
             training_select=training_select,
-            training_keys={'X': X, 'y': y},
+            training_keys=training_keys,
         )
 
     def __getattr__(self, item):
