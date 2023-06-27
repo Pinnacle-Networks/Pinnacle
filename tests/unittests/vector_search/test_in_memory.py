@@ -1,9 +1,9 @@
 import pytest
 import numpy
 
+import pinnacledb as s
 from typing import Iterator
 
-from pinnacledb.misc.config import VectorSearchConfig
 from pinnacledb.vector_search.base import (
     VectorCollectionItem,
     VectorCollectionItemNotFound,
@@ -16,7 +16,7 @@ from pinnacledb.vector_search.inmemory import InMemoryVectorDatabase
 class TestInMemoryVectorCollection:
     @pytest.fixture
     def manager(self) -> Iterator[VectorDatabase]:
-        with InMemoryVectorDatabase(config=VectorSearchConfig()).init() as manager:
+        with InMemoryVectorDatabase(config=s.config.VectorSearch()).init() as manager:
             yield manager
 
     def test_find_nearest_from_array(self, manager: VectorDatabase) -> None:
