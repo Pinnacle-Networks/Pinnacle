@@ -2,9 +2,9 @@
 from sklearn.svm import SVC
 
 from pinnacledb.core.fit import Fit
-from pinnacledb.datalayer.mongodb.query import Select
-from pinnacledb.models.vanilla.wrapper import FunctionWrapper
 from pinnacledb.models.sklearn.wrapper import Pipeline, SklearnTrainingConfiguration
+from pinnacledb.models.vanilla.wrapper import FunctionWrapper
+from pinnacledb.queries.mongodb.queries import Collection
 
 from tests.fixtures.collection import random_arrays, arrays, empty
 
@@ -22,7 +22,7 @@ def test_classifier(random_arrays):
             model=model.identifier,
             keys=['x', 'y'],
             training_configuration='my-sk-cf',
-            select=Select(collection='documents'),
+            select=Collection(name='documents').find(),
             metrics=[],
         )
     )
