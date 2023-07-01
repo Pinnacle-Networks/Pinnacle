@@ -5,12 +5,12 @@ import boto3
 from io import BytesIO
 from contextlib import contextmanager
 from multiprocessing.pool import ThreadPool
+from tqdm import tqdm
 import requests
 import signal
 import sys
 import warnings
 
-from pinnacledb.misc.progress import progressbar
 from pinnacledb.misc.logger import logging
 
 
@@ -90,7 +90,7 @@ class BaseDownloader:
         :param test: If *True* perform a test run.
         """
         logging.info(f'number of workers {self.n_workers}')
-        prog = progressbar(total=len(self.uris))
+        prog = tqdm(total=len(self.uris))
         prog.prefix = 'downloading from uris'
         self.failed = 0
         prog.prefx = "failed: 0"

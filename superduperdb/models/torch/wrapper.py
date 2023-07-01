@@ -6,13 +6,12 @@ from typing import Optional, Callable, Union, Dict, List
 import torch
 from torch.utils import data
 from torch.utils.data import DataLoader
-
+from tqdm import tqdm
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.documents import Document
 from pinnacledb.core.encoder import Encoder, Encodable
 from pinnacledb.datalayer.base.database import BaseDatabase
 from pinnacledb.datalayer.base.query import Select
-from pinnacledb.misc import progress
 from pinnacledb.core.model import Model, ModelEnsemble, TrainingConfiguration
 from pinnacledb.misc.logger import logging
 from pinnacledb.models.torch.utils import device_of, to_device, eval
@@ -443,7 +442,7 @@ class TorchPipeline(Base):
                 x, **kwargs, collate_fn=self.collate_fn
             )
         out = []
-        for batch in progress.progressbar(loader, total=len(loader)):
+        for batch in tqdm(loader, total=len(loader)):
             batch = to_device(batch, device_of(self.forward_pipeline))
             tmp = self.forward(batch)
             tmp = to_device(tmp, 'cpu')
@@ -622,7 +621,7 @@ class TorchModel(Base):
             inputs = BasicDataset(x, self.preprocess)
             loader = torch.utils.data.DataLoader(inputs, **kwargs)
             out = []
-            for batch in progress.progressbar(loader, total=len(loader)):
+            for batch in tqdm(loader, total=len(loader)):
                 batch = to_device(batch, device_of(self.object))
                 tmp = self.object(batch)
                 tmp = to_device(tmp, 'cpu')
