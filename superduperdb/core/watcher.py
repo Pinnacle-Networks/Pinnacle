@@ -1,5 +1,4 @@
 import typing as t
-import threading
 
 from pinnacledb.core.base import Component, Placeholder
 from pinnacledb.core.model import Model
