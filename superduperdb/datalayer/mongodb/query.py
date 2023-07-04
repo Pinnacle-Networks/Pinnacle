@@ -4,6 +4,7 @@ from pymongo import UpdateOne as _UpdateOne
 import random
 import typing as t
 
+import pinnacledb as s
 from pinnacledb.core.documents import Document
 from pinnacledb.datalayer.base.cursor import SuperDuperCursor
 from pinnacledb.datalayer.base.database import BaseDatabase
@@ -398,7 +399,7 @@ class UpdateMany(Update):
             **self.kwargs,
         )
         graph = None
-        if self.refresh:
+        if self.refresh and not s.CFG.cdc:
             graph = db.refresh_after_update_or_insert(
                 query=self, ids=ids, verbose=self.verbose
             )
@@ -427,7 +428,7 @@ class InsertOne(Insert):
     def __call__(self, db: BaseDatabase):
         insert = db.db[self.collection.name].insert_one(*self.args, **self.kwargs)
         graph = None
-        if self.refresh:
+        if self.refresh and not s.CFG.cdc:
             graph = db.refresh_after_update_or_insert(
                 query=self,
                 ids=[insert.id],
@@ -482,7 +483,7 @@ class InsertMany(Insert):
             **self.kwargs,
         )
         graph = None
-        if self.refresh:
+        if self.refresh and not s.CFG.cdc:
             graph = db.refresh_after_update_or_insert(
                 query=self,  # type: ignore[arg-type]
                 ids=output.inserted_ids,
