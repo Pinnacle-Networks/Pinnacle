@@ -8,7 +8,7 @@ from pinnacledb.core.base import Component, Placeholder
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.misc.special_dicts import MongoStyleDict
-from pinnacledb.queries.serialization import to_dict, from_dict
+from pinnacledb.misc.serialization import to_dict, from_dict
 
 EncoderArg = t.Union[Encoder, Placeholder, None, str]
 

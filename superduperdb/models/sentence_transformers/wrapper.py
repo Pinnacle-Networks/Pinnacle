@@ -3,7 +3,7 @@ import typing as t
 from sentence_transformers import SentenceTransformer as _SentenceTransformer
 
 from pinnacledb.core.model import Model
-from pinnacledb.types.numpy.array import array
+from pinnacledb.encoders.numpy.array import array
 
 
 class SentenceTransformer(Model):

@@ -1,6 +1,6 @@
 # ruff: noqa: F401, F811
 from pinnacledb.datalayer.query_dataset import QueryDataset
-from pinnacledb.queries.mongodb.queries import Collection
+from pinnacledb.datalayer.mongodb.query import Collection
 from tests.fixtures.collection import (
     empty,
     random_data,

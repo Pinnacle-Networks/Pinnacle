@@ -7,8 +7,8 @@ from pinnacledb.models.sentence_transformers.wrapper import SentenceTransformer
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.models.langchain.retriever import DBQAWithSourcesChain
-from pinnacledb.queries.mongodb.queries import Collection
-from pinnacledb.types.numpy.array import array
+from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.encoders.numpy.array import array
 
 
 SKIP_PAID = os.environ.get('OPENAI_API_KEY') is None

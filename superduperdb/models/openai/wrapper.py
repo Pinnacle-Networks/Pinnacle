@@ -9,13 +9,13 @@ from openai import Embedding as _Embedding
 from openai import Model as OpenAIModel
 from openai.error import Timeout, RateLimitError, TryAgain, ServiceUnavailableError
 
-from pinnacledb.apis.retry import Retry
+from pinnacledb.misc.retry import Retry
 from pinnacledb.core.model import Model
 from pinnacledb.misc.compat import cache
 
 import typing as t
 
-from pinnacledb.types.vectors.vector import vector
+from pinnacledb.encoders.vectors.vector import vector
 
 retry = Retry((RateLimitError, ServiceUnavailableError, Timeout, TryAgain))
 
@@ -41,7 +41,7 @@ class BaseOpenAI(Model):
 class Embedding(BaseOpenAI):
     shapes = {'text-embedding-ada-002': (1536,)}
 
-    def __init__(self, identifier: str, shape: t.Optional[int] = None):
+    def __init__(self, identifier: str, shape: t.Optional[t.Sequence[int]] = None):
         super().__init__(identifier)
         if shape is None:
             shape = self.shapes[identifier]

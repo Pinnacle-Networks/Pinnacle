@@ -8,7 +8,7 @@ from sklearn.base import TransformerMixin
 
 from pinnacledb.core.documents import Document
 from pinnacledb.models.sklearn.wrapper import Pipeline
-from pinnacledb.queries.mongodb.queries import Collection
+from pinnacledb.datalayer.mongodb.query import Collection
 
 from tests.fixtures.collection import random_arrays, arrays, empty
 
