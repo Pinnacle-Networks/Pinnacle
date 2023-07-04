@@ -16,7 +16,6 @@ from pinnacledb.misc.compat import cache
 from pinnacledb.encoders.vectors.vector import vector
 
 
-
 retry = Retry(
     exception_types=(RateLimitError, ServiceUnavailableError, Timeout, TryAgain)
 )
