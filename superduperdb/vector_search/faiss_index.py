@@ -3,13 +3,13 @@ import os
 import faiss
 import torch
 
-from pinnacledb.vector_search.base import BaseHashSet
+from pinnacledb.vector_search.base import BaseVectorIndex
 
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
 
-class FaissHashSet(BaseHashSet):
+class FaissVectorIndex(BaseVectorIndex):
     """
     Faiss hash-set for looking up with vector similarity.
 
