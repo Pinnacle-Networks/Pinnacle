@@ -11,11 +11,12 @@ extensions = [
     'sphinx_rtd_theme',
     'sphinx.ext.autosectionlabel',
     'nbsphinx',
+    'myst_parser',
 ]
 source_suffix = '.rst'
 master_doc = 'index'
 project = u'SuperDuperDB'
-copyright = u'Duncan Blythe duncan@pinnacledb.com'
+copyright = u'SuperDuperDB Inc., opensource@pinnacledb.com'
 exclude_patterns = ['_build']
 html_static_path = ['_static']
 html_css_files = ['custom.css']
