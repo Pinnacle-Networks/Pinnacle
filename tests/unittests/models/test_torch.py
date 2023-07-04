@@ -16,7 +16,7 @@ from pinnacledb.metrics.vector_search import (
 )
 from pinnacledb.queries.mongodb.queries import Collection
 from pinnacledb.types.torch.tensor import tensor
-from pinnacledb.vector_search import VanillaHashSet
+from pinnacledb.vector_search import VanillaVectorIndex
 
 from tests.material.measures import css
 from tests.fixtures.collection import (
@@ -139,7 +139,7 @@ def test_ensemble(si_validation, metric):
             predict_kwargs={'batch_size': 10},
             index_key='x',
         ),
-        hash_set_cls=VanillaHashSet,
+        hash_set_cls=VanillaVectorIndex,
         measure=css,
         max_iterations=20,
     )
