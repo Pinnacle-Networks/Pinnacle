@@ -2,7 +2,7 @@ import numpy
 import typing as t
 
 from pinnacledb.core.encoder import Encoder
-from pinnacledb.types.utils import str_shape
+from pinnacledb.encoders.utils import str_shape
 
 
 class EncodeArray:

@@ -1,5 +1,5 @@
 # ruff: noqa: F401, F811
-from pinnacledb.queries.mongodb.queries import Collection
+from pinnacledb.datalayer.mongodb.query import Collection
 
 from tests.fixtures.collection import (
     empty,

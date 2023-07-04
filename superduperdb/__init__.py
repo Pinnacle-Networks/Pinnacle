@@ -9,6 +9,6 @@ ICON = '🔮'
 ROOT = Path(__file__).parent
 
 from .misc import logger  # noqa: E402
-from pinnacledb.auto.pinnacle import pinnacle  # noqa: E402,F401
+from pinnacledb.misc.pinnacle import pinnacle  # noqa: E402,F401
 
 log = logger.logging

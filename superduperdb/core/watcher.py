@@ -3,7 +3,7 @@ import typing as t
 from pinnacledb.core.base import Component, Placeholder
 from pinnacledb.core.model import Model
 from pinnacledb.datalayer.base.query import Select
-from pinnacledb.queries.serialization import from_dict, to_dict
+from pinnacledb.misc.serialization import from_dict, to_dict
 
 
 class Watcher(Component):

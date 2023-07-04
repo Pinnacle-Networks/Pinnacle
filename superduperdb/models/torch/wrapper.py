@@ -16,7 +16,7 @@ from pinnacledb.core.model import Model, ModelEnsemble, TrainingConfiguration
 from pinnacledb.misc.logger import logging
 from pinnacledb.models.torch.utils import device_of, to_device, eval
 from pinnacledb.datalayer.query_dataset import QueryDataset
-from pinnacledb.queries.serialization import from_dict
+from pinnacledb.misc.serialization import from_dict
 
 
 class BasicDataset(data.Dataset):

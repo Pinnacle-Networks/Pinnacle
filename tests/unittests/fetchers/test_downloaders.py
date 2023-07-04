@@ -1,4 +1,4 @@
-from pinnacledb.fetchers.downloads import Fetcher
+from pinnacledb.misc.downloads import Fetcher
 import os
 
 

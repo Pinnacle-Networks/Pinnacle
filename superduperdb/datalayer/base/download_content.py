@@ -3,10 +3,10 @@ import typing as t
 
 from pinnacledb.core.documents import Document
 from pinnacledb.datalayer.base.query import Insert, Select
-from pinnacledb.fetchers.downloads import Downloader
-from pinnacledb.fetchers.downloads import gather_uris
+from pinnacledb.misc.downloads import Downloader
+from pinnacledb.misc.downloads import gather_uris
 from pinnacledb.misc.logger import logging
-from pinnacledb.queries.serialization import from_dict
+from pinnacledb.misc.serialization import from_dict
 
 
 def download_content(
@@ -18,8 +18,21 @@ def download_content(
     raises: bool = True,
     n_download_workers: t.Optional[int] = None,
     headers: t.Optional[t.Dict] = None,
+    download_update: t.Optional[t.Callable] = None,
     **kwargs,
 ):
+    """
+    Download content contained in uploaded data. Items to be downloaded are identifier
+    via the subdocuments in the form exemplified below. By default items are downloaded
+    to the database, unless a ``download_update`` function is provided.
+
+    >>> d = {"_content": {"uri": "<uri>", "encoder": "<encoder-identifier>"}}
+    >>> def update(key, id, bytes):
+    >>> ... with open(f'/tmp/{key}+{id}', 'wb') as f:
+    >>> ...     f.write(bytes)
+    >>> download_content(None, None, ids=["0"], documents=[d]))
+    ...
+    """
     logging.debug(query)
     logging.debug(ids)
     update_db = False
@@ -64,8 +77,10 @@ def download_content(
         except TypeError:
             timeout = None
 
-    def download_update(key, id, bytes):
-        return query.download_update(db=db, key=key, id=id, bytes=bytes)
+    if download_update is None:
+
+        def download_update(key, id, bytes):
+            return query.download_update(db=db, key=key, id=id, bytes=bytes)
 
     downloader = Downloader(
         uris=uris,

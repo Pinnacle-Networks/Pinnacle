@@ -6,7 +6,7 @@ from pinnacledb.core.documents import Document
 from pinnacledb.datalayer.base.data_backend import BaseDataBackend
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.misc.logger import logging
-from pinnacledb.queries.serialization import from_dict
+from pinnacledb.misc.serialization import from_dict
 
 
 class MongoDataBackend(BaseDataBackend):

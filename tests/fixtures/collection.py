@@ -13,10 +13,10 @@ from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.base.database import BaseDatabase
 from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.queries.mongodb.queries import Collection
-from pinnacledb.types.numpy.array import array
-from pinnacledb.types.pillow.image import pil_image
-from pinnacledb.types.torch.tensor import tensor
+from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.encoders.numpy.array import array
+from pinnacledb.encoders.pillow.image import pil_image
+from pinnacledb.encoders.torch.tensor import tensor
 from tests.material.models import BinaryClassifier, LinearBase
 from tests.material.metrics import PatK
 

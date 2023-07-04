@@ -1,4 +1,4 @@
-from pinnacledb.types.torch.tensor import tensor
+from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.core.documents import Document
 import torch
 

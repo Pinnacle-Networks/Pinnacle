@@ -10,8 +10,8 @@ from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.queries.mongodb.queries import Collection, PreLike
-from pinnacledb.types.torch.tensor import tensor
+from pinnacledb.datalayer.mongodb.query import Collection, PreLike
+from pinnacledb.encoders.torch.tensor import tensor
 
 
 from tests.fixtures.collection import (

@@ -2,7 +2,7 @@
 import torch
 
 from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.queries.mongodb.queries import Collection
+from pinnacledb.datalayer.mongodb.query import Collection
 
 from tests.fixtures.collection import (
     si_validation,

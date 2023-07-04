@@ -14,8 +14,8 @@ from pinnacledb.metrics.vector_search import (
     VectorSearchPerformance,
     PatK,
 )
-from pinnacledb.queries.mongodb.queries import Collection
-from pinnacledb.types.torch.tensor import tensor
+from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.vector_search import VanillaVectorIndex
 
 from tests.material.measures import css
