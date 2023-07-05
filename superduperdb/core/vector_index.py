@@ -1,15 +1,14 @@
-import typing as t
 import itertools
+import typing as t
 from contextlib import contextmanager
 
-from pinnacledb.datalayer.base.query import Select
 from pinnacledb.core.base import (
-    ComponentList,
-    PlaceholderList,
     Component,
-    Placeholder,
-    is_placeholders_or_components,
+    ComponentList,
     DBPlaceholder,
+    Placeholder,
+    PlaceholderList,
+    is_placeholders_or_components,
 )
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
@@ -17,14 +16,15 @@ from pinnacledb.core.encoder import Encodable
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model, ModelEnsemble
 from pinnacledb.core.watcher import Watcher
+from pinnacledb.datalayer.base.query import Select
+from pinnacledb.metrics.vector_search import VectorSearchPerformance
 from pinnacledb.misc.logger import logging
 from pinnacledb.misc.special_dicts import MongoStyleDict
-from pinnacledb.metrics.vector_search import VectorSearchPerformance
 from pinnacledb.vector_search.base import (
     VectorCollection,
     VectorCollectionConfig,
-    VectorIndexMeasureType,
     VectorCollectionItem,
+    VectorIndexMeasureType,
 )
 
 T = t.TypeVar('T')
@@ -88,7 +88,9 @@ class VectorIndex(Component):
                     'watcher', compatible_watchers  # type: ignore[arg-type]
                 )
             else:
-                self.compatible_watchers = ComponentList('watcher', compatible_watchers)
+                self.compatible_watchers = ComponentList(
+                    'watcher', t.cast(t.List[Component], compatible_watchers)
+                )
         self.measure = measure
         self.database = DBPlaceholder()
 
@@ -244,7 +246,7 @@ class VectorIndex(Component):
         return VectorSearchPerformance(
             measure=self.measure,
             index_key=self.indexing_watcher.key,  # type: ignore[union-attr]
-            compatible_keys=[w.key for w in self.compatible_watchers],
+            compatible_keys=[w.key for w in self.compatible_watchers],  # type: ignore[union-attr]
         )(
             validation_data=unpacked,
             model=model_ensemble,
