@@ -61,7 +61,6 @@ def pinnacle(item, **kwargs):
         from pinnacledb.models.sklearn.wrapper import Estimator
 
         return Estimator(estimator=item, identifier=identifier, **kwargs)
-
     elif duck_type_torch(item):
         from torch import nn, jit
 
