@@ -1,4 +1,3 @@
-# ruff: noqa: F401, F811
 import pprint
 
 from pinnacledb.core.base import Artifact
@@ -8,8 +7,6 @@ import torch
 
 from pinnacledb.models.sklearn.wrapper import Estimator
 from sklearn.svm import SVC
-
-from tests.fixtures.collection import empty
 
 
 def test_model():

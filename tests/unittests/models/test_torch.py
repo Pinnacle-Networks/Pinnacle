@@ -1,6 +1,4 @@
-# ruff: noqa: F401, F811
 import torch
-from torch.optim.adam import Adam
 
 from pinnacledb.core.base import Artifact
 from pinnacledb.core.metric import Metric
@@ -17,17 +15,6 @@ from pinnacledb.metrics.vector_search import (
 from pinnacledb.datalayer.mongodb.query import Collection
 from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.vector_search import VanillaVectorIndex
-
-from tests.material.measures import css
-from tests.fixtures.collection import (
-    si_validation,
-    empty,
-    random_data,
-    float_tensors_32,
-    float_tensors_16,
-    random_data_factory,
-    metric,
-)
 
 
 class ToDict:
