@@ -1,9 +1,7 @@
-# ruff: noqa: F401, F811
 import PIL.PngImagePlugin
 import pytest
 import torch
 
-from pinnacledb.core.base import Artifact
 from pinnacledb.core.documents import Document
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.encoder import Encoder
@@ -13,27 +11,7 @@ from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb.datalayer.mongodb.query import Collection, PreLike
 from pinnacledb.encoders.torch.tensor import tensor
 
-
-from tests.fixtures.collection import (
-    with_vector_index,
-    random_data,
-    empty,
-    float_tensors_8,
-    float_tensors_16,
-    float_tensors_32,
-    a_model,
-    b_model,
-    a_watcher,
-    an_update,
-    n_data_points,
-    image_type,
-    si_validation,
-    c_model,
-    metric,
-    random_data_factory,
-    vector_index_factory,
-)
-from tests.material.losses import ranking_loss
+n_data_points = 250
 
 IMAGE_URL = 'https://www.pinnacledb.com/logos/white.png'
 
