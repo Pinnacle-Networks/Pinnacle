@@ -1,6 +1,6 @@
 import pprint
 
-from pinnacledb.core.base import Artifact
+from pinnacledb.core.artifact import Artifact
 from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.core.model import Model
 import torch

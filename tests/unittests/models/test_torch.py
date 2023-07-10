@@ -1,6 +1,6 @@
 import torch
 
-from pinnacledb.core.base import Artifact
+from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.metric import Metric
 from pinnacledb.metrics.classification import compute_classification_metrics
 from pinnacledb.models.torch.wrapper import (

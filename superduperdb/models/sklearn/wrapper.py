@@ -4,7 +4,7 @@ import typing as t
 from pydantic import Field
 from tqdm import tqdm
 
-from pinnacledb.core.base import Artifact
+from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.model import Model, _TrainingConfiguration
 from pinnacledb.core.metric import Metric
 from pinnacledb.datalayer.base.database import BaseDatabase

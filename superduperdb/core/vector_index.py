@@ -4,7 +4,7 @@ from contextlib import contextmanager
 import dataclasses as dc
 
 
-from pinnacledb.core.base import Component
+from pinnacledb.core.component import Component
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.encoder import Encodable

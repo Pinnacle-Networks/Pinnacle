@@ -4,7 +4,8 @@ import io
 import pickle
 import typing as t
 
-from pinnacledb.core.base import Component, Artifact
+from pinnacledb.core.artifact import Artifact
+from pinnacledb.core.component import Component
 
 Decode = t.Callable[[bytes], t.Any]
 Encode = t.Callable[[t.Any], bytes]
