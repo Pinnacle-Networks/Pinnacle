@@ -5,7 +5,8 @@ import typing as t
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.job import Job, ComponentJob
 from pinnacledb.core.metric import Metric
-from pinnacledb.core.base import Component, Artifact
+from pinnacledb.core.artifact import Artifact
+from pinnacledb.core.component import Component
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.misc.special_dicts import MongoStyleDict

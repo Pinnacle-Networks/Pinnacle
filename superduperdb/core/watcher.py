@@ -1,6 +1,6 @@
 import typing as t
 
-from pinnacledb.core.base import Component
+from pinnacledb.core.component import Component
 from pinnacledb.core.model import Model
 from pinnacledb.datalayer.base.query import Select
 import dataclasses as dc

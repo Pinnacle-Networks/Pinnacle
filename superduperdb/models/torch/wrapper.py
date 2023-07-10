@@ -9,7 +9,7 @@ from torch.utils import data
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from pinnacledb.core.base import Artifact
+from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.documents import Document
 from pinnacledb.core.encoder import Encodable

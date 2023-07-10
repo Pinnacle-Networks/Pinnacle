@@ -1,4 +1,4 @@
-from pinnacledb.core.base import Artifact
+from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.encoder import Encodable
 from pinnacledb.datalayer.base.artifacts import ArtifactStore
 from pinnacledb.misc.uri_cache import Cached

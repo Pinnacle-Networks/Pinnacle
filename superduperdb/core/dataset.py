@@ -4,7 +4,8 @@ import typing as t
 
 import numpy
 
-from pinnacledb.core.base import Component, Artifact
+from pinnacledb.core.artifact import Artifact
+from pinnacledb.core.component import Component
 from pinnacledb.core.documents import Document
 from pinnacledb.datalayer.mongodb.query import Find
 import dataclasses as dc

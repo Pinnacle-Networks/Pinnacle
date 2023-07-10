@@ -10,7 +10,7 @@ from openai import Model as OpenAIModel
 from openai.error import Timeout, RateLimitError, TryAgain, ServiceUnavailableError
 
 import pinnacledb as s
-from pinnacledb.core.base import Component
+from pinnacledb.core.component import Component
 from pinnacledb.misc.retry import Retry
 from pinnacledb.misc import dataclasses as dc
 from pinnacledb.misc.compat import cache

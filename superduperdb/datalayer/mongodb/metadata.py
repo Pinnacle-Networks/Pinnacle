@@ -1,6 +1,6 @@
 from typing import Dict, Any, Optional
 
-from pinnacledb.core.base import Component
+from pinnacledb.core.component import Component
 from pinnacledb.datalayer.base.metadata import MetaDataStore
 
 

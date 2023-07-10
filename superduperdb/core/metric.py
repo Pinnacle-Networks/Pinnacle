@@ -1,5 +1,6 @@
 import dataclasses as dc
-from pinnacledb.core.base import Component, Artifact
+from pinnacledb.core.artifact import Artifact
+from pinnacledb.core.component import Component
 
 import typing as t
 
