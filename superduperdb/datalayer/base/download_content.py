@@ -2,11 +2,11 @@
 import typing as t
 
 from pinnacledb.core.documents import Document
+from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.query import Insert, Select
 from pinnacledb.misc.downloads import Downloader
 from pinnacledb.misc.downloads import gather_uris
 from pinnacledb.misc.logger import logging
-from pinnacledb.misc.serialization import from_dict
 
 
 def download_content(
@@ -36,9 +36,8 @@ def download_content(
     logging.debug(query)
     logging.debug(ids)
     update_db = False
-
     if isinstance(query, dict):
-        query = from_dict(query)
+        query = Serializable.from_dict(query)
 
     if documents is not None:
         pass
