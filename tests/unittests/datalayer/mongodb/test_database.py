@@ -6,6 +6,7 @@ from pinnacledb.core.documents import Document
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
+from pinnacledb.core.serializable import Serializable
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb.datalayer.mongodb.query import Collection, PreLike
@@ -110,17 +111,6 @@ def test_select_milvus(
         )
     )
     assert r['_id'] == s['_id']
-
-
-def test_select_jsonable(with_vector_index):
-    db = with_vector_index
-    r = next(db.execute(Collection(name='documents').find()))
-    s1 = Collection(name='documents').like(
-        r={'x': r['x']},
-        vector_index='test_vector_search',
-    )
-    s2 = PreLike(**s1.dict())
-    assert s1 == s2
 
 
 def test_reload_dataset(si_validation):

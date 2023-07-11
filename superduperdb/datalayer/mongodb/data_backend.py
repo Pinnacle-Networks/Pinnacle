@@ -3,10 +3,10 @@ import typing as t
 from pymongo import MongoClient
 
 from pinnacledb.core.documents import Document
+from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.data_backend import BaseDataBackend
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.misc.logger import logging
-from pinnacledb.misc.serialization import from_dict
 
 
 class MongoDataBackend(BaseDataBackend):
@@ -35,7 +35,7 @@ class MongoDataBackend(BaseDataBackend):
         return r
 
     def unset_outputs(self, info: t.Dict):
-        select = from_dict(info['select'])
+        select = Serializable.from_dict(info['select'])
         logging.info(f'unsetting output field _outputs.{info["key"]}.{info["model"]}')
         doc = {'$unset': {f'_outputs.{info["key"]}.{info["model"]}': 1}}
 

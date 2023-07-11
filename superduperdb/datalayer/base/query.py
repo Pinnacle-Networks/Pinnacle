@@ -1,5 +1,5 @@
+import dataclasses as dc
 from pinnacledb.core.serializable import Serializable
-from pinnacledb.misc import dataclasses as dc
 
 import typing as t
 from abc import ABC, abstractmethod
