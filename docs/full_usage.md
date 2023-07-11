@@ -1,6 +1,7 @@
-Full usage
-==========
+# Full Usage
 
+
+```{eval-rst}
 .. autoclass:: pinnacledb.datalayer.base.database.BaseDatabase
   :members:
 .. autoclass:: pinnacledb.core.component.Component
@@ -21,3 +22,4 @@ Full usage
   :members:
 .. autoclass:: pinnacledb.core.vector_index.VectorIndex
   :members:
+```
