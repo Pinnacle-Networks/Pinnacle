@@ -27,6 +27,25 @@ services:
     volumes:
       - ./mongo-init.sh:/scripts/mongo-init.sh
 
+  dask-scheduler:
+    image: pinnacledb:latest
+    container_name: sddb-dask-scheduler
+    restart: always
+    command:
+      - dask
+      - scheduler
+
+  dask-worker:
+    image: pinnacledb:latest
+    container_name: sddb-dask-worker
+    restart: always
+    depends_on:
+      - dask-scheduler
+    command:
+      - dask
+      - worker
+      - dask-scheduler:8786
+
   vector-search:
     image: pinnacledb:latest
     container_name: sddb-vector-search
@@ -56,24 +75,6 @@ services:
       - -m
       - pinnacledb.cluster.model_server
 
-  dask-scheduler:
-    image: pinnacledb:latest
-    container_name: sddb-dask-scheduler
-    restart: always
-    command:
-      - dask
-      - scheduler
-
-  dask-worker:
-    image: pinnacledb:latest
-    container_name: sddb-dask-worker
-    restart: always
-    depends_on:
-      - dask-scheduler
-    command:
-      - dask
-      - worker
-      - dask-scheduler:8786
 
   jupyter:
     image: pinnacledb-jupyter:latest
