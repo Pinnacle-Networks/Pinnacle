@@ -1,7 +1,22 @@
+import multiprocessing
+import time
+from typing import Iterator
+from unittest import mock
+import json
+import lorem
+import numpy
+import pytest
+import random
+
+
+import pinnacledb as s
+import torch
+
 from .conftest_mongodb import MongoDBConfig as TestMongoDBConfig
 from contextlib import contextmanager
 from dataclasses import asdict
 from pymongo import MongoClient
+
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.metric import Metric
@@ -15,17 +30,10 @@ from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.misc.config import DataLayer, DataLayers
 from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb.vector_search.base import VectorDatabase
+from pinnacledb.serve.server import serve
+
 from tests.material.metrics import PatK
 from tests.material.models import BinaryClassifier
-from typing import Iterator
-from unittest import mock
-import json
-import lorem
-import numpy
-import pytest
-import random
-import pinnacledb as s
-import torch
 
 from pinnacledb.misc.config import (
     Config as SuperDuperConfig,
@@ -38,6 +46,16 @@ pytest_plugins = [
     "tests.conftest_mongodb",
     "tests.integration.conftest_milvus",
 ]
+
+
+@pytest.fixture(scope="session", autouse=True)
+def start_stop_server():
+    p = multiprocessing.Process(target=serve)  # couldn't get this to work with threads
+    p.start()
+    time.sleep(3)  # need to wait for the process to initialize
+    yield
+    p.terminate()
+    p.join()
 
 
 @contextmanager
