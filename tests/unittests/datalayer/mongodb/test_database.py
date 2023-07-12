@@ -6,10 +6,9 @@ from pinnacledb.core.documents import Document
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
-from pinnacledb.core.serializable import Serializable
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.datalayer.mongodb.query import Collection, PreLike
+from pinnacledb.datalayer.mongodb.query import Collection
 from pinnacledb.encoders.torch.tensor import tensor
 
 n_data_points = 250
@@ -168,7 +167,9 @@ def test_update(random_data, a_watcher):
     to_update = torch.randn(32)
     t = random_data.encoders['torch.float32[32]']
     random_data.execute(
-        Collection(name='documents').update_many({}, {'$set': {'x': t(to_update)}})
+        Collection(name='documents').update_many(
+            {}, Document({'$set': {'x': t(to_update)}})
+        )
     )
     cur = random_data.execute(Collection(name='documents').find())
     r = next(cur)
