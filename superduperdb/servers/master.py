@@ -30,7 +30,7 @@ def _find_nearest():
     collection = collections[f'{database}.{collection}']
     collection.remote = False
     collection.single_thread = True
-    from pinnacledb.collection import convert_types
+    from pinnacledb.types.utils import convert_types
     filter = convert_types(filter, converters=collection.converters)
     result = collection._find_nearest(filter, ids=ids)
     for i, _id in enumerate(result['ids']):
