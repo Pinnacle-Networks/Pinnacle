@@ -1,15 +1,14 @@
 import PIL.PngImagePlugin
 import pytest
 import torch
-
-from pinnacledb.core.documents import Document
 from pinnacledb.core.dataset import Dataset
+from pinnacledb.core.documents import Document
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.core.watcher import Watcher
-from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb.datalayer.mongodb.query import Collection
 from pinnacledb.encoders.torch.tensor import tensor
+from pinnacledb.models.torch.wrapper import TorchModel
 
 n_data_points = 250
 
@@ -91,24 +90,6 @@ def test_select(with_vector_index):
         vector_index='test_vector_search',
     )
     s = next(db.execute(query))
-    assert r['_id'] == s['_id']
-
-
-@pytest.mark.skip('Too slow')
-def test_select_milvus(
-    config_mongodb_milvus, random_data_factory, vector_index_factory
-):
-    db = random_data_factory(number_data_points=5)
-    vector_index_factory(db, 'test_vector_search', measure='l2')
-    r = next(db.execute(Collection(name='documents').find()))
-    s = next(
-        db.execute(
-            Collection(name='documents').like(
-                Document({'x': r['x']}),
-                vector_index='test_vector_search',
-            )
-        )
-    )
     assert r['_id'] == s['_id']
 
 

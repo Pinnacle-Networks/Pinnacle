@@ -1,22 +1,17 @@
+import json
 import multiprocessing
+import random
 import time
+from contextlib import contextmanager
+from dataclasses import asdict
 from typing import Iterator
 from unittest import mock
-import json
+
 import lorem
 import numpy
 import pytest
-import random
-
-
-import pinnacledb as s
 import torch
-
-from .conftest_mongodb import MongoDBConfig as TestMongoDBConfig
-from contextlib import contextmanager
-from dataclasses import asdict
 from pymongo import MongoClient
-
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.documents import Document
 from pinnacledb.core.metric import Metric
@@ -28,23 +23,19 @@ from pinnacledb.encoders.numpy.array import array
 from pinnacledb.encoders.pillow.image import pil_image
 from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.misc.config import DataLayer, DataLayers
+from pinnacledb.misc.config import MongoDB as MongoDBConfig
 from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.vector_search.base import VectorDatabase
 from pinnacledb.serve.server import serve
 
 from tests.material.metrics import PatK
 from tests.material.models import BinaryClassifier
 
-from pinnacledb.misc.config import (
-    Config as SuperDuperConfig,
-    MongoDB as MongoDBConfig,
-)
+from .conftest_mongodb import MongoDBConfig as TestMongoDBConfig
 
 n_data_points = 250
 
 pytest_plugins = [
     "tests.conftest_mongodb",
-    "tests.integration.conftest_milvus",
 ]
 
 
@@ -92,22 +83,6 @@ def config(mongodb_server: MongoDBConfig) -> Iterator[None]:
 
     with mock.patch('pinnacledb.CFG.data_layers', data_layers_cfg):
         yield
-
-
-@pytest.fixture
-def config_mongodb_milvus(
-    config: SuperDuperConfig, milvus_config: s.config.Milvus
-) -> Iterator[None]:
-    vector_search_config = s.config.VectorSearch(milvus=milvus_config)
-    with mock.patch('pinnacledb.CFG.vector_search', vector_search_config):
-        with VectorDatabase.create(
-            config=vector_search_config
-        ).init() as vector_database:
-            with mock.patch(
-                'pinnacledb.datalayer.base.database.VECTOR_DATABASE',
-                vector_database,
-            ):
-                yield
 
 
 @pytest.fixture()
