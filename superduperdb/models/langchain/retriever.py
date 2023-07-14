@@ -5,6 +5,7 @@ from functools import cached_property
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.chains.base import Chain
 from langchain.schema import BaseRetriever, Document
+from langchain.schema.language_model import BaseLanguageModel
 
 from pinnacledb.core import documents
 from pinnacledb.core.model import Model
@@ -105,7 +106,7 @@ class DBQAWithSourcesChain(Model):
     def chain(self) -> Chain:
         assert hasattr(self, 'retriever')
         return RetrievalQAWithSourcesChain.from_chain_type(
-            llm=self.object.a,
+            llm=t.cast(BaseLanguageModel, self.object.artifact),
             retriever=self.retriever,
             chain_type=self.chain_type,
         )
