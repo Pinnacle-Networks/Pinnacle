@@ -1,15 +1,14 @@
 import collections
-import uuid
 import traceback
+import uuid
 
 from flask import Flask, jsonify, make_response, request
 
-from pinnacledb.core.artifact import InMemoryArtifacts
-from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb import CFG
-
-from pinnacledb.core.documents import Document, ArtifactDocument
+from pinnacledb.core.artifact import InMemoryArtifacts
+from pinnacledb.core.documents import ArtifactDocument, Document
 from pinnacledb.core.serializable import Serializable
+from pinnacledb.datalayer.base.build import build_datalayer
 
 
 def make_endpoints(app, db):
@@ -126,12 +125,17 @@ def make_endpoints(app, db):
         return jsonify(response), 500
 
 
-def serve():
+def serve(db):
     app = Flask(__name__)
-    db = build_datalayer()
     make_endpoints(app, db)
+    return app
+
+
+def main():
+    db = build_datalayer()
+    app = serve(db)
     app.run(CFG.server.host, CFG.server.port)
 
 
 if __name__ == '__main__':
-    serve()
+    main()
