@@ -1,5 +1,4 @@
 from . import command
-from pinnacledb.serve.server import serve as _serve
 import pinnacledb as s
 import time
 import webbrowser
@@ -7,7 +6,9 @@ import webbrowser
 
 @command(help='Start server')
 def serve():
-    _serve()
+    from pinnacledb.serve.server import serve
+
+    serve()
 
 
 def _open_page(open_delay):
