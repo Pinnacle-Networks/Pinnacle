@@ -4,7 +4,7 @@ import uuid
 
 from flask import Flask, jsonify, make_response, request
 
-from pinnacledb.core.artifact import (
+from pinnacledb.core.artifact_tree import (
     get_artifacts,
     put_artifacts_back,
     replace_artifacts_with_dict,

@@ -5,7 +5,7 @@ import uuid
 
 import click
 import requests
-from pinnacledb.core.artifact import (
+from pinnacledb.core.artifact_tree import (
     get_artifacts,
     replace_artifacts_with_dict,
     load_artifacts,
