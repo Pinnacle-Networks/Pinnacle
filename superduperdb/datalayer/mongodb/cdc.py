@@ -16,7 +16,7 @@ import pinnacledb as s
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.misc.logger import logging
 from pinnacledb.datalayer.mongodb import query
-from pinnacledb.datalayer.base.database import BaseDatabase
+from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.core.task_workflow import TaskWorkflow
 from pinnacledb.core.job import FunctionJob
 from pinnacledb.misc.task_queue import cdc_queue
@@ -191,7 +191,7 @@ class CDCHandler(threading.Thread):
     _QUEUE_BATCH_SIZE: int = 100
     _QUEUE_TIMEOUT: int = 2
 
-    def __init__(self, db: BaseDatabase, stop_event: threading.Event):
+    def __init__(self, db: Datalayer, stop_event: threading.Event):
         """__init__.
 
         :param db: a pinnacledb instance.
@@ -329,7 +329,7 @@ class MongoEventMixin:
     EXCLUSION_KEYS: t.List[str] = [DEFAULT_ID]
 
     def on_create(
-        self, change: t.Dict, db: 'BaseDatabase', collection: query.Collection
+        self, change: t.Dict, db: 'Datalayer', collection: query.Collection
     ) -> None:
         """on_create.
         A helper on create event handler which handles inserted document in the
@@ -353,7 +353,7 @@ class MongoEventMixin:
         packet = ChangePacket(ids=ids, event_type=DBEvent.insert.value, query=cdc_query)
         cdc_queue.put_nowait(packet)
 
-    def on_update(self, change: t.Dict, db: 'BaseDatabase'):
+    def on_update(self, change: t.Dict, db: 'Datalayer'):
         """on_update.
 
         :param change:
@@ -395,7 +395,7 @@ class MongoDatabaseWatcher(BaseDatabaseWatcher, MongoEventMixin):
 
     def __init__(
         self,
-        db: 'BaseDatabase',
+        db: 'Datalayer',
         on: query.Collection,
         stop_event: threading.Event,
         identifier: 'str' = '',

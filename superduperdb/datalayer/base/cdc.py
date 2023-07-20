@@ -5,7 +5,7 @@ import datetime
 
 from pinnacledb.datalayer.mongodb.query import Collection
 from pinnacledb.misc.logger import logging
-from pinnacledb.datalayer.base.database import BaseDatabase
+from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.datalayer.mongodb import cdc
 from pinnacledb.datalayer.base import backends
 
@@ -83,7 +83,7 @@ class DatabaseWatcher:
 
     def __new__(  # type: ignore
         cls,
-        db: 'BaseDatabase',
+        db: 'Datalayer',
         on: Collection,
         identifier: str = '',
         *args,
