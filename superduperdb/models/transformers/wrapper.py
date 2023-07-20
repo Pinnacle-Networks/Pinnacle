@@ -10,7 +10,7 @@ from pinnacledb import log
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model
 from pinnacledb.core.artifact import Artifact
-from pinnacledb.datalayer.base.database import BaseDatabase
+from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.core.model import _TrainingConfiguration
 from pinnacledb.datalayer.query_dataset import query_dataset_factory
@@ -96,7 +96,7 @@ class Pipeline(Model):
         X: str,
         y: str,
         select: t.Optional[Select] = None,
-        db: t.Optional[BaseDatabase] = None,
+        db: t.Optional[Datalayer] = None,
         configuration: t.Optional[_TrainingConfiguration] = None,
         validation_sets: t.Optional[t.List[str]] = None,
         metrics: t.Optional[t.List[Metric]] = None,

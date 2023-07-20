@@ -38,11 +38,11 @@ def pinnacle(item, **kwargs):
         if not isinstance(item, Database):
             raise TypeError('Expected Database but got {type(item)}')
 
-        from pinnacledb.datalayer.base.database import BaseDatabase
+        from pinnacledb.datalayer.base.datalayer import Datalayer
         from pinnacledb.datalayer.mongodb.metadata import MongoMetaDataStore
         from pinnacledb.datalayer.mongodb.artifacts import MongoArtifactStore
 
-        return BaseDatabase(
+        return Datalayer(
             databackend=MongoDataBackend(conn=item.client, name=item.name),
             metadata=MongoMetaDataStore(conn=item.client, name=item.name),
             artifact_store=MongoArtifactStore(
