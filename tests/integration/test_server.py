@@ -5,7 +5,7 @@ import torch
 
 from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb import CFG
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.datalayer.mongodb.query import Collection
 from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.serve.client import Client

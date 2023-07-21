@@ -4,7 +4,7 @@ from ray import serve as _serve
 from starlette.requests import Request
 
 from pinnacledb.datalayer.base.build import build_datalayer
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 
 
 def create_server(model: str, num_replicas):

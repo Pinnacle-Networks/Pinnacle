@@ -6,7 +6,7 @@ import dataclasses as dc
 import pinnacledb as s
 from pinnacledb.core.component import Component
 from pinnacledb.core.dataset import Dataset
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encodable
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import ModelEnsemble

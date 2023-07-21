@@ -2,7 +2,7 @@ import PIL.PngImagePlugin
 import pytest
 import torch
 from pinnacledb.core.dataset import Dataset
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.core.watcher import Watcher

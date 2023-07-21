@@ -2,7 +2,7 @@ import PIL.PngImagePlugin
 import pytest
 import torch
 
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.datalayer.mongodb.query import Collection
 
 n_data_points = 250

@@ -2,7 +2,7 @@ import typing as t
 
 from pymongo import MongoClient
 
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.data_backend import BaseDataBackend
 from pinnacledb.misc.special_dicts import MongoStyleDict

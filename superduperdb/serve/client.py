@@ -11,7 +11,7 @@ from pinnacledb.core.artifact_tree import (
     load_artifacts,
 )
 from pinnacledb.core.component import Component
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.database import ExecuteQuery
 from pinnacledb.datalayer.base.query import (

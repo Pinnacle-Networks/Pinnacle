@@ -11,7 +11,7 @@ from tenacity import RetryError, Retrying, stop_after_delay
 
 from pinnacledb import CFG
 from pinnacledb.cluster.dask.dask_client import dask_client
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.misc.config import DataLayer, DataLayers

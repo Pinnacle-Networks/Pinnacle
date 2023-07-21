@@ -1,7 +1,7 @@
 import pytest
 import tdir
 
-from pinnacledb.core.documents import Document as D
+from pinnacledb.core.document import Document as D
 from pinnacledb.datalayer.mongodb.query import Collection
 
 from pinnacledb.models.transformers.wrapper import (

@@ -5,7 +5,7 @@ import typing as t
 import dataclasses as dc
 
 import pinnacledb as s
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.cursor import SuperDuperCursor
 from pinnacledb.datalayer.base.query import Select, SelectOne, Insert, Delete, Update

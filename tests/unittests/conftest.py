@@ -15,7 +15,7 @@ from pymongo import MongoClient
 from tenacity import RetryError, Retrying, stop_after_delay
 
 from pinnacledb.core.dataset import Dataset
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.core.watcher import Watcher

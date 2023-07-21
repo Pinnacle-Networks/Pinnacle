@@ -6,7 +6,7 @@ from unittest.mock import MagicMock
 import pytest
 import torch
 
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.base.cdc import DatabaseWatcher
 from pinnacledb.datalayer.mongodb.query import Collection

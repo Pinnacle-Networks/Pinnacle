@@ -7,7 +7,7 @@ from langchain.chains.base import Chain
 from langchain.schema import BaseRetriever, Document
 from langchain.schema.language_model import BaseLanguageModel
 
-from pinnacledb.core import documents
+from pinnacledb.core import document
 from pinnacledb.core.model import Model
 from pinnacledb.core.vector_index import VectorIndex
 
@@ -35,7 +35,7 @@ class LangchainRetriever(BaseRetriever):
         self.db = db
 
     def get_relevant_documents(self, query: str) -> t.List[Document]:  # type: ignore
-        document_to_search = documents.Document(content={self.key: query})
+        document_to_search = document.Document(content={self.key: query})
         ids, scores = self.vector_index.get_nearest(
             document_to_search,
             n=self.n,
