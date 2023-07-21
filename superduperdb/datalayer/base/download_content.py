@@ -1,7 +1,7 @@
 # type: ignore
 import typing as t
 
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.query import Insert, Select
 from pinnacledb.misc.downloads import Downloader

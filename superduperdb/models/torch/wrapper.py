@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.metric import Metric
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encodable
 from pinnacledb.core.model import Model, ModelEnsemble, _TrainingConfiguration
 from pinnacledb.core.serializable import Serializable

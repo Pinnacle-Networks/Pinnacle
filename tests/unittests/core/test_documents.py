@@ -1,5 +1,5 @@
 from pinnacledb.encoders.torch.tensor import tensor
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 import torch
 
 

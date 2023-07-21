@@ -12,7 +12,7 @@ from pinnacledb.core.artifact_tree import (
 from pinnacledb import CFG
 from pinnacledb.misc.serialization import serializers
 
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.build import build_datalayer
 

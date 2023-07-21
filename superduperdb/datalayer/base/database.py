@@ -12,7 +12,7 @@ import networkx
 from pinnacledb import CFG
 from pinnacledb.core.task_workflow import TaskWorkflow
 from pinnacledb.core.component import Component
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.core.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.datalayer.base.artifacts import ArtifactStore
 from pinnacledb.datalayer.base.data_backend import BaseDataBackend

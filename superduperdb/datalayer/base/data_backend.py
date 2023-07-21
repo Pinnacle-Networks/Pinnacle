@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import typing as t
 
 from pinnacledb.core.model import Model
-from pinnacledb.core.documents import Document
+from pinnacledb.core.document import Document
 from pinnacledb.datalayer.base.query import Select
 
 
