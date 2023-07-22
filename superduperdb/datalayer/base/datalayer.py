@@ -31,11 +31,6 @@ from pinnacledb.misc.downloads import gather_uris
 from pinnacledb.misc.logger import logging
 from pinnacledb.vector_search.base import VectorDatabase
 
-# TODO:
-# This global variable is a temporary solution to make VectorDatabase available
-# to the rest of the code.
-# It should be moved to the Server's initialization code where it can be available to
-# all threads.
 from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.artifact_tree import (
     get_artifacts,
@@ -564,27 +559,52 @@ class Datalayer:
         return object.schedule_jobs(self, dependencies=dependencies)
 
     def _create_children(self, object: Component, serialized: t.Dict):
-        for k, child_variety in object.child_components:
-            child = getattr(object, k)
-            if isinstance(child, str):
-                serialized['dict'][k] = {
-                    'variety': child_variety,
-                    'identifier': child,
-                }
-                serialized['dict'][k]['version'] = self.metadata.get_latest_version(
-                    child_variety, child
-                )
-            else:
-                self._add(
-                    child,
-                    serialized=serialized['dict'][k],
-                    parent=object.unique_id,
-                )
-                serialized['dict'][k] = {
-                    'variety': child.variety,
-                    'identifier': child.identifier,
-                    'version': child.version,
-                }
+        # TODO abbreviate this code
+        for item in object.child_components:
+            if isinstance(item[0], str):
+                k, child_variety = item
+                child = getattr(object, k)
+                if isinstance(child, str):
+                    serialized['dict'][k] = {
+                        'variety': child_variety,
+                        'identifier': child,
+                    }
+                    serialized['dict'][k]['version'] = self.metadata.get_latest_version(
+                        child_variety, child
+                    )
+                else:
+                    self._add(
+                        child,
+                        serialized=serialized['dict'][k],
+                        parent=object.unique_id,
+                    )
+                    serialized['dict'][k] = {
+                        'variety': child.variety,
+                        'identifier': child.identifier,
+                        'version': child.version,
+                    }
+            elif isinstance(item[0], tuple):
+                (k, ix), child_variety = item
+                child = getattr(object, k)[ix]
+                if isinstance(child, str):
+                    serialized['dict'][k][ix] = {
+                        'variety': child_variety,
+                        'identifier': child,
+                    }
+                    serialized['dict'][k]['version'] = self.metadata.get_latest_version(
+                        child_variety, child
+                    )
+                else:
+                    self._add(
+                        child,
+                        serialized=serialized['dict'][k][ix],
+                        parent=object.unique_id,
+                    )
+                    serialized['dict'][k][ix] = {
+                        'variety': child.variety,
+                        'identifier': child.identifier,
+                        'version': child.version,
+                    }
 
     def _create_plan(self):
         G = networkx.DiGraph()
