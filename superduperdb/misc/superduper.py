@@ -1,46 +1,50 @@
-from pinnacledb.datalayer.mongodb.data_backend import MongoDataBackend
-from pinnacledb.datalayer.base.build import build_vector_database
+import typing as t
 
-from pinnacledb import CFG
-
-
-def duck_type_mongodb(item):
-    return hasattr(item, 'list_collection_names')
+__all__ = ('pinnacle',)
 
 
-def duck_type_sklearn(item):
-    tests = [
-        hasattr(item, '_predict'),
-        hasattr(item, 'fit'),
-        hasattr(item, 'transform'),
-        hasattr(item, 'score'),
-    ]
-    return sum(tests) >= 2
+class DuckTyper:
+    attrs: t.Sequence[str]
+    count: int = 0
+    DUCK_TYPES: t.Tuple[str] = ()
+
+    @classmethod
+    def run(cls, item: t.Any, **kwargs):
+        dts = [dt for dt in cls.DUCK_TYPES if dt.accept(item)]
+        if len(dts) == 1:
+            return cls.create(item, **kwargs)
+        raise NotImplementedError(
+            f'Couldn\'t auto-identify {item}, please wrap explicitly using '
+            '``pinnacledb.core.*``'
+        )
+
+    @classmethod
+    def accept(cls, item: t.Any) -> bool:
+        count = cls.count or len(cls.attrs)
+        return sum(hasattr(item, a) for a in cls.attrs) == count
+
+    @classmethod
+    def create(cls, item: t.Any, **kwargs) -> t.Any:
+        raise NotImplementedError
 
 
-def duck_type_torch(item):
-    tests = [
-        hasattr(item, 'forward'),
-        hasattr(item, 'state_dict'),
-        hasattr(item, 'parameters'),
-    ]
-    return sum(tests) >= 3
+class MongoDbTyper(DuckTyper):
+    attrs = ('list_collection_names',)
 
-
-def auto_identify(instance):
-    return instance.__class__.__name__.lower()
-
-
-def pinnacle(item, **kwargs):
-    if duck_type_mongodb(item):
+    @classmethod
+    def create(cls, item: t.Any, **kwargs) -> t.Any:
         from pymongo.database import Database
+        from pinnacledb import CFG
+        from pinnacledb.datalayer.base.build import build_vector_database
+        from pinnacledb.datalayer.base.datalayer import Datalayer
+        from pinnacledb.datalayer.mongodb.artifacts import MongoArtifactStore
+        from pinnacledb.datalayer.mongodb.data_backend import MongoDataBackend
+        from pinnacledb.datalayer.mongodb.metadata import MongoMetaDataStore
 
+        if kwargs:
+            raise ValueError('MongoDb creator accepts no parameters')
         if not isinstance(item, Database):
             raise TypeError('Expected Database but got {type(item)}')
-
-        from pinnacledb.datalayer.base.datalayer import Datalayer
-        from pinnacledb.datalayer.mongodb.metadata import MongoMetaDataStore
-        from pinnacledb.datalayer.mongodb.artifacts import MongoArtifactStore
 
         return Datalayer(
             databackend=MongoDataBackend(conn=item.client, name=item.name),
@@ -51,40 +55,44 @@ def pinnacle(item, **kwargs):
             vector_database=build_vector_database(CFG.vector_search.type),
         )
 
-    elif duck_type_sklearn(item):
-        from sklearn.pipeline import Pipeline as BasePipeline
+
+class SklearnTyper(DuckTyper):
+    attrs = '_predict', 'fit', 'score', 'transform'
+    count = 2
+
+    @classmethod
+    def create(cls, item: t.Any, **kwargs) -> t.Any:
         from sklearn.base import BaseEstimator
+        from sklearn.pipeline import Pipeline as BasePipeline
+        from pinnacledb.models.sklearn.wrapper import Estimator, Pipeline
 
         if not isinstance(item, BaseEstimator):
             raise TypeError('Expected BaseEstimator but got {type(item)}')
 
-        identifier = auto_identify(item)
-
+        kwargs['identifier'] = auto_identify(item)
         if isinstance(item, BasePipeline):
-            from pinnacledb.models.sklearn.wrapper import Pipeline
+            return Pipeline(steps=item.steps, memory=item.memory, **kwargs)
+        else:
+            return Estimator(estimator=item, **kwargs)
 
-            return Pipeline(
-                identifier=identifier, steps=item.steps, memory=item.memory, **kwargs
-            )
 
-        from pinnacledb.models.sklearn.wrapper import Estimator
+class TorchTyper(DuckTyper):
+    attrs = 'forward', 'parameters', 'state_dict'
 
-        return Estimator(estimator=item, identifier=identifier, **kwargs)
-
-    elif duck_type_torch(item):
+    @classmethod
+    def create(cls, item: t.Any, **kwargs) -> t.Any:
+        from pinnacledb.models.torch.wrapper import TorchModel
         from torch import nn, jit
 
-        if not (isinstance(item, nn.Module) or isinstance(item, jit.ScriptModule)):
-            raise TypeError('Expected a Module but got {type(item)}')
+        if isinstance(item, nn.Module) or isinstance(item, jit.ScriptModule):
+            return TorchModel(identifier=auto_identify(item), object=item, **kwargs)
 
-        from pinnacledb.models.torch.wrapper import TorchModel
+        raise TypeError('Expected a Module but got {type(item)}')
 
-        identifier = auto_identify(item)
 
-        return TorchModel(identifier=identifier, object=item, **kwargs)
+def auto_identify(instance):
+    return instance.__class__.__name__.lower()
 
-    else:
-        raise NotImplementedError(
-            f'Couldn\'t auto-identify {item}, please wrap explicitly using '
-            '``pinnacledb.core.*``'
-        )
+
+DuckTyper.DUCK_TYPES = MongoDbTyper, SklearnTyper, TorchTyper
+pinnacle = DuckTyper.run
