@@ -1,4 +1,4 @@
-from .test_dicts import PARENT
+from .test_config_dicts import PARENT
 from collections import Counter
 from pydantic import ValidationError
 from pinnacledb.misc.config import Config, Factory, JSONable, Notebook
