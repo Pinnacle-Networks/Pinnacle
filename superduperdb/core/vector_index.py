@@ -1,8 +1,10 @@
+from __future__ import annotations
+from overrides import override
 import itertools
 import typing as t
 import dataclasses as dc
-
 import pinnacledb as s
+
 from pinnacledb.core.component import Component
 from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encodable
@@ -10,6 +12,9 @@ from pinnacledb.core.watcher import Watcher
 from pinnacledb.misc.logger import logging
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorCollectionConfig, VectorCollectionItem
+
+if t.TYPE_CHECKING:
+    from pinnacledb.datalayer.base.datalayer import Datalayer
 
 T = t.TypeVar('T')
 
@@ -51,18 +56,24 @@ class VectorIndex(Component):
     version: t.Optional[int] = None
     metric_values: t.Optional[t.Dict] = dc.field(default_factory=dict)
 
-    def _on_create(self, db):
+    @override
+    def on_create(self, db: Datalayer) -> None:
         if isinstance(self.indexing_watcher, str):
-            self.indexing_watcher = db.load('watcher', self.indexing_watcher)
+            self.indexing_watcher = db.load(
+                'watcher', self.indexing_watcher
+            )  # type: ignore[assignment]
         if isinstance(self.compatible_watcher, str):
-            self.compatible_watcher = db.load('watcher', self.compatible_watcher)
+            self.compatible_watcher = db.load(
+                'watcher', self.compatible_watcher
+            )  # type: ignore[assignment]
 
-    def _on_load(self, db):
-        self.vector_table = db.vector_database.get_table(
+    @override
+    def on_load(self, db: Datalayer) -> None:
+        self.vector_table = db.vector_database.get_table(  # type: ignore[call-arg]
             VectorCollectionConfig(
                 id=self.identifier,
                 dimensions=self._dimensions,
-                measure=self.measure,
+                measure=self.measure,  # type: ignore[arg-type]
             ),
             create=True,
         )
