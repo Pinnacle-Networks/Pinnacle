@@ -1,4 +1,5 @@
 import typing as t
+from overrides import override
 
 from pinnacledb.core.component import Component
 from pinnacledb.core.model import Model
@@ -34,7 +35,8 @@ class Watcher(Component):
     def child_components(self):
         return [('model', 'model')]
 
-    def _on_create(self, db):
+    @override
+    def on_create(self, db):
         if isinstance(self.model, str):
             self.model = db.load('model', self.model)
 
