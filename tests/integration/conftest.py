@@ -10,13 +10,13 @@ from pymongo import MongoClient
 from tenacity import RetryError, Retrying, stop_after_delay
 
 from pinnacledb import CFG
-from pinnacledb.cluster.dask.dask_client import dask_client
+from pinnacledb.cluster.dask_client import dask_client
 from pinnacledb.core.document import Document
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.misc.config import DataLayer, DataLayers
 from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.serve.server import serve
+from pinnacledb.cluster.server import serve
 
 '''
 All pytest fixtures with _package scope_ are defined in this module.
