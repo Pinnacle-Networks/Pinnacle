@@ -8,7 +8,7 @@ from pinnacledb import CFG
 from pinnacledb.core.document import Document
 from pinnacledb.datalayer.mongodb.query import Collection
 from pinnacledb.encoders.torch.tensor import tensor
-from pinnacledb.serve.client import Client
+from pinnacledb.cluster.client import Client
 
 
 @pytest.fixture(scope="module")
