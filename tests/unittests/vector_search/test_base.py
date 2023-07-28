@@ -1,7 +1,8 @@
+from unittest import mock
+
 import numpy as np
 import pytest
 import torch
-from unittest import mock
 
 from pinnacledb.vector_search.base import BaseVectorIndex, to_numpy
 

@@ -5,10 +5,12 @@ The component module provides the base class for all components in SuperDuperDB.
 
 # ruff: noqa: F821
 from __future__ import annotations
+
+import dataclasses as dc
 import typing as t
+
 from pinnacledb.core.job import ComponentJob, Job
 from pinnacledb.core.serializable import Serializable
-import dataclasses as dc
 
 if t.TYPE_CHECKING:
     from pinnacledb.datalayer.base.datalayer import Datalayer

@@ -10,7 +10,6 @@ import numpy
 import pymongo
 import pytest
 import torch
-
 from pymongo import MongoClient
 from tenacity import RetryError, Retrying, stop_after_delay
 
@@ -27,7 +26,6 @@ from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.misc.config import DataLayer, DataLayers
 from pinnacledb.misc.config import MongoDB as MongoDBConfig
 from pinnacledb.models.torch.wrapper import TorchModel
-
 from tests.material.metrics import PatK
 from tests.material.models import BinaryClassifier
 

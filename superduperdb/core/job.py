@@ -2,8 +2,7 @@ import datetime
 import typing as t
 import uuid
 
-
-from pinnacledb.core.tasks import method_job, callable_job
+from pinnacledb.core.tasks import callable_job, method_job
 from pinnacledb.misc.configs import CFG
 
 

@@ -7,13 +7,14 @@ import pandas as pd
 import pyarrow as pa
 
 from pinnacledb.misc.logger import logging
-from pinnacledb.vector_search.base import BaseVectorIndex
-from .base import to_numpy
 from pinnacledb.vector_search.base import (
-    VectorCollectionResult,
+    BaseVectorIndex,
     VectorCollectionConfig,
     VectorCollectionItem,
+    VectorCollectionResult,
 )
+
+from .base import to_numpy
 
 _ID: str = 'id'
 SEED_KEY: str = '__SEEDKEY__'

@@ -7,23 +7,18 @@ import typing as t
 import warnings
 
 import torch
-from transformers import (
-    TrainingArguments,
-    Trainer,
-    pipeline as _pipeline,
-    Pipeline as BasePipeline,
-    DataCollatorWithPadding,
-)
+from transformers import DataCollatorWithPadding
+from transformers import Pipeline as BasePipeline
+from transformers import Trainer, TrainingArguments
+from transformers import pipeline as _pipeline
 
-from pinnacledb.core.metric import Metric
-from pinnacledb.core.model import Model
 from pinnacledb.core.artifact import Artifact
+from pinnacledb.core.metric import Metric
+from pinnacledb.core.model import Model, _TrainingConfiguration
 from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.datalayer.base.query import Select
-from pinnacledb.core.model import _TrainingConfiguration
 from pinnacledb.datalayer.query_dataset import query_dataset_factory
 from pinnacledb.misc.special_dicts import MongoStyleDict
-
 
 _DEFAULT_PREFETCH_SIZE: int = 100
 

@@ -1,9 +1,11 @@
 from __future__ import annotations
-from overrides import override
-from functools import cached_property
+
 import dataclasses as dc
-import numpy
 import typing as t
+from functools import cached_property
+
+import numpy
+from overrides import override
 
 from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.component import Component

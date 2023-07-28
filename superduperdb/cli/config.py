@@ -1,6 +1,8 @@
-from . import command
-from pinnacledb import CFG
 from typer import Option
+
+from pinnacledb import CFG
+
+from . import command
 
 
 @command(help='Print all the SuperDuperDB configs as JSON')

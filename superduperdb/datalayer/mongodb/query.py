@@ -1,15 +1,22 @@
-from bson import ObjectId
-from pymongo import UpdateOne as _UpdateOne
+import dataclasses as dc
 import random
 import typing as t
-import dataclasses as dc
+
+from bson import ObjectId
+from pymongo import UpdateOne as _UpdateOne
 
 import pinnacledb as s
 from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.cursor import SuperDuperCursor
-from pinnacledb.datalayer.base.query import Select, SelectOne, Insert, Delete, Update
-from pinnacledb.datalayer.base.query import Like
+from pinnacledb.datalayer.base.query import (
+    Delete,
+    Insert,
+    Like,
+    Select,
+    SelectOne,
+    Update,
+)
 
 
 @dc.dataclass

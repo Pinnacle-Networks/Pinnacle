@@ -1,20 +1,18 @@
 import pytest
 import tdir
 
-from pinnacledb.core.document import Document as D
 from pinnacledb.core.dataset import Dataset
+from pinnacledb.core.document import Document as D
 from pinnacledb.datalayer.mongodb.query import Collection
-
 from pinnacledb.models.transformers.wrapper import (
-    TransformersTrainerConfiguration,
     Pipeline,
+    TransformersTrainerConfiguration,
 )
 
 
 @pytest.fixture(scope="function")
 def transformers_model(random_data):
-    from transformers import AutoModelForSequenceClassification
-    from transformers import AutoTokenizer
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
     data = [
         {'text': 'dummy text 1', 'label': 1},

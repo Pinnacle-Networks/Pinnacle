@@ -1,15 +1,15 @@
-import numpy
+import dataclasses as dc
 import typing as t
 
+import numpy
 from tqdm import tqdm
 
 from pinnacledb.core.artifact import Artifact
-from pinnacledb.core.model import Model, _TrainingConfiguration
 from pinnacledb.core.metric import Metric
+from pinnacledb.core.model import Model, _TrainingConfiguration
 from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.datalayer.base.query import Select
 from pinnacledb.datalayer.query_dataset import QueryDataset
-import dataclasses as dc
 
 
 def get_data_from_query(

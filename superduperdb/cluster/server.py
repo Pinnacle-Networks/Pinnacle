@@ -4,17 +4,16 @@ import uuid
 
 from flask import Flask, jsonify, make_response, request
 
+from pinnacledb import CFG
 from pinnacledb.core.artifact_tree import (
     get_artifacts,
     load_artifacts_from_store,
     replace_artifacts_with_dict,
 )
-from pinnacledb import CFG
-from pinnacledb.misc.serialization import serializers
-
 from pinnacledb.core.document import load_bson, load_bsons
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.build import build_datalayer
+from pinnacledb.misc.serialization import serializers
 
 
 def make_endpoints(app, db):

@@ -1,11 +1,15 @@
 from __future__ import annotations
-from .job import Job, ComponentJob, FunctionJob
-from functools import wraps
-from networkx import DiGraph, ancestors
+
 import dataclasses as dc
-import networkx
-import pinnacledb as s
 import typing as t
+from functools import wraps
+
+import networkx
+from networkx import DiGraph, ancestors
+
+import pinnacledb as s
+
+from .job import ComponentJob, FunctionJob, Job
 
 if t.TYPE_CHECKING:
     from pinnacledb.datalayer.base.datalayer import Datalayer

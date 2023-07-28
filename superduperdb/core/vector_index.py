@@ -1,10 +1,10 @@
+import dataclasses as dc
 import itertools
 import typing as t
-import dataclasses as dc
-import pinnacledb as s
 
 from overrides import override
 
+import pinnacledb as s
 from pinnacledb.core.component import Component
 from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encodable
@@ -13,7 +13,6 @@ from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.misc.logger import logging
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorCollectionConfig, VectorCollectionItem
-
 
 T = t.TypeVar('T')
 

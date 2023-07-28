@@ -1,8 +1,8 @@
-from abc import ABC, abstractmethod
 import typing as t
+from abc import ABC, abstractmethod
 
-from pinnacledb.core.model import Model
 from pinnacledb.core.document import Document
+from pinnacledb.core.model import Model
 from pinnacledb.datalayer.base.query import Select
 
 

@@ -1,7 +1,9 @@
-from pydantic import dataclasses as dc
-from pinnacledb.misc.for_each import for_each
-import pinnacledb as s
 import typing as t
+
+from pydantic import dataclasses as dc
+
+import pinnacledb as s
+from pinnacledb.misc.for_each import for_each
 
 
 @dc.dataclass

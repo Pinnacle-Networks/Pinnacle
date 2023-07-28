@@ -1,7 +1,7 @@
 import numpy
 
-from pinnacledb.vector_search.base import BaseVectorIndex
 from pinnacledb.misc.logger import logging
+from pinnacledb.vector_search.base import BaseVectorIndex
 
 
 class VanillaVectorIndex(BaseVectorIndex):

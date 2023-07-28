@@ -1,13 +1,15 @@
-from . import command
-from pathlib import Path
-from pinnacledb import ROOT
-from pinnacledb.misc import run
 import datetime
 import json
 import os
 import platform
 import socket
 import sys
+from pathlib import Path
+
+from pinnacledb import ROOT
+from pinnacledb.misc import run
+
+from . import command
 
 PYPROJECT = ROOT / 'pyproject.toml'
 

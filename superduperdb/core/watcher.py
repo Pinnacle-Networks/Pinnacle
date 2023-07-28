@@ -1,12 +1,14 @@
+import dataclasses as dc
 import typing as t
+
 from overrides import override
+
+from pinnacledb.datalayer.base.datalayer import Datalayer
+from pinnacledb.datalayer.base.query import Select
 
 from .component import Component
 from .job import Job
 from .model import Model
-from pinnacledb.datalayer.base.datalayer import Datalayer
-from pinnacledb.datalayer.base.query import Select
-import dataclasses as dc
 
 
 @dc.dataclass

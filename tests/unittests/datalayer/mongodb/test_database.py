@@ -1,14 +1,15 @@
 import PIL.PngImagePlugin
 import pytest
 import torch
+
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encoder
+from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.base.exceptions import (
     ComponentInUseError,
     ComponentInUseWarning,
 )
-from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.mongodb.query import Collection
 from pinnacledb.encoders.torch.tensor import tensor
 from pinnacledb.models.torch.wrapper import TorchModel

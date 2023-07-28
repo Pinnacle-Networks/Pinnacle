@@ -1,16 +1,23 @@
-from collections import defaultdict
-from dask.distributed import Future
-import click
 import dataclasses as dc
 import math
-import networkx
-import pinnacledb as s
 import typing as t
 import warnings
+from collections import defaultdict
 
+import click
+import networkx
+from dask.distributed import Future
+
+import pinnacledb as s
+from pinnacledb.core.artifact_tree import (
+    get_artifacts,
+    infer_artifacts,
+    load_artifacts_from_store,
+    replace_artifacts,
+)
 from pinnacledb.core.component import Component
 from pinnacledb.core.document import Document
-from pinnacledb.core.job import FunctionJob, ComponentJob, Job
+from pinnacledb.core.job import ComponentJob, FunctionJob, Job
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.core.task_workflow import TaskWorkflow
 from pinnacledb.misc.downloads import Downloader, gather_uris
@@ -23,13 +30,6 @@ from .download_content import download_content
 from .exceptions import ComponentInUseError, ComponentInUseWarning
 from .metadata import MetaDataStore
 from .query import Delete, Insert, Like, Select, SelectOne, Update
-
-from pinnacledb.core.artifact_tree import (
-    get_artifacts,
-    infer_artifacts,
-    load_artifacts_from_store,
-    replace_artifacts,
-)
 
 DBResult = t.Any
 TaskGraph = t.Any

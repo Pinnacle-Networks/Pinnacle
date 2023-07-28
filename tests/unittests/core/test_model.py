@@ -1,7 +1,7 @@
 import torch
 
-from pinnacledb.models.torch.wrapper import TorchModel
 from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.models.torch.wrapper import TorchModel
 
 
 def test_predict(random_data, float_tensors_32):

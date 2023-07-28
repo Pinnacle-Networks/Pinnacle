@@ -1,6 +1,8 @@
-from pinnacledb.misc import config_dicts
 import io
+
 import pytest
+
+from pinnacledb.misc import config_dicts
 
 
 def test_combine_config_dicts():

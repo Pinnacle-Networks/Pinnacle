@@ -1,12 +1,12 @@
 import os
 import uuid
 
-from scipy.spatial.distance import cdist
-import torch
 import pytest
+import torch
+from scipy.spatial.distance import cdist
 
-from pinnacledb.vector_search.table_scan import VanillaVectorIndex
 from pinnacledb.vector_search.faiss_index import FaissVectorIndex
+from pinnacledb.vector_search.table_scan import VanillaVectorIndex
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 

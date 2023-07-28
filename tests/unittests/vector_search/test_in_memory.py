@@ -1,12 +1,12 @@
-import pytest
-import numpy
-
 from typing import Iterator
 
+import numpy
+import pytest
+
 from pinnacledb.vector_search.base import (
+    VectorCollectionConfig,
     VectorCollectionItem,
     VectorCollectionItemNotFound,
-    VectorCollectionConfig,
     VectorDatabase,
 )
 from pinnacledb.vector_search.inmemory import InMemoryVectorDatabase

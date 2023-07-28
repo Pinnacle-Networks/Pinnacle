@@ -26,8 +26,8 @@ def test_pinnacle_db(test_db):
 
 
 def test_pinnacle_model():
-    from sklearn.linear_model import LinearRegression
     import torch
+    from sklearn.linear_model import LinearRegression
 
     model = pinnacle(torch.nn.Linear(1, 1))
     assert isinstance(model.object.artifact, torch.nn.modules.linear.Linear)

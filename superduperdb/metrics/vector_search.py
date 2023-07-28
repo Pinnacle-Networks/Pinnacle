@@ -2,12 +2,12 @@ import typing as t
 from collections import defaultdict
 
 import numpy
+
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model
 from pinnacledb.datalayer.query_dataset import QueryDataset
-from pinnacledb.vector_search.base import BaseVectorIndex, VectorCollection
-
 from pinnacledb.vector_search import VanillaVectorIndex
+from pinnacledb.vector_search.base import BaseVectorIndex, VectorCollection
 
 
 class PatK:

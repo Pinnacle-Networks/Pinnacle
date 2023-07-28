@@ -1,6 +1,7 @@
-from pinnacledb.encoders.torch.tensor import tensor
-from pinnacledb.core.document import Document
 import torch
+
+from pinnacledb.core.document import Document
+from pinnacledb.encoders.torch.tensor import tensor
 
 
 def test_document_encoding():

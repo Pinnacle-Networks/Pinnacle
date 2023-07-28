@@ -1,30 +1,29 @@
-import time
-import threading
-import traceback
+import dataclasses as dc
+import datetime
 import json
 import queue
-import datetime
-from collections import Counter
-from enum import Enum
+import threading
+import time
+import traceback
 import typing as t
 from abc import ABC, abstractmethod
-import dataclasses as dc
+from collections import Counter
+from enum import Enum
 
-from pydantic import BaseModel
 from bson.objectid import ObjectId as BsonObjectId
+from pydantic import BaseModel
 from pymongo.change_stream import CollectionChangeStream
 
 import pinnacledb as s
-from pinnacledb.vector_search.base import VectorCollectionConfig, VectorCollectionItem
-from pinnacledb.core.serializable import Serializable
-from pinnacledb.misc.logger import logging
-from pinnacledb.datalayer.mongodb import query
-from pinnacledb.datalayer.base.datalayer import Datalayer
-from pinnacledb.core.task_workflow import TaskWorkflow
 from pinnacledb.core.job import FunctionJob
-from pinnacledb.misc.task_queue import cdc_queue
+from pinnacledb.core.serializable import Serializable
+from pinnacledb.core.task_workflow import TaskWorkflow
 from pinnacledb.core.vector_index import VectorIndex
-
+from pinnacledb.datalayer.base.datalayer import Datalayer
+from pinnacledb.datalayer.mongodb import query
+from pinnacledb.misc.logger import logging
+from pinnacledb.misc.task_queue import cdc_queue
+from pinnacledb.vector_search.base import VectorCollectionConfig, VectorCollectionItem
 
 MongoChangePipelines: t.Dict[str, t.Sequence[t.Any]] = {'generic': []}
 TokenType = t.Dict[str, str]

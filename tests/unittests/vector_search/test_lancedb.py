@@ -1,13 +1,12 @@
 import os
 import tempfile
+
 import numpy as np
-
-import pytest
 import pyarrow as pa
+import pytest
 
-from pinnacledb.vector_search.base import VectorCollectionConfig
-from pinnacledb.vector_search.base import VectorCollectionItem
 from pinnacledb.misc.config import LanceDB
+from pinnacledb.vector_search.base import VectorCollectionConfig, VectorCollectionItem
 from pinnacledb.vector_search.lancedb_client import (
     LanceDBClient,
     LanceTable,
