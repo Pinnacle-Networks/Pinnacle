@@ -3,6 +3,7 @@ import typing as t
 from pinnacledb.datalayer.base.artifacts import ArtifactStore
 from pinnacledb.misc.serialization import serializers
 from pinnacledb.misc.tree import tree_find, tree_rewrite
+
 from .artifact import Artifact
 
 """

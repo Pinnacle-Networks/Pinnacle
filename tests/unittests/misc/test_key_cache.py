@@ -1,5 +1,6 @@
-from pinnacledb.misc.key_cache import KeyCache
 from unittest import mock
+
+from pinnacledb.misc.key_cache import KeyCache
 
 
 def test_simple_cache():

@@ -5,8 +5,8 @@ from pymongo import MongoClient
 from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.data_backend import BaseDataBackend
-from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.misc.logger import logging
+from pinnacledb.misc.special_dicts import MongoStyleDict
 
 
 class MongoDataBackend(BaseDataBackend):

@@ -1,5 +1,6 @@
-import pinnacledb as s
 import typing as t
+
+import pinnacledb as s
 from pinnacledb.misc import dataclasses as dc
 from pinnacledb.misc import uri_cache
 

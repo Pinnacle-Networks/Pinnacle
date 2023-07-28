@@ -1,10 +1,9 @@
 import torch
 
 from pinnacledb.core.metric import Metric
-from pinnacledb.metrics.classification import compute_classification_metrics
-from pinnacledb.models.torch.wrapper import TorchModel
-from pinnacledb.models.torch.wrapper import TorchTrainerConfiguration
 from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.metrics.classification import compute_classification_metrics
+from pinnacledb.models.torch.wrapper import TorchModel, TorchTrainerConfiguration
 
 
 class ToDict:

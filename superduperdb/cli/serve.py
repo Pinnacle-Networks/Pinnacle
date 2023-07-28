@@ -1,12 +1,13 @@
-from . import command
 import typing as t
 
+from pinnacledb import CFG
+from pinnacledb.cluster.dask_client import dask_client
+from pinnacledb.cluster.server import serve as _serve
 from pinnacledb.datalayer.base.build import build_datalayer
 from pinnacledb.datalayer.base.cdc import DatabaseWatcher
 from pinnacledb.datalayer.mongodb.query import Collection
-from pinnacledb.cluster.server import serve as _serve
-from pinnacledb.cluster.dask_client import dask_client
-from pinnacledb import CFG
+
+from . import command
 
 
 @command(help='Start server')

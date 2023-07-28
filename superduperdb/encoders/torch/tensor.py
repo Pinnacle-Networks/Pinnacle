@@ -1,6 +1,7 @@
+import typing as t
+
 import numpy
 import torch
-import typing as t
 
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.encoders.utils import str_shape

@@ -26,10 +26,10 @@ Use this module like this::
 import threading
 import typing as t
 
-from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.datalayer.base import backends
 from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.datalayer.mongodb import cdc
-from pinnacledb.datalayer.base import backends
+from pinnacledb.datalayer.mongodb.query import Collection
 
 DBWatcherType = t.TypeVar('DBWatcherType')
 

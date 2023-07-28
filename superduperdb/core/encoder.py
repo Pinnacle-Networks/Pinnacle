@@ -1,13 +1,14 @@
-from pinnacledb.misc import dataclasses as dc
 import dataclasses
 import io
 import pickle
 import typing as t
 
-from pinnacledb.core.artifact import Artifact
-from pinnacledb.core.component import Component
 from PIL.PngImagePlugin import PngImageFile
 from torch import Tensor
+
+from pinnacledb.core.artifact import Artifact
+from pinnacledb.core.component import Component
+from pinnacledb.misc import dataclasses as dc
 
 Decode = t.Callable[[bytes], t.Any]
 Encode = t.Callable[[t.Any], bytes]

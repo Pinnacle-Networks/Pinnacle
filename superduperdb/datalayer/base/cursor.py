@@ -1,7 +1,9 @@
 import dataclasses as dc
 import typing as t
 from functools import cached_property
+
 from pymongo.cursor import Cursor
+
 from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.misc.special_dicts import MongoStyleDict

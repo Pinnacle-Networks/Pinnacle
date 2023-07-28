@@ -1,7 +1,8 @@
+import io
+
 import PIL.Image
 import PIL.JpegImagePlugin
 import PIL.PngImagePlugin
-import io
 
 from pinnacledb.core.encoder import Encoder
 

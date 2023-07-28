@@ -1,12 +1,12 @@
 import pprint
 
-from pinnacledb.core.artifact import Artifact
-from pinnacledb.encoders.torch.tensor import tensor
-from pinnacledb.core.model import Model
 import torch
-
-from pinnacledb.models.sklearn.wrapper import Estimator
 from sklearn.svm import SVC
+
+from pinnacledb.core.artifact import Artifact
+from pinnacledb.core.model import Model
+from pinnacledb.encoders.torch.tensor import tensor
+from pinnacledb.models.sklearn.wrapper import Estimator
 
 
 def test_model():

@@ -1,6 +1,7 @@
+import typing as t
+
 from pinnacledb.core.component import Component
 from pinnacledb.datalayer.base.metadata import MetaDataStore
-import typing as t
 
 
 class MongoMetaDataStore(MetaDataStore):

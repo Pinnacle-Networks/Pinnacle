@@ -1,6 +1,7 @@
-from pinnacledb.misc import dataclasses as dc
-import pinnacledb as s
 import typing as t
+
+import pinnacledb as s
+from pinnacledb.misc import dataclasses as dc
 
 
 def for_each(

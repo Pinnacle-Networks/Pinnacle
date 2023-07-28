@@ -3,8 +3,7 @@ import typing as t
 from pinnacledb.core.document import Document
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.query import Insert, Select
-from pinnacledb.misc.downloads import Downloader
-from pinnacledb.misc.downloads import gather_uris
+from pinnacledb.misc.downloads import Downloader, gather_uris
 from pinnacledb.misc.logger import logging
 
 

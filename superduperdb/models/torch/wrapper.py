@@ -1,8 +1,8 @@
 import dataclasses as dc
-from functools import cached_property
 import io
-from contextlib import contextmanager
 import typing as t
+from contextlib import contextmanager
+from functools import cached_property
 
 import torch
 from torch.utils import data
@@ -10,16 +10,16 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from pinnacledb.core.artifact import Artifact
-from pinnacledb.core.metric import Metric
 from pinnacledb.core.document import Document
 from pinnacledb.core.encoder import Encodable
+from pinnacledb.core.metric import Metric
 from pinnacledb.core.model import Model, _TrainingConfiguration
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.datalayer import Datalayer
 from pinnacledb.datalayer.base.query import Select
-from pinnacledb.misc.logger import logging
-from pinnacledb.models.torch.utils import device_of, to_device, eval
 from pinnacledb.datalayer.query_dataset import QueryDataset
+from pinnacledb.misc.logger import logging
+from pinnacledb.models.torch.utils import device_of, eval, to_device
 
 
 class BasicDataset(data.Dataset):

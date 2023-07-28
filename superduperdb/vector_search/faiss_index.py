@@ -1,8 +1,8 @@
-import numpy
 import os
 
-from pinnacledb.vector_search.base import BaseVectorIndex
+import numpy
 
+from pinnacledb.vector_search.base import BaseVectorIndex
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 

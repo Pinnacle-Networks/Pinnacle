@@ -1,5 +1,5 @@
-from pinnacledb.datalayer.query_dataset import QueryDataset
 from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.datalayer.query_dataset import QueryDataset
 
 
 def test_query_dataset(random_data, a_watcher):

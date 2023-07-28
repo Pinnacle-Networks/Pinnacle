@@ -1,5 +1,6 @@
-import numpy
 import typing as t
+
+import numpy
 
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.encoders.utils import str_shape

@@ -3,21 +3,17 @@ import os
 import typing as t
 
 import tqdm
-
-
-from openai import ChatCompletion
-from openai import Embedding
+from openai import ChatCompletion, Embedding
 from openai import Model as OpenAIModel
-from openai.error import Timeout, RateLimitError, TryAgain, ServiceUnavailableError
+from openai.error import RateLimitError, ServiceUnavailableError, Timeout, TryAgain
 
 import pinnacledb as s
 from pinnacledb.core.component import Component
 from pinnacledb.core.encoder import Encoder
 from pinnacledb.core.model import PredictMixin
-from pinnacledb.misc.retry import Retry
-from pinnacledb.misc.compat import cache
 from pinnacledb.encoders.vectors.vector import vector
-
+from pinnacledb.misc.compat import cache
+from pinnacledb.misc.retry import Retry
 
 retry = Retry(
     exception_types=(RateLimitError, ServiceUnavailableError, Timeout, TryAgain)

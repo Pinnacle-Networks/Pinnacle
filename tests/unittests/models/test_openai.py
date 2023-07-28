@@ -1,13 +1,13 @@
 import json
 import os
+
 import pytest
+
 from pinnacledb.core.document import Document
 from pinnacledb.core.vector_index import VectorIndex
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.mongodb.query import Collection
-
 from pinnacledb.models.openai.wrapper import OpenAIChatCompletion, OpenAIEmbedding
-
 
 SKIP_PAID = os.environ.get('OPENAI_API_KEY') is None
 

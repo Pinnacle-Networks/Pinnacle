@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import dataclasses as dc
 import inspect
 import multiprocessing
@@ -12,7 +13,7 @@ from pinnacledb.core.artifact import Artifact
 from pinnacledb.core.component import Component
 from pinnacledb.core.dataset import Dataset
 from pinnacledb.core.encoder import Encoder
-from pinnacledb.core.job import Job, ComponentJob
+from pinnacledb.core.job import ComponentJob, Job
 from pinnacledb.core.metric import Metric
 from pinnacledb.core.serializable import Serializable
 from pinnacledb.datalayer.base.query import Select

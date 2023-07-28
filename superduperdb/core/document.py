@@ -1,8 +1,10 @@
-from pinnacledb.core.encoder import Encodable
-import bson
-import pinnacledb as s
 import typing as t
+
+import bson
 from bson.objectid import ObjectId
+
+import pinnacledb as s
+from pinnacledb.core.encoder import Encodable
 
 ContentType = t.Union[t.Dict, Encodable]
 ItemType = t.Union[t.Dict[str, t.Any], Encodable, ObjectId]

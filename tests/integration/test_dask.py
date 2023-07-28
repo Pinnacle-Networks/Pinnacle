@@ -2,9 +2,9 @@ import uuid
 from contextlib import contextmanager
 from unittest.mock import patch
 
-from pinnacledb.core.task_workflow import TaskWorkflow
-from pinnacledb.core.job import FunctionJob
 from pinnacledb import CFG
+from pinnacledb.core.job import FunctionJob
+from pinnacledb.core.task_workflow import TaskWorkflow
 from pinnacledb.core.watcher import Watcher
 from pinnacledb.datalayer.mongodb.query import Collection
 

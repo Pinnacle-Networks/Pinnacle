@@ -40,6 +40,7 @@ class MongoDbTyper(DuckTyper):
     @classmethod
     def create(cls, item: t.Any, **kwargs) -> t.Any:
         from pymongo.database import Database
+
         from pinnacledb import CFG
         from pinnacledb.datalayer.base.build import build_vector_database
         from pinnacledb.datalayer.base.datalayer import Datalayer
@@ -69,6 +70,7 @@ class SklearnTyper(DuckTyper):
     @classmethod
     def create(cls, item: t.Any, **kwargs) -> t.Any:
         from sklearn.base import BaseEstimator
+
         from pinnacledb.models.sklearn.wrapper import Estimator
 
         if not isinstance(item, BaseEstimator):
@@ -83,8 +85,9 @@ class TorchTyper(DuckTyper):
 
     @classmethod
     def create(cls, item: t.Any, **kwargs) -> t.Any:
+        from torch import jit, nn
+
         from pinnacledb.models.torch.wrapper import TorchModel
-        from torch import nn, jit
 
         if isinstance(item, nn.Module) or isinstance(item, jit.ScriptModule):
             return TorchModel(identifier=auto_identify(item), object=item, **kwargs)

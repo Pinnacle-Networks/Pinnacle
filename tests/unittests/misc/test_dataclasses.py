@@ -1,4 +1,5 @@
 from pydantic import Field
+
 from pinnacledb.misc import dataclasses as dc
 
 
