@@ -1,5 +1,11 @@
 # Models
 
+```{note}
+The SuperDuperDB `Model` wrapper is an extension of standard Python-AI-ecosystem models.
+`Model` adds preprocessing, postprocessing, and communication with the `Datalayer`
+to the standard toolkit.
+```
+
 In SuperDuperDB, the primary mode to integrating a new AI model, framework or API provider
 is via the `Model` abstraction. This maybe thought of in the following way:
 
@@ -14,10 +20,25 @@ write to the datalayer. We extend this paradigm to frameworks, which have taken 
 own path in API design, bringing all frameworks into a single world of terminology and
 functionality.
 
+## Supported frameworks
+
+The following frameworks are supported natively by SuperDuperDB:
+
+- `sklearn`
+- `torch`
+- `transformers`
+- `openai`
+
+The key class is located in `pinnacledb.<framework>.<Framework>Model`:
+
+- `pinnacledb.sklearn.SklearnModel.`
+- `pinnacledb.torch.TorchModel.`
+- `pinnacledb.transformers.TransformersModel.`
+- `pinnacledb.openai.OpenAIModel.`
+
 ## Porting models to SuperDuperDB
 
-We provide a shortcut wrapper to porting a model to SuperDuperDB with
-`pinnacledb.pinnacle`.
+`pinnacle(model)` provides a shortcut to importing the model class directly:
 
 ```python
 from pinnacledb import pinnacle
