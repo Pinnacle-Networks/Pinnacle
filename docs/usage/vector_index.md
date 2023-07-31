@@ -17,7 +17,7 @@ In order to build a vector index, one defines one or two models, and daemonizes 
 In the simples variant one does simply:
 
 ```python
-from pinnacledb.core.vector_index import VectorIndex
+from pinnacledb.container.vector_index import VectorIndex
 from sueprduperdb.core.watcher import Watcher
 
 db.add(
@@ -32,13 +32,14 @@ Alternatively the model and watcher may be created inline.
 Here is how to define a simple libear bag-of-words model:
 
 ```python
-from pinnacledb.core.vector_index import VectorIndex
-from pinnacledb.core.watcher import Watcher
-from pinnacledb.models.sentence_transformers.wrapper import Pipeline
+from pinnacledb.container.vector_index import VectorIndex
+from pinnacledb.container.watcher import Watcher
+from pinnacledb.model.sentence_transformers.wrapper import Pipeline
+
 
 class TextEmbedding:
     def __init__(self, lookup):
-        self.lookup = lookup   # mapping from strings to pytorch tensors
+        self.lookup = lookup  # mapping from strings to pytorch tensors
 
     def __call__(self, x):
         return sum([self.lookup[y] for y in x.split()])
@@ -49,12 +50,12 @@ db.add(
         identifier='my-index',
         indexing_watcher=Watcher(
             model=TorchModel(
-                preprocess=TextEmbedding(d),     # "d" should be loaded from disk
+                preprocess=TextEmbedding(d),  # "d" should be loaded from disk
                 object=torch.nn.Linear(64, 512),
             )
-            key='<key-to-search>',
-        )
-    )
+key = '<key-to-search>',
+)
+)
 )
 ```
 
@@ -65,11 +66,12 @@ To use your vector index to search MongoDB, there are two possibilities:
 Firstly, find similar matches and then filter the results:
 
 ```python
->>> from pinnacledb.core.document import Document as D
->>> db.execute(
-...    Collection('my-coll')
-...        .like(D({'<key-to-search>': '<content'>}), vector_index='my-index')
-...        .find(<filter>, <projection>)
+>> > from pinnacledb.container.document import Document as D
+>> > db.execute(
+    ...
+Collection('my-coll')
+....like(D({'<key-to-search>': '<content' >}), vector_index='my-index')
+....find( < filter >, < projection >)
 ... )
 ```
 

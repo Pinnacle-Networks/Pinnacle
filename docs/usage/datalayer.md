@@ -17,10 +17,10 @@ The `Datalayer` object combines 4 basic functionalities involved in integrating 
 Correspondingly a datalayer may be built by passing these 4 items to the `Datalayer.__init__` method:
 
 ```python
-from pinnacledb.datalayer.base.datalayer import Datalayer
-from pinnacledb.datalayer.mongodb.data_backend import MongoDatabackend
-from pinnacledb.datalayer.mongodb.metadata import MongoMetaDataStore
-from pinnacledb.datalayer.mongodb.artifacts import MongoArtifactStore
+from pinnacledb.db.base.datalayer import Datalayer
+from pinnacledb.db.mongodb.data_backend import MongoDatabackend
+from pinnacledb.db.mongodb.metadata import MongoMetaDataStore
+from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.vector_search.lancedb_client import LanceVectorIndex
 
 import pymongo
@@ -43,7 +43,7 @@ Connecting these 4 elements in this way can be slightly tedious, so we provide a
 the basis of the current configuration (see [here]() for information about configuration).
 
 ```python
-from pinnacledb.datalayer.base.build import build_datalayer
+from pinnacledb.db.base.build import build_datalayer
 
 db = build_datalayer()
 ```

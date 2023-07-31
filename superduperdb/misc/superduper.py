@@ -17,7 +17,7 @@ class DuckTyper:
             return dts[0].create(item, **kwargs)
         raise NotImplementedError(
             f'Couldn\'t auto-identify {item}, please wrap explicitly using '
-            '``pinnacledb.core.*``'
+            '``pinnacledb.container.*``'
         )
 
     @classmethod
@@ -45,11 +45,11 @@ class MongoDbTyper(DuckTyper):
         from pymongo.database import Database
 
         from pinnacledb import CFG
-        from pinnacledb.datalayer.base.build import build_vector_database
-        from pinnacledb.datalayer.base.datalayer import Datalayer
-        from pinnacledb.datalayer.mongodb.artifacts import MongoArtifactStore
-        from pinnacledb.datalayer.mongodb.data_backend import MongoDataBackend
-        from pinnacledb.datalayer.mongodb.metadata import MongoMetaDataStore
+        from pinnacledb.db.base.build import build_vector_database
+        from pinnacledb.db.base.datalayer import Datalayer
+        from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
+        from pinnacledb.db.mongodb.data_backend import MongoDataBackend
+        from pinnacledb.db.mongodb.metadata import MongoMetaDataStore
 
         if kwargs:
             raise ValueError('MongoDb creator accepts no parameters')
@@ -74,7 +74,7 @@ class SklearnTyper(DuckTyper):
     def create(cls, item: t.Any, **kwargs) -> t.Any:
         from sklearn.base import BaseEstimator
 
-        from pinnacledb.models.sklearn.wrapper import Estimator
+        from pinnacledb.ext.sklearn.model import Estimator
 
         if not isinstance(item, BaseEstimator):
             raise TypeError('Expected BaseEstimator but got {type(item)}')
@@ -90,7 +90,7 @@ class TorchTyper(DuckTyper):
     def create(cls, item: t.Any, **kwargs) -> t.Any:
         from torch import jit, nn
 
-        from pinnacledb.models.torch.wrapper import TorchModel
+        from pinnacledb.ext.torch.model import TorchModel
 
         if isinstance(item, nn.Module) or isinstance(item, jit.ScriptModule):
             return TorchModel(identifier=auto_identify(item), object=item, **kwargs)

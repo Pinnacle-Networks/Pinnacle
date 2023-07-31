@@ -17,13 +17,13 @@ python -m pinnacledb server
 The client may be used from a Python program as follows:
 
 ```python
-from pinnacledb.cluster.client import Client
+from pinnacledb.server.client import Client
 from pinnacledb import pinnacle
-from pinnacledb.datalayer.mongodb.query import Collection
+from pinnacledb.db.mongodb.query import Collection
 
 c = Client(uri='<uri>')
 collection = Collection(name='docs')
 
-c.show('model')           # standard methods supported by `DataLayer` are accessible here
-r = c.execute(collection.find_one())       # data fetched with standard queries
+c.show('model')  # standard methods supported by `DataLayer` are accessible here
+r = c.execute(collection.find_one())  # data fetched with standard queries
 ```

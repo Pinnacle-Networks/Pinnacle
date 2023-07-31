@@ -24,8 +24,9 @@ Correspondingly, the `DatabaseWatcher` class is a Python implementation of a Cha
 ## Usage
 
 Import the necessary dependencies:
+
 ```python
-from pinnacledb.datalayer.mongodb.cdc import DatabaseWatcher
+from pinnacledb.db.mongodb.cdc import DatabaseWatcher
 ```
 
 Instantiate a DatabaseWatcher object by providing the MongoDB database and the collection to be monitored:

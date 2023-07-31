@@ -1,6 +1,6 @@
 import numpy
 
-from pinnacledb.misc.logger import logging
+from pinnacledb import logging
 from pinnacledb.vector_search.base import BaseVectorIndex
 
 

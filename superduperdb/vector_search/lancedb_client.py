@@ -6,7 +6,7 @@ import lancedb
 import pandas as pd
 import pyarrow as pa
 
-from pinnacledb.misc.logger import logging
+from pinnacledb import logging
 from pinnacledb.vector_search.base import (
     BaseVectorIndex,
     VectorCollectionConfig,
