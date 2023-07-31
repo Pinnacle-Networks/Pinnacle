@@ -52,7 +52,7 @@ class TorchSerializer(Serializer):
     def encode(object: t.Any, info: Info = None) -> bytes:
         import torch
 
-        from pinnacledb.models.torch.utils import device_of
+        from pinnacledb.ext.torch.utils import device_of
 
         if not isinstance(object, dict):
             was_gpu = str(device_of(object)) == 'cuda'
