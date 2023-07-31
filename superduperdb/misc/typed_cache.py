@@ -1,7 +1,6 @@
+import dataclasses as dc
 import typing as t
 from threading import Lock
-
-from pinnacledb.misc import dataclasses as dc
 
 from .key_cache import KeyCache
 
