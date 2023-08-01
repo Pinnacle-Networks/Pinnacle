@@ -2,7 +2,7 @@ import typing as t
 
 import typing_extensions as te
 
-from pinnacledb.db.base.artifacts import ArtifactStore
+from pinnacledb.db.base.artifact import ArtifactStore
 from pinnacledb.misc.serialization import Info, serializers
 
 ArtifactCache = t.Dict[int, t.Any]

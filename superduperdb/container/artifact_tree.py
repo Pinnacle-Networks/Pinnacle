@@ -1,7 +1,7 @@
 import typing as t
 
 from pinnacledb.data.tree.tree import tree_find, tree_rewrite
-from pinnacledb.db.base.artifacts import ArtifactStore
+from pinnacledb.db.base.artifact import ArtifactStore
 from pinnacledb.misc.serialization import serializers
 
 from .artifact import Artifact

@@ -27,7 +27,7 @@ import threading
 import typing as t
 
 from pinnacledb.db.base import backends
-from pinnacledb.db.base.datalayer import Datalayer
+from pinnacledb.db.base.db import DB
 from pinnacledb.db.mongodb import cdc
 from pinnacledb.db.mongodb.query import Collection
 
@@ -55,7 +55,7 @@ class DatabaseWatcherFactory(t.Generic[DBWatcherType]):
 
 
 def DatabaseWatcher(
-    db: Datalayer,
+    db: DB,
     on: Collection,
     identifier: str = '',
     *args,

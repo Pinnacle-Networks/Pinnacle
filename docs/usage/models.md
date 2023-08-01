@@ -100,9 +100,9 @@ into the datalayer.
 An equivalent syntax is the following:
 
 ```python
->> > from pinnacledb.container.watcher import Watcher
+>> > from pinnacledb.container.listener import Listener
 >> > db.add(
-    Watcher(
+    Listener(
         model=model,
         select=coll.find(),
         key='input_col',

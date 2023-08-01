@@ -3,7 +3,7 @@ import typing as t
 from pinnacledb import logging
 from pinnacledb.container.document import Document
 from pinnacledb.container.serializable import Serializable
-from pinnacledb.db.base.downloads import Downloader, gather_uris
+from pinnacledb.db.base.download import Downloader, gather_uris
 from pinnacledb.db.base.query import Insert, Select
 
 

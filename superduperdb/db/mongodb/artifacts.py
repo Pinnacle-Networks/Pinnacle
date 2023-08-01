@@ -1,6 +1,6 @@
 import gridfs
 
-from pinnacledb.db.base.artifacts import ArtifactStore
+from pinnacledb.db.base.artifact import ArtifactStore
 
 
 class MongoArtifactStore(ArtifactStore):

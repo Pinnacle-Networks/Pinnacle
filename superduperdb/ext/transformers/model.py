@@ -15,7 +15,7 @@ from transformers import pipeline as _pipeline
 from pinnacledb.container.artifact import Artifact
 from pinnacledb.container.metric import Metric
 from pinnacledb.container.model import Model, _TrainingConfiguration
-from pinnacledb.db.base.datalayer import Datalayer
+from pinnacledb.db.base.db import DB
 from pinnacledb.db.base.query import Select
 from pinnacledb.db.query_dataset import query_dataset_factory
 from pinnacledb.misc.special_dicts import MongoStyleDict
@@ -125,7 +125,7 @@ class Pipeline(Model):
         X: str,
         y: str,
         select: t.Optional[Select] = None,
-        db: t.Optional[Datalayer] = None,
+        db: t.Optional[DB] = None,
         configuration: t.Optional[_TrainingConfiguration] = None,
         validation_sets: t.Optional[t.Sequence[str]] = None,
         metrics: t.Optional[t.Sequence[Metric]] = None,

@@ -4,8 +4,8 @@ import os
 import pytest
 
 from pinnacledb.container.document import Document
+from pinnacledb.container.listener import Listener
 from pinnacledb.container.vector_index import VectorIndex
-from pinnacledb.container.watcher import Watcher
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.openai.model import OpenAIChatCompletion, OpenAIEmbedding
 
@@ -72,7 +72,7 @@ def test_retrieve_with_similar_context(open_ai_with_rhymes):
     db.add(
         VectorIndex(
             identifier='openai-index',
-            indexing_watcher=Watcher(
+            indexing_listener=Listener(
                 model=vectorizer,
                 key='story',
                 select=Collection('openai').find(),

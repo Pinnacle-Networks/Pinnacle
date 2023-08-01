@@ -46,7 +46,7 @@ class MongoDbTyper(DuckTyper):
 
         from pinnacledb import CFG
         from pinnacledb.db.base.build import build_vector_database
-        from pinnacledb.db.base.datalayer import Datalayer
+        from pinnacledb.db.base.db import DB
         from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
         from pinnacledb.db.mongodb.data_backend import MongoDataBackend
         from pinnacledb.db.mongodb.metadata import MongoMetaDataStore
@@ -56,7 +56,7 @@ class MongoDbTyper(DuckTyper):
         if not isinstance(item, Database):
             raise TypeError('Expected Database but got {type(item)}')
 
-        return Datalayer(
+        return DB(
             databackend=MongoDataBackend(conn=item.client, name=item.name),
             metadata=MongoMetaDataStore(conn=item.client, name=item.name),
             artifact_store=MongoArtifactStore(
