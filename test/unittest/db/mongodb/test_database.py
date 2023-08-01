@@ -5,7 +5,7 @@ import torch
 from pinnacledb.container.dataset import Dataset
 from pinnacledb.container.document import Document
 from pinnacledb.container.encoder import Encoder
-from pinnacledb.container.watcher import Watcher
+from pinnacledb.container.listener import Listener
 from pinnacledb.db.base.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.torch.model import TorchModel
@@ -66,7 +66,7 @@ def test_compound_component(empty):
     assert empty.show('model', 'my-test-module') == [0, 1]
     assert empty.show('encoder', 'torch.float32[32]') == [0]
 
-    m = empty.load(variety='model', identifier='my-test-module')
+    m = empty.load(type_id='model', identifier='my-test-module')
     assert isinstance(m.encoder, Encoder)
 
     with pytest.raises(ComponentInUseError):
@@ -98,7 +98,7 @@ def test_reload_dataset(si_validation):
     si_validation.load('dataset', 'my_valid')
 
 
-def test_insert(random_data, a_watcher, an_update):
+def test_insert(random_data, a_listener, an_update):
     random_data.execute(Collection(name='documents').insert_many(an_update))
     r = next(random_data.execute(Collection(name='documents').find({'update': True})))
     assert 'linear_a' in r['_outputs']['x']
@@ -136,7 +136,7 @@ def test_insert_from_uris(empty, image_type):
     assert isinstance(r['other']['item'].x, PIL.PngImagePlugin.PngImageFile)
 
 
-def test_update(random_data, a_watcher):
+def test_update(random_data, a_listener):
     to_update = torch.randn(32)
     t = random_data.encoders['torch.float32[32]']
     random_data.execute(
@@ -158,7 +158,7 @@ def test_update(random_data, a_watcher):
 
 def test_watcher(random_data, a_model, b_model):
     random_data.add(
-        Watcher(
+        Listener(
             model='linear_a',
             select=Collection(name='documents').find(),
             key='x',
@@ -179,7 +179,7 @@ def test_watcher(random_data, a_model, b_model):
     assert 'linear_a' in r['_outputs']['x']
 
     random_data.add(
-        Watcher(
+        Listener(
             model='linear_b',
             select=Collection(name='documents').find().featurize({'x': 'linear_a'}),
             key='x',

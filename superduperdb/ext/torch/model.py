@@ -16,7 +16,7 @@ from pinnacledb.container.encoder import Encodable
 from pinnacledb.container.metric import Metric
 from pinnacledb.container.model import Model, _TrainingConfiguration
 from pinnacledb.container.serializable import Serializable
-from pinnacledb.db.base.datalayer import Datalayer
+from pinnacledb.db.base.db import DB
 from pinnacledb.db.base.query import Select
 from pinnacledb.db.query_dataset import QueryDataset
 from pinnacledb.ext.torch.utils import device_of, eval, to_device
@@ -115,7 +115,7 @@ class Base:
         self,
         X: t.Union[t.List[str], str],
         y: t.Optional[t.Union[t.List, t.Any]] = None,
-        db: t.Optional[Datalayer] = None,
+        db: t.Optional[DB] = None,
         select: t.Optional[t.Union[Select, t.Dict]] = None,
         configuration: t.Optional[TorchTrainerConfiguration] = None,
         validation_sets: t.Optional[t.List[str]] = None,
@@ -207,7 +207,7 @@ class Base:
         self,
         train_dataloader: DataLoader,
         valid_dataloader: DataLoader,
-        db: Datalayer,
+        db: DB,
         validation_sets: t.List[str],
     ):
         self.train()
@@ -276,7 +276,7 @@ class Base:
                 preprocessors[k] = preprocessors[k].artifact
         return lambda r: {k: preprocessors[k](r[k]) for k in preprocessors}
 
-    def _get_data(self, db: t.Optional[Datalayer]):
+    def _get_data(self, db: t.Optional[DB]):
         if self.training_select is None:
             raise ValueError('self.training_select cannot be None')
         train_data = QueryDataset(
@@ -329,7 +329,7 @@ class TorchModel(Base, Model):  # type: ignore[misc]
     def optimizers(self):
         return [self.optimizer]
 
-    def save(self, database: Datalayer):
+    def save(self, database: DB):
         self.optimizer_state = Artifact(self.optimizer.state_dict(), serializer='torch')
         database.replace(
             object=self,

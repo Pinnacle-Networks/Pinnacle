@@ -1,6 +1,6 @@
 import os
 
-from pinnacledb.db.base.downloads import Fetcher
+from pinnacledb.db.base.download import Fetcher
 
 remote = os.environ.get('SUPERDUPERDB_REMOTE_TEST', 'local')
 

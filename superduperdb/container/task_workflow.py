@@ -12,7 +12,7 @@ import pinnacledb as s
 from .job import ComponentJob, FunctionJob, Job
 
 if t.TYPE_CHECKING:
-    from pinnacledb.db.base.datalayer import Datalayer
+    from pinnacledb.db.base.db import DB
 
 
 @dc.dataclass
@@ -22,7 +22,7 @@ class TaskWorkflow:
     and perform them when called.
     """
 
-    database: Datalayer
+    database: DB
     G: DiGraph = dc.field(default_factory=DiGraph)
 
     @wraps(DiGraph.add_edge)
