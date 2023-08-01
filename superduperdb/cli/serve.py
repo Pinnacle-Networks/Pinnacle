@@ -17,7 +17,7 @@ def serve():
 @command(help='Start local cluster: server, dask and change data capture')
 def local_cluster(on: t.List[str] = []):
     from pinnacledb.db.base.build import build_datalayer
-    from pinnacledb.db.base.cdc import DatabaseWatcher
+    from pinnacledb.db.base.cdc import DatabaseListener
     from pinnacledb.db.mongodb.query import Collection
     from pinnacledb.server.dask_client import dask_client
     from pinnacledb.server.server import serve
@@ -25,9 +25,9 @@ def local_cluster(on: t.List[str] = []):
     db = build_datalayer()
     dask_client(s.CFG.dask, local=True)
     for collection in on:
-        w = DatabaseWatcher(
+        w = DatabaseListener(
             db=db,
             on=Collection(name=collection),
         )
-        w.watch()
+        w.listen()
     serve(db)
