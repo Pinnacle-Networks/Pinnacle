@@ -13,7 +13,10 @@ from tenacity import RetryError, Retrying, stop_after_delay
 from pinnacledb import CFG
 from pinnacledb.base.config import DataLayer, DataLayers
 from pinnacledb.container.document import Document
+from pinnacledb.container.listener import Listener
+from pinnacledb.container.vector_index import VectorIndex
 from pinnacledb.db.base.build import build_datalayer
+from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.torch.model import TorchModel
 from pinnacledb.ext.torch.tensor import tensor
 from pinnacledb.server.dask_client import dask_client
@@ -107,6 +110,26 @@ def database_with_default_encoders_and_model(create_mongodb_client_clean_and_clo
             encoder='torch.float32[16]',
         )
     )
+    database.add(
+        Listener(
+            select=Collection(name='documents').find(),
+            key='x',
+            model='model_linear_a',
+        )
+    )
+    database.add(
+        Listener(
+            select=Collection(name='documents').find(),
+            key='z',
+            model='model_linear_a',
+        )
+    )
+    vi = VectorIndex(
+        identifier='test_index',
+        indexing_listener='model_linear_a/x',
+        compatible_listener='model_linear_a/z',
+    )
+    database.add(vi)
     yield database
 
     database.remove('model', 'model_linear_a', force=True)
