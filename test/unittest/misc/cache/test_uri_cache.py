@@ -1,10 +1,10 @@
 import typing as t
 
 import pydantic
+from pydantic import dataclasses as dc
 
 import pinnacledb as s
 from pinnacledb.data.cache import uri_cache
-from pinnacledb.misc import dataclasses as dc
 
 IS_2 = pydantic.__version__.startswith('2')
 
