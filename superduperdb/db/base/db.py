@@ -21,8 +21,8 @@ from pinnacledb.container.job import ComponentJob, FunctionJob, Job
 from pinnacledb.container.serializable import Serializable
 from pinnacledb.container.task_workflow import TaskWorkflow
 from pinnacledb.db.base.download import Downloader, gather_uris
-from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.misc.colors import Colors
+from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorDatabase
 
 from .artifact import ArtifactStore
@@ -100,18 +100,19 @@ class DB:
 
     def drop(self):
         """
-        Drop all associated data.
+        Drop all data, artifacts and metadata
         """
         if not click.confirm(
-            'Are you sure you want to drop the database? '
-            f'{Colors.RED}[!!!WARNING USE WITH CAUTION AS YOU WILL LOSE ALL DATA!!!]{Colors.RESET}',
+            f'{Colors.RED}[!!!WARNING USE WITH CAUTION AS YOU '
+            f'WILL LOSE ALL DATA!!!]{Colors.RESET} '
+            'Are you sure you want to drop the database? ',
             default=False,
         ):
             print('Aborting...')
 
-        self.databackend.drop()
-        self.metadata.drop()
-        self.artifact_store.drop()
+        self.databackend.drop(force=True)
+        self.metadata.drop(force=True)
+        self.artifact_store.drop(force=True)
 
     def validate(
         self,
