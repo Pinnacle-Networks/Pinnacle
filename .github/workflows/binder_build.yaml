@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: s-weigand/trigger-mybinder-build@v1
         with:
-          target-repo: SuperDuperDB/pinnacledb
+          target-repo: SuperDuperDB/pinnacledb/HEAD
