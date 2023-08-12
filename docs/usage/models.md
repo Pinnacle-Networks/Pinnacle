@@ -248,14 +248,14 @@ into the database.
 An equivalent syntax is the following:
 
 ```python
->>> from pinnacledb.core.listener import listener
+>>> from pinnacledb.container.listener import listener
 >>> db.add(
-    listener(
-        model=model,
-        select=coll.find(),
-        key='input_col',
-    )
-)
+...    listener(
+...        model=model,
+...        select=coll.find(),
+...        key='input_col',
+...    )
+... )
 ```
 
 After setting up a `listener`, whenever data is inserted or updated, jobs are created 
