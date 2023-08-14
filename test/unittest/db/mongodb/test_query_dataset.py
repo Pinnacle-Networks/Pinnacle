@@ -1,6 +1,8 @@
+import pytest
+
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.db.query_dataset import QueryDataset
-import pytest
+
 try:
     import torch
 except ImportError:
