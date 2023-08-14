@@ -3,7 +3,6 @@ import random
 from contextlib import contextmanager
 from dataclasses import asdict, dataclass, field
 from test.material.metrics import PatK
-from test.material.models import BinaryClassifier
 from typing import Iterator
 from unittest import mock
 
@@ -11,7 +10,17 @@ import lorem
 import numpy
 import pymongo
 import pytest
-import torch
+
+try:
+    from test.material.models import BinaryClassifier
+
+    import torch
+
+    from pinnacledb.ext.torch.model import TorchModel
+    from pinnacledb.ext.torch.tensor import tensor
+except ImportError:
+    torch = None
+
 from pymongo import MongoClient
 from tenacity import RetryError, Retrying, stop_after_delay
 
@@ -26,8 +35,6 @@ from pinnacledb.db.base.db import DB
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.numpy.array import array
 from pinnacledb.ext.pillow.image import pil_image
-from pinnacledb.ext.torch.model import TorchModel
-from pinnacledb.ext.torch.tensor import tensor
 
 n_data_points = 250
 

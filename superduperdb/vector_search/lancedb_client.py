@@ -5,7 +5,6 @@ import typing as t
 import lancedb
 import pandas as pd
 import pyarrow as pa
-import torch
 
 from pinnacledb import logging
 from pinnacledb.vector_search.base import (
@@ -110,7 +109,7 @@ class LanceTable:
         for d in data:
             dict_d = d.to_dict()
             vector = dict_d['vector']
-            if isinstance(vector, torch.Tensor):
+            if hasattr(vector, 'numpy'):
                 dict_d['vector'] = vector.numpy()
             dict_data.append(dict_d)
 

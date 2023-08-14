@@ -4,12 +4,12 @@ import typing as t
 
 if t.TYPE_CHECKING:
     from pinnacledb.container.metric import Metric
-    from pinnacledb.ext.torch.model import TorchModel
+    from pinnacledb.container.model import Model
 
 
 def compute_classification_metrics(
     validation_data: t.List[t.Dict[str, t.Any]],
-    model: TorchModel,
+    model: Model,
     metrics: t.List[Metric],
 ) -> t.Dict[str, float]:
     X, y = model.training_keys
