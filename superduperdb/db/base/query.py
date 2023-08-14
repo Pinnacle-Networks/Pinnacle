@@ -6,7 +6,6 @@ from abc import ABC, abstractmethod
 from pinnacledb.container.serializable import Serializable
 
 if t.TYPE_CHECKING:
-    from pinnacledb.container.model import Model
     from pinnacledb.db.base.db import DB
 
 
@@ -76,7 +75,7 @@ class Select(ABC, Serializable):
         db: DB,
         ids: t.Sequence[t.Any],
         key: str,
-        model: Model,
+        model: str,
         outputs: t.Sequence[t.Any],
     ) -> None:
         """
