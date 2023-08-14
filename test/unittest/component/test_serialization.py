@@ -1,14 +1,20 @@
 import pprint
+import pytest
 
-import torch
+try:
+    import torch
+
+    from pinnacledb.ext.torch.tensor import tensor
+except ImportError:
+    torch = None
 from sklearn.svm import SVC
 
 from pinnacledb.container.artifact import Artifact
 from pinnacledb.container.model import Model
 from pinnacledb.ext.sklearn.model import Estimator
-from pinnacledb.ext.torch.tensor import tensor
 
 
+@pytest.mark.skipif(not torch, reason='Torch not installed')
 def test_model():
     m = Model(
         identifier='test',
@@ -19,6 +25,7 @@ def test_model():
     print(m.dict())
 
 
+@pytest.mark.skipif(not torch, reason='Torch not installed')
 def test_sklearn(empty):
     m = Estimator(
         identifier='test',
