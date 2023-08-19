@@ -7,7 +7,7 @@ import numpy as np
 from pymongo import MongoClient
 from pinnacledb.container.document import Document as D
 from pinnacledb.ext.numpy.array import array
-from pinnacledb.db.mongodb.query import Collection, InsertMany
+from pinnacledb.db.mongodb.query import Collection
 import pinnacledb as s
 
 db = s.pinnacle(MongoClient().documents)
