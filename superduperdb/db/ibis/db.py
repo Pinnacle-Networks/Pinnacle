@@ -1,9 +1,5 @@
-import typing as t
-
 from pinnacledb.db.ibis.cursor import SuperDuperIbisCursor
 from pinnacledb.db.base.db import DB
-from pinnacledb.container.component import Component
-from pinnacledb.container.job import Job
 from pinnacledb.db.ibis.query import OutputTable
 from pinnacledb import logging
 
@@ -19,18 +15,17 @@ class IbisDB(DB):
         return cursor.execute()
 
     def execute(self, query):
+        if isinstance(query, SuperDuperIbisCursor):
+            return query.execute()
+
         table = query.collection.get_table(self.db)
         return self._execute(query, table)
-
-    def add(self, 
-            object: Component,
-            dependencies: t.Sequence[Job] = (),
-        ):
-        super().add(object, dependencies=dependencies)
+    
+    def create_output_table(self, model):
         try:
-            table = OutputTable(model=object.identifier)
+            table = OutputTable(model=model)
             table.create(self.db)
         except Exception as e:
             logging.error(e)
         else:
-            logging.debug(f"Created output table for {object.identifier}")
+            logging.debug(f"Created output table for {model}")
