@@ -1,13 +1,14 @@
 import dataclasses as dc
+import typing as t
 
 import ibis
 
 from pinnacledb.container.schema import Schema
 from pinnacledb.container.encoder import Encoder
 
+@dc.dataclass
 class IbisSchema(Schema):
-    type_id: str = 'ibis.schema'
-    encoded_types = []
+    encoded_types: t.List = dc.field(default_factory=list)
 
     def map(self):
         if self.trivial:
