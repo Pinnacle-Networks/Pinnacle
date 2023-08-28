@@ -24,7 +24,7 @@ except ImportError:
 from pymongo import MongoClient
 from tenacity import RetryError, Retrying, stop_after_delay
 
-from pinnacledb.base.config import DataLayer, DataLayers
+from pinnacledb.base.config import DbComponent, DbComponents
 from pinnacledb.base.config import MongoDB as MongoDBConfig
 from pinnacledb.container.dataset import Dataset
 from pinnacledb.container.document import Document
@@ -132,13 +132,13 @@ def test_db(mongodb_server: MongoDBConfig) -> Iterator[DB]:
 @pytest.fixture(autouse=True)
 def config(mongodb_server: MongoDBConfig) -> Iterator[None]:
     kwargs = asdict(TestMongoDBConfig())
-    data_layers_cfg = DataLayers(
-        artifact=DataLayer(name='_filesystem:test_db', kwargs=kwargs),
-        data_backend=DataLayer(name='test_db', kwargs=kwargs),
-        metadata=DataLayer(name='test_db', kwargs=kwargs),
+    db_components_cfg = DbComponents(
+        artifact=DbComponent(name='_filesystem:test_db', kwargs=kwargs),
+        data_backend=DbComponent(name='test_db', kwargs=kwargs),
+        metadata=DbComponent(name='test_db', kwargs=kwargs),
     )
 
-    with mock.patch('pinnacledb.CFG.data_layers', data_layers_cfg):
+    with mock.patch('pinnacledb.CFG.db_components', db_components_cfg):
         yield
 
 
