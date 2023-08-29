@@ -18,7 +18,7 @@ from pinnacledb.db.mongodb.query import Collection
 
 n_data_points = 250
 
-IMAGE_URL = 'https://www.pinnacledb.com/logos/white.png'
+IMAGE_URL = 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'
 
 
 @pytest.mark.skipif(not torch, reason='Torch not installed')
