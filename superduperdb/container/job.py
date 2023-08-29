@@ -1,7 +1,7 @@
-from abc import ABC, abstractmethod
 import datetime
 import typing as t
 import uuid
+from abc import ABC, abstractmethod
 
 import pinnacledb as s
 from pinnacledb.container.tasks import callable_job, method_job
