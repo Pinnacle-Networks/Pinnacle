@@ -4,9 +4,9 @@ import shutil
 import typing as t
 
 import click
-from pinnacledb.misc.colors import Colors
 
 from pinnacledb.db.base.artifact import ArtifactStore
+from pinnacledb.misc.colors import Colors
 
 
 class FileSystemArtifactStore(ArtifactStore):
