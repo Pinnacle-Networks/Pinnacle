@@ -1,5 +1,7 @@
 import typing as t
 
+from pymongo.database import Database
+
 __all__ = ('pinnacle',)
 
 
@@ -39,8 +41,6 @@ class MongoDbTyper(DuckTyper):
 
     @classmethod
     def create(cls, item: t.Any, **kwargs) -> t.Any:
-        from pymongo.database import Database
-
         from pinnacledb import CFG
         from pinnacledb.db.base.build import build_vector_database
         from pinnacledb.db.base.db import DB
