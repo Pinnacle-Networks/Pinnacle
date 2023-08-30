@@ -9,7 +9,7 @@ from pinnacledb.container.schema import Schema
 
 @dc.dataclass
 class IbisSchema(Schema):
-    encoded_types: t.ClassVar[t.List] = dc.field(default_factory=list)
+    encoded_types: t.ClassVar[t.List] = []
 
     def mutate_column(self, column):
         if column in self.encoded_types:
