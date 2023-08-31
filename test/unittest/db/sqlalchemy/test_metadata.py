@@ -43,7 +43,6 @@ def test(metadata):
             'version': 0,
             'cls': 'Model',
             'module': 'pinnacledb.container.model',
-            'parent': 'model/my-model/0',
         }
     )
 
