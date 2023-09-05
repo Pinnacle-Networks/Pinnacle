@@ -1,7 +1,6 @@
 from ibis.backends.base import BaseBackend
 from pymongo import MongoClient
 
-from pinnacledb.base import config
 from pinnacledb.db.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.db.ibis.data_backend import IbisDataBackend
 from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
@@ -17,12 +16,14 @@ artifact_stores = {'mongodb': MongoArtifactStore, 'filesystem': FileSystemArtifa
 
 metadata_stores = {'mongodb': MongoMetaDataStore, 'sqlalchemy': SQLAlchemyMetadata}
 
-VECTOR_DATA_STORES = {
-    config.LanceDB: LanceVectorIndex,
-    config.InMemory: InMemoryVectorDatabase,
+vector_data_stores = {
+    'lancedb': LanceVectorIndex,
+    'inmemory': InMemoryVectorDatabase,
 }
 
 CONNECTIONS = {
     'pymongo': MongoClient,
     'ibis': BaseBackend,
+    'lancedb': LanceVectorIndex,
+    'inmemory': InMemoryVectorDatabase,
 }
