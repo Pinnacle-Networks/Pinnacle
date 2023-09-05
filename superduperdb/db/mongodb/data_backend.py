@@ -7,6 +7,8 @@ from pinnacledb import logging
 from pinnacledb.container.serializable import Serializable
 from pinnacledb.container.vector_index import VectorIndex
 from pinnacledb.db.base.data_backend import BaseDataBackend
+from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
+from pinnacledb.db.mongodb.metadata import MongoMetaDataStore
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
@@ -28,6 +30,12 @@ class MongoDataBackend(BaseDataBackend):
     @property
     def db(self):
         return self._db
+
+    def build_metadata(self):
+        return MongoMetaDataStore(self.conn, self.name)
+
+    def build_artifact_store(self):
+        return MongoArtifactStore(self.conn, f'_filesystem:{self.name}')
 
     def drop(self, force: bool = False):
         if not force:
