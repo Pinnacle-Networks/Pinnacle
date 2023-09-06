@@ -1,16 +1,12 @@
 import os
-import shutil
 import subprocess
-import tempfile
 
 import pytest
+import tdir
 
+import pinnacledb as s
 
-@pytest.fixture
-def copy_pinnacledb():
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        shutil.copytree('pinnacledb', os.path.join(tmp_dir, 'pinnacledb'))
-        yield tmp_dir
+ENABLE = 'NB_TEST' in os.environ
 
 
 def run_python_file(file_path, tmp_dir):
@@ -37,9 +33,8 @@ NOTEBOOKS = [
 ]
 
 
-@pytest.mark.skipif(
-    os.environ.get('NB_TEST', 0) == 0, reason="Notebook tests are disabled"
-)
-@pytest.mark.parametrize("nb_file", NOTEBOOKS)
-def test_notebooks(nb_file, copy_pinnacledb):
-    run_python_file(nb_file, tmp_dir=copy_pinnacledb)
+@pytest.mark.skipif(not ENABLE, reason='Notebook tests are disabled')
+@pytest.mark.parametrize('nb_file', NOTEBOOKS)
+@tdir(pinnacledb=s.ROOT / 'pinnacledb')
+def test_notebooks(nb_file):
+    run_python_file(nb_file, tmp_dir='.')
