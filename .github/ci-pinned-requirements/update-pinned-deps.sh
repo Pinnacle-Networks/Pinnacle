@@ -22,3 +22,5 @@ do
     --upgrade \
     pyproject.toml
 done
+
+sed -I '' '/pinnacledb\[/d' .github/ci-pinned-requirements/dev.txt
