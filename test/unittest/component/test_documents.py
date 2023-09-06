@@ -10,7 +10,7 @@ except ImportError:
 from pinnacledb.container.document import Document
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture
 def document():
     t = tensor(torch.float, shape=(20,))
 
