@@ -9,6 +9,8 @@ try:
 except ImportError:
     torch = None
 
+from pathlib import Path
+
 from pinnacledb.container.dataset import Dataset
 from pinnacledb.container.document import Document
 from pinnacledb.container.encoder import Encoder
@@ -18,7 +20,7 @@ from pinnacledb.db.mongodb.query import Collection
 
 n_data_points = 250
 
-IMAGE_URL = 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'
+IMAGE_URL = f'file://{Path(__file__).parent}/1x1.png'
 
 
 @pytest.mark.skipif(not torch, reason='Torch not installed')
