@@ -12,6 +12,7 @@ from pymongo import UpdateOne as _UpdateOne
 import pinnacledb as s
 from pinnacledb.container.document import Document
 from pinnacledb.container.serializable import Serializable
+from pinnacledb.db.mongodb import CDC_COLLECTION_LOCKS
 
 from ..base.cursor import SuperDuperCursor
 from ..base.query import Delete, Insert, Like, Select, SelectOne, Update
@@ -836,7 +837,7 @@ class UpdateMany(Update):
             **self.kwargs,
         )
         graph = None
-        if self.refresh and not s.CFG.cluster.cdc:
+        if self.refresh and not CDC_COLLECTION_LOCKS.get(self.collection.name, False):
             graph = db.refresh_after_update_or_insert(
                 query=self, ids=ids, verbose=self.verbose
             )
@@ -916,7 +917,7 @@ class InsertMany(Insert):
             **self.kwargs,
         )
         graph = None
-        if self.refresh and not s.CFG.cluster.cdc:
+        if self.refresh and not CDC_COLLECTION_LOCKS.get(self.collection.name, False):
             graph = db.refresh_after_update_or_insert(
                 query=self,
                 ids=output.inserted_ids,
