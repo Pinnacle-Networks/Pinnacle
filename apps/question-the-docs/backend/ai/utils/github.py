@@ -39,7 +39,6 @@ huggingface= Repo(
 
 
 REPOS = {'pinnacledb': pinnacledb, 'langchain': langchain, 'huggingface': huggingface}
-#REPOS = {'langchain': langchain}
 
 
 # TODO: Use GraphQL API instead of REST API and convert to async
