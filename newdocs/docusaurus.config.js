@@ -21,7 +21,7 @@ const config = {
   organizationName: 'SuperDuperDB', // Usually your GitHub org/user name.
   projectName: 'pinnacledb', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -86,7 +86,7 @@ const config = {
           },
         //   {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://docs.pinnacledb.com/source/modules.html',
+            href: 'https://docs.pinnacledb.com/apidocs/source/pinnacledb.html',
             label: 'API',
             position: 'left',
           },
