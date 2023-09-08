@@ -25,8 +25,9 @@ pinnacledb = Repo(
     'SuperDuperDB',
     'pinnacledb',
     'main',
-    'docs/',
-    'https://pinnacledb.github.io/pinnacledb',
+    'docs',
+    'https://pinnacledb.github.io/pinnacledb/docs/docs',
+    documentation_file_extension = ''
 )
 langchain = Repo(
     'langchain-ai', 'langchain', 'master', 'docs/docs_skeleton/docs', 'https://python.langchain.com/docs'
@@ -118,8 +119,11 @@ def save_github_md_files_locally(repo):
         x_dirs = x.split('/')
         y_dirs  = y.split('/')
         for i in range(len(y_dirs)):
-            if y_dirs[i] == x_dirs[-i]:
-                return '/'.join(y_dirs[i+1:])
+            try:
+                if y_dirs[i] == x_dirs[-i]:
+                    return '/'.join(y_dirs[i+1:])
+            except:
+                return '/'.join(y_dirs)
         return y
 
 
