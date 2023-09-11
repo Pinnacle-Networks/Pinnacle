@@ -10,8 +10,6 @@ from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.openai.model import OpenAIChatCompletion, OpenAIEmbedding
 
 
-
-
 def install_openai_chatbot(db):
     db.add(
         OpenAIChatCompletion(
