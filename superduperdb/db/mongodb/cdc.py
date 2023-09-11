@@ -19,7 +19,7 @@ from pinnacledb.container.task_workflow import TaskWorkflow
 from pinnacledb.container.vector_index import VectorIndex
 from pinnacledb.db.base.db import DB
 from pinnacledb.db.mongodb import CDC_COLLECTION_LOCKS, query
-from pinnacledb.misc.task_queue import cdc_queue
+from pinnacledb.db.mongodb.cdc_queue import cdc_queue
 from pinnacledb.vector_search.base import VectorCollectionConfig, VectorCollectionItem
 
 MongoChangePipelines: t.Dict[str, t.Sequence[t.Any]] = {'generic': []}
