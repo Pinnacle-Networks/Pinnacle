@@ -84,7 +84,7 @@ const config = {
             label: 'Use-Cases',
             
           },
-        //   {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://docs.pinnacledb.com/apidocs/source/pinnacledb.html',
             label: 'API',
