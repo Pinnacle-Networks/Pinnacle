@@ -69,6 +69,7 @@ const config = {
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.png',
+          href: 'https://pinnacledb.com',
         },
         items: [
           {

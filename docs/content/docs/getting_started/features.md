@@ -11,7 +11,7 @@ See [here](https://github.com/SuperDuperDB/pinnacledb-stealth/wiki/Roadmap) for 
 - [Encoders](encoders)
 - [listeners](listeners)
 - [Metrics](metrics)
-- [Vector-Indexes](vectorsearch)
+- [Vector-Indexes](/docs/docs/usage/vector_index)
 - [Datasets](datasets)
 
 ## AI Models
