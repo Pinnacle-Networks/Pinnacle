@@ -6,7 +6,7 @@ from pydantic import BaseModel
 class Repo(str, Enum):
     pinnacledb = 'pinnacledb'
     langchain = 'langchain'
-    fastchat = 'fastchat'
+    fastchat = 'huggingface'
 
 
 class Query(BaseModel):

@@ -8,18 +8,13 @@ from pymongo import MongoClient
 
 from pinnacledb import pinnacle
 
-origins = [
-    'https://staging.djjaum0vi81ax.amplifyapp.com/',
-    'https://www.qtd.pinnacledb.com/',
-]
-
 
 def create_app() -> FastAPI:
     app = FastAPI(title='Question the Docs')
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=origins,
+        allow_origins=['*'],
         allow_credentials=True,
         allow_methods=['*'],
         allow_headers=['*'],
