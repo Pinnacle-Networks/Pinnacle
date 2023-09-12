@@ -3,7 +3,7 @@ import time
 
 import pytest
 
-from pinnacledb.misc.runnable import ThreadQueue
+from pinnacledb.misc.runnable.collection import ThreadQueue
 
 
 @pytest.mark.parametrize('thread_count', [1, 3])
