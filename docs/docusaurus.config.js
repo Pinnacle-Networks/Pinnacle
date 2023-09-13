@@ -105,6 +105,10 @@ const config = {
             title: 'Resources',
             items: [
               {
+                label: 'Website',
+                href: 'https://pinnacledb.com',
+              },
+              {
                 label: 'Documentation',
                 to: '/docs/docs/intro',
               },
@@ -115,10 +119,6 @@ const config = {
               {
                 label: 'Blog',
                 to: '/blog',
-              },
-              {
-                label: 'Youtube',
-                to: 'https://www.youtube.com/@SuperDuperDB',
               },
             ],
           },
@@ -157,6 +157,10 @@ const config = {
               {
                 label: 'X / Twitter',
                 href: 'https://twitter.com/pinnacledb',
+              },
+              {
+                label: 'Youtube',
+                to: 'https://www.youtube.com/@SuperDuperDB',
               },
             ],
           },
