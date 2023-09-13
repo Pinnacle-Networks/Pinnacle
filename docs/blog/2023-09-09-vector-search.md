@@ -1,6 +1,6 @@
 ---
-slug: vector-search-pinnacledb
-title: Connect your traditional database with vector-search using SuperDuperDB
+slug: connect-your-traditional-database-with-vector-search-using-pinnacledb
+title: Connect your Traditional Database with Vector-Search using SuperDuperDB
 authors: [blythed]
 tags: [AI, vector-search]
 ---
