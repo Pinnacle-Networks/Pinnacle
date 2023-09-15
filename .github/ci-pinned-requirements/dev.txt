@@ -231,10 +231,6 @@ interrogate==1.5.0
     # via pinnacledb
 ipython==8.12.2
     # via pinnacledb
-isort==5.12.0
-    # via
-    #   impall
-    #   pinnacledb
 itsdangerous==2.1.2
     # via flask
 jedi==0.19.0
