@@ -10,7 +10,7 @@ from overrides import override
 from pinnacledb.container.artifact import Artifact
 from pinnacledb.container.component import Component
 from pinnacledb.container.document import Document
-from pinnacledb.db.mongodb.query import Find
+from pinnacledb.db.mongodb.query import Select
 
 if t.TYPE_CHECKING:
     from pinnacledb.db.base.db import DB
@@ -30,7 +30,7 @@ class Dataset(Component):
     """
 
     identifier: str
-    select: t.Optional[Find] = None
+    select: t.Optional[Select] = None
     sample_size: t.Optional[int] = None
     random_seed: t.Optional[int] = None
     creation_date: t.Optional[str] = None
