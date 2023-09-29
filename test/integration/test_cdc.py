@@ -15,7 +15,7 @@ from pinnacledb.container.listener import Listener
 from pinnacledb.db.base.cdc import DatabaseListener
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.vector_search.base import VectorCollectionConfig
-from pinnacledb.vector_search.lancedb_client import LanceVectorIndex
+from pinnacledb.vector_search.lance import LanceVectorDatabase as LanceVectorIndex
 
 RETRY_TIMEOUT = 1
 LISTEN_TIMEOUT = 0.1
@@ -56,7 +56,7 @@ def listener_and_collection_name(database_with_default_encoders_and_model):
 def listener_with_vector_database(database_with_default_encoders_and_model):
     collection_name = str(uuid.uuid4())
     with tdir():
-        vector_db_client = LanceVectorIndex(uri=".lancedb")
+        vector_db_client = LanceVectorIndex("lance://.lancedb")
         database_with_default_encoders_and_model.vector_database = vector_db_client
         listener = DatabaseListener(
             db=database_with_default_encoders_and_model,
@@ -203,7 +203,7 @@ def test_vector_database_sync(
             Collection(name=name).insert_many([fake_inserts[0]], refresh=False)
         )
 
-        # check if vector database is in sync with the model outputs
+        # Check if vector database is in sync with the model outputs
         def state_check():
             table = vector_db_client.get_table(
                 VectorCollectionConfig(id='model_linear_a/x', dimensions=0)
