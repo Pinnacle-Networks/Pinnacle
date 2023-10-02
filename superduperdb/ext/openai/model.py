@@ -14,7 +14,7 @@ from openai.error import RateLimitError, ServiceUnavailableError, Timeout, TryAg
 import pinnacledb as s
 from pinnacledb.container.component import Component
 from pinnacledb.container.encoder import Encoder
-from pinnacledb.container.model import DefaultModelUpdateKwargs, PredictMixin
+from pinnacledb.container.model import PredictMixin
 from pinnacledb.ext.vector.encoder import vector
 from pinnacledb.misc.compat import cache
 from pinnacledb.misc.retry import Retry
@@ -50,7 +50,7 @@ class OpenAI(Component, PredictMixin):
     version: t.Optional[int] = None
     takes_context: bool = False
     encoder: t.Union[Encoder, str, None] = None
-    model_update_kwargs: dict = dc.field(default_factory=DefaultModelUpdateKwargs)
+    model_update_kwargs: dict = dc.field(default_factory=dict)
 
     #: A unique name for the class
     type_id: t.ClassVar[str] = 'model'
