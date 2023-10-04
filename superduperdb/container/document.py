@@ -3,7 +3,6 @@ import typing as t
 import bson
 from bson.objectid import ObjectId
 
-import pinnacledb as s
 from pinnacledb.container.encoder import Encodable, Encoder
 from pinnacledb.container.schema import Schema
 
@@ -128,7 +127,6 @@ def _encode(r: t.Any) -> t.Any:
         return r.encode()
     if isinstance(r, (bool, int, str, ObjectId)):
         return r
-    s.log.info(f'Unexpected type {type(r)} in Document.encode')
     return r
 
 
