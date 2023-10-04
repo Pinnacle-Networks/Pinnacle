@@ -1,4 +1,6 @@
+import copy
 import typing as t
+from pinnacledb.base.configs import CFG
 
 __all__ = ('pinnacle',)
 
@@ -11,7 +13,28 @@ def pinnacle(item: t.Any, **kwargs) -> t.Any:
     :param item: A database or model
     """
 
+    if isinstance(item, str):
+        return _auto_identify_connection_string(item, **kwargs)
+
     return _DuckTyper.run(item, **kwargs)
+
+
+def _auto_identify_connection_string(item: str, **kwargs) -> t.Any:
+    from pinnacledb.db.base.build import build_datalayer
+    cfg = copy.deepcopy(CFG)
+    if item.startswith('mongomock://'):
+        cfg.data_backend = item
+
+    elif item.startswith('mongodb://'):
+        cfg.data_backend = item
+
+    elif item.startswith('mongodb+srv://'):
+        cfg.data_backend = item
+        cfg.vector_search = item
+
+    else:
+        raise NotImplementedError(f'Can\'t auto-identify connection string {item}')
+    return build_datalayer(cfg)
 
 
 class _DuckTyper:
