@@ -6,7 +6,6 @@ import pymongo
 import pinnacledb as s
 from pinnacledb.base.logger import logging
 from pinnacledb.db.base.backends import (
-    artifact_stores,
     data_backends,
     metadata_stores,
     vector_data_stores,
@@ -68,6 +67,7 @@ def build_datalayer(cfg=None) -> DB:
             return mapping['mongodb'](conn, name)
         else:
             import ibis
+
             conn = ibis.connect(uri)
             return mapping['ibis'](conn, uri.split('//')[0])
 
