@@ -1,28 +1,43 @@
 # Creating a DB of image features in `torchvision`
 
+
+```python
+!pip install pinnacledb==0.0.12
+!pip install torchvision
+```
+
 In this use-case, we demonstrate how to use a pre-trained network from `torchvision` to generate
 image features for images which are automatically downloaded into MongoDB. We use a sample 
 of the CoCo dataset (https://cocodataset.org/#home) to demonstrate the functionality.
 
 
 ```python
-!curl http://images.cocodataset.org/zips/val2014.zip -O val2014.zip
-!unzip - qq val2014.zip
+#curl -O https://pinnacledb-public.s3.eu-west-1.amazonaws.com/valsmall2014.zip
+!unzip -qq valsmall2014.zip
 ```
 
 As usual, we instantiate the `Datalayer` like this
 
 
 ```python
-import pymongo
+import os
 from pinnacledb import pinnacle
 from pinnacledb.db.mongodb.query import Collection
 
+# Uncomment one of the following lines to use a bespoke MongoDB deployment
+# For testing the default connection is to mongomock
+
+mongodb_uri = os.getenv("MONGODB_URI","mongomock://test")
+# mongodb_uri = "mongodb://localhost:27017"
+# mongodb_uri = "mongodb://pinnacle:pinnacle@mongodb:27017/documents"
+# mongodb_uri = "mongodb://<user>:<pass>@<mongo_cluster>/<database>"
+# mongodb_uri = "mongodb+srv://<username>:<password>@<atlas_cluster>/<database>"
+
+# Super-Duper your Database!
+from pinnacledb import pinnacle
+db = pinnacle(mongodb_uri)
+
 collection = Collection('coco')
-
-db = pymongo.MongoClient().documents
-
-db = pinnacle(db)
 ```
 
 We then add all of the image URIs to MongoDB. The URIs can be a mixture of local file paths (`file://...`), web URLs (`http...`) and
@@ -37,9 +52,9 @@ import random
 from pinnacledb.container.document import Document as D
 from pinnacledb.ext.pillow.image import pil_image as i
 
-uris = random.sample([f'file://{x}' for x in glob.glob('val2014/*.jpg')], 6000)
+uris = [f'file://{x}' for x in glob.glob('valsmall2014/*.jpg')]
 
-db.execute(collection.insert_many([D({'img': i(uri=uri)}) for uri in uris], encoders=(i,)))[:5000]
+db.execute(collection.insert_many([D({'img': i(uri=uri)}) for uri in uris], encoders=(i,)))
 ```
 
 We can verify that the images were correctly stored in the `Datalayer`:
