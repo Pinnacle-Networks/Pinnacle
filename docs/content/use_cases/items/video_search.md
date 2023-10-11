@@ -1,6 +1,8 @@
+# Search within videos with text
+
+
 ```python
-# installs
-!pip install pinnacledb
+!pip install pinnacledb==0.0.12
 !pip install opencv-python
 !pip install git+https://github.com/openai/CLIP.git
 ```
@@ -8,26 +10,26 @@
 
 ```python
 import cv2
-import requests
 import os
-import numpy as np
-from tqdm import tqdm
+import requests
 
+import clip
+import glob
+import numpy as np
 import pymongo
+from PIL import Image
+import torch
+from tqdm import tqdm
 
 import pinnacledb
 from pinnacledb import pinnacle
-import glob
-from PIL import Image
 from pinnacledb.ext.pillow.image import pil_image as i
-
 from pinnacledb.container.document import Document as D
 from pinnacledb.container.model import Model
 from pinnacledb.container.schema import Schema
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.torch.tensor import tensor
 from pinnacledb.ext.torch.model import TorchModel
-import torch
 ```
 
 
@@ -35,7 +37,7 @@ import torch
 s = Schema(identifier='myschema', fields={'image':i})
 ```
 
-# Create a pinnacle`db` instance
+Create a pinnacle`db` instance
 
 
 ```python
@@ -55,7 +57,7 @@ from pinnacledb import pinnacle
 db = pinnacle(mongodb_uri)
 ```
 
-# Sample video url json
+Let's get a sample video from the net
 
 
 ```python
@@ -133,7 +135,7 @@ class Video2Images:
         return docs
 ```
 
-# Create a Listener which will continously download video urls and save best frames into other collection.
+Create a Listener which will continously download video urls and save best frames into other collection.
 
 
 ```python
@@ -151,12 +153,7 @@ db.add(
 )
 ```
 
-# Create CLIP model
-
-
-```python
-import clip
-```
+Create CLIP model
 
 
 ```python
@@ -183,7 +180,7 @@ text_model = TorchModel(
 )
 ```
 
-## Create VectorIndex with an indexing and compatible listener
+Create VectorIndex with an indexing and compatible listener
 
 
 ```python
@@ -210,7 +207,7 @@ db.add(
 )
 ```
 
-# Test vector search by quering a text against saved frames.
+Test vector search by quering a text against saved frames.
 
 
 ```python
@@ -228,7 +225,7 @@ search_timestamp = result['current_timestamp']
 display(result['image'])
 ```
 
-# Start the video from the resultant timestamp
+Start the video from the resultant timestamp
 
 
 ```python
