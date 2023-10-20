@@ -12,7 +12,6 @@ from pinnacledb.container.document import Document
 from pinnacledb.container.encoder import Encodable
 from pinnacledb.container.listener import Listener
 from pinnacledb.db.base.db import DB
-from pinnacledb.db.mongodb import CDC_COLLECTION_LOCKS
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import (
     VectorCollectionConfig,
@@ -99,8 +98,7 @@ class VectorIndex(Component):
 
             assert isinstance(clt.identifier, str), 'clt.identifier must be a string'
 
-            if not CDC_COLLECTION_LOCKS.get(clt.identifier, False):
-                self._initialize_vector_database(db)
+            self._initialize_vector_database(db)
 
     @property
     def child_components(self) -> t.Sequence[t.Tuple[str, str]]:
