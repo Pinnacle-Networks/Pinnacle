@@ -8,7 +8,6 @@ import pymongo
 
 from pinnacledb import logging
 from pinnacledb.container.serializable import Serializable
-from pinnacledb.container.vector_index import VectorIndex
 from pinnacledb.db.base.data_backend import BaseDataBackend
 from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.db.mongodb.metadata import MongoMetaDataStore
@@ -86,7 +85,7 @@ class MongoDataBackend(BaseDataBackend):
                 indexes.append(batch['name'])
         return indexes
 
-    def delete_vector_index(self, vector_index: VectorIndex):
+    def delete_vector_index(self, vector_index):
         """
         Delete a vector index in the data backend if an Atlas deployment.
 
