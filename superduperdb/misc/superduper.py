@@ -91,8 +91,6 @@ class MongoDbTyper(_DuckTyper):
         from mongomock.database import Database as MockDatabase
         from pymongo.database import Database
 
-        from pinnacledb import CFG
-        from pinnacledb.db.base.build import build_vector_database
         from pinnacledb.db.base.db import DB
         from pinnacledb.db.mongodb.data_backend import MongoDataBackend
 
@@ -106,7 +104,6 @@ class MongoDbTyper(_DuckTyper):
             databackend=databackend,
             metadata=databackend.build_metadata(),
             artifact_store=databackend.build_artifact_store(),
-            vector_database=build_vector_database(CFG),
         )
 
 

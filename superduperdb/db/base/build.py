@@ -4,33 +4,11 @@ import mongomock
 import pymongo
 
 import pinnacledb as s
-from pinnacledb.base.logger import logging
-from pinnacledb.db.base.backends import (
-    data_backends,
-    metadata_stores,
-    vector_data_stores,
-)
+from pinnacledb.db.base.backends import data_backends, metadata_stores
 from pinnacledb.db.base.db import DB
 from pinnacledb.db.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.server.dask_client import dask_client
-
-
-def build_vector_database(cfg):
-    """
-    Build vector database as per ``vector_database = DB.vector_database``
-    from configuration.
-
-    :param cfg: configuration to use. (See ``pinnacledb.CFG.vector_search``)
-    """
-    if cfg.vector_search == cfg.data_backend:
-        logging.warning(
-            'Vector database URI is the same as the data backend URI. '
-            'Using the data backend as the vector database.'
-        )
-        return
-    cls = vector_data_stores[cfg.vector_search.split('://')[0]]
-    return cls(cfg.vector_search)
 
 
 def build_artifact_store(cfg):
@@ -88,7 +66,6 @@ def build_datalayer(cfg=None, **kwargs) -> DB:
             if cfg.artifact_store is not None
             else databackend.build_artifact_store()
         ),
-        vector_database=build_vector_database(cfg),
         distributed_client=dask_client(
             cfg.cluster.dask_scheduler,
             local=cfg.cluster.local,
