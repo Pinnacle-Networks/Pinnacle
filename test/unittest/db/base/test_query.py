@@ -1,35 +1,4 @@
 from pinnacledb.container.document import Document
-from pinnacledb.container.schema import Schema
-from pinnacledb.db.ibis.field_types import dtype
-from pinnacledb.ext.pillow.image import pil_image
-
-
-def test_create_ibis_query():
-    from pinnacledb.db.ibis.query import IbisTable
-
-    t = IbisTable(
-        identifier='my_table',
-        schema=Schema(
-            identifier='my_table',
-            fields={
-                'id': dtype('int64'),
-                'health': dtype('int32'),
-                'age': dtype('int32'),
-                'image': pil_image,
-            },
-        ),
-    )
-
-    q = t.filter(t.age > 0).select('age')
-
-    print(q)
-
-    q = t.like({'this': 'is a test'}).filter(t.age > 0).select('age')
-
-    print(q)
-
-    print(q.pre_like)
-    print(q.query_linker)
 
 
 def test_execute_insert_and_find(empty):
