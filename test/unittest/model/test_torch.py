@@ -7,8 +7,8 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.components.metric import Metric
 from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.components.metric import Metric
 
 
 class ToDict:

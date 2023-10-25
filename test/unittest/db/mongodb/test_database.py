@@ -4,19 +4,19 @@ import pytest
 try:
     import torch
 
+    from pinnacledb.ext.torch.encoder import tensor
     from pinnacledb.ext.torch.model import TorchModel
-    from pinnacledb.ext.torch.tensor import tensor
 except ImportError:
     torch = None
 
 from pathlib import Path
 
-from pinnacledb.components.dataset import Dataset
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
+from pinnacledb.base.exceptions import ComponentInUseError, ComponentInUseWarning
+from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.listener import Listener
-from pinnacledb.base.exceptions import ComponentInUseError, ComponentInUseWarning
-from pinnacledb.backends.mongodb.query import Collection
 
 n_data_points = 250
 

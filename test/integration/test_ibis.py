@@ -5,17 +5,17 @@ import tdir
 import torch.nn
 import torchvision
 
-from pinnacledb.base.document import Document as D
-from pinnacledb.components.schema import Schema
-from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.ibis.query import IbisTable
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
-from pinnacledb.ext.pillow.image import pil_image
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.base.document import Document as D
+from pinnacledb.components.schema import Schema
+from pinnacledb.ext.pillow.encoder import pil_image
+from pinnacledb.ext.torch.encoder import tensor
 from pinnacledb.ext.torch.model import TorchModel
-from pinnacledb.ext.torch.tensor import tensor
 
 
 @pytest.fixture

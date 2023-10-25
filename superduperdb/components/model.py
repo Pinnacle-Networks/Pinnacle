@@ -12,17 +12,17 @@ from numpy import ndarray
 from sklearn.pipeline import Pipeline
 
 import pinnacledb as s
-from pinnacledb.base.artifact import Artifact
-from pinnacledb.components.component import Component
-from pinnacledb.components.dataset import Dataset
-from pinnacledb.components.encoder import Encoder
-from pinnacledb.jobs.job import ComponentJob, Job
-from pinnacledb.components.metric import Metric
-from pinnacledb.components.schema import Schema
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.backends.base.query import CompoundSelect, Select
 from pinnacledb.backends.ibis.field_types import FieldType
 from pinnacledb.backends.query_dataset import QueryDataset
+from pinnacledb.base.artifact import Artifact
+from pinnacledb.base.serializable import Serializable
+from pinnacledb.components.component import Component
+from pinnacledb.components.dataset import Dataset
+from pinnacledb.components.encoder import Encoder
+from pinnacledb.components.metric import Metric
+from pinnacledb.components.schema import Schema
+from pinnacledb.jobs.job import ComponentJob, Job
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
 if t.TYPE_CHECKING:
@@ -518,7 +518,10 @@ class Model(Component, PredictMixin):
             db.add(output_component)
 
     def _validate(
-        self, db: Datalayer, validation_set: t.Union[Dataset, str], metrics: t.Sequence[Metric]
+        self,
+        db: Datalayer,
+        validation_set: t.Union[Dataset, str],
+        metrics: t.Sequence[Metric],
     ):
         if isinstance(validation_set, str):
             validation_set = t.cast(Dataset, db.load('dataset', validation_set))

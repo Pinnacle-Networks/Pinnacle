@@ -15,7 +15,7 @@ import pinnacledb as s
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.model import PredictMixin
-from pinnacledb.ext.vector.encoder import vector
+from pinnacledb.components.vector_index import vector
 from pinnacledb.misc.compat import cache
 from pinnacledb.misc.retry import Retry
 

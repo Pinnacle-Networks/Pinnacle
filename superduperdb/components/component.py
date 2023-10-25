@@ -7,13 +7,13 @@ from __future__ import annotations
 
 import typing as t
 
-from pinnacledb.jobs.job import ComponentJob, Job
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.backends.base.artifact import ArtifactStore
+from pinnacledb.base.serializable import Serializable
+from pinnacledb.jobs.job import ComponentJob, Job
 
 if t.TYPE_CHECKING:
-    from pinnacledb.components.dataset import Dataset
     from pinnacledb.base.datalayer import Datalayer
+    from pinnacledb.components.dataset import Dataset
 
 
 class Component(Serializable):

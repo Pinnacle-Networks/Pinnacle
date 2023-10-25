@@ -8,8 +8,8 @@ from cohere.error import CohereAPIError, CohereConnectionError
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.model import PredictMixin
+from pinnacledb.components.vector_index import vector
 from pinnacledb.ext.utils import format_prompt, get_key
-from pinnacledb.ext.vector.encoder import vector
 from pinnacledb.misc.retry import Retry
 
 retry = Retry(exception_types=(CohereAPIError, CohereConnectionError))

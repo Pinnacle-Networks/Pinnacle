@@ -7,10 +7,10 @@ import click
 import pymongo
 
 from pinnacledb import logging
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.backends.base.data_backend import BaseDataBackend
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.backends.mongodb.metadata import MongoMetaDataStore
+from pinnacledb.base.serializable import Serializable
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
@@ -40,7 +40,9 @@ class MongoDataBackend(BaseDataBackend):
         from mongomock import MongoClient as MockClient
 
         if isinstance(self.conn, MockClient):
-            from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
+            from pinnacledb.backends.filesystem.artifacts import (
+                FileSystemArtifactStore,
+            )
 
             os.makedirs(f'/tmp/{self.name}', exist_ok=True)
             return FileSystemArtifactStore(f'/tmp/{self.name}')

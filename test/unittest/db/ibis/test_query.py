@@ -1,8 +1,8 @@
-from pinnacledb.components.schema import Schema
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.ibis.query import IbisTable
-from pinnacledb.ext.pillow.image import pil_image
+from pinnacledb.base.serializable import Serializable
+from pinnacledb.components.schema import Schema
+from pinnacledb.ext.pillow.encoder import pil_image
 
 
 def test_serialize_table():

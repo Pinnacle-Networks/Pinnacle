@@ -7,16 +7,16 @@ import pytest
 try:
     import torch
 
+    from pinnacledb.ext.torch.encoder import tensor
     from pinnacledb.ext.torch.model import TorchModel
-    from pinnacledb.ext.torch.tensor import tensor
 except ImportError:
     torch = None
 
 from pinnacledb import CFG
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.server.dask_client import dask_client
 
 '''

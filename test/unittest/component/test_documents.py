@@ -3,7 +3,7 @@ import pytest
 try:
     import torch
 
-    from pinnacledb.ext.torch.tensor import tensor
+    from pinnacledb.ext.torch.encoder import tensor
 except ImportError:
     torch = None
 

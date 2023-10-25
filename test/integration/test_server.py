@@ -5,14 +5,14 @@ import pytest
 try:
     import torch
 
+    from pinnacledb.ext.torch.encoder import tensor
     from pinnacledb.ext.torch.model import TorchModel
-    from pinnacledb.ext.torch.tensor import tensor
 except ImportError:
     torch = None
 
 from pinnacledb import CFG
-from pinnacledb.base.document import Document
 from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.base.document import Document
 from pinnacledb.server.client import Client
 from pinnacledb.server.server import make_flask_app
 
