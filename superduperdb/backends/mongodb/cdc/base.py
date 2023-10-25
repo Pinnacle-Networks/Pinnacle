@@ -5,7 +5,7 @@ import typing as t
 from bson import objectid
 
 from pinnacledb.base.serializable import Serializable
-from pinnacledb.db.base.cdc import DBEvent, Packet
+from pinnacledb.backends.base.cdc import DBEvent, Packet
 
 TokenType = t.Dict[str, str]
 

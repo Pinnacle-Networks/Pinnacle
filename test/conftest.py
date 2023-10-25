@@ -9,7 +9,7 @@ import pytest
 from tenacity import Retrying, stop_after_delay
 
 import pinnacledb as s
-from pinnacledb.base.db import DB
+from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.misc import pinnacle
 
 _sleep = time.sleep
@@ -53,7 +53,7 @@ def patch_mongomock(monkeypatch):
     import pymongo
     from mongomock import Collection, Database, MongoClient
 
-    from pinnacledb.db.base.backends import CONNECTIONS
+    from pinnacledb.backends.base.backends import CONNECTIONS
 
     monkeypatch.setattr(gridfs, 'Collection', Collection)
     monkeypatch.setattr(gridfs.grid_file, 'Collection', Collection)
@@ -65,7 +65,7 @@ def patch_mongomock(monkeypatch):
 
 
 @pytest.fixture
-def test_db() -> Iterator[DB]:
+def test_db() -> Iterator[Datalayer]:
     from pinnacledb import CFG
     from pinnacledb.base.build import build_datalayer
 

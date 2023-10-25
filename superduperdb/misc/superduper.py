@@ -91,8 +91,8 @@ class MongoDbTyper(_DuckTyper):
         from mongomock.database import Database as MockDatabase
         from pymongo.database import Database
 
-        from pinnacledb.base.db import DB
-        from pinnacledb.db.mongodb.data_backend import MongoDataBackend
+        from pinnacledb.base.datalayer import Datalayer
+        from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 
         if kwargs:
             raise ValueError('MongoDb creator accepts no parameters')
@@ -100,7 +100,7 @@ class MongoDbTyper(_DuckTyper):
             raise TypeError(f'Expected Database but got {type(item)}')
 
         databackend = MongoDataBackend(conn=item.client, name=item.name)
-        return DB(
+        return Datalayer(
             databackend=databackend,
             metadata=databackend.build_metadata(),
             artifact_store=databackend.build_artifact_store(),

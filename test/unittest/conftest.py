@@ -21,8 +21,8 @@ from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.base.db import DB
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.ext.numpy.array import array
 from pinnacledb.ext.pillow.image import pil_image
 
@@ -30,7 +30,7 @@ n_data_points = 250
 
 
 @pytest.fixture()
-def empty(test_db: DB):
+def empty(test_db: Datalayer):
     yield test_db
 
 

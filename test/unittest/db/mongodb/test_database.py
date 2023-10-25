@@ -16,7 +16,7 @@ from pinnacledb.base.document import Document
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.listener import Listener
 from pinnacledb.base.exceptions import ComponentInUseError, ComponentInUseWarning
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import Collection
 
 n_data_points = 250
 

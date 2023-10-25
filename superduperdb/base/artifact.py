@@ -6,7 +6,7 @@ import typing_extensions as te
 from pinnacledb.misc.serialization import Info, serializers
 
 if t.TYPE_CHECKING:
-    from pinnacledb.db.base.artifact import ArtifactStore
+    from pinnacledb.backends.base.artifact import ArtifactStore
 
 ArtifactCache = t.Dict[int, t.Any]
 

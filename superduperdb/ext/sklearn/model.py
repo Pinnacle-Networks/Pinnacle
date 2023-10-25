@@ -7,15 +7,15 @@ from tqdm import tqdm
 from pinnacledb.base.artifact import Artifact
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.model import Model, _TrainingConfiguration
-from pinnacledb.base.db import DB
-from pinnacledb.db.base.query import Select
-from pinnacledb.db.query_dataset import QueryDataset
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.backends.base.query import Select
+from pinnacledb.backends.query_dataset import QueryDataset
 
 
 def _get_data_from_query(
     select: Select,
     X: str,
-    db: DB,
+    db: Datalayer,
     y: t.Optional[str] = None,
     y_preprocess: t.Optional[t.Callable] = None,
     preprocess: t.Optional[t.Callable] = None,
@@ -86,7 +86,7 @@ class Estimator(Model):
         y=None,
         configuration: t.Optional[SklearnTrainingConfiguration] = None,
         data_prefetch: bool = False,
-        db: t.Optional[DB] = None,
+        db: t.Optional[Datalayer] = None,
         metrics: t.Optional[t.Sequence[Metric]] = None,
         select: t.Optional[Select] = None,
         validation_sets: t.Optional[t.Sequence[str]] = None,

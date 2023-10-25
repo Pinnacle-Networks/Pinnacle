@@ -12,7 +12,7 @@ import pinnacledb as s
 from .job import ComponentJob, FunctionJob, Job
 
 if t.TYPE_CHECKING:
-    from pinnacledb.base.db import DB
+    from pinnacledb.base.datalayer import Datalayer
 
 
 @dc.dataclass
@@ -25,7 +25,7 @@ class TaskWorkflow:
     :param G: ``networkx.DiGraph`` to use as the graph
     """
 
-    database: DB
+    database: Datalayer
     G: DiGraph = dc.field(default_factory=DiGraph)
 
     @wraps(DiGraph.add_edge)

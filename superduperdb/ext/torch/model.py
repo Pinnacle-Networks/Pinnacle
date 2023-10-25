@@ -19,9 +19,9 @@ from pinnacledb.components.encoder import Encodable
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.model import Model, _TrainingConfiguration
 from pinnacledb.base.serializable import Serializable
-from pinnacledb.base.db import DB
-from pinnacledb.db.base.query import Select
-from pinnacledb.db.query_dataset import QueryDataset
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.backends.base.query import Select
+from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.ext.torch.utils import device_of, eval, to_device
 
 if t.TYPE_CHECKING:
@@ -118,7 +118,7 @@ class Base:
             raise NotImplementedError
 
         def _validate(
-            self, db: DB, validation_set: Dataset, metrics: t.Sequence[Metric]
+            self, db: Datalayer, validation_set: Dataset, metrics: t.Sequence[Metric]
         ):
             raise NotImplementedError
 
@@ -132,7 +132,7 @@ class Base:
     def preprocess(self, r):
         raise NotImplementedError  # implemented in PyTorch wrapper and PyTorch pipeline
 
-    def save(self, database: DB):
+    def save(self, database: Datalayer):
         raise NotImplementedError
 
     def stopping_criterion(self, iteration):
@@ -166,7 +166,7 @@ class Base:
         y: t.Optional[t.Union[t.List, t.Any]] = None,
         configuration: t.Optional[TorchTrainerConfiguration] = None,
         data_prefetch: bool = False,
-        db: t.Optional[DB] = None,
+        db: t.Optional[Datalayer] = None,
         metrics: t.Optional[t.List[Metric]] = None,
         select: t.Optional[t.Union[Select, t.Dict]] = None,
         validation_sets: t.Optional[t.List[str]] = None,
@@ -253,7 +253,7 @@ class Base:
         self,
         train_dataloader: DataLoader,
         valid_dataloader: DataLoader,
-        db: DB,
+        db: Datalayer,
         validation_sets: t.List[str],
     ):
         self.train()
@@ -326,7 +326,7 @@ class Base:
                 preprocessors[k] = preprocessors[k].artifact
         return lambda r: {k: preprocessors[k](r[k]) for k in preprocessors}
 
-    def _get_data(self, db: t.Optional[DB]):
+    def _get_data(self, db: t.Optional[Datalayer]):
         if self.training_select is None:
             raise ValueError('self.training_select cannot be None')
         train_data = QueryDataset(
@@ -387,7 +387,7 @@ class TorchModel(Base, Model):  # type: ignore[misc]
     def optimizers(self) -> t.List:
         return [self.optimizer]
 
-    def save(self, database: DB):
+    def save(self, database: Datalayer):
         self.optimizer_state = Artifact(self.optimizer.state_dict(), serializer='torch')
         database.replace(object=self, upsert=True)
 
