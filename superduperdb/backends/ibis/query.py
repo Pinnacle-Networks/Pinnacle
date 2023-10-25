@@ -28,8 +28,6 @@ from pinnacledb.components.schema import Schema
 
 if t.TYPE_CHECKING:
     from pinnacledb.base.document import Document
-
-if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
 
 PRIMARY_ID: str = 'id'
