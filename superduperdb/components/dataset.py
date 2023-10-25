@@ -7,10 +7,10 @@ from functools import cached_property
 import numpy
 from overrides import override
 
-from pinnacledb.base.artifact import Artifact
-from pinnacledb.components.component import Component
-from pinnacledb.base.document import Document
 from pinnacledb.backends.mongodb.query import Select
+from pinnacledb.base.artifact import Artifact
+from pinnacledb.base.document import Document
+from pinnacledb.components.component import Component
 
 if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer

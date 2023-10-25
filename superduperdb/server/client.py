@@ -7,12 +7,12 @@ import uuid
 import click
 import requests
 
-from pinnacledb.components.component import Component
+from pinnacledb.backends.base.artifact import ArtifactStore
+from pinnacledb.backends.base.query import Delete, Insert, Like, Select, Update
+from pinnacledb.base.datalayer import ExecuteQuery
 from pinnacledb.base.document import dump_bsons, load_bsons
 from pinnacledb.base.serializable import Serializable
-from pinnacledb.backends.base.artifact import ArtifactStore
-from pinnacledb.base.datalayer import ExecuteQuery
-from pinnacledb.backends.base.query import Delete, Insert, Like, Select, Update
+from pinnacledb.components.component import Component
 from pinnacledb.misc.serialization import serializers
 
 

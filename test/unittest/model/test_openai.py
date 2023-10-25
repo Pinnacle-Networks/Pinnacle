@@ -4,10 +4,10 @@ import openai
 import pytest
 import vcr
 
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.ext.openai.model import OpenAIChatCompletion, OpenAIEmbedding
 
 CASSETTE_DIR = 'test/unittest/model/cassettes'

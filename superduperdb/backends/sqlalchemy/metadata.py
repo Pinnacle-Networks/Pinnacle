@@ -6,8 +6,8 @@ from sqlalchemy import JSON, Boolean, Column, DateTime, ForeignKey, Integer, Str
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
-from pinnacledb.base.logger import logging
 from pinnacledb.backends.base.metadata import MetaDataStore
+from pinnacledb.base.logger import logging
 from pinnacledb.misc.colors import Colors
 
 Base = declarative_base()

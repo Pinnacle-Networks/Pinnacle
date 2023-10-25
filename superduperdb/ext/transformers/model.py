@@ -14,12 +14,12 @@ from transformers import (
     pipeline as _pipeline,
 )
 
-from pinnacledb.base.artifact import Artifact
-from pinnacledb.components.metric import Metric
-from pinnacledb.components.model import Model, _TrainingConfiguration
-from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.backends.base.query import Select
 from pinnacledb.backends.query_dataset import query_dataset_factory
+from pinnacledb.base.artifact import Artifact
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.components.metric import Metric
+from pinnacledb.components.model import Model, _TrainingConfiguration
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
 _DEFAULT_PREFETCH_SIZE: int = 100

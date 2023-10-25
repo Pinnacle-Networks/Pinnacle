@@ -5,10 +5,10 @@ import pytest
 import tdir
 
 from pinnacledb import CFG
-from pinnacledb.base.document import Document
-from pinnacledb.misc.download import Fetcher
 from pinnacledb.backends.mongodb.query import Collection
-from pinnacledb.ext.pillow.image import pil_image
+from pinnacledb.base.document import Document
+from pinnacledb.ext.pillow.encoder import pil_image
+from pinnacledb.misc.download import Fetcher
 
 remote = os.environ.get('SDDB_REMOTE_TEST', 'local')
 

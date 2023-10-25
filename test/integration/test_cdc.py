@@ -10,9 +10,9 @@ try:
 except ImportError:
     torch = None
 
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
-from pinnacledb.backends.mongodb.query import Collection
 
 RETRY_TIMEOUT = 1
 LISTEN_TIMEOUT = 0.1

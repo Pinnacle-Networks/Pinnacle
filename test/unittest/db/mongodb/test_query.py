@@ -1,5 +1,5 @@
-from pinnacledb.base.document import Document
 from pinnacledb.backends.mongodb import query as q
+from pinnacledb.base.document import Document
 
 
 def test_select_missing_outputs(random_data):

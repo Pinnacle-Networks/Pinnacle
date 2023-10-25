@@ -11,30 +11,30 @@ import tqdm
 from dask.distributed import Future
 
 import pinnacledb as s
-from pinnacledb.base.logger import logging
-from pinnacledb.base import serializable
-from pinnacledb.components.component import Component
-from pinnacledb.base.document import Document
-from pinnacledb.components.encoder import Encodable, Encoder
-from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
-from pinnacledb.components.model import Model
-from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.backends.base.backends import vector_searcher_implementations
-from pinnacledb.misc.download import Downloader, gather_uris
+from pinnacledb.base import serializable
+from pinnacledb.base.document import Document
+from pinnacledb.base.logger import logging
+from pinnacledb.components.component import Component
+from pinnacledb.components.encoder import Encodable, Encoder
+from pinnacledb.components.model import Model
+from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
+from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.data import ibatch
+from pinnacledb.misc.download import Downloader, gather_uris
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import BaseVectorSearcher, VectorItem
 from pinnacledb.vector_search.update_tasks import copy_vectors, delete_vectors
 
 from ..backends.base.artifact import ArtifactStore
 from ..backends.base.cdc import DatabaseChangeDataCapture
-from .cursor import SuperDuperCursor
 from ..backends.base.data_backend import BaseDataBackend
-from ..misc.download import download_content
-from .exceptions import ComponentInUseError, ComponentInUseWarning
 from ..backends.base.metadata import MetaDataStore
 from ..backends.base.query import Delete, Insert, Select, Update
+from ..misc.download import download_content
+from .cursor import SuperDuperCursor
+from .exceptions import ComponentInUseError, ComponentInUseWarning
 
 DBResult = t.Any
 TaskGraph = t.Any
@@ -546,8 +546,8 @@ class Datalayer:
         """
         Load component using uniquely identifying information.
 
-        :param type_id: type_id of component to remove ['encoder', 'model', 'listener',
-                        'training_configuration', 'learning_task', 'vector_index']
+        :param type_id: type_id of component to remove
+                        ['encoder', 'model', 'listener', ...]
         :param identifier: identifier of component (see `container.base.Component`)
         :param version: [optional] numerical version
         :param allow_hidden: toggle to ``True`` to allow loading of deprecated

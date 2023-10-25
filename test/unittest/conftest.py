@@ -11,20 +11,20 @@ try:
 
     import torch
 
+    from pinnacledb.ext.torch.encoder import tensor
     from pinnacledb.ext.torch.model import TorchModel
-    from pinnacledb.ext.torch.tensor import tensor
 except ImportError:
     torch = None
 
-from pinnacledb.components.dataset import Dataset
+from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
+from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.backends.mongodb.query import Collection
-from pinnacledb.ext.numpy.array import array
-from pinnacledb.ext.pillow.image import pil_image
+from pinnacledb.ext.numpy.encoder import array
+from pinnacledb.ext.pillow.encoder import pil_image
 
 n_data_points = 250
 

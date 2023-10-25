@@ -1,8 +1,8 @@
 import pytest
 
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.components.model import Model
-from pinnacledb.backends.mongodb.query import Collection
 
 
 @pytest.fixture()

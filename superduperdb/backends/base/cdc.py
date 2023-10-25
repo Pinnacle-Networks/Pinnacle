@@ -41,9 +41,9 @@ from pinnacledb.misc.runnable.queue_chunker import QueueChunker
 from pinnacledb.misc.runnable.runnable import Event
 
 if t.TYPE_CHECKING:
-    from pinnacledb.base.serializable import Serializable
-    from pinnacledb.base.datalayer import Datalayer
     from pinnacledb.backends.base.query import TableOrCollection
+    from pinnacledb.base.datalayer import Datalayer
+    from pinnacledb.base.serializable import Serializable
 
 
 class DBEvent(str, Enum):

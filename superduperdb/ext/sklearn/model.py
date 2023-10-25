@@ -4,12 +4,12 @@ import typing as t
 import numpy
 from tqdm import tqdm
 
-from pinnacledb.base.artifact import Artifact
-from pinnacledb.components.metric import Metric
-from pinnacledb.components.model import Model, _TrainingConfiguration
-from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.backends.base.query import Select
 from pinnacledb.backends.query_dataset import QueryDataset
+from pinnacledb.base.artifact import Artifact
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.components.metric import Metric
+from pinnacledb.components.model import Model, _TrainingConfiguration
 
 
 def _get_data_from_query(

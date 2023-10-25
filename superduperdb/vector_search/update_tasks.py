@@ -1,7 +1,7 @@
 import typing as t
 
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.backends.base.query import CompoundSelect
+from pinnacledb.base.serializable import Serializable
 from pinnacledb.vector_search.base import VectorItem
 
 

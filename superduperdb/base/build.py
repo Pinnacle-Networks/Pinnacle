@@ -5,9 +5,9 @@ import pymongo
 
 import pinnacledb as s
 from pinnacledb.backends.base.backends import data_backends, metadata_stores
-from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
+from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.server.dask_client import dask_client
 
 

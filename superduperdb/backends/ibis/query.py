@@ -10,10 +10,6 @@ import typing as t
 
 import ibis
 
-from pinnacledb.base.logger import logging
-from pinnacledb.components.component import Component
-from pinnacledb.components.encoder import Encoder
-from pinnacledb.components.schema import Schema
 from pinnacledb.backends.base.query import (
     CompoundSelect,
     Insert,
@@ -25,6 +21,10 @@ from pinnacledb.backends.base.query import (
     _ReprMixin,
 )
 from pinnacledb.backends.ibis.cursor import SuperDuperIbisCursor
+from pinnacledb.base.logger import logging
+from pinnacledb.components.component import Component
+from pinnacledb.components.encoder import Encoder
+from pinnacledb.components.schema import Schema
 
 if t.TYPE_CHECKING:
     from pinnacledb.base.document import Document
@@ -549,7 +549,9 @@ class IbisQueryComponent(QueryComponent):
             out = f' {lookup[match.groups()[0]]} {match.groups()[1]}'
         return out
 
-    def compile(self, parent: t.Any, db: 'Datalayer', tables: t.Optional[t.Dict] = None):
+    def compile(
+        self, parent: t.Any, db: 'Datalayer', tables: t.Optional[t.Dict] = None
+    ):
         if self.type == QueryType.ATTR:
             return getattr(parent, self.name), tables
         args, tables = _compile_item(self.args, db, tables=tables)

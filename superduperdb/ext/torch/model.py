@@ -13,15 +13,15 @@ from tqdm import tqdm
 
 import pinnacledb as s
 from pinnacledb import logging
+from pinnacledb.backends.base.query import Select
+from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.artifact import Artifact
+from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
+from pinnacledb.base.serializable import Serializable
 from pinnacledb.components.encoder import Encodable
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.model import Model, _TrainingConfiguration
-from pinnacledb.base.serializable import Serializable
-from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.backends.base.query import Select
-from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.ext.torch.utils import device_of, eval, to_device
 
 if t.TYPE_CHECKING:
