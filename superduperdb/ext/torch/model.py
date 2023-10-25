@@ -13,13 +13,13 @@ from tqdm import tqdm
 
 import pinnacledb as s
 from pinnacledb import logging
-from pinnacledb.container.artifact import Artifact
-from pinnacledb.container.document import Document
+from pinnacledb.base.artifact import Artifact
+from pinnacledb.base.document import Document
 from pinnacledb.container.encoder import Encodable
 from pinnacledb.container.metric import Metric
 from pinnacledb.container.model import Model, _TrainingConfiguration
-from pinnacledb.container.serializable import Serializable
-from pinnacledb.db.base.db import DB
+from pinnacledb.base.serializable import Serializable
+from pinnacledb.base.db import DB
 from pinnacledb.db.base.query import Select
 from pinnacledb.db.query_dataset import QueryDataset
 from pinnacledb.ext.torch.utils import device_of, eval, to_device

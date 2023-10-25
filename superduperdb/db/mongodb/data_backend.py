@@ -7,7 +7,7 @@ import click
 import pymongo
 
 from pinnacledb import logging
-from pinnacledb.container.serializable import Serializable
+from pinnacledb.base.serializable import Serializable
 from pinnacledb.db.base.data_backend import BaseDataBackend
 from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.db.mongodb.metadata import MongoMetaDataStore

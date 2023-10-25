@@ -4,7 +4,7 @@ import uuid
 from abc import abstractmethod
 
 import pinnacledb as s
-from pinnacledb.container.tasks import callable_job, method_job
+from pinnacledb.jobs.tasks import callable_job, method_job
 
 
 def job(f):
@@ -148,7 +148,7 @@ class FunctionJob(Job):
         self, db: t.Any = None, distributed: t.Optional[bool] = None, dependencies=()
     ):
         if db is None:
-            from pinnacledb.db.base.build import build_datalayer
+            from pinnacledb.base.build import build_datalayer
 
             db = build_datalayer()
 
@@ -226,7 +226,7 @@ class ComponentJob(Job):
         if distributed is None:
             distributed = s.CFG.cluster.distributed
         if db is None:
-            from pinnacledb.db.base.build import build_datalayer
+            from pinnacledb.base.build import build_datalayer
 
             db = build_datalayer()
         self.db = db

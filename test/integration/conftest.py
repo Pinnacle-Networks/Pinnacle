@@ -13,7 +13,7 @@ except ImportError:
     torch = None
 
 from pinnacledb import CFG
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.container.listener import Listener
 from pinnacledb.container.vector_index import VectorIndex
 from pinnacledb.db.mongodb.query import Collection

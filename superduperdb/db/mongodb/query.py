@@ -8,8 +8,8 @@ from bson import ObjectId
 from pymongo import InsertOne as _InsertOne, UpdateOne as _UpdateOne
 
 from pinnacledb import CFG
-from pinnacledb.container.document import Document
-from pinnacledb.db.base.cursor import SuperDuperCursor
+from pinnacledb.base.document import Document
+from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.db.base.query import (
     CompoundSelect,
     Delete,

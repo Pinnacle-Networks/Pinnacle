@@ -5,9 +5,9 @@ import tdir
 import torch.nn
 import torchvision
 
-from pinnacledb.container.document import Document as D
+from pinnacledb.base.document import Document as D
 from pinnacledb.container.schema import Schema
-from pinnacledb.db.base.db import DB
+from pinnacledb.base.db import DB
 from pinnacledb.db.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.db.ibis.data_backend import IbisDataBackend
 from pinnacledb.db.ibis.field_types import dtype

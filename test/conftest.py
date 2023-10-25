@@ -9,7 +9,7 @@ import pytest
 from tenacity import Retrying, stop_after_delay
 
 import pinnacledb as s
-from pinnacledb.db.base.db import DB
+from pinnacledb.base.db import DB
 from pinnacledb.misc import pinnacle
 
 _sleep = time.sleep
@@ -67,7 +67,7 @@ def patch_mongomock(monkeypatch):
 @pytest.fixture
 def test_db() -> Iterator[DB]:
     from pinnacledb import CFG
-    from pinnacledb.db.base.build import build_datalayer
+    from pinnacledb.base.build import build_datalayer
 
     CFG.data_backend = (
         'mongodb://testmongodbuser:testmongodbpassword@localhost:27018/test_db'

@@ -5,10 +5,10 @@ import uuid
 from flask import Flask, jsonify, make_response, request
 
 from pinnacledb import CFG
-from pinnacledb.container.document import load_bson, load_bsons
-from pinnacledb.container.serializable import Serializable
+from pinnacledb.base.document import load_bson, load_bsons
+from pinnacledb.base.serializable import Serializable
 from pinnacledb.db.base.artifact import ArtifactStore
-from pinnacledb.db.base.build import build_datalayer
+from pinnacledb.base.build import build_datalayer
 from pinnacledb.misc.serialization import serializers
 
 

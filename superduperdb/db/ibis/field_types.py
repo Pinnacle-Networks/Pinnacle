@@ -3,7 +3,7 @@ import typing as t
 
 from ibis.expr.datatypes import DataType, dtype as _dtype
 
-from pinnacledb.container.serializable import Serializable
+from pinnacledb.base.serializable import Serializable
 
 
 @dc.dataclass

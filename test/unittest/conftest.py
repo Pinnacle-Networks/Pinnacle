@@ -17,11 +17,11 @@ except ImportError:
     torch = None
 
 from pinnacledb.container.dataset import Dataset
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.container.listener import Listener
 from pinnacledb.container.metric import Metric
 from pinnacledb.container.vector_index import VectorIndex
-from pinnacledb.db.base.db import DB
+from pinnacledb.base.db import DB
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.numpy.array import array
 from pinnacledb.ext.pillow.image import pil_image

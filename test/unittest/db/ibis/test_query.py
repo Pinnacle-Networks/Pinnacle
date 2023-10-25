@@ -1,5 +1,5 @@
 from pinnacledb.container.schema import Schema
-from pinnacledb.container.serializable import Serializable
+from pinnacledb.base.serializable import Serializable
 from pinnacledb.db.ibis.field_types import dtype
 from pinnacledb.db.ibis.query import IbisTable
 from pinnacledb.ext.pillow.image import pil_image

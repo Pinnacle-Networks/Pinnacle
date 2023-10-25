@@ -1,6 +1,6 @@
 import pytest
 
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.container.model import Model
 from pinnacledb.db.mongodb.query import Collection
 

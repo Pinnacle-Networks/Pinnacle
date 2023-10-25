@@ -5,7 +5,7 @@ from pinnacledb.container.component import Component
 from pinnacledb.misc.serialization import serializers
 
 if t.TYPE_CHECKING:
-    from pinnacledb.db.base.db import DB
+    from pinnacledb.base.db import DB
 
 
 @dc.dataclass

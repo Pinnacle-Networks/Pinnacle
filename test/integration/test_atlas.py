@@ -7,7 +7,7 @@ import pytest
 
 import pinnacledb as s
 from pinnacledb import pinnacle
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.container.listener import Listener
 from pinnacledb.container.model import Model
 from pinnacledb.container.vector_index import VectorIndex

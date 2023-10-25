@@ -12,29 +12,29 @@ from dask.distributed import Future
 
 import pinnacledb as s
 from pinnacledb.base.logger import logging
-from pinnacledb.container import serializable
+from pinnacledb.base import serializable
 from pinnacledb.container.component import Component
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.container.encoder import Encodable, Encoder
-from pinnacledb.container.job import ComponentJob, FunctionJob, Job
+from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
 from pinnacledb.container.model import Model
-from pinnacledb.container.task_workflow import TaskWorkflow
+from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.db.base.backends import vector_searcher_implementations
-from pinnacledb.db.base.download import Downloader, gather_uris
+from pinnacledb.misc.download import Downloader, gather_uris
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.data import ibatch
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import BaseVectorSearcher, VectorItem
 from pinnacledb.vector_search.update_tasks import copy_vectors, delete_vectors
 
-from .artifact import ArtifactStore
-from .cdc import DatabaseChangeDataCapture
+from ..db.base.artifact import ArtifactStore
+from ..db.base.cdc import DatabaseChangeDataCapture
 from .cursor import SuperDuperCursor
-from .data_backend import BaseDataBackend
-from .download_content import download_content
+from ..db.base.data_backend import BaseDataBackend
+from ..misc.download import download_content
 from .exceptions import ComponentInUseError, ComponentInUseWarning
-from .metadata import MetaDataStore
-from .query import Delete, Insert, Select, Update
+from ..db.base.metadata import MetaDataStore
+from ..db.base.query import Delete, Insert, Select, Update
 
 DBResult = t.Any
 TaskGraph = t.Any

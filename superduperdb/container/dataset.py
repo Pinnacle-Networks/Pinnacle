@@ -7,13 +7,13 @@ from functools import cached_property
 import numpy
 from overrides import override
 
-from pinnacledb.container.artifact import Artifact
+from pinnacledb.base.artifact import Artifact
 from pinnacledb.container.component import Component
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.db.mongodb.query import Select
 
 if t.TYPE_CHECKING:
-    from pinnacledb.db.base.db import DB
+    from pinnacledb.base.db import DB
 
 
 @dc.dataclass

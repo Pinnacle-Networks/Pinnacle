@@ -12,7 +12,7 @@ import pinnacledb as s
 from .job import ComponentJob, FunctionJob, Job
 
 if t.TYPE_CHECKING:
-    from pinnacledb.db.base.db import DB
+    from pinnacledb.base.db import DB
 
 
 @dc.dataclass
