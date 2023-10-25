@@ -12,10 +12,10 @@ except ImportError:
 from pathlib import Path
 
 from pinnacledb.container.dataset import Dataset
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.container.encoder import Encoder
 from pinnacledb.container.listener import Listener
-from pinnacledb.db.base.exceptions import ComponentInUseError, ComponentInUseWarning
+from pinnacledb.base.exceptions import ComponentInUseError, ComponentInUseWarning
 from pinnacledb.db.mongodb.query import Collection
 
 n_data_points = 250

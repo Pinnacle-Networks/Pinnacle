@@ -5,8 +5,8 @@ import pytest
 import tdir
 
 from pinnacledb import CFG
-from pinnacledb.container.document import Document
-from pinnacledb.db.base.download import Fetcher
+from pinnacledb.base.document import Document
+from pinnacledb.misc.download import Fetcher
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.pillow.image import pil_image
 

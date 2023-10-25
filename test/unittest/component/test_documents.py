@@ -7,7 +7,7 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 
 
 @pytest.fixture

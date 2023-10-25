@@ -1,4 +1,4 @@
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.db.mongodb import query as q
 
 

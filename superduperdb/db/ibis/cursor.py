@@ -1,7 +1,7 @@
 import dataclasses as dc
 
-from pinnacledb.container.document import Document
-from pinnacledb.db.base.cursor import SuperDuperCursor
+from pinnacledb.base.document import Document
+from pinnacledb.base.cursor import SuperDuperCursor
 
 
 class IbisDocument(Document):

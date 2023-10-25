@@ -14,10 +14,10 @@ from transformers import (
     pipeline as _pipeline,
 )
 
-from pinnacledb.container.artifact import Artifact
+from pinnacledb.base.artifact import Artifact
 from pinnacledb.container.metric import Metric
 from pinnacledb.container.model import Model, _TrainingConfiguration
-from pinnacledb.db.base.db import DB
+from pinnacledb.base.db import DB
 from pinnacledb.db.base.query import Select
 from pinnacledb.db.query_dataset import query_dataset_factory
 from pinnacledb.misc.special_dicts import MongoStyleDict

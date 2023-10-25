@@ -7,9 +7,9 @@ from typing import Any
 import pandas as pd
 
 from pinnacledb.base.logger import logging
-from pinnacledb.container.document import Document
-from pinnacledb.container.serializable import Serializable
-from pinnacledb.db.base.cursor import SuperDuperCursor
+from pinnacledb.base.document import Document
+from pinnacledb.base.serializable import Serializable
+from pinnacledb.base.cursor import SuperDuperCursor
 
 GREEN = '\033[92m'
 BOLD = '\033[1m'

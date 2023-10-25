@@ -10,9 +10,9 @@ from contextlib import contextmanager
 from unittest.mock import patch
 
 from pinnacledb import CFG
-from pinnacledb.container.job import FunctionJob
+from pinnacledb.jobs.job import FunctionJob
 from pinnacledb.container.listener import Listener
-from pinnacledb.container.task_workflow import TaskWorkflow
+from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.db.mongodb.query import Collection
 
 

@@ -1,8 +1,8 @@
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 
 
 def test_execute_insert_and_find(empty):
-    from pinnacledb.container.document import Document
+    from pinnacledb.base.document import Document
     from pinnacledb.db.mongodb.query import Collection
 
     collection = Collection('documents')
@@ -12,7 +12,7 @@ def test_execute_insert_and_find(empty):
 
 
 def test_execute_complex_query(empty):
-    from pinnacledb.container.document import Document
+    from pinnacledb.base.document import Document
     from pinnacledb.db.mongodb.query import Collection
 
     collection = Collection('documents')

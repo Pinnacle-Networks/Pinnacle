@@ -14,7 +14,7 @@ from pinnacledb.misc.runnable.runnable import Event
 from .base import CachedTokens, TokenType
 
 if t.TYPE_CHECKING:
-    from pinnacledb.db.base.db import DB
+    from pinnacledb.base.db import DB
 
 MongoChangePipelines: t.Dict[str, t.Sequence[t.Any]] = {'generic': []}
 

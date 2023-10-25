@@ -27,10 +27,10 @@ from pinnacledb.db.base.query import (
 from pinnacledb.db.ibis.cursor import SuperDuperIbisCursor
 
 if t.TYPE_CHECKING:
-    from pinnacledb.container.document import Document
+    from pinnacledb.base.document import Document
 
 if t.TYPE_CHECKING:
-    from pinnacledb.db.base.db import DB
+    from pinnacledb.base.db import DB
 
 PRIMARY_ID: str = 'id'
 

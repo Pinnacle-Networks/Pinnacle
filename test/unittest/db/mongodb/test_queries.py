@@ -6,7 +6,7 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.db.mongodb.query import Collection
 
 from .test_database import IMAGE_URL

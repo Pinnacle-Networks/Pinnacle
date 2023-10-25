@@ -2,7 +2,7 @@ import dataclasses as dc
 import typing as t
 
 from pinnacledb import CFG
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.container.encoder import Encoder
 from pinnacledb.misc.files import load_uris
 from pinnacledb.misc.special_dicts import MongoStyleDict

@@ -6,7 +6,7 @@ from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 
-from pinnacledb.container.document import Document
+from pinnacledb.base.document import Document
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.sklearn.model import Estimator
 

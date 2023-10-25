@@ -75,7 +75,7 @@ class QueryDataset:
     @property
     def database(self):
         if self._database is None:
-            from pinnacledb.db.base.build import build_datalayer
+            from pinnacledb.base.build import build_datalayer
 
             self._database = build_datalayer()
         return self._database
@@ -160,7 +160,7 @@ class CachedQueryDataset:
     @property
     def database(self):
         if self._database is None:
-            from pinnacledb.db.base.build import build_datalayer
+            from pinnacledb.base.build import build_datalayer
 
             self._database = build_datalayer()
         return self._database

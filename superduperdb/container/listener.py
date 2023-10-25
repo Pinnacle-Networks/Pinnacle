@@ -3,11 +3,11 @@ import typing as t
 
 from overrides import override
 
-from pinnacledb.db.base.db import DB
+from pinnacledb.base.db import DB
 from pinnacledb.db.base.query import CompoundSelect
 
 from .component import Component
-from .job import Job
+from ..jobs.job import Job
 from .model import Model
 
 

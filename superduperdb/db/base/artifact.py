@@ -1,8 +1,8 @@
 import typing as t
 from abc import ABC, abstractmethod
 
-from pinnacledb.container.artifact import Artifact
-from pinnacledb.data.tree.tree import tree_find, tree_rewrite
+from pinnacledb.base.artifact import Artifact
+from pinnacledb.misc.tree import tree_find, tree_rewrite
 from pinnacledb.misc.serialization import Info, serializers
 
 if t.TYPE_CHECKING:

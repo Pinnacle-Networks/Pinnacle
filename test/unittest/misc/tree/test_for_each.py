@@ -3,7 +3,7 @@ import typing as t
 from pydantic import dataclasses as dc
 
 import pinnacledb as s
-from pinnacledb.data.tree.for_each import for_each
+from pinnacledb.misc.for_each import for_each
 
 
 @dc.dataclass
