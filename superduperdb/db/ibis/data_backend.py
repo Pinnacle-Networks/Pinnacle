@@ -4,8 +4,8 @@ import ibis
 import pandas
 from ibis.backends.base import BaseBackend
 
-from pinnacledb.container.model import Model
-from pinnacledb.container.schema import Schema
+from pinnacledb.components.model import Model
+from pinnacledb.components.schema import Schema
 from pinnacledb.db.base.data_backend import BaseDataBackend
 from pinnacledb.db.ibis.field_types import FieldType, dtype
 from pinnacledb.db.ibis.query import IbisTable

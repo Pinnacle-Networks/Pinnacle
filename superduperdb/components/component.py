@@ -12,7 +12,7 @@ from pinnacledb.base.serializable import Serializable
 from pinnacledb.db.base.artifact import ArtifactStore
 
 if t.TYPE_CHECKING:
-    from pinnacledb.container.dataset import Dataset
+    from pinnacledb.components.dataset import Dataset
     from pinnacledb.base.db import DB
 
 

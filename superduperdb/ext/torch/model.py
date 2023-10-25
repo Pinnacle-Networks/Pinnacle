@@ -15,9 +15,9 @@ import pinnacledb as s
 from pinnacledb import logging
 from pinnacledb.base.artifact import Artifact
 from pinnacledb.base.document import Document
-from pinnacledb.container.encoder import Encodable
-from pinnacledb.container.metric import Metric
-from pinnacledb.container.model import Model, _TrainingConfiguration
+from pinnacledb.components.encoder import Encodable
+from pinnacledb.components.metric import Metric
+from pinnacledb.components.model import Model, _TrainingConfiguration
 from pinnacledb.base.serializable import Serializable
 from pinnacledb.base.db import DB
 from pinnacledb.db.base.query import Select
@@ -25,7 +25,7 @@ from pinnacledb.db.query_dataset import QueryDataset
 from pinnacledb.ext.torch.utils import device_of, eval, to_device
 
 if t.TYPE_CHECKING:
-    from pinnacledb.container.dataset import Dataset
+    from pinnacledb.components.dataset import Dataset
 
 
 class BasicDataset(data.Dataset):

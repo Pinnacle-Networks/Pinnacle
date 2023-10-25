@@ -4,9 +4,9 @@ import typing as t
 import anthropic
 from anthropic import APIConnectionError, APIError, APIStatusError, APITimeoutError
 
-from pinnacledb.container.component import Component
-from pinnacledb.container.encoder import Encoder
-from pinnacledb.container.model import PredictMixin
+from pinnacledb.components.component import Component
+from pinnacledb.components.encoder import Encoder
+from pinnacledb.components.model import PredictMixin
 from pinnacledb.ext.utils import format_prompt, get_key
 from pinnacledb.misc.retry import Retry
 

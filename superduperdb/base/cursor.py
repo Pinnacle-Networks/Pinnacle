@@ -3,7 +3,7 @@ import typing as t
 
 from pinnacledb import CFG
 from pinnacledb.base.document import Document
-from pinnacledb.container.encoder import Encoder
+from pinnacledb.components.encoder import Encoder
 from pinnacledb.misc.files import load_uris
 from pinnacledb.misc.special_dicts import MongoStyleDict
 

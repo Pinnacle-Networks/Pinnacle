@@ -6,7 +6,7 @@ import torch.nn
 import torchvision
 
 from pinnacledb.base.document import Document as D
-from pinnacledb.container.schema import Schema
+from pinnacledb.components.schema import Schema
 from pinnacledb.base.db import DB
 from pinnacledb.db.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.db.ibis.data_backend import IbisDataBackend

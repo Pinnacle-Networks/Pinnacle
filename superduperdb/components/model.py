@@ -13,12 +13,12 @@ from sklearn.pipeline import Pipeline
 
 import pinnacledb as s
 from pinnacledb.base.artifact import Artifact
-from pinnacledb.container.component import Component
-from pinnacledb.container.dataset import Dataset
-from pinnacledb.container.encoder import Encoder
+from pinnacledb.components.component import Component
+from pinnacledb.components.dataset import Dataset
+from pinnacledb.components.encoder import Encoder
 from pinnacledb.jobs.job import ComponentJob, Job
-from pinnacledb.container.metric import Metric
-from pinnacledb.container.schema import Schema
+from pinnacledb.components.metric import Metric
+from pinnacledb.components.schema import Schema
 from pinnacledb.base.serializable import Serializable
 from pinnacledb.db.base.query import CompoundSelect, Select
 from pinnacledb.db.ibis.field_types import FieldType
@@ -263,7 +263,7 @@ class PredictMixin:
         dependencies: t.Sequence[Job] = (),
         **kwargs,
     ):
-        from pinnacledb.container.listener import Listener
+        from pinnacledb.components.listener import Listener
 
         return db.add(
             Listener(

@@ -7,7 +7,7 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.container.metric import Metric
+from pinnacledb.components.metric import Metric
 from pinnacledb.db.mongodb.query import Collection
 
 

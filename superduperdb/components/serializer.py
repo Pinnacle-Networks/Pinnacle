@@ -1,7 +1,7 @@
 import dataclasses as dc
 import typing as t
 
-from pinnacledb.container.component import Component
+from pinnacledb.components.component import Component
 from pinnacledb.misc.serialization import serializers
 
 if t.TYPE_CHECKING:

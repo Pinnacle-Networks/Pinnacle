@@ -4,8 +4,8 @@ import bson
 from bson.objectid import ObjectId
 
 from pinnacledb import CFG
-from pinnacledb.container.encoder import Encodable, Encoder
-from pinnacledb.container.schema import Schema
+from pinnacledb.components.encoder import Encodable, Encoder
+from pinnacledb.components.schema import Schema
 from pinnacledb.misc.files import get_file_from_uri
 
 ContentType = t.Union[t.Dict, Encodable]

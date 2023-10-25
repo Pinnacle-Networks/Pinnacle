@@ -5,8 +5,8 @@ import numpy
 from tqdm import tqdm
 
 from pinnacledb.base.artifact import Artifact
-from pinnacledb.container.metric import Metric
-from pinnacledb.container.model import Model, _TrainingConfiguration
+from pinnacledb.components.metric import Metric
+from pinnacledb.components.model import Model, _TrainingConfiguration
 from pinnacledb.base.db import DB
 from pinnacledb.db.base.query import Select
 from pinnacledb.db.query_dataset import QueryDataset

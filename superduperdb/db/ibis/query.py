@@ -11,9 +11,9 @@ import typing as t
 import ibis
 
 from pinnacledb.base.logger import logging
-from pinnacledb.container.component import Component
-from pinnacledb.container.encoder import Encoder
-from pinnacledb.container.schema import Schema
+from pinnacledb.components.component import Component
+from pinnacledb.components.encoder import Encoder
+from pinnacledb.components.schema import Schema
 from pinnacledb.db.base.query import (
     CompoundSelect,
     Insert,

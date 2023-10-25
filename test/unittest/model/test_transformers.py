@@ -6,7 +6,7 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.container.dataset import Dataset
+from pinnacledb.components.dataset import Dataset
 from pinnacledb.base.document import Document as D
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.transformers.model import (

@@ -1,7 +1,7 @@
 import typing as t
 from abc import ABC, abstractmethod
 
-from pinnacledb.container.model import Model
+from pinnacledb.components.model import Model
 
 
 class BaseDataBackend(ABC):

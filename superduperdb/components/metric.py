@@ -2,7 +2,7 @@ import dataclasses as dc
 import typing as t
 
 from pinnacledb.base.artifact import Artifact
-from pinnacledb.container.component import Component
+from pinnacledb.components.component import Component
 
 
 @dc.dataclass

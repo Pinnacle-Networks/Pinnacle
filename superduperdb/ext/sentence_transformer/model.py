@@ -1,4 +1,4 @@
-from pinnacledb.container.model import Model
+from pinnacledb.components.model import Model
 
 
 class SentenceTransformer(Model):

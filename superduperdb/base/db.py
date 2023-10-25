@@ -13,11 +13,11 @@ from dask.distributed import Future
 import pinnacledb as s
 from pinnacledb.base.logger import logging
 from pinnacledb.base import serializable
-from pinnacledb.container.component import Component
+from pinnacledb.components.component import Component
 from pinnacledb.base.document import Document
-from pinnacledb.container.encoder import Encodable, Encoder
+from pinnacledb.components.encoder import Encodable, Encoder
 from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
-from pinnacledb.container.model import Model
+from pinnacledb.components.model import Model
 from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.db.base.backends import vector_searcher_implementations
 from pinnacledb.misc.download import Downloader, gather_uris

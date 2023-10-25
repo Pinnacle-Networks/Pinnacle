@@ -8,7 +8,7 @@ import numpy
 from overrides import override
 
 from pinnacledb.base.artifact import Artifact
-from pinnacledb.container.component import Component
+from pinnacledb.components.component import Component
 from pinnacledb.base.document import Document
 from pinnacledb.db.mongodb.query import Select
 

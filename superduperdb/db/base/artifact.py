@@ -6,7 +6,7 @@ from pinnacledb.misc.tree import tree_find, tree_rewrite
 from pinnacledb.misc.serialization import Info, serializers
 
 if t.TYPE_CHECKING:
-    from pinnacledb.container.component import Component
+    from pinnacledb.components.component import Component
 
 
 def _is_artifact(t: t.Any) -> bool:

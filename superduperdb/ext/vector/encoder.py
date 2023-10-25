@@ -1,4 +1,4 @@
-from pinnacledb.container.encoder import Encoder
+from pinnacledb.components.encoder import Encoder
 from pinnacledb.ext.utils import str_shape
 
 

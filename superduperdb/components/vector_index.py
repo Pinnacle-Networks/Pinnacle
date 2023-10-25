@@ -5,9 +5,9 @@ import typing as t
 from overrides import override
 
 import pinnacledb as s
-from pinnacledb.container.component import Component
+from pinnacledb.components.component import Component
 from pinnacledb.base.document import Document
-from pinnacledb.container.listener import Listener
+from pinnacledb.components.listener import Listener
 from pinnacledb.base.db import DB
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorIndexMeasureType
