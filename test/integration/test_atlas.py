@@ -11,7 +11,7 @@ from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import Model
 from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.ext.vector.encoder import vector
 
 ATLAS_VECTOR_URI = os.environ.get('ATLAS_VECTOR_URI')

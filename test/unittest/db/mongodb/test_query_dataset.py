@@ -1,7 +1,7 @@
 import pytest
 
-from pinnacledb.db.mongodb.query import Collection
-from pinnacledb.db.query_dataset import QueryDataset
+from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.backends.query_dataset import QueryDataset
 
 try:
     import torch

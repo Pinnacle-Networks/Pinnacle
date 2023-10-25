@@ -7,12 +7,12 @@ import torchvision
 
 from pinnacledb.base.document import Document as D
 from pinnacledb.components.schema import Schema
-from pinnacledb.base.db import DB
-from pinnacledb.db.filesystem.artifacts import FileSystemArtifactStore
-from pinnacledb.db.ibis.data_backend import IbisDataBackend
-from pinnacledb.db.ibis.field_types import dtype
-from pinnacledb.db.ibis.query import IbisTable
-from pinnacledb.db.sqlalchemy.metadata import SQLAlchemyMetadata
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
+from pinnacledb.backends.ibis.data_backend import IbisDataBackend
+from pinnacledb.backends.ibis.field_types import dtype
+from pinnacledb.backends.ibis.query import IbisTable
+from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacledb.ext.pillow.image import pil_image
 from pinnacledb.ext.torch.model import TorchModel
 from pinnacledb.ext.torch.tensor import tensor
@@ -52,7 +52,7 @@ def ibis_pandas_db(sqllite_conn):
 
 
 def make_ibis_db(db_conn, metadata_conn, tmp_dir, in_memory=False):
-    return DB(
+    return Datalayer(
         databackend=IbisDataBackend(conn=db_conn, name='ibis', in_memory=in_memory),
         metadata=SQLAlchemyMetadata(conn=metadata_conn.con, name='ibis'),
         artifact_store=FileSystemArtifactStore(conn=tmp_dir, name='ibis'),

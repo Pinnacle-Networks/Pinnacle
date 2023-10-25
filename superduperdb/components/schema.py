@@ -4,7 +4,7 @@ from functools import cached_property
 
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
-from pinnacledb.db.ibis.field_types import dtype
+from pinnacledb.backends.ibis.field_types import dtype
 
 
 @dc.dataclass

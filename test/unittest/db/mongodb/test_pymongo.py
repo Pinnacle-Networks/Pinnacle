@@ -1,6 +1,6 @@
 import pytest
 
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import Collection
 
 try:
     import torch

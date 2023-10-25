@@ -1,7 +1,7 @@
 import random
 import typing as t
 
-from pinnacledb.db.base.query import Select
+from pinnacledb.backends.base.query import Select
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
 

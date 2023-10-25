@@ -16,7 +16,7 @@ from tqdm import tqdm
 from pinnacledb import CFG, logging
 from pinnacledb.base.document import Document
 from pinnacledb.base.serializable import Serializable
-from pinnacledb.db.base.query import Insert, Select
+from pinnacledb.backends.base.query import Insert, Select
 
 
 class TimeoutException(Exception):

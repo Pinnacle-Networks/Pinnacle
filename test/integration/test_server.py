@@ -12,7 +12,7 @@ except ImportError:
 
 from pinnacledb import CFG
 from pinnacledb.base.document import Document
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.server.client import Client
 from pinnacledb.server.server import make_flask_app
 

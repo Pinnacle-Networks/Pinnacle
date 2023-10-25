@@ -17,9 +17,9 @@ from transformers import (
 from pinnacledb.base.artifact import Artifact
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.model import Model, _TrainingConfiguration
-from pinnacledb.base.db import DB
-from pinnacledb.db.base.query import Select
-from pinnacledb.db.query_dataset import query_dataset_factory
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.backends.base.query import Select
+from pinnacledb.backends.query_dataset import query_dataset_factory
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
 _DEFAULT_PREFETCH_SIZE: int = 100
@@ -138,7 +138,7 @@ class Pipeline(Model):
         y: str,
         configuration: t.Optional[_TrainingConfiguration] = None,
         data_prefetch: bool = False,
-        db: t.Optional[DB] = None,
+        db: t.Optional[Datalayer] = None,
         metrics: t.Optional[t.Sequence[Metric]] = None,
         prefetch_size: int = _DEFAULT_PREFETCH_SIZE,
         select: t.Optional[Select] = None,

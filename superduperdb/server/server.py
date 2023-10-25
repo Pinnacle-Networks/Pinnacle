@@ -7,7 +7,7 @@ from flask import Flask, jsonify, make_response, request
 from pinnacledb import CFG
 from pinnacledb.base.document import load_bson, load_bsons
 from pinnacledb.base.serializable import Serializable
-from pinnacledb.db.base.artifact import ArtifactStore
+from pinnacledb.backends.base.artifact import ArtifactStore
 from pinnacledb.base.build import build_datalayer
 from pinnacledb.misc.serialization import serializers
 

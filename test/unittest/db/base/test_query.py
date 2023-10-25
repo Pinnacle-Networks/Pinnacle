@@ -3,7 +3,7 @@ from pinnacledb.base.document import Document
 
 def test_execute_insert_and_find(empty):
     from pinnacledb.base.document import Document
-    from pinnacledb.db.mongodb.query import Collection
+    from pinnacledb.backends.mongodb.query import Collection
 
     collection = Collection('documents')
     collection.insert_many([Document({'this': 'is a test'})]).execute(empty)
@@ -13,7 +13,7 @@ def test_execute_insert_and_find(empty):
 
 def test_execute_complex_query(empty):
     from pinnacledb.base.document import Document
-    from pinnacledb.db.mongodb.query import Collection
+    from pinnacledb.backends.mongodb.query import Collection
 
     collection = Collection('documents')
     collection.insert_many(
@@ -26,7 +26,7 @@ def test_execute_complex_query(empty):
 
 
 def test_execute_like_queries(with_vector_index):
-    from pinnacledb.db.mongodb.query import Collection
+    from pinnacledb.backends.mongodb.query import Collection
 
     collection = Collection('documents')
 

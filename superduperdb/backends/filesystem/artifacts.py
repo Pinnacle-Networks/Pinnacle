@@ -6,7 +6,7 @@ import uuid
 import click
 
 from pinnacledb.base.logger import logging
-from pinnacledb.db.base.artifact import ArtifactStore
+from pinnacledb.backends.base.artifact import ArtifactStore
 from pinnacledb.misc.colors import Colors
 
 

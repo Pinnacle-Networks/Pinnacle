@@ -8,7 +8,7 @@ import pinnacledb as s
 from pinnacledb.components.component import Component
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
-from pinnacledb.base.db import DB
+from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorIndexMeasureType
 
@@ -56,7 +56,7 @@ class VectorIndex(Component):
     type_id: t.ClassVar[str] = 'vector_index'
 
     @override
-    def on_create(self, db: DB) -> None:
+    def on_create(self, db: Datalayer) -> None:
         if s.CFG.vector_search == s.CFG.data_backend:
             if (create := getattr(db.databackend, 'create_vector_index', None)) is None:
                 msg = 'VectorIndex is not supported by the current database backend'
@@ -65,7 +65,7 @@ class VectorIndex(Component):
             create(self)
 
     @override
-    def on_load(self, db: DB) -> None:
+    def on_load(self, db: Datalayer) -> None:
         if isinstance(self.indexing_listener, str):
             self.indexing_listener = t.cast(
                 Listener, db.load('listener', self.indexing_listener)

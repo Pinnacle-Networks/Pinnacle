@@ -10,9 +10,9 @@ import requests
 from pinnacledb.components.component import Component
 from pinnacledb.base.document import dump_bsons, load_bsons
 from pinnacledb.base.serializable import Serializable
-from pinnacledb.db.base.artifact import ArtifactStore
-from pinnacledb.base.db import ExecuteQuery
-from pinnacledb.db.base.query import Delete, Insert, Like, Select, Update
+from pinnacledb.backends.base.artifact import ArtifactStore
+from pinnacledb.base.datalayer import ExecuteQuery
+from pinnacledb.backends.base.query import Delete, Insert, Like, Select, Update
 from pinnacledb.misc.serialization import serializers
 
 

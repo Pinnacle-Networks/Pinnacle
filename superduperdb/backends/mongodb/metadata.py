@@ -6,7 +6,7 @@ from pymongo.results import DeleteResult, InsertOneResult, UpdateResult
 
 from pinnacledb.base.logger import logging
 from pinnacledb.components.component import Component
-from pinnacledb.db.base.metadata import MetaDataStore
+from pinnacledb.backends.base.metadata import MetaDataStore
 from pinnacledb.misc.colors import Colors
 
 

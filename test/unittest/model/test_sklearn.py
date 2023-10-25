@@ -7,7 +7,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 
 from pinnacledb.base.document import Document
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.ext.sklearn.model import Estimator
 
 

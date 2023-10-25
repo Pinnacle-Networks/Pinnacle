@@ -7,7 +7,7 @@ import tdir
 from pinnacledb import CFG
 from pinnacledb.base.document import Document
 from pinnacledb.misc.download import Fetcher
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.ext.pillow.image import pil_image
 
 remote = os.environ.get('SDDB_REMOTE_TEST', 'local')

@@ -4,10 +4,10 @@ import mongomock
 import pymongo
 
 import pinnacledb as s
-from pinnacledb.db.base.backends import data_backends, metadata_stores
-from pinnacledb.base.db import DB
-from pinnacledb.db.filesystem.artifacts import FileSystemArtifactStore
-from pinnacledb.db.mongodb.artifacts import MongoArtifactStore
+from pinnacledb.backends.base.backends import data_backends, metadata_stores
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
+from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.server.dask_client import dask_client
 
 
@@ -25,7 +25,7 @@ def build_artifact_store(cfg):
         raise ValueError(f'Unknown artifact store: {cfg.artifact_store}')
 
 
-def build_datalayer(cfg=None, **kwargs) -> DB:
+def build_datalayer(cfg=None, **kwargs) -> Datalayer:
     """
     Build db as per ``db = pinnacle(db)`` from configuration.
 
@@ -54,7 +54,7 @@ def build_datalayer(cfg=None, **kwargs) -> DB:
 
     databackend = build(cfg.data_backend, data_backends)
 
-    db = DB(
+    db = Datalayer(
         databackend=databackend,
         metadata=(
             build(cfg.metadata_store, metadata_stores)
