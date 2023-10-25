@@ -58,7 +58,7 @@ def _serialize(item: t.Any) -> t.Dict[str, t.Any]:
 
     d = {k: unpack(k, v) for k, v in item.dict().items()}
 
-    from pinnacledb.container.component import Component
+    from pinnacledb.components.component import Component
 
     to_add = {}
     if isinstance(item, Component):

@@ -7,7 +7,7 @@ import uuid
 import click
 import requests
 
-from pinnacledb.container.component import Component
+from pinnacledb.components.component import Component
 from pinnacledb.base.document import dump_bsons, load_bsons
 from pinnacledb.base.serializable import Serializable
 from pinnacledb.db.base.artifact import ArtifactStore

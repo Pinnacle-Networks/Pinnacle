@@ -11,7 +11,7 @@ except ImportError:
     torch = None
 
 from pinnacledb.base.document import Document
-from pinnacledb.container.listener import Listener
+from pinnacledb.components.listener import Listener
 from pinnacledb.db.mongodb.query import Collection
 
 RETRY_TIMEOUT = 1

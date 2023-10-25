@@ -2,8 +2,8 @@ import dataclasses as dc
 import typing as t
 from functools import cached_property
 
-from pinnacledb.container.component import Component
-from pinnacledb.container.encoder import Encoder
+from pinnacledb.components.component import Component
+from pinnacledb.components.encoder import Encoder
 from pinnacledb.db.ibis.field_types import dtype
 
 

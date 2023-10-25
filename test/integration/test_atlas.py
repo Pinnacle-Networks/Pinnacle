@@ -8,9 +8,9 @@ import pytest
 import pinnacledb as s
 from pinnacledb import pinnacle
 from pinnacledb.base.document import Document
-from pinnacledb.container.listener import Listener
-from pinnacledb.container.model import Model
-from pinnacledb.container.vector_index import VectorIndex
+from pinnacledb.components.listener import Listener
+from pinnacledb.components.model import Model
+from pinnacledb.components.vector_index import VectorIndex
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.vector.encoder import vector
 

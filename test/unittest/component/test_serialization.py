@@ -11,7 +11,7 @@ except ImportError:
 from sklearn.svm import SVC
 
 from pinnacledb.base.artifact import Artifact
-from pinnacledb.container.model import Model
+from pinnacledb.components.model import Model
 from pinnacledb.ext.sklearn.model import Estimator
 
 

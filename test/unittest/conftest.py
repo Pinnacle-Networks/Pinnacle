@@ -16,11 +16,11 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.container.dataset import Dataset
+from pinnacledb.components.dataset import Dataset
 from pinnacledb.base.document import Document
-from pinnacledb.container.listener import Listener
-from pinnacledb.container.metric import Metric
-from pinnacledb.container.vector_index import VectorIndex
+from pinnacledb.components.listener import Listener
+from pinnacledb.components.metric import Metric
+from pinnacledb.components.vector_index import VectorIndex
 from pinnacledb.base.db import DB
 from pinnacledb.db.mongodb.query import Collection
 from pinnacledb.ext.numpy.array import array

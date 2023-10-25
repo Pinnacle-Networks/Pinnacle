@@ -1,4 +1,4 @@
-from pinnacledb.container import vector_index
+from pinnacledb.components import vector_index
 
 
 def test_ibatch():
