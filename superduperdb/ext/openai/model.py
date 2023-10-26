@@ -11,7 +11,6 @@ import tqdm
 from openai import Audio, ChatCompletion, Embedding, Image, Model as OpenAIModel
 from openai.error import RateLimitError, ServiceUnavailableError, Timeout, TryAgain
 
-import pinnacledb as s
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.model import PredictMixin
@@ -22,11 +21,6 @@ from pinnacledb.misc.retry import Retry
 retry = Retry(
     exception_types=(RateLimitError, ServiceUnavailableError, Timeout, TryAgain)
 )
-
-
-def init_fn():
-    s.logging.info('Setting OpenAI api-key...')
-    os.environ['OPENAI_API_KEY'] = s.CFG.apis.providers['openai'].api_key
 
 
 @cache
