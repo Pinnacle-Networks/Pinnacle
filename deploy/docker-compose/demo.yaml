@@ -21,7 +21,7 @@ services:
   pinnacledb:
     depends_on:
       - mongodb
-    image: pinnacledb/pinnacledb:0.0.13
+    image: pinnacledb/pinnacledb:0.0.14
     ports:
       - "8888:8888"
     command: ["jupyter", "lab", "--ip='*'", "--LabApp.token=''"]
