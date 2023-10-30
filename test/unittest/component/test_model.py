@@ -33,3 +33,6 @@ def test_predict(random_data, float_tensors_32):
         distributed=False,
         listen=True,
     )
+
+
+# TODO: test pinnacle.base.model(predict, fit...)

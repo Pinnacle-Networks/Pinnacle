@@ -10,7 +10,7 @@ from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
 from pinnacledb.ext.openai.model import OpenAIChatCompletion, OpenAIEmbedding
 
-CASSETTE_DIR = 'test/unittest/model/cassettes'
+CASSETTE_DIR = 'test/unittest/ext/cassettes'
 
 
 @pytest.fixture
