@@ -26,6 +26,7 @@ do
     --resolver backtracking \
     --upgrade \
     pyproject.toml
+
+    sed -i '/^pinnacledb\[/d' .github/ci-pinned-requirements/"$dep".txt
 done
 
-sed -I '' '/pinnacledb\[/d' .github/ci-pinned-requirements/dev.txt
