@@ -2,6 +2,7 @@
 FROM jupyterhub/k8s-singleuser-sample:3.1.0
 
 ARG SUPERDUPERDB_EXTRAS
+ARG SUPERDUPERDB_VERSION=latest
 
 ENV NB_USER=pinnacle \
     NB_UID=1000 \
@@ -48,12 +49,12 @@ ENV PATH="${HOME}/.local/bin:$PATH"
 # ---------------
 RUN pip install --no-cache-dir --upgrade \
     # SuperDuperDB
-    pinnacledb[${SUPERDUPERDB_EXTRAS}] \
+    pinnacledb[${SUPERDUPERDB_EXTRAS}]==${SUPERDUPERDB_VERSION} \
     # JupyterLab extensions \
     theme-darcula \
     ipywidgets \
-    # jupyterlab-lsp \
-    # 'python-lsp-server[all]' \
+    jupyterlab-lsp \
+    'python-lsp-server[all]' \
     # Purge pip cache
     && pip cache purge
 
