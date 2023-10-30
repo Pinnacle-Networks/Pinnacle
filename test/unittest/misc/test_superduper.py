@@ -36,3 +36,6 @@ def test_pinnacle_raise():
 
     with pytest.raises(NotImplementedError):
         pinnacle("string")
+
+
+# TODO: add MongoDbTyper test
