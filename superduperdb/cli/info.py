@@ -7,7 +7,6 @@ import sys
 from pathlib import Path
 
 from pinnacledb import ROOT
-from pinnacledb.misc import run
 
 from . import command
 
