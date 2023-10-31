@@ -72,8 +72,7 @@ COPY --chown=pinnacle ./deploy/images/pinnacledb/apputils-extension/themes.jupyt
 # ---------------
 FROM base AS build_sandbox
 ONBUILD COPY --chown=pinnacle ./ ${HOME}/pinnacledb
-ONBUILD WORKDIR ${HOME}/pinnacledb
-ONBUILD RUN pip install --upgrade \
+ONBUILD RUN cd ${HOME}/pinnacledb; pip install --upgrade \
     .[${SUPERDUPERDB_EXTRAS}]    \
     # Purge pip cache
     && pip cache purge
