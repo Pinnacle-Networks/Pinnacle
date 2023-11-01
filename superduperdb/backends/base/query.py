@@ -6,9 +6,9 @@ from typing import Any
 
 import pandas as pd
 
+from pinnacledb import logging
 from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.base.document import Document
-from pinnacledb.base.logger import logging
 from pinnacledb.base.serializable import Serializable
 
 GREEN = '\033[92m'

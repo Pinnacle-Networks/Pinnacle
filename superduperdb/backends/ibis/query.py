@@ -11,6 +11,7 @@ import typing as t
 
 import ibis
 
+from pinnacledb import logging
 from pinnacledb.backends.base.query import (
     CompoundSelect,
     Insert,
@@ -23,7 +24,6 @@ from pinnacledb.backends.base.query import (
     _ReprMixin,
 )
 from pinnacledb.backends.ibis.cursor import SuperDuperIbisCursor
-from pinnacledb.base.logger import logging
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.schema import Schema

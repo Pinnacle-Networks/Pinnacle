@@ -4,8 +4,8 @@ import click
 import tenacity
 from pymongo.results import DeleteResult, InsertOneResult, UpdateResult
 
+from pinnacledb import logging
 from pinnacledb.backends.base.metadata import MetaDataStore
-from pinnacledb.base.logger import logging
 from pinnacledb.components.component import Component
 from pinnacledb.misc.colors import Colors
 
