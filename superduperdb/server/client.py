@@ -1,12 +1,12 @@
 import dataclasses as dc
 import inspect
-import logging
 import typing as t
 import uuid
 
 import click
 import requests
 
+from pinnacledb import logging
 from pinnacledb.backends.base.artifact import ArtifactStore
 from pinnacledb.backends.base.query import Delete, Insert, Like, Select, Update
 from pinnacledb.base.datalayer import ExecuteQuery

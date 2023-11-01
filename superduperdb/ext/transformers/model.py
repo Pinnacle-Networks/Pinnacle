@@ -1,6 +1,5 @@
 import dataclasses as dc
 import functools
-import logging
 import random
 import re
 import typing as t
@@ -14,6 +13,7 @@ from transformers import (
     pipeline as _pipeline,
 )
 
+from pinnacledb import logging
 from pinnacledb.backends.base.query import Select
 from pinnacledb.backends.query_dataset import query_dataset_factory
 from pinnacledb.base.artifact import Artifact
