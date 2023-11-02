@@ -246,8 +246,6 @@ const config = {
         darkTheme: darkCodeTheme,
       },
       metadata: [
-        {property: 'og:title', content: 'SuperDuperDB: Build and deploy AI with your database!'},
-        {property: 'og:url', content: 'https://docs.pinnacledb.com'},
         {property: 'og:image', content: 'https://docs.pinnacledb.com/img/superDuperDB_img.png'},
       ],
     }),
