@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1.3
+# syntax = docker/dockerfile:experimental
 
 # BUILD_ENV choses whether to use local source (sandbox) or released wheel (pypi).
 ARG BUILD_ENV=pypi
@@ -36,7 +36,7 @@ RUN apt-get update \
 
 # Replace the default Jupyter user with a SuperDuper user
 # ---------------
-RUN deluser jovyan \
+RUN deluser jovyan && rm -rf /home/jovyan \
     && adduser \
         --disabled-password \
         --gecos "SuperDuper User" \
@@ -55,18 +55,19 @@ ENV PATH="${HOME}/.local/bin:$PATH"
 
 # Install common dependencies
 # ---------------
-RUN pip install --no-cache-dir --upgrade \
+RUN --mount=type=cache,mode=0755,target=/root/.cache/pip pip install --upgrade \
     # JupyterLab extensions \
     theme-darcula \
     ipywidgets \
     jupyterlab-lsp \
-    'python-lsp-server[all]'
+    'python-lsp-server[all]' \
+    "dask-labextension>=5"
 
 
 # Install Jupyterlab extensions
 # ---------------
-COPY --chown=pinnacle ./deploy/images/pinnacledb/labextensions/@pinnacledb ${HOME}/.local/share/jupyter/labextensions/@pinnacledb
-COPY --chown=pinnacle ./deploy/images/pinnacledb/apputils-extension/themes.jupyterlab-settings ${HOME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings
+COPY --chown=pinnacle ./images/pinnacledb/labextensions/@pinnacledb ${HOME}/.local/share/jupyter/labextensions/@pinnacledb
+COPY --chown=pinnacle ./images/pinnacledb/apputils-extension/themes.jupyterlab-settings ${HOME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings
 
 
 # ---------------
@@ -74,7 +75,8 @@ COPY --chown=pinnacle ./deploy/images/pinnacledb/apputils-extension/themes.jupyt
 # ---------------
 FROM base AS build_sandbox
 ONBUILD COPY --chown=pinnacle ./ ${HOME}/pinnacledb
-ONBUILD RUN cd ${HOME}/pinnacledb; pip install --upgrade \
+ONBUILD WORKDIR ${HOME}/pinnacledb
+ONBUILD RUN --mount=type=cache,mode=0755,target=/root/.cache/pip pip install --upgrade \
     .[${SUPERDUPERDB_EXTRAS}]    \
     # Purge pip cache
     && pip cache purge
@@ -85,7 +87,7 @@ ONBUILD RUN cd ${HOME}/pinnacledb; pip install --upgrade \
 # ---------------
 FROM base AS build_pypi
 ONBUILD COPY --chown=pinnacle ${PWD}/examples ./examples
-ONBUILD RUN pip install --no-cache-dir --upgrade \
+ONBUILD RUN --mount=type=cache,mode=0755,target=/root/.cache/pip pip install --upgrade \
     pinnacledb[${SUPERDUPERDB_EXTRAS}] \
     # Purge pip cache
     && pip cache purge
