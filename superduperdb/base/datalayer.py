@@ -15,6 +15,7 @@ from pinnacledb import logging
 from pinnacledb.backends.base.backends import vector_searcher_implementations
 from pinnacledb.base import serializable
 from pinnacledb.base.document import Document
+from pinnacledb.cdc.cdc import DatabaseChangeDataCapture
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encodable, Encoder
 from pinnacledb.components.model import Model
@@ -29,7 +30,6 @@ from pinnacledb.vector_search.interface import FastVectorSearcher
 from pinnacledb.vector_search.update_tasks import copy_vectors, delete_vectors
 
 from ..backends.base.artifact import ArtifactStore
-from ..backends.base.cdc import DatabaseChangeDataCapture
 from ..backends.base.data_backend import BaseDataBackend
 from ..backends.base.metadata import MetaDataStore
 from ..backends.base.query import Delete, Insert, RawQuery, Select, Update
