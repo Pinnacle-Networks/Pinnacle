@@ -7,8 +7,8 @@ from enum import Enum
 from pymongo.change_stream import CollectionChangeStream
 
 from pinnacledb import logging
-from pinnacledb.backends.base import cdc
 from pinnacledb.backends.mongodb import query
+from pinnacledb.cdc import cdc
 from pinnacledb.misc.runnable.runnable import Event
 
 from .base import CachedTokens, TokenType
