@@ -13,6 +13,7 @@ from dask.distributed import Future
 import pinnacledb as s
 from pinnacledb import logging
 from pinnacledb.backends.base.backends import vector_searcher_implementations
+from pinnacledb.backends.ibis.query import Table
 from pinnacledb.base import serializable
 from pinnacledb.base.document import Document
 from pinnacledb.cdc.cdc import DatabaseChangeDataCapture
@@ -332,6 +333,8 @@ class Datalayer:
             return self.insert(query, *args, **kwargs)
         if isinstance(query, Select):
             return self.select(query, *args, **kwargs)
+        if isinstance(query, Table):
+            return self.select(query.to_query(), *args, **kwargs)
         if isinstance(query, Update):
             return self.update(query, *args, **kwargs)
         if isinstance(query, RawQuery):
