@@ -11,24 +11,26 @@ To check that everything is working correctly cut and paste this code into a Jup
 ```python
 import numpy as np
 from mongomock import MongoClient
-from pinnacledb.container.document import Document as D
-from pinnacledb.ext.numpy.array import array
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.base.document import Document as D
+from pinnacledb.components.model import Model
+from pinnacledb.ext.numpy import array
+from pinnacledb.backends.mongodb.query import Collection
 import pinnacledb as s
 
 db = s.pinnacle(MongoClient().documents)
-collection = Collection(name='docs')
+collection = Collection('docs')
 
 a = array('float64', shape=(32,))
+db.add(a)
 
 db.execute(
     collection.insert_many([
         D({'x': a(np.random.randn(32))})
         for _ in range(100)
-    ], encoders=(a,))
+    ])
 )
 
-model = s.container.model.Model(
+model = Model(
     identifier='test-model',
     object=lambda x: x + 1,
     encoder=a,
