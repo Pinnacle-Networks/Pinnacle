@@ -22,7 +22,7 @@ As usual, we instantiate the `Datalayer` like this
 ```python
 import os
 from pinnacledb import pinnacle
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb import Collection
 
 # Uncomment one of the following lines to use a bespoke MongoDB deployment
 # For testing the default connection is to mongomock
@@ -49,8 +49,8 @@ overhead or job definition required.
 import glob
 import random
 
-from pinnacledb.container.document import Document as D
-from pinnacledb.ext.pillow.image import pil_image as i
+from pinnacledb import Document as D
+from pinnacledb.ext.pillow import pil_image as i
 
 uris = [f'file://{x}' for x in glob.glob('valsmall2014/*.jpg')]
 
@@ -83,8 +83,7 @@ import torchvision.models as models
 
 import warnings
 
-from pinnacledb.ext.torch.model import TorchModel
-from pinnacledb.ext.torch.tensor import tensor
+from pinnacledb.ext.torch import TorchModel, tensor
 
 t = transforms.Compose([
     transforms.Resize((224, 224)),   #must same as here

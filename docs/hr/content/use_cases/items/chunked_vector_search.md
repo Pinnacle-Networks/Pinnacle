@@ -36,8 +36,8 @@ As before we insert the data using `pymongo`-similar syntax:
 
 ```python
 import json
-from pinnacledb.db.mongodb.query import Collection
-from pinnacledb.container.document import Document as D
+from pinnacledb.backends.mongodb import Collection
+from pinnacledb import Document as D
 
 with open('wikipedia-sample.json') as f:
     data = json.load(f)[:100]
@@ -49,8 +49,6 @@ Let's have a look at a document:
 
 
 ```python
-from pinnacledb.db.mongodb.query import Collection
-
 r = db.execute(Collection('wikipedia').find_one()).unpack()
 r
 ```
@@ -60,7 +58,7 @@ the raw text into parts, and save those parts in another collecion:
 
 
 ```python
-from pinnacledb.container.model import Model
+from pinnacledb import Model
 
 def splitter(r):
     out = [r['title']]
@@ -103,10 +101,8 @@ We can search this data in a manner similar to previously:
 
 
 ```python
-from pinnacledb.container.vector_index import VectorIndex
-from pinnacledb.container.listener import Listener
-from pinnacledb.ext.numpy.array import array
-from pinnacledb.ext.openai.model import OpenAIEmbedding
+from pinnacledb import VectorIndex, Listener
+from pinnacledb.ext.openai import OpenAIEmbedding
 
 model = OpenAIEmbedding(model='text-embedding-ada-002')
 
@@ -134,8 +130,8 @@ highlighting which text was found to be relevant:
 
 
 ```python
-from pinnacledb.db.mongodb.query import Collection
-from pinnacledb.container.document import Document as D
+from pinnacledb.backends.mongodb import Collection
+from pinnacledb import Document as D
 from IPython.display import *
 
 query = 'politics'

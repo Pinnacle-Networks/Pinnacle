@@ -12,15 +12,12 @@ data-backend.
 
 
 ```python
-from datasets import load_dataset, load_metric
+from datasets import load_dataset
 import numpy
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-import pinnacledb
-from pinnacledb.misc.pinnacle import pinnacle
-from pinnacledb.container.document import Document as D
-from pinnacledb.ext.transformers.model import TransformersTrainerConfiguration, Pipeline
-from pinnacledb.container.dataset import Dataset
+from pinnacledb import Document as D, Dataset 
+from pinnacledb.ext.transformers import TransformersTrainerConfiguration, Pipeline
 ```
 
 SuperDuperDB supports MongoDB as a databackend.
@@ -30,7 +27,7 @@ to a SuperDuper Datalayer:
 
 ```python
 import os
-from pinnacledb.db.mongodb.query import Collection
+from pinnacledb.backends.mongodb import Collection
 
 # Uncomment one of the following lines to use a bespoke MongoDB deployment
 # For testing the default connection is to mongomock
@@ -118,7 +115,7 @@ Now we're ready to train the model:
 
 
 ```python
-from pinnacledb.container.metric import Metric
+from pinnacledb import Metric
 
 model.fit(
     X='text',
