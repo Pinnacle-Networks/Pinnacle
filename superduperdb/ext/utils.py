@@ -1,5 +1,11 @@
+import base64
 import os
 import typing as t
+
+import numpy as np
+
+if t.TYPE_CHECKING:
+    from pinnacledb.components.encoder import Encoder
 
 
 def str_shape(shape: t.Sequence[int]) -> str:
@@ -23,3 +29,22 @@ def format_prompt(X: str, prompt: str, context: t.Optional[t.List[str]] = None) 
             raise ValueError(f'A context is required for prompt {prompt}')
     else:
         return prompt + X
+
+
+def pinnacleencode(object):
+    if isinstance(object, np.ndarray):
+        from pinnacledb.ext.numpy import array
+
+        encoded = array(dtype=object.dtype, shape=object.shape).encode(object)
+        encoded['shape'] = object.shape
+        encoded['dtype'] = str(object.dtype)
+        return encoded
+    return object
+
+
+def pinnacledecode(r: t.Any, encoders: t.List['Encoder']):
+    if isinstance(r, dict):
+        encoder = encoders[r['_content']['encoder']]
+        b = base64.b64decode(r['_content']['bytes'])
+        return encoder.decode(b).x
+    return r
