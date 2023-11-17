@@ -8,6 +8,11 @@ from typing import Iterator
 
 import pytest
 
+# ruff: noqa: E402
+from pinnacledb.base import config as _config
+
+_config._CONFIG_IMMUTABLE = False
+
 import pinnacledb as s
 from pinnacledb import logging
 from pinnacledb.base import pinnacle
