@@ -83,7 +83,6 @@ ONBUILD WORKDIR ${HOME}/pinnacledb
 ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip install --upgrade --user \
     .[${SUPERDUPERDB_EXTRAS}]
 
-
 # ---------------
 # Build Release
 # ---------------
@@ -96,7 +95,7 @@ ONBUILD RUN pip install --upgrade --user \
     pinnacledb[${SUPERDUPERDB_EXTRAS}] \
     # Purge pip cache
     && pip cache purge
-
+ONBUILD WORKDIR ${HOME}/examples
 
 # ---------------
 # Select Build
