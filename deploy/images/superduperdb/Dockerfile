@@ -80,7 +80,7 @@ ONBUILD ARG SUPERDUPERDB_EXTRAS="' '"
 ONBUILD COPY --chown=pinnacle ./ ${HOME}/pinnacledb
 ONBUILD WORKDIR ${HOME}/pinnacledb
 # Do our best for caching.
-ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip install --upgrade --user \
+ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip install --upgrade --user --editable \
     .[${SUPERDUPERDB_EXTRAS}]
 
 # ---------------
