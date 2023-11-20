@@ -6,7 +6,7 @@ from anthropic import APIConnectionError, APIError, APIStatusError, APITimeoutEr
 
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
-from pinnacledb.components.model import PredictMixin
+from pinnacledb.components.model import Predictor
 from pinnacledb.ext.utils import format_prompt, get_key
 from pinnacledb.misc.retry import Retry
 
@@ -18,7 +18,7 @@ KEY_NAME = 'ANTHROPIC_API_KEY'
 
 
 @dc.dataclass
-class Anthropic(Component, PredictMixin):
+class Anthropic(Component, Predictor):
     """Anthropic predictor.
 
     :param model: The model to use, e.g. ``'claude-2'``.

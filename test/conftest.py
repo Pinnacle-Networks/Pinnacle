@@ -10,7 +10,7 @@ import pytest
 
 import pinnacledb as s
 from pinnacledb import logging
-from pinnacledb.misc import pinnacle
+from pinnacledb.base import pinnacle
 
 try:
     import torch
