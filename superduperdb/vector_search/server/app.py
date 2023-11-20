@@ -7,7 +7,7 @@ from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.server.app import DatalayerDependency, SuperDuperApp
 from pinnacledb.vector_search.server import service
 
-port = int(CFG.server.vector_search.split(':')[-1])
+port = int(CFG.cluster.vector_search.split(':')[-1])
 app = SuperDuperApp('vector_search', port=port)
 
 
