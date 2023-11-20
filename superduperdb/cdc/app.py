@@ -3,7 +3,7 @@ from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.components.listener import Listener
 from pinnacledb.server import app as pinnacleapp
 
-port = int(CFG.server.cdc.split(':')[-1])
+port = int(CFG.cluster.cdc.split(':')[-1])
 app = pinnacleapp.SuperDuperApp('cdc', port=port)
 
 
