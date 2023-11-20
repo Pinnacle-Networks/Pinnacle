@@ -1,6 +1,6 @@
 # ruff: noqa: E402
 from .base import config, configs, jsonable, logger
-from .misc.pinnacle import pinnacle
+from .base.pinnacle import pinnacle
 
 ICON = '🔮'
 CFG = configs.CFG

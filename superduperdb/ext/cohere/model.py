@@ -7,7 +7,7 @@ from cohere.error import CohereAPIError, CohereConnectionError
 
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
-from pinnacledb.components.model import PredictMixin
+from pinnacledb.components.model import Predictor
 from pinnacledb.components.vector_index import vector
 from pinnacledb.ext.utils import format_prompt, get_key
 from pinnacledb.misc.retry import Retry
@@ -18,7 +18,7 @@ KEY_NAME = 'COHERE_API_KEY'
 
 
 @dc.dataclass
-class Cohere(Component, PredictMixin):
+class Cohere(Component, Predictor):
     """Cohere predictor
 
     :param model: The model to use, e.g. ``'base-light'``.

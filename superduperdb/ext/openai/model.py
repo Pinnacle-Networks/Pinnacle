@@ -18,7 +18,7 @@ from openai import (
 
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
-from pinnacledb.components.model import PredictMixin
+from pinnacledb.components.model import Predictor
 from pinnacledb.components.vector_index import vector
 from pinnacledb.misc.compat import cache
 from pinnacledb.misc.retry import Retry
@@ -32,7 +32,7 @@ def _available_models():
 
 
 @dc.dataclass
-class OpenAI(Component, PredictMixin):
+class OpenAI(Component, Predictor):
     """OpenAI predictor.
 
     :param model: The model to use, e.g. ``'text-embedding-ada-002'``.
@@ -48,9 +48,6 @@ class OpenAI(Component, PredictMixin):
     takes_context: bool = False
     encoder: t.Union[Encoder, str, None] = None
     model_update_kwargs: dict = dc.field(default_factory=dict)
-
-    #: A unique name for the class
-    type_id: t.ClassVar[str] = 'model'
 
     @property
     def child_components(self):

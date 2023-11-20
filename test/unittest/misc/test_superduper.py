@@ -6,7 +6,7 @@ except ImportError:
     torch = None
 
 from pinnacledb import pinnacle
-from pinnacledb.misc.pinnacle import SklearnTyper, TorchTyper
+from pinnacledb.base.pinnacle import SklearnTyper, TorchTyper
 
 
 def test_sklearn_typer():
@@ -31,10 +31,10 @@ def test_pinnacle_model():
 
 
 def test_pinnacle_raise():
-    with pytest.raises(NotImplementedError):
+    with pytest.raises(ValueError):
         pinnacle(1)
 
-    with pytest.raises(NotImplementedError):
+    with pytest.raises(ValueError):
         pinnacle("string")
 
 
