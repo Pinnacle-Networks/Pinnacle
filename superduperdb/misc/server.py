@@ -5,6 +5,7 @@ from functools import lru_cache
 import requests
 
 from pinnacledb import CFG, logging
+from pinnacledb.base import exceptions
 from pinnacledb.ext.utils import pinnacleencode
 
 
@@ -41,8 +42,7 @@ def _request_server(
     if response.status_code != 200:
         error = json.loads(response.content)
         msg = f'Server error at {service} with {response.status_code} :: {error}'
-        logging.error(msg)
-        raise Exception(msg)
+        raise exceptions.ServiceRequestException(msg)
     return result
 
 
