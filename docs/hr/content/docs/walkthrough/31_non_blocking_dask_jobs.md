@@ -12,7 +12,7 @@ To configure this feature, configure:
 ```python
 from pinnacledb import CFG
 
-CFG.production = True
+CFG.mode = 'production'
 ```
 
 When this is so-configured the following functions push their computations to the `dask` cluster:
