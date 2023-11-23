@@ -232,6 +232,11 @@ const config = {
             position: 'left',
           },
           {
+            href: 'https://www.question-the-docs.pinnacledb.com/',
+            label: 'Ask our docs',
+            position: 'left',
+          },
+          {
             href: 'https://github.com/SuperDuperDB/pinnacledb',
             // label: 'GitHub',
             position: 'right',
