@@ -5,9 +5,9 @@ import pandas
 from ibis.backends.base import BaseBackend
 
 from pinnacledb.backends.base.data_backend import BaseDataBackend
-from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.ibis.field_types import FieldType, dtype
 from pinnacledb.backends.ibis.query import Table
+from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacledb.components.model import Model
 from pinnacledb.components.schema import Schema

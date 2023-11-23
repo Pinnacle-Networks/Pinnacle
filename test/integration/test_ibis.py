@@ -6,10 +6,10 @@ import pytest
 import torch.nn
 import torchvision
 
-from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.ibis.query import RawSQL, Table
+from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document as D

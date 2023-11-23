@@ -8,14 +8,22 @@ from typing import Iterator
 
 import pytest
 
+import pinnacledb as s
+from pinnacledb import CFG, logging
+from pinnacledb.backends.mongodb.query import Collection
+
 # ruff: noqa: E402
-from pinnacledb.base import config as _config
+from pinnacledb.base import config as _config, pinnacle
+from pinnacledb.base.build import build_datalayer
+from pinnacledb.base.datalayer import Datalayer
+from pinnacledb.base.document import Document
+from pinnacledb.components.dataset import Dataset
+from pinnacledb.components.listener import Listener
+from pinnacledb.components.vector_index import VectorIndex
+from pinnacledb.ext.pillow.encoder import pil_image
 
 _config._CONFIG_IMMUTABLE = False
 
-import pinnacledb as s
-from pinnacledb import logging
-from pinnacledb.base import pinnacle
 
 try:
     import torch
@@ -25,21 +33,10 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb import CFG
-from pinnacledb.backends.mongodb.query import Collection
-from pinnacledb.base.build import build_datalayer
-from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.base.document import Document
-from pinnacledb.components.dataset import Dataset
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.ext.pillow.encoder import pil_image
-
 GLOBAL_TEST_N_DATA_POINTS = 250
 LOCAL_TEST_N_DATA_POINTS = 5
 
 MONGOMOCK_URI = 'mongomock:///test_db'
-
 
 _sleep = time.sleep
 

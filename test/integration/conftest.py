@@ -12,11 +12,11 @@ except ImportError:
     torch = None
 
 from pinnacledb import CFG
+from pinnacledb.backends.dask.compute import DaskComputeBackend
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.server.dask_client import dask_client
 
 '''
 All pytest fixtures with _package scope_ are defined in this module.
@@ -117,8 +117,8 @@ def local_dask_client(monkeypatch, request):
     monkeypatch.setenv('SUPERDUPERDB_DATA_BACKEND', data_backend)
 
     # Change the default value
-    client = dask_client(
-        uri=CFG.cluster.dask_scheduler,
+    client = DaskComputeBackend(
+        address=CFG.cluster.dask_scheduler,
         local=False,
     )
 

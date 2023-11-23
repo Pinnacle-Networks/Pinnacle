@@ -20,6 +20,7 @@ from pinnacledb.backends.ibis.query import IbisCompoundSelect, Table
 from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base import exceptions
 from pinnacledb.base.artifact import Artifact
+from pinnacledb.base.config import Mode
 from pinnacledb.base.serializable import Serializable
 from pinnacledb.components.component import Component
 from pinnacledb.components.dataset import Dataset
@@ -216,10 +217,9 @@ class Predictor:
                 logging.info(f'Adding model {self.identifier} to db')
                 assert isinstance(self, Component)
                 db.add(self)
-                logging.info('Done.')
 
             if distributed is None:
-                distributed = s.CFG.mode == 'production'
+                distributed = s.CFG.mode == Mode.Production
 
             if listen:
                 assert db is not None
@@ -676,7 +676,7 @@ class Model(Component, Predictor):
                 db.add(self)
 
             if distributed is None:
-                distributed = s.CFG.mode == 'production'
+                distributed = s.CFG.mode == Mode.Production
 
             if distributed:
                 return self.create_fit_job(
