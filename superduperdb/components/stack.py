@@ -4,7 +4,7 @@ import os
 import tarfile
 import typing as t
 
-from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
+from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.base.serializable import Serializable
 
 from .component import Component

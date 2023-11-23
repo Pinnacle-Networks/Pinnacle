@@ -1,8 +1,8 @@
 from ibis.backends.base import BaseBackend
 from pymongo import MongoClient
 
-from pinnacledb.backends.filesystem.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.ibis.data_backend import IbisDataBackend
+from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.metadata import MongoMetaDataStore
