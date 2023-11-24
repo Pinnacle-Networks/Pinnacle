@@ -20,7 +20,6 @@ from pinnacledb.backends.base.query import Delete, Insert, RawQuery, Select, Upd
 from pinnacledb.backends.ibis.query import Table
 from pinnacledb.backends.local.compute import LocalComputeBackend
 from pinnacledb.base import exceptions, serializable
-from pinnacledb.base.config import Mode
 from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.base.document import Document
 from pinnacledb.base.pinnacle import pinnacle
@@ -130,8 +129,7 @@ class Datalayer:
             if self.cdc.running:
                 # In this case, loading has already happened on disk via CDC mechanism
                 return vector_comparison
-
-            if backfill or s.CFG.mode != Mode.Production:
+            if backfill or s.CFG.cluster.vector_search is None:
                 self.backfill_vector_search(vi, vector_comparison)
 
             return FastVectorSearcher(self, vector_comparison, vi.identifier)
