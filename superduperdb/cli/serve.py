@@ -1,18 +1,6 @@
 import subprocess
-import typing as t
-
-import pinnacledb as s
 
 from . import command
-
-
-@command(help='Start server')
-def serve():
-    from pinnacledb.base.build import build_datalayer
-    from pinnacledb.server.server import serve
-
-    db = build_datalayer()
-    serve(db)
 
 
 @command(help='Start local dask scheduler')
@@ -26,22 +14,12 @@ def dask_worker():
 
 
 @command(help='Start local cluster: server, dask and change data capture')
-def local_cluster(on: t.List[str] = []):
-    from pinnacledb.backends.dask.compute import DaskComputeBackend
-    from pinnacledb.backends.mongodb.query import Collection
+def local_cluster():
     from pinnacledb.base.build import build_datalayer
-    from pinnacledb.server.server import serve
+    from pinnacledb.server.cluster import cluster
 
     db = build_datalayer()
-    DaskComputeBackend(
-        address=s.CFG.cluster.dask_scheduler,
-        local=True,
-    )
-    for collection in on:
-        db.cdc.listen(
-            on=Collection(identifier=collection),
-        )
-    serve(db)
+    cluster(db)
 
 
 @command(help='Start vector search server')
