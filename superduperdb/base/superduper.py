@@ -8,7 +8,7 @@ __all__ = ('pinnacle',)
 
 def pinnacle(item: t.Optional[t.Any] = None, **kwargs) -> t.Any:
     """
-    Attempts to automatically wrap an item in a pinnacledb container by
+    Attempts to automatically wrap an item in a pinnacledb component by
     using duck typing to recognize it.
 
     :param item: A database or model
@@ -55,7 +55,7 @@ class _DuckTyper:
         if not dts:
             raise ValueError(
                 f'Couldn\'t auto-identify {item}, please wrap explicitly using '
-                '``pinnacledb.container.*``'
+                '``pinnacledb.components.*``'
             )
 
         if len(dts) == 1:
@@ -75,7 +75,7 @@ class _DuckTyper:
 
     @classmethod
     def create(cls, item: t.Any, **kwargs) -> t.Any:
-        """Create a pinnacledb container for an item that has already been accepted"""
+        """Create a pinnacledb component for an item that has already been accepted"""
         raise NotImplementedError
 
     _DUCK_TYPES: t.List[t.Type] = []
