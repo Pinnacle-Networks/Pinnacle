@@ -79,9 +79,11 @@ FROM base AS build_sandbox
 ONBUILD ARG SUPERDUPERDB_EXTRAS="' '"
 ONBUILD COPY --chown=pinnacle ./ ${HOME}/pinnacledb
 ONBUILD WORKDIR ${HOME}/pinnacledb
-# Do our best for caching.
-ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip install --upgrade --user --editable \
+# Install project dependencies.
+ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip install --user --editable \
     .[${SUPERDUPERDB_EXTRAS}]
+# Install user-defined dependencies
+ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip install --user  -r requirements.txt
 
 # ---------------
 # Build Release
@@ -90,6 +92,7 @@ FROM base AS build_release
 
 ONBUILD ARG SUPERDUPERDB_EXTRAS="' '"
 ONBUILD COPY --chown=pinnacle ${PWD}/examples ./examples
+ONBUILD COPY --chown=pinnacle ${PWD}/contrib ./contrib
 # Drop cache to reduce image size.
 ONBUILD RUN pip install --upgrade --user \
     pinnacledb[${SUPERDUPERDB_EXTRAS}] \
