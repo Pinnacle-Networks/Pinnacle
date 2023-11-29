@@ -15,7 +15,6 @@ from tqdm import tqdm
 
 from pinnacledb import CFG, logging
 from pinnacledb.backends.base.query import Insert, Select
-from pinnacledb.base import exceptions
 from pinnacledb.base.document import Document
 from pinnacledb.base.serializable import Serializable
 
@@ -363,19 +362,19 @@ def download_content(
     if n_download_workers is None:
         try:
             n_download_workers = db.metadata.get_metadata(key='n_download_workers')
-        except exceptions.MetadatastoreException:
+        except TypeError:
             n_download_workers = 0
 
     if headers is None:
         try:
             headers = db.metadata.get_metadata(key='headers')
-        except exceptions.MetadatastoreException:
+        except TypeError:
             pass
 
     if timeout is None:
         try:
             timeout = db.metadata.get_metadata(key='download_timeout')
-        except exceptions.MetadatastoreException:
+        except TypeError:
             pass
 
     if CFG.hybrid_storage:
