@@ -95,8 +95,9 @@ def test_db(monkeypatch, request) -> Iterator[Datalayer]:
     from pinnacledb import CFG
     from pinnacledb.base.build import build_datalayer
 
+    # mongodb instead of localhost is required for CFG compatibility with docker-host
     db_name = "test_db"
-    data_backend = f'mongodb://pinnacle:pinnacle@localhost:27017/{db_name}'
+    data_backend = f'mongodb://pinnacle:pinnacle@mongodb:27017/{db_name}'
 
     monkeypatch.setattr(CFG, 'data_backend', data_backend)
 
