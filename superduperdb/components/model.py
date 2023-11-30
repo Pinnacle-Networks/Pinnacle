@@ -19,7 +19,6 @@ from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.artifact import Artifact
 from pinnacledb.base.serializable import Serializable
 from pinnacledb.components.component import Component
-from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.schema import Schema
@@ -28,6 +27,7 @@ from pinnacledb.misc.special_dicts import MongoStyleDict
 
 if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
+    from pinnacledb.components.dataset import Dataset
 
 EncoderArg = t.Union[Encoder, FieldType, str, None]
 ObjectsArg = t.Sequence[t.Union[t.Any, Artifact]]
@@ -304,7 +304,7 @@ class Predictor:
                 },
             ),
             dependencies=dependencies,
-        )
+        )[0]
 
     def _predict_with_select(
         self,
@@ -563,6 +563,8 @@ class Model(Component, Predictor):
         metrics: t.Sequence[Metric],
     ):
         if isinstance(validation_set, str):
+            from pinnacledb.components.dataset import Dataset
+
             validation_set = t.cast(Dataset, db.load('dataset', validation_set))
 
         mdicts = [MongoStyleDict(r.unpack()) for r in validation_set.data]
@@ -643,6 +645,8 @@ class Model(Component, Predictor):
             select = Serializable.deserialize(select)
 
         if validation_sets:
+            from pinnacledb.components.dataset import Dataset
+
             validation_sets = list(validation_sets)
             for i, vs in enumerate(validation_sets):
                 if isinstance(vs, Dataset):
