@@ -1,7 +1,7 @@
 import typing as t
 from abc import ABC, abstractmethod
 
-from pinnacledb.components.model import Model
+from pinnacledb.components.model import APIModel, Model
 
 
 class BaseDataBackend(ABC):
@@ -37,7 +37,7 @@ class BaseDataBackend(ABC):
         """
         pass
 
-    def create_model_table_or_collection(self, model: Model):
+    def create_model_table_or_collection(self, model: t.Union[Model, APIModel]):
         pass
 
     @abstractmethod
