@@ -9,7 +9,7 @@ ROOT = configs.ROOT
 
 logging = logger.Logging
 
-__version__ = '0.0.18'
+__version__ = '0.0.19'
 
 from pinnacledb.backends import ibis, mongodb
 
