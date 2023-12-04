@@ -76,7 +76,7 @@ COPY --chown=pinnacle ./deploy/images/pinnacledb/apputils-extension/themes.jupyt
 # ---------------
 FROM base AS build_sandbox
 
-ONBUILD ARG SUPERDUPERDB_EXTRAS="' '"
+ONBUILD ARG SUPERDUPERDB_EXTRAS=''
 ONBUILD COPY --chown=pinnacle ./ ${HOME}/pinnacledb
 ONBUILD WORKDIR ${HOME}/pinnacledb
 # Install project dependencies.
@@ -90,7 +90,7 @@ ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip ins
 # ---------------
 FROM base AS build_release
 
-ONBUILD ARG SUPERDUPERDB_EXTRAS="' '"
+ONBUILD ARG SUPERDUPERDB_EXTRAS=''
 ONBUILD COPY --chown=pinnacle ${PWD}/examples ./examples
 ONBUILD COPY --chown=pinnacle ${PWD}/contrib ./contrib
 # Drop cache to reduce image size.
