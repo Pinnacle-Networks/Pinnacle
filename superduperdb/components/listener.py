@@ -7,6 +7,7 @@ from pinnacledb import CFG
 from pinnacledb.backends.base.query import CompoundSelect
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import _OUTPUTS_KEY
+from pinnacledb.misc.annotations import public_api
 from pinnacledb.misc.server import request_server
 
 from ..jobs.job import Job
@@ -14,6 +15,7 @@ from .component import Component
 from .model import Model
 
 
+@public_api(stability='stable')
 @dc.dataclass
 class Listener(Component):
     """

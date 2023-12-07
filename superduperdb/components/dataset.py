@@ -12,8 +12,10 @@ from pinnacledb.base.artifact import Artifact
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
 from pinnacledb.components.component import Component
+from pinnacledb.misc.annotations import public_api
 
 
+@public_api(stability='stable')
 @dc.dataclass
 class Dataset(Component):
     """A dataset is an immutable collection of documents that used for training

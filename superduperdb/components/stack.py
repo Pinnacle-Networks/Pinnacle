@@ -6,6 +6,7 @@ import typing as t
 
 from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.base.serializable import Serializable
+from pinnacledb.misc.annotations import public_api
 
 from .component import Component
 
@@ -17,6 +18,7 @@ ARTIFACTS = 'artifacts'
 _STACK_JSON_FILE = 'stack.json'
 
 
+@public_api(stability='alpha')
 @dc.dataclass
 class Stack(Component):
     """
