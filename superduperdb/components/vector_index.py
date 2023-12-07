@@ -11,6 +11,7 @@ from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
 from pinnacledb.components.listener import Listener
 from pinnacledb.ext.utils import str_shape
+from pinnacledb.misc.annotations import public_api
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorIndexMeasureType
 
@@ -18,6 +19,7 @@ if t.TYPE_CHECKING:
     pass
 
 
+@public_api(stability='stable')
 @dc.dataclass
 class VectorIndex(Component):
     """

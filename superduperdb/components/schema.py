@@ -5,8 +5,10 @@ from functools import cached_property
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
+from pinnacledb.misc.annotations import public_api
 
 
+@public_api(stability='beta')
 @dc.dataclass
 class Schema(Component):
     identifier: str
