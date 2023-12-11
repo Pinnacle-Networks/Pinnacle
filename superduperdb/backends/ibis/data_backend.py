@@ -7,8 +7,10 @@ import pandas
 from ibis.backends.base import BaseBackend
 
 from pinnacledb.backends.base.data_backend import BaseDataBackend
+from pinnacledb.backends.ibis.db_helper import get_insert_processor
 from pinnacledb.backends.ibis.field_types import FieldType, dtype
 from pinnacledb.backends.ibis.query import Table
+from pinnacledb.backends.ibis.utils import get_output_table_name
 from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacledb.components.model import APIModel, Model
@@ -38,6 +40,9 @@ class IbisDataBackend(BaseDataBackend):
         for doc in raw_documents:
             for k, v in doc.items():
                 doc[k] = self.convert_data_format(v)
+        table_name, raw_documents = get_insert_processor(self.conn.name)(
+            table_name, raw_documents
+        )
         if not self.in_memory:
             self.conn.insert(table_name, raw_documents)
         else:
@@ -78,7 +83,7 @@ class IbisDataBackend(BaseDataBackend):
             'key': dtype('string'),
         }
         return Table(
-            identifier=f'_outputs/{model.identifier}/{model.version}',
+            identifier=get_output_table_name(model.identifier, model.version),
             schema=Schema(
                 identifier=f'_schema/{model.identifier}/{model.version}', fields=fields
             ),
