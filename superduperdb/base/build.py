@@ -10,7 +10,6 @@ import pymongo
 import pinnacledb as s
 from pinnacledb import logging
 from pinnacledb.backends.base.backends import data_backends, metadata_stores
-from pinnacledb.backends.dask.compute import DaskComputeBackend
 from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.local.compute import LocalComputeBackend
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
@@ -102,9 +101,13 @@ def build_compute(compute):
         return LocalComputeBackend()
 
     if compute == 'dask+thread':
+        from pinnacledb.backends.dask.compute import DaskComputeBackend
+
         return DaskComputeBackend('', local=True)
 
     if compute.split('://')[0] == 'dask+tcp':
+        from pinnacledb.backends.dask.compute import DaskComputeBackend
+
         uri = compute.split('+')[-1]
         return DaskComputeBackend(uri)
 
