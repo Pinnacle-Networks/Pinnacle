@@ -13,6 +13,7 @@ from pinnacledb.backends.base.backends import data_backends, metadata_stores
 from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.local.compute import LocalComputeBackend
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
+from pinnacledb.backends.ray.compute import RayComputeBackend
 from pinnacledb.base.datalayer import Datalayer
 
 
@@ -110,6 +111,9 @@ def build_compute(compute):
 
         uri = compute.split('+')[-1]
         return DaskComputeBackend(uri)
+
+    if compute.split('://')[0] == 'ray':
+        return RayComputeBackend(compute)
 
     return LocalComputeBackend()
 
