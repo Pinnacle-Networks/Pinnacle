@@ -18,6 +18,7 @@ and is subclassed by:
 | `pinnacledb.ext.openai.OpenAI` | [OpenAI](https://api.openai.com) |
 | `pinnacledb.ext.cohere.Cohere` | [Cohere](https://cohere.com) |
 | `pinnacledb.ext.anthropic.Anthropic` | [Anthropic](https://anthropic.com) |
+| `pinnacledb.ext.jina.Jina` | [Jina](https://jina.ai/embeddings) |
 
 The `Model` class is subclassed by:
 
