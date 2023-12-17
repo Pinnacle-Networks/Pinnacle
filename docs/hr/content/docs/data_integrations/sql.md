@@ -13,7 +13,8 @@ support for complex data-types and vector-searches.
 The first step in working with an SQL table, is to define a table and schema
 
 ```python
-from pinnacledb.backends.ibis import dtype, Table
+from pinnacledb.backends.ibis.query import Table
+from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb import Encoder, Schema
 
 my_enc = Encoder('my-enc')
