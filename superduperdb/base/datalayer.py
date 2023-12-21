@@ -27,6 +27,7 @@ from pinnacledb.cdc.cdc import DatabaseChangeDataCapture
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encodable, Encoder
 from pinnacledb.components.model import Model
+from pinnacledb.components.serializer import serializers
 from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
 from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.misc.colors import Colors
@@ -82,11 +83,17 @@ class Datalayer:
         self.models = LoadDict(self, field='model')
         self.encoders = LoadDict(self, field='encoder')
         self.vector_indices = LoadDict(self, field='vector_index')
+        self.serializers = LoadDict(self, field='serializer')
+        for ser in serializers:
+            self.serializers[ser] = serializers[ser]
+
         self.fast_vector_searchers = LoadDict(
             self, callable=self.initialize_vector_searcher
         )
         self.metadata = metadata
         self.artifact_store = artifact_store
+        self.artifact_store.serializers = self.serializers
+
         self.databackend = databackend
         # TODO: force set config stores connection url
 
@@ -104,9 +111,11 @@ class Datalayer:
         if cfg:
             self.metadata = build.build_metadata(cfg.metadata_store)
             self.artifact_store = build.build_artifact_store(cfg.artifact_store)
+            self.artifact_store.serializers = self.serializers
         else:
             self.metadata = self.databackend.build_metadata()
             self.artifact_store = self.databackend.build_artifact_store()
+            self.artifact_store.serializers = self.serializers
 
     @property
     def server_mode(self):
