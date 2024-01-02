@@ -4,7 +4,6 @@ import typing as t
 import numpy as np
 from overrides import override
 
-import pinnacledb as s
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
 from pinnacledb.components.component import Component
@@ -39,15 +38,6 @@ class VectorIndex(Component):
     compatible_listener: t.Union[None, Listener, str] = None
     measure: VectorIndexMeasureType = VectorIndexMeasureType.cosine
     metric_values: t.Optional[t.Dict] = dc.field(default_factory=dict)
-
-    @override
-    def post_create(self, db: Datalayer) -> None:
-        super().post_create(db)
-        if s.CFG.self_hosted_vector_search:
-            if (create := getattr(db.databackend, 'create_vector_index', None)) is None:
-                msg = 'VectorIndex is not supported by the current database backend'
-                raise ValueError(msg)
-            create(self)
 
     @override
     def on_load(self, db: Datalayer) -> None:
