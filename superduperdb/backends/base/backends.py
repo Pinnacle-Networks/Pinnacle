@@ -7,6 +7,7 @@ from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.metadata import MongoMetaDataStore
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
+from pinnacledb.vector_search.atlas import MongoAtlasVectorSearcher
 from pinnacledb.vector_search.in_memory import InMemoryVectorSearcher
 from pinnacledb.vector_search.lance import LanceVectorSearcher
 
@@ -28,6 +29,7 @@ metadata_stores = {
 vector_searcher_implementations = {
     'lance': LanceVectorSearcher,
     'in_memory': InMemoryVectorSearcher,
+    'mongodb+srv': MongoAtlasVectorSearcher,
 }
 
 CONNECTIONS = {
