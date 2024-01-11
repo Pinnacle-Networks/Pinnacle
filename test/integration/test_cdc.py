@@ -22,7 +22,7 @@ from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
-from pinnacledb.cdc import PollingStrategy
+from pinnacledb.cdc.cdc import PollingStrategy
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
 from pinnacledb.ext.torch.encoder import tensor
