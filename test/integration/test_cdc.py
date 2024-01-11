@@ -20,9 +20,9 @@ from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
+from pinnacledb.base.config import PollingStrategy
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
-from pinnacledb.cdc.cdc import PollingStrategy
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
 from pinnacledb.ext.torch.encoder import tensor
@@ -506,7 +506,7 @@ def client(monkeypatch, database_with_default_encoders_and_model):
     cdc = 'http://localhost:8001'
     vector_search = 'in_memory://localhost:8000'
 
-    monkeypatch.setattr(CFG.cluster, 'cdc', cdc)
+    monkeypatch.setattr(CFG.cluster.cdc, 'uri', cdc)
     monkeypatch.setattr(CFG.cluster, 'vector_search', vector_search)
 
     database_with_default_encoders_and_model.cdc.start()
