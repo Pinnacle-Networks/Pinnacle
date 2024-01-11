@@ -22,6 +22,7 @@ from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
+from pinnacledb.cdc import PollingStrategy
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
 from pinnacledb.ext.torch.encoder import tensor
@@ -146,18 +147,11 @@ def sql_database_with_cdc(ibis_duckdb):
     from functools import partial
 
     db.rebuild = partial(db.rebuild, cfg=CFG)
-
-    listener = db.cdc.listen(
-        on=table,
-        timeout=LISTEN_TIMEOUT,
-        strategy={
-            'strategy': 'polling',
-            'options': {
-                'auto_increment_field': 'auto_increment_field',
-                'frequency': 0.5,
-            },
-        },
+    strategy = PollingStrategy(
+        type='incremental', auto_increment_field='auto_increment_field', frequency=0.5
     )
+
+    listener = db.cdc.listen(on=table, timeout=LISTEN_TIMEOUT, strategy=strategy)
     db.cdc.cdc_change_handler._QUEUE_BATCH_SIZE = 1
 
     yield listener, table, db
