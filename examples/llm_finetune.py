@@ -6,7 +6,7 @@ from datasets import load_dataset
 from pinnacledb import pinnacle
 from pinnacledb.backends.mongodb import Collection
 from pinnacledb.base.document import Document
-from pinnacledb.ext.llm import LLM, LLMTrainingConfiguration
+from pinnacledb.ext.llm.model import LLM, LLMTrainingConfiguration
 
 prompt_template = (
     "Below is an instruction that describes a task,"
@@ -104,7 +104,7 @@ def inference(db, model_identifier, output_dir):
 
 
 if __name__ == "__main__":
-    db = pinnacle("mongodb://localhost:27017/llm-finetune")
+    db = pinnacle("mongomock://llm-finetune")
     model = "facebook/opt-125m"
     output_dir = "outputs/llm-finetune"
 
