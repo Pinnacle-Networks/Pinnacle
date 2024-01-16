@@ -6,9 +6,12 @@ from bson.objectid import ObjectId
 from pinnacledb import CFG
 from pinnacledb.base.config import BytesEncoding
 from pinnacledb.components.encoder import Encodable, Encoder
-from pinnacledb.components.schema import Schema
 from pinnacledb.misc.files import get_file_from_uri
 from pinnacledb.misc.special_dicts import MongoStyleDict
+
+if t.TYPE_CHECKING:
+    from pinnacledb.components.schema import Schema
+
 
 ContentType = t.Union[t.Dict, Encodable]
 ItemType = t.Union[t.Dict[str, t.Any], Encodable, ObjectId]
@@ -37,7 +40,7 @@ class Document:
 
     def encode(
         self,
-        schema: t.Optional[Schema] = None,
+        schema: t.Optional['Schema'] = None,
         bytes_encoding: t.Optional[BytesEncoding] = None,
     ) -> t.Any:
         """Make a copy of the content with all the Encodables encoded"""
@@ -167,7 +170,7 @@ def _encode(r: t.Any, bytes_encoding: t.Optional[BytesEncoding] = None) -> t.Any
 
 
 def _encode_with_schema(
-    r: t.Any, schema: Schema, bytes_encoding: t.Optional[BytesEncoding] = None
+    r: t.Any, schema: 'Schema', bytes_encoding: t.Optional[BytesEncoding] = None
 ) -> t.Any:
     bytes_encoding = bytes_encoding or CFG.bytes_encoding
     if isinstance(r, dict):

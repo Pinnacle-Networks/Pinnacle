@@ -7,7 +7,7 @@ import typing as t
 
 import pandas
 
-from pinnacledb import Document, logging
+from pinnacledb import logging
 from pinnacledb.backends.base.query import (
     CompoundSelect,
     Insert,
@@ -21,6 +21,7 @@ from pinnacledb.backends.base.query import (
 )
 from pinnacledb.backends.ibis.cursor import SuperDuperIbisResult
 from pinnacledb.backends.ibis.utils import get_output_table_name
+from pinnacledb.base.document import Document
 from pinnacledb.base.serializable import Variable
 from pinnacledb.components.component import Component
 from pinnacledb.components.encoder import Encoder
