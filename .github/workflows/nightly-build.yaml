@@ -37,6 +37,6 @@ jobs:
           docker push pinnacledb/sandbox:latest
 
           tag=$(date +'%Y%m%d')
-          @echo "===> release pinnacledb/sandbox:${tag}"
+          echo "===> release pinnacledb/sandbox:${tag}"
           docker tag pinnacledb/sandbox:latest pinnacledb/sandbox:${tag} 
           docker push pinnacledb/sandbox:${tag}
