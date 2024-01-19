@@ -33,7 +33,7 @@ jobs:
 
       - name: Release Sandbox Image
         run: |
-          @echo "===> release pinnacledb/pinnacledb:latest"
+          echo "===> release pinnacledb/pinnacledb:latest"
           docker push pinnacledb/sandbox:latest
 
           tag=$(date +'%Y%m%d')
