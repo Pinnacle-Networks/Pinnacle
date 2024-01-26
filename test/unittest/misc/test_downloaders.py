@@ -8,7 +8,7 @@ import pytest
 from pinnacledb import CFG
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
-from pinnacledb.ext.pillow.encoder import pil_image
+from pinnacledb.ext.pillow.encoder import pil_image_hybrid
 from pinnacledb.misc.download import Fetcher
 
 remote = os.environ.get('SDDB_REMOTE_TEST', 'local')
@@ -36,14 +36,16 @@ def test_file_blobs(db, patch_cfg_downloads, image_url):
                 'item': {
                     '_content': {
                         'uri': image_url,
-                        'encoder': 'pil_image',
+                        'datatype': 'pil_image_hybrid',
+                        'leaf_type': 'encodable',
                     }
                 },
                 'other': {
                     'item': {
                         '_content': {
                             'uri': image_url,
-                            'encoder': 'pil_image',
+                            'datatype': 'pil_image_hybrid',
+                            'leaf_type': 'encodable',
                         }
                     }
                 },
@@ -52,6 +54,11 @@ def test_file_blobs(db, patch_cfg_downloads, image_url):
         for _ in range(2)
     ]
 
-    db.execute(Collection('documents').insert_many(to_insert), encoders=(pil_image,))
-    db.execute(Collection('documents').find_one())
-    assert os.listdir(CFG.downloads.folder)
+    db.execute(
+        Collection('documents').insert_many(to_insert), datatypes=(pil_image_hybrid,)
+    )
+    r = db.execute(Collection('documents').find_one())
+
+    import PIL.PngImagePlugin
+
+    assert isinstance(r.unpack()['item'], PIL.PngImagePlugin.PngImageFile)

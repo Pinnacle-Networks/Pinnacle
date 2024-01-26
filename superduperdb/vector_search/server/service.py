@@ -21,7 +21,7 @@ def _vector_search(
 ) -> VectorSearchResultType:
     vi = db.fast_vector_searchers[vector_index]
     if by_array:
-        x = pinnacledecode(x, db.encoders)
+        x = pinnacledecode(x, db.datatypes)
         ids, scores = vi.searcher.find_nearest_from_array(x, n=n)
     else:
         ids, scores = vi.searcher.find_nearest_from_id(x, n=n)

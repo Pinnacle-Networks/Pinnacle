@@ -11,7 +11,7 @@ from test.db_config import DBConfig
 
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.query import Collection
-from pinnacledb.components.encoder import Encoder
+from pinnacledb.components.datatype import DataType
 from pinnacledb.components.metric import Metric
 
 
@@ -75,7 +75,7 @@ def test_fit(db, valid_dataset):
         ),
         preferred_devices=('cpu',),
         postprocess=lambda x: int(torch.sigmoid(x).item() > 0.5),
-        encoder=Encoder(identifier='base'),
+        datatype=DataType(identifier='base'),
     )
 
     if isinstance(db.databackend, MongoDataBackend):

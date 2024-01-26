@@ -25,9 +25,9 @@ def test_pinnacle_model():
     from sklearn.linear_model import LinearRegression
 
     model = pinnacle(torch.nn.Linear(1, 1))
-    assert isinstance(model.object.artifact, torch.nn.modules.linear.Linear)
+    assert isinstance(model.object, torch.nn.modules.linear.Linear)
     model = pinnacle(LinearRegression())
-    assert isinstance(model.object.artifact, LinearRegression)
+    assert isinstance(model.object, LinearRegression)
 
 
 def test_pinnacle_raise():

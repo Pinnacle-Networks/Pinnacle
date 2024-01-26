@@ -8,7 +8,7 @@ import numpy as np
 from pinnacledb import logging
 
 if t.TYPE_CHECKING:
-    from pinnacledb.components.encoder import Encoder
+    from pinnacledb.components.datatype import DataType
 
 
 def str_shape(shape: t.Sequence[int]) -> str:
@@ -44,18 +44,18 @@ def pinnacleencode(object):
     if isinstance(object, np.ndarray):
         from pinnacledb.ext.numpy import array
 
-        encoded = array(dtype=object.dtype, shape=object.shape).encode(object)
+        encoded = array(dtype=object.dtype, shape=object.shape)(object).encode()
         encoded['shape'] = object.shape
         encoded['dtype'] = str(object.dtype)
         return encoded
     return object
 
 
-def pinnacledecode(r: t.Any, encoders: t.List['Encoder']):
+def pinnacledecode(r: t.Any, encoders: t.List['DataType']):
     if isinstance(r, dict):
-        encoder = encoders[r['_content']['encoder']]
+        encoder = encoders[r['_content']['datatype']]
         b = base64.b64decode(r['_content']['bytes'])
-        return encoder.decode(b).x
+        return encoder.decoder(b)
     return r
 
 
