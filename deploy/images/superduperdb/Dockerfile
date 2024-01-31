@@ -73,6 +73,21 @@ RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip pip install --u
 COPY --chown=pinnacle ./deploy/images/pinnacledb/labextensions/@pinnacledb ${HOME}/.local/share/jupyter/labextensions/@pinnacledb
 COPY --chown=pinnacle ./deploy/images/pinnacledb/apputils-extension/themes.jupyterlab-settings ${HOME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings
 
+
+# Volumes
+# ---------------
+VOLUME /artifacts
+
+# Runtime Configuration
+# ---------------
+
+# Don't write .pyc files on the import of source modules.
+ENV PYTHONDONTWRITEBYTECODE 1
+# Set python cache directory
+ENV PYTHONPYCACHEPREFIX "$HOME/.cache/cpython/"
+
+
+
 # ---------------
 # Build Sandbox
 # ---------------
