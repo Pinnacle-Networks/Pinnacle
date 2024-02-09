@@ -6,9 +6,9 @@ sidebar_position: 1
 
 Follow these steps to quickly get started:
 
-1. **Explore the demo**
+1. **Explore the Notebooks**
 
-    Visit [https://demo.pinnacledb.com](https://demo.pinnacledb.com) to explore our interactive demo and get a feel for what SuperDuperDB has to offer. For a high-level overview of our framework, visit our website at [https://pinnacledb.com](https://pinnacledb.com). This provides a bird's-eye view of the capabilities and features SuperDuperDB has to offer. The notebooks
+    Visit [Colab Notebooks](https://colab.research.google.com/github/SuperDuperDB/pinnacledb/blob/main/examples/) to explore our interactive notebooks and get a feel for what SuperDuperDB has to offer. For a high-level overview of our framework, visit our website at [https://pinnacledb.com](https://pinnacledb.com). This provides a bird's-eye view of the capabilities and features SuperDuperDB has to offer. The notebooks
     hosted there, can be executed directly in the environment, but can also be cloned in [their original form in the open source repo](https://github.com/SuperDuperDB/pinnacledb/tree/main/examples), and executed locally.
     These notebooks are also described on this documentation website in the [use-cases section](/docs/use-cases).
 
