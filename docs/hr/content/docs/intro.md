@@ -33,7 +33,7 @@ For more information about SuperDuperDB and why we believe it is much needed, [r
 **To get started:**
 This documentation serves as your comprehensive guide to kickstarting your `pinnacledb` journey 🚀
 
-Additionally, you can check the use-cases [here in the docs](https://docs.pinnacledb.com/docs/category/use-cases) as well as the apps built by the [pinnacle community](https://github.com/SuperDuperDB/pinnacle-community-apps) and try all of them with [live on your browser](https://demo.pinnacledb.com/)! 
+Additionally, you can check the use-cases [here in the docs](https://docs.pinnacledb.com/docs/category/use-cases) as well as the apps built by the [pinnacle community](https://github.com/SuperDuperDB/pinnacle-community-apps) and try all of them with [live on your browser](https://colab.research.google.com/github/SuperDuperDB/pinnacledb/blob/main/examples/)! 
 
 
 
