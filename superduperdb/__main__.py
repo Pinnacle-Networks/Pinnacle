@@ -3,9 +3,9 @@ import sys
 import click
 
 from pinnacledb.cli import app, config, info
-from pinnacledb.cli.serve import cdc, local_cluster, vector_search
+from pinnacledb.cli.serve import cdc, local_cluster, ray_serve, vector_search
 
-__all__ = 'config', 'info', 'local_cluster', 'vector_search', 'cdc'
+__all__ = 'config', 'info', 'local_cluster', 'vector_search', 'cdc', 'ray_serve'
 
 
 def run():
