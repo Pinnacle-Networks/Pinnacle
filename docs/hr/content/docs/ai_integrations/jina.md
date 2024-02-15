@@ -1,4 +1,4 @@
-#Jina
+# Jina
 
 `pinnacledb` allows users to work with `Jina Embeddings models` through the Jina Embedding API.
 

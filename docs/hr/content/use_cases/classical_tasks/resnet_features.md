@@ -1,9 +1,8 @@
-# Image features
 
-# Building an Image Feature Database in `torchvision`
+# Building an Image Feature-Store Using Torchvision on MongoDB
 
 ```python
-!pip install pinnacledb==0.0.12
+!pip install pinnacledb
 !pip install torchvision
 ```
 
