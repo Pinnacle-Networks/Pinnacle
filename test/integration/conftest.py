@@ -12,7 +12,6 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.backends.dask.compute import DaskComputeBackend
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
@@ -110,33 +109,13 @@ def fake_updates(database_with_default_encoders_and_model):
     return fake_tensor_data(dt, update=True)
 
 
-@pytest.fixture
-def dask_client(monkeypatch, request):
-    db_name = "test_db"
-    data_backend = f'mongodb://pinnacle:pinnacle@localhost:27017/{db_name}'
-
-    data_backend = os.environ.get('SUPERDUPER_MONGO_URI', data_backend)
-    address = os.environ.get('SUPERDUPER_DASK_URI', 'tcp://localhost:8786')
-
-    monkeypatch.setenv('SUPERDUPERDB_DATA_BACKEND', data_backend)
-
-    # Change the default value
-    client = DaskComputeBackend(
-        address=address,
-        local=False,
-    )
-
-    yield client
-
-    client.disconnect()
-
-
 @pytest.fixture(scope='session')
 def ray_client():
     # Change the default value
+    from pinnacledb import CFG
     from pinnacledb.backends.ray.compute import RayComputeBackend
 
-    address = os.environ.get('SUPERDUPER_RAY_URI', 'ray://127.0.0.1:10001')
+    address = CFG.cluster.compute
     import shutil
     import tempfile
 
