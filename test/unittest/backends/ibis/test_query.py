@@ -9,7 +9,7 @@ from pinnacledb import pinnacle
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.ibis.query import IbisQueryTable, Table
 from pinnacledb.base.serializable import Serializable
-from pinnacledb.components.model import Model
+from pinnacledb.components.model import ObjectModel
 from pinnacledb.components.schema import Schema
 from pinnacledb.ext.numpy.encoder import array
 from pinnacledb.ext.pillow.encoder import pil_image
@@ -71,12 +71,12 @@ def duckdb(monkeypatch):
             )
         )
 
-        model = Model(
+        model = ObjectModel(
             object=lambda _: numpy.random.randn(32),
             identifier='test',
             datatype=array('float64', shape=(32,)),
         )
-        model.predict('x', select=t, db=db)
+        model.predict_in_db('x', select=t, db=db)
 
         _, s = db.add(
             Table(
