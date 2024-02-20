@@ -1,12 +1,12 @@
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.components.listener import Listener
-from pinnacledb.components.model import Model
+from pinnacledb.components.model import ObjectModel
 
 
 def test_listener_serializes_properly():
     q = Collection('test').find({}, {})
     listener = Listener(
-        model=Model('test', object=lambda x: x),
+        model=ObjectModel('test', object=lambda x: x),
         select=q,
         key='test',
     )

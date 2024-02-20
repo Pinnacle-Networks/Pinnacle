@@ -10,7 +10,7 @@ from pinnacledb import pinnacle
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
-from pinnacledb.components.model import Model
+from pinnacledb.components.model import ObjectModel
 from pinnacledb.components.vector_index import VectorIndex, vector
 
 ATLAS_VECTOR_URI = os.environ.get('ATLAS_VECTOR_URI')
@@ -30,7 +30,7 @@ def atlas_search_config():
 
 @pytest.mark.skipif(ATLAS_VECTOR_URI is None, reason='Only atlas deployments relevant.')
 def test_setup_atlas_vector_search(atlas_search_config):
-    model = Model(
+    model = ObjectModel(
         identifier='test-model', object=random_vector_model, encoder=vector(shape=(16,))
     )
     client = pymongo.MongoClient(ATLAS_VECTOR_URI)

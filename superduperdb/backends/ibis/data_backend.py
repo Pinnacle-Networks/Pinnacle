@@ -12,7 +12,7 @@ from pinnacledb.backends.ibis.query import Table
 from pinnacledb.backends.ibis.utils import get_output_table_name
 from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
-from pinnacledb.components.model import APIModel, Model
+from pinnacledb.components.model import APIModel, ObjectModel
 from pinnacledb.components.schema import Schema
 
 BASE64_PREFIX = 'base64:'
@@ -50,7 +50,7 @@ class IbisDataBackend(BaseDataBackend):
         else:
             self.conn.create_table(table_name, pandas.DataFrame(raw_documents))
 
-    def create_model_table_or_collection(self, model: t.Union[Model, APIModel]):
+    def create_model_table_or_collection(self, model: t.Union[ObjectModel, APIModel]):
         msg = (
             "Model must have an encoder to create with the"
             f" {type(self).__name__} backend."
