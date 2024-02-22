@@ -11,6 +11,7 @@ from transformers import (
 
 from pinnacledb import logging
 from pinnacledb.backends.query_dataset import QueryDataset, query_dataset_factory
+from pinnacledb.components.component import ensure_initialized
 from pinnacledb.components.dataset import Dataset as _Dataset
 from pinnacledb.components.model import (
     _Fittable,
@@ -19,7 +20,6 @@ from pinnacledb.components.model import (
 )
 from pinnacledb.ext.llm import training
 from pinnacledb.ext.llm.utils import Prompter
-from pinnacledb.ext.utils import ensure_initialized
 
 if typing.TYPE_CHECKING:
     from pinnacledb.backends.base.query import Select
