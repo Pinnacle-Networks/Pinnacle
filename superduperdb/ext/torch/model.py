@@ -16,6 +16,7 @@ from pinnacledb.backends.base.query import Select
 from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.serializable import Serializable
+from pinnacledb.components.component import ensure_initialized
 from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.datatype import (
     DataType,
@@ -260,6 +261,7 @@ class TorchModel(_Predictor, _Fittable, _DeviceManaged):
                     io.BytesIO(state.pop('object_bytes'))
                 )
 
+    @ensure_initialized
     def predict_one(self, *args, **kwargs):
         with torch.no_grad(), eval(self.object):
             if self.preprocess is not None:
@@ -277,6 +279,7 @@ class TorchModel(_Predictor, _Fittable, _DeviceManaged):
                 args = self.postprocess(args)
             return args
 
+    @ensure_initialized
     def predict(self, dataset: t.Union[t.List, QueryDataset]) -> t.List:
         with torch.no_grad(), eval(self.object):
             inputs = BasicDataset(
@@ -346,12 +349,13 @@ class TorchModel(_Predictor, _Fittable, _DeviceManaged):
             return True
         return False
 
+    @ensure_initialized
     def _fit(
         self,
         X: t.Any,
         *,
         y: t.Optional[t.Any] = None,
-        configuration: TorchTrainerConfiguration,  # type: ignore[override]
+        configuration: TorchTrainerConfiguration,
         data_prefetch: bool = False,
         db: t.Optional[Datalayer] = None,
         metrics: t.Optional[t.Sequence[Metric]] = None,

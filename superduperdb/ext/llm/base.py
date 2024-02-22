@@ -9,9 +9,9 @@ from typing import Any, Callable, List, Optional, Sequence, Union
 
 from pinnacledb import logging
 from pinnacledb.backends.query_dataset import QueryDataset
+from pinnacledb.components.component import ensure_initialized
 from pinnacledb.components.model import _Predictor
 from pinnacledb.ext.llm.utils import Prompter
-from pinnacledb.ext.utils import ensure_initialized
 
 if typing.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
