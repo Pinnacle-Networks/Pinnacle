@@ -11,11 +11,15 @@ from pinnacledb.components.datatype import DataType
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import Mapping, ModelInputType
 from pinnacledb.ext.utils import str_shape
+from pinnacledb.jobs.job import FunctionJob
 from pinnacledb.misc.annotations import public_api
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorIndexMeasureType
+from pinnacledb.vector_search.update_tasks import copy_vectors
 
 KeyType = t.Union[str, t.List, t.Dict]
+if t.TYPE_CHECKING:
+    from pinnacledb.jobs.job import Job
 
 
 @public_api(stability='stable')
@@ -167,6 +171,32 @@ class VectorIndex(Component):
         if shape := getattr(self.indexing_listener.model.datatype, 'shape', None):
             return shape[-1]
         raise ValueError('Couldn\'t get shape of model outputs from model encoder')
+
+    @override
+    def schedule_jobs(
+        self,
+        db: Datalayer,
+        dependencies: t.Sequence['Job'] = (),
+    ) -> t.Sequence[t.Any]:
+        """
+        Schedule jobs for the listener
+
+        :param database: The DB instance to process
+        :param dependencies: A list of dependencies
+        :param verbose: Whether to print verbose output
+        """
+
+        job = FunctionJob(
+            callable=copy_vectors,
+            args=[],
+            kwargs={
+                'vector_index': self.identifier,
+                'ids': [],
+                'query': self.indexing_listener.select.dict().encode(),
+            },
+        )
+        job(db, dependencies=dependencies)
+        return [job]
 
 
 class EncodeArray:
