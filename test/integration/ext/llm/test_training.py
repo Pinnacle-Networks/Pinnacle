@@ -6,8 +6,7 @@ import transformers
 from pinnacledb import pinnacle
 from pinnacledb.backends.mongodb import Collection
 from pinnacledb.base.document import Document
-from pinnacledb.ext.llm import LLM
-from pinnacledb.ext.llm.model import LLMTrainingConfiguration
+from pinnacledb.ext.llm.model import LLM, LLMTrainingConfiguration
 
 try:
     from datasets import load_dataset
@@ -66,7 +65,7 @@ def base_config():
         per_device_eval_batch_size=1,
         gradient_accumulation_steps=4,
         log_to_db=True,
-        max_length=512,
+        max_seq_length=512,
         use_lora=True,
     )
 
