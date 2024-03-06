@@ -3,6 +3,11 @@ import os
 import typing as t
 
 import requests
+
+from pinnacledb.misc.annotations import requires_packages
+
+requires_packages(['llama_cpp_python', '0.2.39', None])
+
 from llama_cpp import Llama
 
 from pinnacledb.ext.llm.base import _BaseLLM
