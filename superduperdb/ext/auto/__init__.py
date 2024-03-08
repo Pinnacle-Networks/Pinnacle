@@ -6,7 +6,7 @@ from pinnacledb.components.schema import Schema
 
 
 def _decorator(f):
-    from pinnacledb import Model
+    from pinnacledb import ObjectModel
 
     def dec(
         *args,
@@ -18,7 +18,7 @@ def _decorator(f):
         **kwargs,
     ):
         model_update_kwargs = model_update_kwargs or {}
-        return Model(
+        return ObjectModel(
             identifier=identifier or f.__name__,
             object=f(*args, **kwargs),
             datatype=datatype,
