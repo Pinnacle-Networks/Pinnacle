@@ -178,7 +178,7 @@ class Config(BaseConfig):
 
     """
 
-    data_backend: str = 'mongodb://pinnacle:pinnacle@localhost:27017/test_db'
+    data_backend: str = 'mongodb://localhost:27017/test_db'
     lance_home: str = os.path.join('.pinnacledb', 'vector_indices')
 
     artifact_store: t.Optional[str] = None

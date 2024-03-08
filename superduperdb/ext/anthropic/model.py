@@ -1,10 +1,6 @@
 import dataclasses as dc
 import typing as t
 
-from pinnacledb.misc.annotations import requires_packages
-
-requires_packages(['anthropic', '0.12.0'])
-
 import anthropic
 from anthropic import APIConnectionError, APIError, APIStatusError, APITimeoutError
 
