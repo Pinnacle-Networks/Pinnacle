@@ -29,7 +29,7 @@ from pinnacledb.components.model import Trainer as SuperDuperTrainer
 from pinnacledb.misc.hash import random_sha1
 
 if t.TYPE_CHECKING:
-    from pinnacledb.ext.llm.model import LLM
+    from pinnacledb.ext.transformers.llm import LLM
 
 
 @dc.dataclass(kw_only=True)
