@@ -19,16 +19,15 @@ from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.components.component import ensure_initialized
 from pinnacledb.components.datatype import DataType, dill_serializer
 from pinnacledb.components.model import _Fittable, _Validator
-from pinnacledb.ext.llm.base import _BaseLLM
-
-from .training import Checkpoint
+from pinnacledb.ext.llm.base import BaseLLM
+from pinnacledb.ext.transformers.llm_training import Checkpoint
 
 if typing.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
 
 
 @dc.dataclass(kw_only=True)
-class LLM(_BaseLLM, _Fittable, _Validator):
+class LLM(BaseLLM, _Fittable, _Validator):
     """
     LLM model based on `transformers` library.
 
@@ -232,7 +231,7 @@ class LLM(_BaseLLM, _Fittable, _Validator):
         Generate text.
         Can overwrite this method to support more inference methods.
         """
-        kwargs = kwargs.copy()
+        kwargs = {**self.predict_kwargs, **kwargs}
 
         # Set default values, if not will cause bad output
         kwargs.setdefault("add_special_tokens", True)

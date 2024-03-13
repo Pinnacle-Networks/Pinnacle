@@ -1,8 +1,7 @@
 from datasets import load_dataset
 
 from pinnacledb import pinnacle
-from pinnacledb.ext.llm.model import LLM
-from pinnacledb.ext.llm.training import LLMTrainer
+from pinnacledb.ext.transformers import LLM, LLMTrainer
 
 db = pinnacle("mongodb://localhost:27017/llm-finetune")
 
