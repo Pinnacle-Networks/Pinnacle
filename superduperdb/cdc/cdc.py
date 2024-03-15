@@ -36,7 +36,7 @@ from enum import Enum
 
 from pymongo.change_stream import CollectionChangeStream
 
-from pinnacledb import logging
+from pinnacledb import CFG, logging
 from pinnacledb.misc.runnable.queue_chunker import QueueChunker
 from pinnacledb.misc.runnable.runnable import Event
 
@@ -348,7 +348,7 @@ class DatabaseChangeDataCapture:
 
     @property
     def running(self) -> bool:
-        return self._running
+        return self._running or CFG.cluster.cdc.uri is not None
 
     def start(self):
         """
