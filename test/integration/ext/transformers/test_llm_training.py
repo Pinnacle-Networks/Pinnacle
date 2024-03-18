@@ -6,7 +6,8 @@ import transformers
 from pinnacledb import pinnacle
 from pinnacledb.backends.mongodb import Collection
 from pinnacledb.base.document import Document
-from pinnacledb.ext.transformers import LLM, LLMTrainer
+from pinnacledb.ext.transformers.model import LLM
+from pinnacledb.ext.transformers.training import LLMTrainer
 
 try:
     import datasets

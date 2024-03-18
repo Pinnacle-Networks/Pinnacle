@@ -10,12 +10,12 @@ import os
 import re
 import tempfile
 import typing as t
-from collections import defaultdict
+from collections import defaultdict, namedtuple
 from functools import wraps
 
 from pinnacledb import logging
 from pinnacledb.base.leaf import Leaf
-from pinnacledb.base.serializable import Serializable
+from pinnacledb.base.serializable import Serializable, _find_variables_with_path
 from pinnacledb.jobs.job import ComponentJob, Job
 from pinnacledb.misc.archives import from_tarball, to_tarball
 
@@ -24,6 +24,15 @@ if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
     from pinnacledb.components.dataset import Dataset
     from pinnacledb.components.datatype import DataType
+
+
+def getdeepattr(obj, attr):
+    for a in attr.split('.'):
+        obj = getattr(obj, a)
+    return obj
+
+
+ComponentTuple = namedtuple('ComponentTuple', ['type_id', 'identifier', 'version'])
 
 
 @dc.dataclass
@@ -38,13 +47,34 @@ class Component(Serializable, Leaf):
     identifier: str
     artifacts: dc.InitVar[t.Optional[t.Dict]] = None
 
+    @property
+    def id_tuple(self):
+        return ComponentTuple(self.type_id, self.identifier, self.version)
+
     def __post_init__(self, artifacts):
         self.artifacts = artifacts
         self.version: t.Optional[int] = None
         self._db = None
         if not self.identifier:
             raise ValueError('identifier cannot be empty or None')
-        self.changed = set()
+
+    def set_variables(self, db, **kwargs):
+        """
+        Set free variables of self.
+
+        :param db:
+        """
+
+        r = self.dict()
+        variables = _find_variables_with_path(r['dict'])
+        for r in variables:
+            v = r['variable']
+            value = v.set(db=db, **kwargs)
+            self.setattr_with_path(r['path'], value)
+
+    @property
+    def dependencies(self):
+        return ()
 
     def init(self):
         from pinnacledb.components.datatype import _BaseEncodable

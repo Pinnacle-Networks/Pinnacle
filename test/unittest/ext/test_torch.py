@@ -3,7 +3,7 @@ import pytest
 try:
     import torch
 
-    from pinnacledb.ext.torch.model import TorchModel, TorchTrainer
+    from pinnacledb.ext.torch.model import TorchModel
 except ImportError:
     torch = None
 
@@ -13,6 +13,7 @@ from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.metric import Metric
+from pinnacledb.ext.torch.training import TorchTrainer
 
 
 class ToDict:
