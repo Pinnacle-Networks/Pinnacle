@@ -9,11 +9,11 @@ from sentence_transformers import SentenceTransformer as _SentenceTransformer
 
 from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.components.datatype import DataType, dill_serializer
-from pinnacledb.components.model import Signature, _DeviceManaged, _Predictor
+from pinnacledb.components.model import Model, Signature, _DeviceManaged
 
 
 @dc.dataclass(kw_only=True)
-class SentenceTransformer(_Predictor, _DeviceManaged):
+class SentenceTransformer(Model, _DeviceManaged):
     _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, 'DataType']]] = (
         ('object', dill_serializer),
     )

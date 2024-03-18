@@ -5,7 +5,7 @@ import typing as t
 import requests
 from llama_cpp import Llama
 
-from pinnacledb.ext.llm.base import BaseLLM
+from pinnacledb.ext.llm.model import BaseLLM
 
 
 # TODO use core downloader already implemented

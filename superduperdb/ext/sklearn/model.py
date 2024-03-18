@@ -10,11 +10,11 @@ from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.components.datatype import DataType, pickle_serializer
 from pinnacledb.components.model import (
+    Model,
     ModelInputType,
     Signature,
     Trainer,
     _Fittable,
-    _Predictor,
     _Validator,
 )
 from pinnacledb.jobs.job import Job
@@ -76,7 +76,7 @@ class SklearnTrainer(Trainer):
 
 
 @dc.dataclass(kw_only=True)
-class Estimator(_Predictor, _Fittable, _Validator):
+class Estimator(Model, _Fittable, _Validator):
     _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, DataType]]] = (
         ('object', pickle_serializer),
     )
