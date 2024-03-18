@@ -4,13 +4,6 @@ sidebar_position: 2
 
 # Design
 
-## Architecture
-Here is a detailed view of the `pinnacledb` architecture:
-
-![architecture_detailed](/img/architecture_detailed.png)
-
-## Schematic
-
 Here is a schematic of the `pinnacledb` design.
 
 ![](/img/light.png)
