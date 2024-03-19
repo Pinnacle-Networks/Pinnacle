@@ -14,7 +14,7 @@ SuperDuperDB is **not** a database. SuperDuperDB is an open platform unifying da
 
 By integrating AI at the data's source, we aim to make building AI applications easier and more flexible: Not just for use in standard machine learning use-cases like classification, segmentation, recommendation, etc., but also generative AI & LLM-chat, vector search as well as highly custom AI applications and workflows involving ultra-specialized models.
 
-For more information about SuperDuperDB and why we believe it is much needed, [read this blog post](https://docs.pinnacledb.com/blog/pinnacledb-the-open-source-framework-for-bringing-ai-to-your-datastore/). 
+For more information about SuperDuperDB and why we believe it is much needed, [read this blog post](https://blog.pinnacledb.com/pinnacledb-the-open-source-framework-for-bringing-ai-to-your-datastore/). 
 
 
 ![](/img/pinnacledb.gif)
