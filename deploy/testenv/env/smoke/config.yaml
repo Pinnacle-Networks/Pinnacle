@@ -9,6 +9,8 @@ cluster:
   vector_search:
     uri: http://vector-search:8000
     backfill_batch_size: 100
+  rest:
+    uri: http://rest:8002
 data_backend: mongodb://pinnacle:pinnacle@mongodb:27017/test_db
 downloads:
   folder: null
