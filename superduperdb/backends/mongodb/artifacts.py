@@ -7,7 +7,7 @@ import gridfs
 from tqdm import tqdm
 
 from pinnacledb import CFG, logging
-from pinnacledb.backends.base.artifact import ArtifactStore
+from pinnacledb.backends.base.artifacts import ArtifactStore
 from pinnacledb.misc.colors import Colors
 
 
