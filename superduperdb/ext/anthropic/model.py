@@ -8,7 +8,7 @@ from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.components.model import APIModel
+from pinnacledb.components.model import APIBaseModel
 from pinnacledb.ext.utils import format_prompt, get_key
 from pinnacledb.misc.retry import Retry
 
@@ -20,7 +20,7 @@ KEY_NAME = 'ANTHROPIC_API_KEY'
 
 
 @dc.dataclass(kw_only=True)
-class Anthropic(APIModel):
+class Anthropic(APIBaseModel):
     """Anthropic predictor."""
 
     client_kwargs: t.Dict[str, t.Any] = dc.field(default_factory=dict)

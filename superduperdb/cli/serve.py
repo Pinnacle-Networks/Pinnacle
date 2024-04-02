@@ -45,5 +45,4 @@ def ray_serve(
 @command(help='Start FastAPI REST server')
 def rest():
     from pinnacledb.rest.app import app
-
     app.start()

@@ -3,8 +3,6 @@ import typing as t
 
 from pinnacledb.misc.annotations import requires_packages
 
-requires_packages(['sentence-transformers', '2.2.2', None])
-
 from sentence_transformers import SentenceTransformer as _SentenceTransformer
 
 from pinnacledb.backends.query_dataset import QueryDataset
