@@ -20,7 +20,7 @@ from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.components.model import APIModel, Inputs
+from pinnacledb.components.model import APIBaseModel, Inputs
 from pinnacledb.components.vector_index import sqlvector, vector
 from pinnacledb.ext.llm.model import BaseLLMAPI
 from pinnacledb.misc.compat import cache
@@ -44,7 +44,7 @@ def _available_models(skwargs):
 
 
 @dc.dataclass(kw_only=True)
-class _OpenAI(APIModel):
+class _OpenAI(APIBaseModel):
     '''
     :param client_kwargs: The kwargs to be passed to OpenAI
     '''
@@ -52,7 +52,7 @@ class _OpenAI(APIModel):
     openai_api_key: t.Optional[str] = None
     openai_api_base: t.Optional[str] = None
     client_kwargs: t.Optional[dict] = dc.field(default_factory=dict)
-    __doc__ = APIModel.__doc__  # type: ignore[assignment]
+    __doc__ = APIBaseModel.__doc__  # type: ignore[assignment]
 
     def __post_init__(self, artifacts):
         super().__post_init__(artifacts)

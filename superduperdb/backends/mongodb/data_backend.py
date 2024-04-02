@@ -6,9 +6,11 @@ import pymongo
 
 from pinnacledb import logging
 from pinnacledb.backends.base.data_backend import BaseDataBackend
+from pinnacledb.backends.ibis.field_types import FieldType
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.backends.mongodb.metadata import MongoMetaDataStore
 from pinnacledb.base.serializable import Serializable
+from pinnacledb.components.datatype import DataType
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.special_dicts import MongoStyleDict
 
@@ -124,3 +126,8 @@ class MongoDataBackend(BaseDataBackend):
         """
 
         # TODO: implement me
+
+    def create_output_dest(
+        self, identifier: str, datatype: t.Union[None, DataType, FieldType], flatten: bool = False
+    ):
+        pass

@@ -5,13 +5,13 @@ import tqdm
 
 from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.backends.query_dataset import QueryDataset
-from pinnacledb.components.model import APIModel
+from pinnacledb.components.model import APIBaseModel
 from pinnacledb.components.vector_index import sqlvector, vector
 from pinnacledb.ext.jina.client import JinaAPIClient
 
 
 @dc.dataclass(kw_only=True)
-class Jina(APIModel):
+class Jina(APIBaseModel):
     """Cohere predictor"""
 
     api_key: t.Optional[str] = None

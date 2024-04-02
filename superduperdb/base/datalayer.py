@@ -39,6 +39,7 @@ from pinnacledb.components.datatype import (
 from pinnacledb.components.schema import Schema
 from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
 from pinnacledb.jobs.task_workflow import TaskWorkflow
+from pinnacledb.misc.annotations import deprecated
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.data import ibatch
 from pinnacledb.misc.download import download_content, download_from_one
@@ -336,7 +337,7 @@ class Datalayer:
             artifacts.extend(list(r.get_leaves('artifact').values()))
 
         for a in artifacts:
-            if a.x is not None:
+            if a.x is not None and a.file_id is None:
                 a.save(self.artifact_store)
 
         inserted_ids = insert.execute(self)
@@ -462,7 +463,18 @@ class Datalayer:
                 )
         return updated_ids, None
 
-    def add(
+    @deprecated
+    def add(self, object: t.Any, dependencies: t.Sequence[Job] = ()):
+        """
+        Note use of `add` is deprecated, use `apply` instead.
+    
+        :param object: Object to be stored
+        :param dependencies: list of jobs which should execute before component
+                             init begins
+        """
+        return self.apply(object, dependencies=dependencies)
+
+    def apply(
         self,
         object: t.Union[Component, t.Sequence[t.Any], t.Any],
         dependencies: t.Sequence[Job] = (),
