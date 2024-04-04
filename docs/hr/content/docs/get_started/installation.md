@@ -84,8 +84,3 @@ For more control, you can build the Docker images yourself using the following c
 make build_pinnacledb
 make build_demo
 ```
-
-#### Hosted Docker Image
-
-If you prefer a hassle-free solution, visit our hosted images at https://demo.pinnacledb.com. 
-This way, you can use SuperDuperDB directly in your browser without the need for local installation.
