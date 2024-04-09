@@ -6,11 +6,9 @@ from . import command
 
 @command(help='Start local cluster: server, ray and change data capture')
 def local_cluster():
-    from pinnacledb.base.build import build_datalayer
-    from pinnacledb.server.cluster import cluster
+    from pinnacledb.server.cluster import local_cluster
 
-    db = build_datalayer()
-    cluster(db)
+    local_cluster()
 
 
 @command(help='Start vector search server')
