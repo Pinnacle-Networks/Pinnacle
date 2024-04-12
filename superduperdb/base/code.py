@@ -6,10 +6,11 @@ from pinnacledb.base.serializable import Serializable
 
 template = \
 """from pinnacledb import code
+
 @code
 {definition}"""
 
-default = template.format(definition='def my_code(*args, **kwargs):\n    ...\n    return\n')
+default = template.format(definition='def my_code(x):\n    return x\n')
 
 
 @dc.dataclass

@@ -16,10 +16,24 @@ pinnacledb cdc
 pinnacledb vector-searcher
 ```
 
-**Start a local cluster**
+**Operate a local cluster**
+
+Start the cluster:
 
 ```bash
-pinnacledb local-cluster
+pinnacledb local-cluster up
+```
+
+Attach to the cluster session:
+
+```bash
+pinnacledb local-cluster attach
+```
+
+Stop the cluster:
+
+```bash
+pinnacledb local-cluster down
 ```
 
 **Print important information about your installation**
