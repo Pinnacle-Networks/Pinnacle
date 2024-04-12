@@ -9,7 +9,7 @@ from sklearn.svm import SVC
 
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
-from pinnacledb.ext.sklearn.model import Estimator
+from pinnacledb.ext.sklearn.model import Estimator, SklearnTrainer
 
 
 class Lookup(TransformerMixin):
@@ -37,8 +37,11 @@ class TestPipeline:
         yield Estimator(
             identifier='my-svc',
             object=Pipeline([('my-encoding', Lookup(dictionary)), ('my-svc', SVC())]),
-            train_X=('X', 'y'),
-            train_select=Collection('documents').find(),
+            trainer=SklearnTrainer(
+                'my-trainer',
+                key=('X', 'y'),
+                select=Collection('documents').find(),
+            )
         )
 
     @pytest.fixture()
