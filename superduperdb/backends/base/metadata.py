@@ -6,7 +6,8 @@ if t.TYPE_CHECKING:
     from pinnacledb.backends.base.query import Select
 
 
-class NonExistentMetadataError(Exception): ...
+class NonExistentMetadataError(Exception):
+    ...
 
 
 class MetaDataStore(ABC):
