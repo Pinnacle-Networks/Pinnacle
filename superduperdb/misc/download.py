@@ -19,7 +19,8 @@ from pinnacledb.base.document import Document
 from pinnacledb.base.serializable import Serializable
 
 
-class TimeoutException(Exception): ...
+class TimeoutException(Exception):
+    ...
 
 
 def timeout_handler(signum, frame):
