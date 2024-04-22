@@ -24,7 +24,6 @@ Otherwise refer to "Configuring your production system".
     <TabItem value="SQLite" label="SQLite" default>
         ```python
         from pinnacledb import pinnacle
-        
         db = pinnacle('sqlite://my_db.db')        
         ```
     </TabItem>
@@ -55,15 +54,17 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="PostgreSQL" label="PostgreSQL" default>
         ```python
+        !pip install psycopg2
         from pinnacledb import pinnacle
         
-        user = 'pinnacle'
-        password = 'pinnacle'
+        user = 'postgres'
+        password = 'postgres'
         port = 5432
         host = 'localhost'
         database = 'test_db'
+        db_uri = f"postgres://{user}:{password}@{host}:{port}/{database}"
         
-        db = pinnacle(f"postgres://{user}:{password}@{host}:{port}/{database}")        
+        db = pinnacle(db_uri, metadata_store=db_uri.replace('postgres://', 'postgresql://'))        
         ```
     </TabItem>
     <TabItem value="Snowflake" label="Snowflake" default>
