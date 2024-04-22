@@ -4,8 +4,7 @@ import typing as t
 
 from pinnacledb.base.serializable import Serializable
 
-template = \
-"""from pinnacledb import code
+template = """from pinnacledb import code
 
 @code
 {definition}"""

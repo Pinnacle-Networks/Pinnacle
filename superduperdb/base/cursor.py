@@ -1,7 +1,7 @@
 import dataclasses as dc
 import typing as t
 
-from pinnacledb import CFG
+from pinnacledb import CFG, logging
 from pinnacledb.base.document import Document
 from pinnacledb.misc.files import load_uris
 
@@ -58,7 +58,10 @@ class SuperDuperCursor:
         if self.decode_function is not None:
             r = self.decode_function(r)
         if self.scores is not None:
-            r['score'] = self.scores[str(r[self.id_field])]
+            try:
+                r['score'] = self.scores[str(r[self.id_field])]
+            except KeyError:
+                logging.warn(f"No document id found for {r}")
         # TODO handle with lazy loading
         if CFG.hybrid_storage:
             load_uris(r, datatypes=self.db.datatypes)
