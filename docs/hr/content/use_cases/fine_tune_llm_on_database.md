@@ -177,12 +177,6 @@ If you don't need this, then it is simpler to start in development mode.
         ```
     </TabItem>
 </Tabs>
-```python
-from pinnacledb import pinnacle
-
-db = pinnacle()
-```
-
 <!-- TABS -->
 ## Connect to SuperDuperDB
 

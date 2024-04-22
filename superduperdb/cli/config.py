@@ -1,6 +1,5 @@
 import json
 
-import yaml
 from typer import Option
 
 from pinnacledb import CFG
