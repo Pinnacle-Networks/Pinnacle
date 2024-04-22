@@ -41,7 +41,7 @@ import TabItem from '@theme/TabItem';
                 from pinnacledb import code
                 @code
                 def my_code(x):
-                    return x.list()
+                    return x.tolist()
         
           - leaf_type: "component"
             cls: "Listener"
@@ -101,7 +101,7 @@ import TabItem from '@theme/TabItem';
                 "signature": "*args,**kwargs",
                 "model": "all-MiniLM-L6-v2",
                 "device": "cpu",
-                "postprocess": "from pinnacledb import code\n\n@code\ndef my_code(x):\n    return x.list()\n"
+                "postprocess": "from pinnacledb import code\n\n@code\ndef my_code(x):\n    return x.tolist()\n"
               }
             },
             {
