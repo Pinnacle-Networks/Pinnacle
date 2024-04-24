@@ -11,7 +11,7 @@ from test.db_config import DBConfig
 from sklearn.svm import SVC
 
 from pinnacledb.components.model import ObjectModel
-from pinnacledb.ext.sklearn.model import Estimator, SklearnTrainer
+from pinnacledb.ext.sklearn.model import Estimator
 
 
 @pytest.mark.skipif(not torch, reason='Torch not installed')
