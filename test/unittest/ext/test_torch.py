@@ -7,13 +7,13 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.components.model import Validation
 from test.db_config import DBConfig
 
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.metric import Metric
+from pinnacledb.components.model import Validation
 from pinnacledb.ext.torch.training import TorchTrainer
 
 

@@ -24,8 +24,8 @@ from pinnacledb.components.model import (
     QueryModel,
     SequentialModel,
     Trainer,
-    _Fittable,
     Validation,
+    _Fittable,
 )
 from pinnacledb.jobs.job import ComponentJob
 
