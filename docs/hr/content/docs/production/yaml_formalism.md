@@ -147,6 +147,7 @@ import TabItem from '@theme/TabItem';
     <TabItem value="Python" label="Python" default>
 
         ```python
+
         from pinnacledb import pinnacle
         from pinnacledb.components.vector_index import vector
         from pinnacledb.ext.sentence_transformers.model import SentenceTransformer
@@ -154,7 +155,9 @@ import TabItem from '@theme/TabItem';
         from pinnacledb.components.vector_index import VectorIndex
         from pinnacledb import Stack
 
-        datatype = Vector(shape=384, identifier="my-vec")
+        from pinnacledb.backends.mongodb import Collection
+
+        datatype = vector(shape=384, identifier="my-vec")
 
         model = SentenceTransformer(
             identifier="test",
@@ -170,7 +173,7 @@ import TabItem from '@theme/TabItem';
             identifier="my-listener",
             key="txt",
             model=model,
-            select=select,
+            select=Collection('documents').find(),
             active=True,
             predict_kwargs={}
         )
