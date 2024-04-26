@@ -20,6 +20,7 @@ from pinnacledb.backends.ibis.query import IbisCompoundSelect, Table
 from pinnacledb.backends.query_dataset import CachedQueryDataset, QueryDataset
 from pinnacledb.base.code import Code
 from pinnacledb.base.document import Document
+from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.base.serializable import Serializable, Variable
 from pinnacledb.components.component import Component, ensure_initialized
 from pinnacledb.components.datatype import DataType, dill_lazy
@@ -537,9 +538,16 @@ class Model(Component):
             id_field = db.databackend.id_field
         except AttributeError:
             id_field = query.table_or_collection.primary_id
-        for r in tqdm.tqdm(db.execute(query)):
-            predict_ids.append(str(r[id_field]))
 
+        # TODO: Find better solution to support in-memory (pandas)
+        # Since pandas has a bug, it cannot join on empty table.
+        try:
+            id_curr = db.execute(query)
+        except DatabackendException:
+            id_curr = db.execute(select.select(id_field))
+
+        for r in tqdm.tqdm(id_curr):
+            predict_ids.append(str(r[id_field]))
         return predict_ids
 
     def predict_in_db(

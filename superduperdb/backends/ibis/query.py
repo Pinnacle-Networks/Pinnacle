@@ -22,6 +22,7 @@ from pinnacledb.backends.base.query import (
 from pinnacledb.backends.ibis.cursor import SuperDuperIbisResult
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.base.document import Document
+from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.schema import Schema
@@ -100,7 +101,7 @@ def _model_update_impl(
     db.databackend.insert(f'_outputs.{predict_id}', table_records)
 
 
-class IbisBackendError(Exception):
+class IbisBackendError(DatabackendException):
     """
     This error represents ibis query related errors
     i.e when there is an error while executing an ibis query,
@@ -215,7 +216,11 @@ class IbisCompoundSelect(CompoundSelect):
         if tables is None:
             tables = {}
         if table_id not in tables:
-            tables[table_id] = db.databackend.conn.table(table_id)
+            try:
+                tables[table_id] = db.databackend.conn.table(table_id)
+            except KeyError:
+                tables[table_id] = db.databackend.in_memory_tables[table_id]
+
         return self.query_linker.compile(db, tables=tables)
 
     def get_all_tables(self):
@@ -646,8 +651,14 @@ class Table(Component):
         for e in self.schema.encoders:
             db.add(e)
         if db.databackend.in_memory:
-            logging.info(f'Using in-memory tables "{self.identifier}" so doing nothing')
-            return
+            if '_outputs' in self.identifier:
+                db.databackend.in_memory_tables[
+                    self.identifier
+                ] = db.databackend.create_table_and_schema(
+                    self.identifier, self.schema.raw
+                )
+
+                return
 
         try:
             db.databackend.create_table_and_schema(self.identifier, self.schema.raw)

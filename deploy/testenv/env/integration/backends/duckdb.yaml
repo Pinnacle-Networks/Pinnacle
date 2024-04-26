@@ -6,7 +6,7 @@ cluster:
     uri: null
   compute:
     uri: null
-data_backend: duckdb:///deploy/testenv/cache/test_duckdb.ddb
+data_backend: duckdb://deploy/testenv/cache/test_duckdb.ddb
 downloads:
   folder: null
   headers:
