@@ -298,7 +298,7 @@ Otherwise refer to "Configuring your production system".
 ## Get useful sample data
 
 ```python
-from pinnacledb import dtype
+from pinnacledb.backends.ibis import dtype
 
 ```
 
@@ -309,21 +309,23 @@ from pinnacledb import dtype
         !curl -O https://pinnacledb-public-demo.s3.amazonaws.com/text.json
         import json
         
-        with open('text.json', 'r') as f:
+        with open("text.json", "r") as f:
             data = json.load(f)
-        sample_datapoint = "What is mongodb?"
+        sample_datapoint = data[0]
         
         chunked_model_datatype = dtype('str')        
         ```
     </TabItem>
     <TabItem value="Image" label="Image" default>
         ```python
-        !curl -O s3://pinnacledb-public-demo/images.zip && unzip images.zip
-        import os
+        !curl -O https://pinnacledb-public-demo.s3.amazonaws.com/images.zip && unzip images.zip
+        import json
         from PIL import Image
         
-        data = [f'images/{x}' for x in os.listdir('./images')]
-        data = [ Image.open(path) for path in data]
+        with open('images/images.json', 'r') as f:
+            data = json.load(f)
+        
+        data = [{'x': Image.open(d['image_path']), 'y': d['label']} for d in data]
         sample_datapoint = data[-1]
         
         from pinnacledb.ext.pillow import pil_image
@@ -382,21 +384,20 @@ In order to create data, we need to create a `Schema` for encoding our special `
 <Tabs>
     <TabItem value="MongoDB" label="MongoDB" default>
         ```python
-        from pinnacledb import Document
+        from pinnacledb import Document, DataType
         
-        def do_insert(data):
-            schema = None
+        def do_insert(data, schema = None):
             
-            
-            if schema is None and (datatype is None  or isinstance(datatype, str)) :
-                data = [Document({'x': x}) for x in data]
+            if schema is None and (datatype is None or isinstance(datatype, str)):
+                data = [Document({'x': x['x'], 'y': x['y']}) for x in data]
                 db.execute(table_or_collection.insert_many(data))
-            elif schema is None and datatype is not None and isintance():
-                data = [Document({'x': datatype(x)}) for x in data]
+            elif schema is None and datatype is not None and isinstance(datatype, DataType):
+                data = [Document({'x': datatype(x['x']), 'y': x['y']}) for x in data]
                 db.execute(table_or_collection.insert_many(data))
             else:
-                data = [Document({'x': x}) for x in data]
-                db.execute(table_or_collection.insert_many(data, schema='my_schema'))        
+                data = [Document({'x': x['x'], 'y': x['y']}) for x in data]
+                db.execute(table_or_collection.insert_many(data, schema=schema))
+        
         ```
     </TabItem>
     <TabItem value="SQL" label="SQL" default>
@@ -404,7 +405,8 @@ In order to create data, we need to create a `Schema` for encoding our special `
         from pinnacledb import Document
         
         def do_insert(data):
-            db.execute(table_or_collection.insert([Document({'id': str(idx), 'x': x}) for idx, x in enumerate(data)]))        
+            db.execute(table_or_collection.insert([Document({'id': str(idx), 'x': x['x'], 'y': x['y']}) for idx, x in enumerate(data)]))
+        
         ```
     </TabItem>
 </Tabs>
