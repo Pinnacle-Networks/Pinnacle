@@ -32,11 +32,7 @@ from pinnacledb.base.document import Document
 from pinnacledb.base.pinnacle import pinnacle
 from pinnacledb.cdc.cdc import DatabaseChangeDataCapture
 from pinnacledb.components.component import Component
-from pinnacledb.components.datatype import (
-    DataType,
-    _BaseEncodable,
-    serializers,
-)
+from pinnacledb.components.datatype import DataType, _BaseEncodable, serializers
 from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
 from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.misc.annotations import deprecated
@@ -339,7 +335,7 @@ class Datalayer:
             r['_fold'] = 'train'
             if random.random() < s.CFG.fold_probability:
                 r['_fold'] = 'valid'
-            artifacts.extend(list(r.get_leaves('artifact').values()))
+            artifacts.extend(list(r.get_leaves('artifact', 'file').values()))
 
         for a in artifacts:
             if a.x is not None and a.file_id is None:
