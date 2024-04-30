@@ -10,7 +10,7 @@ from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import (
     DataType,
-    file_serializer,
+    file_lazy,
     serializers,
 )
 
@@ -21,7 +21,7 @@ class TestComponent(Component):
     type_id: t.ClassVar[str] = "TestComponent"
 
     _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, "DataType"]]] = (
-        ("path", file_serializer),
+        ("path", file_lazy),
     )
 
 

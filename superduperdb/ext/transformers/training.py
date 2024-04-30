@@ -24,7 +24,7 @@ from pinnacledb.base.config import Config
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.components.component import Component
 from pinnacledb.components.dataset import Dataset
-from pinnacledb.components.datatype import DataType, file_serializer
+from pinnacledb.components.datatype import DataType, file_lazy
 from pinnacledb.components.model import Trainer as SuperDuperTrainer
 from pinnacledb.misc.hash import random_sha1
 
@@ -36,9 +36,7 @@ if t.TYPE_CHECKING:
 class Checkpoint(Component):
     path: t.Optional[str]
     step: int
-    _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, DataType]]] = (
-        ("path", file_serializer),
-    )
+    _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, DataType]]] = (("path", file_lazy),)
     type_id: t.ClassVar[str] = "checkpoint"
 
     def __post_init__(self, artifacts):
