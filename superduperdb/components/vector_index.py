@@ -12,7 +12,7 @@ from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import Mapping, ModelInputType
 from pinnacledb.ext.utils import str_shape
 from pinnacledb.jobs.job import FunctionJob
-from pinnacledb.misc.annotations import public_api, ui
+from pinnacledb.misc.annotations import public_api, component
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorIndexMeasureType
 from pinnacledb.vector_search.update_tasks import copy_vectors
@@ -265,7 +265,7 @@ class DecodeArray:
         return np.frombuffer(bytes, dtype=self.dtype).tolist()
 
 
-@ui(
+@component(
     {'name': 'shape', 'type': 'int'},
     {'name': 'identifier', 'type': 'str'},
 )
