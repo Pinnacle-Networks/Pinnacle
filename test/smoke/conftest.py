@@ -12,7 +12,7 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.vector_index import VectorIndex
@@ -35,14 +35,14 @@ def add_models_encoders(test_db):
     )
     _, indexing_listener = test_db.add(
         Listener(
-            select=Collection(identifier='documents').find(),
+            select=MongoQuery(identifier='documents').find(),
             key='x',
             model=model,
         )
     )
     _, compatible_listener = test_db.add(
         Listener(
-            select=Collection(identifier='documents').find(),
+            select=MongoQuery(identifier='documents').find(),
             key='z',
             model=model,
         )

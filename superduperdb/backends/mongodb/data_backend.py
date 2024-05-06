@@ -2,6 +2,7 @@ import os
 import typing as t
 
 import click
+import mongomock
 import pymongo
 
 from pinnacledb import logging
@@ -9,11 +10,13 @@ from pinnacledb.backends.base.data_backend import BaseDataBackend
 from pinnacledb.backends.ibis.field_types import FieldType
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.backends.mongodb.metadata import MongoMetaDataStore
+from pinnacledb.base.document import Document
 from pinnacledb.base.enums import DBType
 from pinnacledb.base.serializable import Serializable
 from pinnacledb.components.datatype import DataType
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.special_dicts import MongoStyleDict
+from .query import MongoQuery
 
 
 class MongoDataBackend(BaseDataBackend):
@@ -31,6 +34,12 @@ class MongoDataBackend(BaseDataBackend):
     def __init__(self, conn: pymongo.MongoClient, name: str):
         super().__init__(conn=conn, name=name)
         self._db = self.conn[self.name]
+
+    def get_query_builder(self, item):
+        item_gotten = self._db[item]
+        if isinstance(item_gotten, (pymongo.collection.Collection, mongomock.collection.Collection)):
+            return MongoQuery(identifier=item, db=self.datalayer)
+        return item_gotten
 
     def url(self):
         """Return the data backend connection url."""
@@ -108,13 +117,12 @@ class MongoDataBackend(BaseDataBackend):
             is not None
         )
 
-    # TODO: Remove the unused function
     def unset_outputs(self, info: t.Dict):
         """Unset the output field in the data backend.
 
         :param info: dictionary containing information about the output field
         """
-        select = Serializable.from_dict(info['select'])
+        select = Document.decode(info['select']).unpack()
         logging.info(f'unsetting output field _outputs.{info["key"]}.{info["model"]}')
         doc = {'$unset': {f'_outputs.{info["key"]}.{info["model"]}': 1}}
         update = select.update(doc)

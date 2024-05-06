@@ -1,9 +1,8 @@
 import typing as t
 
-from pinnacledb.backends.base.query import CompoundSelect
-from pinnacledb.backends.ibis.data_backend import IbisDataBackend
+from pinnacledb.backends.base.query import Query
+# from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorItem
 
@@ -27,7 +26,7 @@ def delete_vectors(
 
 def copy_vectors(
     vector_index: str,
-    query: t.Union[t.Dict, CompoundSelect],
+    query: t.Union[t.Dict, Query],
     ids: t.Sequence[str],
     db=t.Optional['Datalayer'],
 ):
@@ -41,8 +40,8 @@ def copy_vectors(
     vi = db.vector_indices[vector_index]
     if isinstance(query, dict):
         # ruff: noqa: E501
-        query: CompoundSelect = Serializable.decode(query)  # type: ignore[no-redef]
-    assert isinstance(query, CompoundSelect)
+        query: Query = Document.decode(query).unpack()  # type: ignore[no-redef]
+    assert isinstance(query, Query)
     if not ids:
         select = query
     else:
