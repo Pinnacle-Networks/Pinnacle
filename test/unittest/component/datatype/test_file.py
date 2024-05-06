@@ -6,7 +6,7 @@ from test.db_config import DBConfig
 import pytest
 
 from pinnacledb import Document
-from pinnacledb.backends.mongodb import Collection
+from pinnacledb.backends.mongodb import MongoQuery
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import (
     Empty,
@@ -67,7 +67,7 @@ def test_file(db, random_file):
 
     dt = DataType("my-file", encodable="file")
     db.apply(dt)
-    collection = Collection("my-file")
+    collection = MongoQuery("my-file")
     db.execute(collection.insert_one(Document({"x": dt(random_file)})))
 
     data = db.execute(collection.find_one())
@@ -85,7 +85,7 @@ def test_file_lazy(db, random_file):
 
     dt = DataType("my-file", encodable="lazy_file")
     db.apply(dt)
-    collection = Collection("my-file")
+    collection = MongoQuery("my-file")
     db.execute(collection.insert_one(Document({"x": dt(random_file)})))
 
     data = db.execute(collection.find_one())

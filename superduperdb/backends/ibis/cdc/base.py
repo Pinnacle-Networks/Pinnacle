@@ -1,7 +1,6 @@
 import dataclasses as dc
 import typing as t
 
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.cdc.cdc import DBEvent, Packet
 
 TokenType = t.Dict[str, str]
@@ -17,5 +16,5 @@ class IbisDBPacket(Packet):
     """
 
     ids: t.List[str]
-    query: t.Optional[Serializable] = None
+    query: t.Optional[t.Any] = None
     event_type: DBEvent = DBEvent.insert

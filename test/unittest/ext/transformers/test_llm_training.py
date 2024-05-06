@@ -4,7 +4,7 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.document import Document
 from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.metric import Metric
@@ -34,7 +34,7 @@ def test_training(db, tmpdir):
         fold = "train" if i < 32 else "valid"
         datas.append({"text": text, "id": str(i), "fold": fold})
 
-    collection = Collection("doc")
+    collection = MongoQuery("doc")
     db.execute(collection.insert_many(list(map(Document, datas))))
     select = collection.find()
 

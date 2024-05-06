@@ -4,6 +4,7 @@ import numpy
 
 from pinnacledb.components.datatype import DataType, DataTypeFactory
 from pinnacledb.ext.utils import str_shape
+from pinnacledb.misc.annotations import component
 
 
 class EncodeArray:
@@ -46,6 +47,7 @@ class DecodeArray:
         return numpy.frombuffer(bytes, dtype=self.dtype).reshape(self.shape)
 
 
+@component()
 def array(
     dtype: str,
     shape: t.Sequence,

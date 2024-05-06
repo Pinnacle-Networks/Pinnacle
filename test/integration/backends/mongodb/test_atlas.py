@@ -7,7 +7,7 @@ import pytest
 
 import pinnacledb as s
 from pinnacledb import CFG, pinnacle
-from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.document import Document
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import ObjectModel
@@ -54,7 +54,7 @@ def test_setup_atlas_vector_search(atlas_search_config):
         identifier='test-model', object=random_vector_model, encoder=vector(shape=(16,))
     )
     db = pinnacle()
-    collection = Collection('docs')
+    collection = MongoQuery('docs')
 
     vector_indexes = db.data_backend.list_vector_indexes()
 
@@ -83,7 +83,7 @@ def test_setup_atlas_vector_search(atlas_search_config):
 @pytest.mark.skipif(DO_SKIP, reason='Only atlas deployments relevant.')
 def test_use_atlas_vector_search(atlas_search_config):
     db = pinnacle()
-    collection = Collection('docs')
+    collection = MongoQuery('docs')
 
     query = collection.like(
         Document({'text': 'This is a test'}), n=5, vector_index='test-vector-index'

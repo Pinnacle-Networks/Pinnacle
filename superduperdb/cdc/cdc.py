@@ -43,9 +43,8 @@ from pinnacledb.misc.runnable.runnable import Event
 
 if t.TYPE_CHECKING:
     from pinnacledb.backends.base.query import TableOrCollection
-    from pinnacledb.backends.ibis.query import Table
+    from pinnacledb.backends.ibis.query import IbisQuery
     from pinnacledb.base.datalayer import Datalayer
-    from pinnacledb.base.serializable import Serializable
     from pinnacledb.components.listener import Listener
 
 
@@ -67,7 +66,7 @@ class Packet:
     """
 
     ids: t.Any
-    query: t.Optional['Serializable']
+    query: t.Optional[t.Any] = None
     event_type: DBEvent = DBEvent.insert
 
     @property
@@ -116,7 +115,7 @@ class BaseDatabaseListener(ABC):
     def __init__(
         self,
         db: 'Datalayer',
-        on: t.Union['Table', 'TableOrCollection'],
+        on: t.Union['IbisQuery', 'TableOrCollection'],
         stop_event: Event,
         identifier: 'str' = '',
         timeout: t.Optional[float] = None,
@@ -200,7 +199,7 @@ class BaseDatabaseListener(ABC):
         self,
         ids: t.Sequence,
         db: 'Datalayer',
-        table_or_collection: t.Union['Table', 'TableOrCollection'],
+        table_or_collection: t.Union['IbisQuery', 'TableOrCollection'],
         event: DBEvent,
     ):
         """Create an event.
@@ -388,7 +387,7 @@ class DatabaseChangeDataCapture:
         self._CDC_LISTENERS: t.Dict[str, BaseDatabaseListener] = {}
         self._running: bool = False
         self._cdc_existing_collections: t.MutableSequence[
-            t.Union['TableOrCollection', 'Table']
+            t.Union['TableOrCollection', 'IbisQuery']
         ] = []
 
         listeners = self.db.show('listeners')
@@ -415,7 +414,7 @@ class DatabaseChangeDataCapture:
 
     def listen(
         self,
-        on: t.Union['Table', 'TableOrCollection'],
+        on: t.Union['IbisQuery', 'TableOrCollection'],
         identifier: str = '',
         *args,
         **kwargs,
