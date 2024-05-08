@@ -23,6 +23,7 @@ from pinnacledb.backends.base.query import (
 from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.base.document import Document
 from pinnacledb.components.schema import Schema
+from pinnacledb.misc.auto_schema import infer_schema
 from pinnacledb.misc.files import load_uris
 
 SCHEMA_KEY = '_schema'
@@ -955,6 +956,17 @@ class Collection(TableOrCollection):
                 db.execute(
                     collection.insert_many([Document(**doc) for doc in bulk_writes])
                 )
+
+    @staticmethod
+    def infer_schema(data: t.Mapping[str, t.Any], identifier: t.Optional[str] = None):
+        """
+        Infer a schema from a given data object
+
+        :param data: The data object
+        :param identifier: The identifier for the schema, if None, it will be generated
+        :return: The inferred schema
+        """
+        return infer_schema(data, identifier)
 
 
 def _get_decode_function(db) -> t.Callable[[t.Any], t.Any]:
