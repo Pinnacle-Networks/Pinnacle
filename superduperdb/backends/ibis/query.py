@@ -26,6 +26,7 @@ from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.schema import Schema
+from pinnacledb.misc.auto_schema import infer_schema
 
 if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
@@ -667,6 +668,17 @@ class Table(Component):
                 pass
             else:
                 raise e
+
+    @staticmethod
+    def infer_schema(data: t.Mapping[str, t.Any], identifier: t.Optional[str] = None):
+        """
+        Infer a schema from a given data object
+
+        :param data: The data object
+        :param identifier: The identifier for the schema, if None, it will be generated
+        :return: The inferred schema
+        """
+        return infer_schema(data, identifier=identifier, ibis=True)
 
     @property
     def table_or_collection(self):
