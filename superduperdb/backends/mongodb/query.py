@@ -23,7 +23,6 @@ from pinnacledb.backends.base.query import (
 from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.base.document import Document
 from pinnacledb.components.schema import Schema
-from pinnacledb.misc.auto_schema import infer_schema
 from pinnacledb.misc.files import load_uris
 
 SCHEMA_KEY = '_schema'
@@ -966,6 +965,8 @@ class Collection(TableOrCollection):
         :param identifier: The identifier for the schema, if None, it will be generated
         :return: The inferred schema
         """
+        from pinnacledb.misc.auto_schema import infer_schema
+
         return infer_schema(data, identifier)
 
 
