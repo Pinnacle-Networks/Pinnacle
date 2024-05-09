@@ -26,7 +26,6 @@ from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.schema import Schema
-from pinnacledb.misc.auto_schema import infer_schema
 
 if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
@@ -678,6 +677,8 @@ class Table(Component):
         :param identifier: The identifier for the schema, if None, it will be generated
         :return: The inferred schema
         """
+        from pinnacledb.misc.auto_schema import infer_schema
+
         return infer_schema(data, identifier=identifier, ibis=True)
 
     @property
