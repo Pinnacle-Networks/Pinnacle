@@ -33,6 +33,7 @@ from pinnacledb.base.pinnacle import pinnacle
 from pinnacledb.cdc.cdc import DatabaseChangeDataCapture
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import DataType, _BaseEncodable, serializers
+from pinnacledb.components.schema import Schema
 from pinnacledb.jobs.job import ComponentJob, FunctionJob, Job
 from pinnacledb.jobs.task_workflow import TaskWorkflow
 from pinnacledb.misc.annotations import deprecated
@@ -1102,6 +1103,18 @@ class Datalayer:
         if cm := self.type_id_to_cache_mapping.get(type_id):
             getattr(self, cm)[component.identifier] = component
         component.on_load(self)
+
+    def infer_schema(
+        self, data: t.Mapping[str, t.Any], identifier: t.Optional[str] = None
+    ) -> Schema:
+        """
+        Infer a schema from a given data object
+
+        :param data: The data object
+        :param identifier: The identifier for the schema, if None, it will be generated
+        :return: The inferred schema
+        """
+        return self.databackend.infer_schema(data, identifier)
 
 
 @dc.dataclass
