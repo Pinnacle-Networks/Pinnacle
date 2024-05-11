@@ -4,8 +4,10 @@ import typing as t
 from ibis.expr.datatypes import DataType, dtype as _dtype
 
 from pinnacledb.base.leaf import Leaf
+from pinnacledb.misc.annotations import merge_docstrings
 
 
+@merge_docstrings
 @dc.dataclass(kw_only=True)
 class FieldType(Leaf):
     """Field type to represent the type of a field in a table.

@@ -12,6 +12,7 @@ from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.components.model import APIBaseModel
 from pinnacledb.components.vector_index import sqlvector, vector
 from pinnacledb.ext.utils import format_prompt, get_key
+from pinnacledb.misc.annotations import merge_docstrings
 from pinnacledb.misc.retry import Retry
 
 retry = Retry(exception_types=(CohereAPIError, CohereConnectionError))
@@ -19,6 +20,7 @@ retry = Retry(exception_types=(CohereAPIError, CohereConnectionError))
 KEY_NAME = 'COHERE_API_KEY'
 
 
+@merge_docstrings
 @dc.dataclass(kw_only=True)
 class Cohere(APIBaseModel):
     """Cohere predictor.
@@ -33,6 +35,7 @@ class Cohere(APIBaseModel):
         self.identifier = self.identifier or self.model
 
 
+@merge_docstrings
 @dc.dataclass(kw_only=True)
 class CohereEmbed(Cohere):
     """Cohere embedding predictor.
@@ -41,10 +44,10 @@ class CohereEmbed(Cohere):
     :param batch_size: The batch size to use for the predictor.
     """
 
-    signature: t.ClassVar[str] = 'singleton'
     shapes: t.ClassVar[t.Dict] = {'embed-english-v2.0': (4096,)}
     shape: t.Optional[t.Sequence[int]] = None
     batch_size: int = 100
+    signature: str = 'singleton'
 
     def __post_init__(self, db, artifacts):
         super().__post_init__(db, artifacts)
@@ -97,6 +100,7 @@ class CohereEmbed(Cohere):
         return out
 
 
+@merge_docstrings
 @dc.dataclass(kw_only=True)
 class CohereGenerate(Cohere):
     """Cohere realistic text generator (chat predictor).
@@ -105,7 +109,7 @@ class CohereGenerate(Cohere):
     :param prompt: The prompt to use to seed the response.
     """
 
-    signature: t.ClassVar[str] = '*args,**kwargs'
+    signature: str = '*args,**kwargs'
     takes_context: bool = True
     prompt: str = ''
 
