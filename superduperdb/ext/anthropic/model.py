@@ -10,6 +10,7 @@ from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.components.model import APIBaseModel
 from pinnacledb.ext.utils import format_prompt, get_key
+from pinnacledb.misc.annotations import merge_docstrings
 from pinnacledb.misc.retry import Retry
 
 retry = Retry(
@@ -19,6 +20,7 @@ retry = Retry(
 KEY_NAME = 'ANTHROPIC_API_KEY'
 
 
+@merge_docstrings
 @dc.dataclass(kw_only=True)
 class Anthropic(APIBaseModel):
     """Anthropic predictor.
@@ -36,6 +38,7 @@ class Anthropic(APIBaseModel):
         )
 
 
+@merge_docstrings
 @dc.dataclass(kw_only=True)
 class AnthropicCompletions(Anthropic):
     """Cohere completions (chat) predictor.

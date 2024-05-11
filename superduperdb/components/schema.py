@@ -6,7 +6,7 @@ from overrides import override
 
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import DataType
-from pinnacledb.misc.annotations import public_api
+from pinnacledb.misc.annotations import merge_docstrings
 from pinnacledb.misc.special_dicts import SuperDuperFlatEncode
 
 SCHEMA_KEY = '_schema'
@@ -21,16 +21,13 @@ class _Native:
         self.identifier = x
 
 
-@public_api(stability='beta')
+@merge_docstrings
 @dc.dataclass(kw_only=True)
 class Schema(Component):
-    """A component containing information about the types or encoders of a table.
+    """A component carrying the `DataType` of columns.
 
-    {component_parameters}
-    :param fields: A mapping of field names to types or encoders.
+    :param fields: A mapping of field names to types or `Encoders`
     """
-
-    __doc__ = __doc__.format(component_parameters=Component.__doc__)
 
     type_id: t.ClassVar[str] = 'schema'
     fields: t.Mapping[str, DataType]
