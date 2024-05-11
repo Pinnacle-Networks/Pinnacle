@@ -17,16 +17,19 @@ def run(
     ray_actor_options: t.Dict = {},
     route_prefix: str = '/',
 ):
-    '''
-    Serve a pinnacledb model on ray cluster
-    '''
+    """Serve a pinnacledb model on ray cluster.
+
+    :param model: model identifier
+    :param version: model version
+    :param num_replicas: number of replicas
+    :param ray_actor_options: ray actor options
+    :param route_prefix: route prefix
+    """
 
     @serve.deployment(ray_actor_options=ray_actor_options, num_replicas=num_replicas)
     @serve.ingress(app.app)
     class SuperDuperRayServe:
-        '''
-        A ray deployment which serves a pinnacledb model with default ingress
-        '''
+        """A ray deployment which serves a pinnacledb model with default ingress."""
 
         def __init__(self, model_identifier: str, version: t.Optional[int]):
             from pinnacledb.base.build import build_datalayer
