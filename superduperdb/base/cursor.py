@@ -1,9 +1,8 @@
 import dataclasses as dc
 import typing as t
 
-from pinnacledb import CFG, logging
+from pinnacledb import logging
 from pinnacledb.base.document import Document
-from pinnacledb.misc.files import load_uris
 
 if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
@@ -65,6 +64,7 @@ class SuperDuperCursor:
                 r['score'] = self.scores[str(r[self.id_field])]
             except KeyError:
                 logging.warn(f"No document id found for {r}")
+
         return Document.decode(r, db=self.db, schema=self.schema)
 
     next = __next__

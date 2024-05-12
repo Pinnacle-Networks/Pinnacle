@@ -4,7 +4,7 @@ All the llm model can use the check_xxx func to test the intergration with db.
 """
 
 from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.backends.ibis.query import Schema, IbisQuery
+from pinnacledb.backends.ibis.query import IbisQuery, Schema
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.document import Document

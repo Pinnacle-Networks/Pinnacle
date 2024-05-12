@@ -16,6 +16,7 @@ from pinnacledb.base.serializable import Serializable
 from pinnacledb.components.datatype import DataType
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.special_dicts import MongoStyleDict
+
 from .query import MongoQuery
 
 
@@ -37,7 +38,10 @@ class MongoDataBackend(BaseDataBackend):
 
     def get_query_builder(self, item):
         item_gotten = self._db[item]
-        if isinstance(item_gotten, (pymongo.collection.Collection, mongomock.collection.Collection)):
+        if isinstance(
+            item_gotten,
+            (pymongo.collection.Collection, mongomock.collection.Collection),
+        ):
             return MongoQuery(identifier=item, db=self.datalayer)
         return item_gotten
 

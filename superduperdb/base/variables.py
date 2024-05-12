@@ -2,10 +2,8 @@ import dataclasses as dc
 import importlib
 import inspect
 import typing as t
-from copy import deepcopy
 
 from pinnacledb.base.leaf import Leaf
-from pinnacledb.misc.serialization import asdict
 
 
 def _from_dict(r: t.Any, db: None = None) -> t.Any:
