@@ -16,7 +16,6 @@ from tqdm import tqdm
 from pinnacledb import CFG, logging
 from pinnacledb.backends.base.query import Query
 from pinnacledb.base.document import Document
-from pinnacledb.base.leaf import Leaf
 from pinnacledb.components.datatype import _BaseEncodable
 
 

@@ -13,9 +13,9 @@ import requests
 import tqdm
 
 from pinnacledb import logging
-from pinnacledb.backends.base.metadata import NonExistentMetadataError
 from pinnacledb.backends.base.query import Query
 from pinnacledb.backends.ibis.field_types import FieldType
+
 # from pinnacledb.backends.ibis.query import IbisCompoundSelect, Table
 from pinnacledb.backends.query_dataset import CachedQueryDataset, QueryDataset
 from pinnacledb.base.code import Code
@@ -1337,8 +1337,8 @@ class QueryModel(Model):
 class SequentialModel(Model):
     """Sequential model component which wraps a model to become serializable.
 
-    {_model_params}
-    :param models: A list of models to use
+        {_model_params}
+        :param models: A list of models to use
     """
 
     __doc__ = __doc__.format(

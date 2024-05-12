@@ -1,4 +1,3 @@
-import dataclasses as dc
 import json
 import typing as t
 
@@ -8,7 +7,6 @@ from fastapi import File, Response
 from pinnacledb import CFG, logging
 from pinnacledb.backends.base.query import Delete, Insert
 from pinnacledb.base.document import Document
-from pinnacledb.components.component import Component, import_
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import (
@@ -17,7 +15,6 @@ from pinnacledb.components.model import (
     QueryModel,
     SequentialModel,
 )
-from pinnacledb.components.stack import Stack
 from pinnacledb.components.vector_index import VectorIndex, vector
 from pinnacledb.ext import openai, sentence_transformers
 from pinnacledb.ext.llm.prompter import RetrievalPrompt

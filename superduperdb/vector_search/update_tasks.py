@@ -1,7 +1,7 @@
 import typing as t
 
+from pinnacledb import Document
 from pinnacledb.backends.base.query import Query
-# from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorItem

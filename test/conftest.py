@@ -11,7 +11,6 @@ import pytest
 import pinnacledb as s
 from pinnacledb import CFG, logging
 from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.components.table import Table
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.query import MongoQuery
 
@@ -23,6 +22,7 @@ from pinnacledb.base.document import Document
 from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.schema import Schema
+from pinnacledb.components.table import Table
 from pinnacledb.components.vector_index import VectorIndex
 from pinnacledb.ext.pillow.encoder import pil_image
 
@@ -140,7 +140,6 @@ def add_random_data_to_sql_db(
     number_data_points: int = GLOBAL_TEST_N_DATA_POINTS,
 ):
     float_tensor = tensor(dtype='float', shape=(32,))
-    data = []
 
     schema = Schema(
         identifier=table_name,

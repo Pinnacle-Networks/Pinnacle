@@ -1,5 +1,4 @@
 import tempfile
-from pinnacledb.base.document import Document
 from test.db_config import DBConfig
 
 import numpy
@@ -8,6 +7,7 @@ import pytest
 
 from pinnacledb import pinnacle
 from pinnacledb.backends.ibis.field_types import dtype
+from pinnacledb.base.document import Document
 from pinnacledb.components.model import ObjectModel
 from pinnacledb.components.schema import Schema
 from pinnacledb.ext.numpy.encoder import array
@@ -164,5 +164,5 @@ def test_add_fold(db):
     indirect=True,
 )
 def test_get_data(db):
-    q = db['documents'].limit(2)
-    r = db.metadata.get_component('table', 'documents')
+    db['documents'].limit(2)
+    db.metadata.get_component('table', 'documents')

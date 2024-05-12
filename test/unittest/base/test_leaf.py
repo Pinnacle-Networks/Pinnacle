@@ -5,21 +5,21 @@ from pprint import pprint
 from pinnacledb import ObjectModel
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.document import Document
-from pinnacledb.base.variables import Variable
 from pinnacledb.base.leaf import Leaf
+from pinnacledb.base.variables import Variable
 from pinnacledb.components.component import Component
 
 
 @dc.dataclass
 class Test(Leaf):
-    a: int
-    b: t.Union[str, Variable]
-    c: t.Union[float, Variable]
+    b: t.Optional[t.Union[str, Variable]] = 'a'
+    c: t.Optional[t.Union[float, Variable]] = 1.0
+    a: t.Optional[int] = 1
 
 
 @dc.dataclass
 class OtherSer(Leaf):
-    d: str
+    d: str = 'd'
 
 
 @dc.dataclass(kw_only=True)
