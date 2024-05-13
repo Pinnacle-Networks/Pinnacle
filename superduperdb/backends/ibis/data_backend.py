@@ -18,6 +18,7 @@ from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacledb.base.enums import DBType
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.schema import Schema
+from pinnacledb.components.table import Table
 
 BASE64_PREFIX = 'base64:'
 INPUT_KEY = '_input_id'
@@ -118,7 +119,7 @@ class IbisDataBackend(BaseDataBackend):
                 '_source': dtype('string'),
                 'output': output_type,
             }
-            return IbisQuery(
+            return Table(
                 primary_id='_source',
                 identifier=f'_outputs.{predict_id}',
                 schema=Schema(identifier=f'_schema/{predict_id}', fields=fields),
@@ -128,7 +129,7 @@ class IbisDataBackend(BaseDataBackend):
                 INPUT_KEY: dtype('string'),
                 'output': output_type,
             }
-            return IbisQuery(
+            return Table(
                 identifier=f'_outputs.{predict_id}',
                 schema=Schema(identifier=f'_schema/{predict_id}', fields=fields),
             )
