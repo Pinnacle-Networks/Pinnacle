@@ -3,6 +3,7 @@ import typing as t
 from pinnacledb import Document
 from pinnacledb.backends.base.query import Query
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
+from pinnacledb.backends.ibis.data_backend import IbisDataBackend
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorItem
 
@@ -66,14 +67,15 @@ def copy_vectors(
     elif isinstance(db.databackend, IbisDataBackend):
         docs = db.execute(select.outputs(vi.indexing_listener.predict_id))
         from pinnacledb.backends.ibis.data_backend import INPUT_KEY
-
-        vectors = [
-            {
+        vectors = []
+        for doc in docs:
+            doc = doc.unpack()
+            vectors.append({
                 'vector': doc[f'_outputs.{vi.indexing_listener.predict_id}'],
                 'id': str(doc[INPUT_KEY]),
-            }
-            for doc in docs
-        ]
+
+                })
+
     for r in vectors:
         if hasattr(r['vector'], 'numpy'):
             r['vector'] = r['vector'].numpy()
