@@ -5,8 +5,8 @@ import pandas as pd
 import pytest
 import torch
 
-from pinnacledb.backends.ibis.query import Table
-from pinnacledb.backends.mongodb.query import Collection
+from pinnacledb.components.table import Table
+#from pinnacledb.backends.mongodb.query import Collection
 from pinnacledb.base.document import Document
 from pinnacledb.misc.auto_schema import infer_datatype, infer_schema
 
