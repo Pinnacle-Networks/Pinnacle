@@ -18,8 +18,6 @@ from test.db_config import DBConfig
 from unittest.mock import patch
 
 from pinnacledb.backends.ibis.field_types import dtype
-
-from pinnacledb.components.table import Table
 from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.datalayer import Datalayer
@@ -38,6 +36,7 @@ from pinnacledb.components.datatype import (
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import ObjectModel
 from pinnacledb.components.schema import Schema
+from pinnacledb.components.table import Table
 
 n_data_points = 250
 
@@ -98,13 +97,11 @@ def add_fake_model(db: Datalayer):
         db.apply(t)
         select = db['documents'].select('id', 'x')
     listener = Listener(
-            model=model,
-            select=select,
-            key='x',
-        )
-    db.apply(
-            listener
+        model=model,
+        select=select,
+        key='x',
     )
+    db.apply(listener)
     return listener
 
 
@@ -613,7 +610,7 @@ def test_reload_dataset(db):
     "db",
     [
         (DBConfig.mongodb_no_vector_index, {'n_data': 10}),
-        #(DBConfig.sqldb_no_vector_index, {'n_data': n_data_points}),
+        # (DBConfig.sqldb_no_vector_index, {'n_data': n_data_points}),
     ],
     indirect=True,
 )
