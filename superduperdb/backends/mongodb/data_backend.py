@@ -12,7 +12,6 @@ from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.backends.mongodb.metadata import MongoMetaDataStore
 from pinnacledb.base.document import Document
 from pinnacledb.base.enums import DBType
-from pinnacledb.base.serializable import Serializable
 from pinnacledb.components.datatype import DataType
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.special_dicts import MongoStyleDict
