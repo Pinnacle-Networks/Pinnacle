@@ -12,6 +12,7 @@ from pinnacledb.backends.base.query import (
     parse_query as _parse_query,
 )
 from pinnacledb.base.cursor import SuperDuperCursor
+from pinnacledb.misc.special_dicts import SuperDuperFlatEncode
 from pinnacledb.components.schema import Schema
 
 if t.TYPE_CHECKING:
@@ -65,7 +66,9 @@ def _model_update_impl(
 
     for ix in range(len(outputs)):
         output = outputs[ix]
-        if '_base' in output:
+
+        if isinstance(output, SuperDuperFlatEncode):
+            # TODO: what if it has no _base
             key = output['_base']
             if isinstance(key, str):
                 output = output['_leaves'][key[1:]]['blob']
