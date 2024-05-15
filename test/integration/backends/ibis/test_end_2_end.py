@@ -7,14 +7,7 @@ import torchvision
 
 from pinnacledb import CFG
 from pinnacledb.backends.ibis.field_types import dtype
-<<<<<<< HEAD
-from pinnacledb.backends.ibis.query import RawSQL, Table
-=======
 from pinnacledb.backends.ibis.query import RawSQL, IbisQuery
-from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
-from pinnacledb.backends.sqlalchemy.metadata import SQLAlchemyMetadata
-from pinnacledb.base.datalayer import Datalayer
->>>>>>> 9d83d21ec (Deprecate Serializable)
 from pinnacledb.base.document import Document as D
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.schema import Schema

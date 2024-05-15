@@ -225,6 +225,7 @@ class ComponentJob(Job):
         """
         if db is None:
             from pinnacledb.base.build import build_datalayer
+
             db = build_datalayer()
 
         self.db = db
