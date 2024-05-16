@@ -75,11 +75,14 @@ USER ${NB_USER}
 ENV PATH="${HOME}/.local/bin:$PATH"
 
 
+# Install latest pip version
+# ---------------
+RUN python -m pip install --upgrade pip setuptools
 
 # Install jupyterlab dependencies
 # ---------------
-COPY ./deploy/images/pinnacledb/requirements.txt ./requirements.txt
-RUN python -m pip install setuptools pip -r ./requirements.txt
+COPY ./deploy/images/pinnacledb/jupyter_requirements.txt ./jupyter_requirements.txt
+RUN python -m pip install -r ./jupyter_requirements.txt
 
 
 # -------------------------------
