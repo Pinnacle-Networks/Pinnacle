@@ -16,7 +16,6 @@ from pinnacledb import logging
 from pinnacledb.backends.base.query import Query
 from pinnacledb.backends.ibis.field_types import FieldType
 
-# from pinnacledb.backends.ibis.query import IbisCompoundSelect, Table
 from pinnacledb.backends.query_dataset import CachedQueryDataset, QueryDataset
 from pinnacledb.base.code import Code
 from pinnacledb.base.document import Document
@@ -574,7 +573,7 @@ class Model(Component):
             type_id='model',
             args=[X],
             kwargs={
-                'select': select.dict().encode() if select else None,
+                'select': select.encode() if select else None,
                 'predict_id': predict_id,
                 'ids': ids,
                 'max_chunk_size': max_chunk_size,
