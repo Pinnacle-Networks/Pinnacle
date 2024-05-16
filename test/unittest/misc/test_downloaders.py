@@ -8,7 +8,7 @@ import pytest
 from pinnacledb import CFG
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.document import Document
-from pinnacledb.ext.pillow.encoder import pil_image_hybrid
+from pinnacledb.ext.pillow.encoder import pil_image
 from pinnacledb.misc.download import Fetcher
 
 remote = os.environ.get('SDDB_REMOTE_TEST', 'local')
@@ -30,34 +30,10 @@ def patch_cfg_downloads(monkeypatch):
 # TODO: use table to test the sqldb
 @pytest.mark.parametrize("db", [DBConfig.mongodb_empty], indirect=True)
 def test_file_blobs(db, patch_cfg_downloads, image_url):
-    
-    to_insert = [
-        Document(
-            {
-                'item': {
-                    '_content': {
-                        'uri': image_url,
-                        'datatype': 'pil_image_hybrid',
-                        'leaf_type': 'encodable',
-                    }
-                },
-                'other': {
-                    'item': {
-                        '_content': {
-                            'uri': image_url,
-                            'datatype': 'pil_image_hybrid',
-                            'leaf_type': 'encodable',
-                        }
-                    }
-                },
-            }
-        )
-        for _ in range(2)
-    ]
+    db.apply(pil_image)
+    to_insert = [Document({"item": pil_image(uri=image_url)}) for _ in range(2)]
 
-    db.execute(
-        MongoQuery('documents').insert_many(to_insert), datatypes=(pil_image_hybrid,)
-    )
+    db.execute(MongoQuery('documents').insert_many(to_insert))
     r = db.execute(MongoQuery('documents').find_one())
 
     import PIL.PngImagePlugin
