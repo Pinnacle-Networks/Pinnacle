@@ -1,10 +1,11 @@
 import math
 import typing as t
+import base64
 
 from fastapi import Request
 
+from pinnacledb.misc.auto_schema import DEFAULT_DATATYPE
 from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.ext.utils import pinnacledecode
 from pinnacledb.vector_search.base import VectorItem
 
 ListVectorType = t.Union[t.List[t.Union[float, int]], t.Dict]
@@ -21,7 +22,8 @@ def _vector_search(
 ) -> VectorSearchResultType:
     vi = db.fast_vector_searchers[vector_index]
     if by_array:
-        x = pinnacledecode(x, db.datatypes)
+        x = x['b64data']
+        x = DEFAULT_DATATYPE.encoder(  base64.b64decode(x))
         ids, scores = vi.searcher.find_nearest_from_array(x, n=n)
     else:
         ids, scores = vi.searcher.find_nearest_from_id(x, n=n)
