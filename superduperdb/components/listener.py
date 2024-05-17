@@ -5,7 +5,6 @@ from overrides import override
 
 from pinnacledb import CFG
 from pinnacledb.backends.base.query import Query
-from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import _OUTPUTS_KEY
 from pinnacledb.components.model import Mapping
 from pinnacledb.misc.annotations import public_api
@@ -79,6 +78,7 @@ class Listener(Component):
 
     @property
     def id(self):
+        """Get identifier."""
         return f'component/{self.type_id}/{self.model.identifier}/{self.uuid}'
 
     @property
@@ -137,7 +137,7 @@ class Listener(Component):
         Create output destination.
 
         :param db: Data layer instance.
-        :param predict_id: Predict ID.
+        :param uuid: UUID of the listener.
         :param model: Model instance.
         """
         if model.datatype is None:
@@ -177,9 +177,7 @@ class Listener(Component):
 
     @property
     def predict_id(self):
-        """
-        Get predict ID.
-        """
+        """Get predict ID."""
         return self.uuid
 
     @override

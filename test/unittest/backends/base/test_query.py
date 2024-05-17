@@ -4,11 +4,10 @@ import lorem
 import pytest
 
 from pinnacledb.backends.ibis.field_types import dtype
-
-from pinnacledb.components.table import Table
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.document import Document
 from pinnacledb.components.schema import Schema
+from pinnacledb.components.table import Table
 
 
 @pytest.fixture
