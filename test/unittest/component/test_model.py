@@ -7,13 +7,13 @@ import numpy as np
 import pytest
 from sklearn.metrics import accuracy_score, f1_score
 
+from pinnacledb.backends.base.data_backend import BaseDataBackend
 from pinnacledb.backends.base.query import Query
 from pinnacledb.backends.ibis.field_types import FieldType
 from pinnacledb.backends.local.compute import LocalComputeBackend
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
-from pinnacledb.backends.base.data_backend import BaseDataBackend
 from pinnacledb.base.variables import Variable
 from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.datatype import DataType, pickle_decode, pickle_encode

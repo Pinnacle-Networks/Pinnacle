@@ -3,7 +3,7 @@ import typing as t
 
 import networkx as nx
 
-from pinnacledb import Schema, Document
+from pinnacledb import Schema
 from pinnacledb.backends.base.query import Query
 from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.components.model import Model, Signature, ensure_initialized

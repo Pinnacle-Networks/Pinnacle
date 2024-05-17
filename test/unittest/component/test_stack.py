@@ -1,5 +1,4 @@
 from pinnacledb import pinnacle
-from pinnacledb.components.stack import Stack
 
 db = pinnacle('mongomock://localhost:27017/test_db')
 

@@ -5,12 +5,12 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.ext.pillow.encoder import pil_image
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.components.datatype import Artifact, DataType
 from pinnacledb.components.model import ObjectModel
 from pinnacledb.components.schema import Schema
 from pinnacledb.components.table import Table
+from pinnacledb.ext.pillow.encoder import pil_image
 
 try:
     import torch
