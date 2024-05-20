@@ -15,7 +15,6 @@ import tqdm
 from pinnacledb import logging
 from pinnacledb.backends.base.query import Query
 from pinnacledb.backends.ibis.field_types import FieldType
-
 from pinnacledb.backends.query_dataset import CachedQueryDataset, QueryDataset
 from pinnacledb.base.code import Code
 from pinnacledb.base.document import Document
