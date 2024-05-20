@@ -13,6 +13,7 @@ from pinnacledb.backends.base.query import (
     parse_query as _parse_query,
 )
 from pinnacledb.base.cursor import SuperDuperCursor
+from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.components.schema import Schema
 from pinnacledb.misc.special_dicts import SuperDuperFlatEncode
 
@@ -287,7 +288,14 @@ class IbisQuery(Query):
         )
 
     def _execute(self, parent, method='encode'):
-        output = super()._execute(parent, method=method).execute()
+        q = super()._execute(parent, method=method)
+        try:
+            output = q.execute()
+        except Exception as e:
+            raise DatabackendException(
+                f'Error while executing ibis query {self}'
+            ) from e
+
         assert isinstance(output, pandas.DataFrame)
         output = output.to_dict(orient='records')
         component_table = self.db.tables[self.identifier]
