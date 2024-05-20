@@ -5,7 +5,6 @@ import magic
 from fastapi import File, Response
 
 from pinnacledb import CFG, logging
-from pinnacledb.backends.base.query import Delete, Insert
 from pinnacledb.base.document import Document
 from pinnacledb.components.datatype import DataType
 from pinnacledb.components.listener import Listener
@@ -156,7 +155,7 @@ def build_app(app: pinnacleapp.SuperDuperApp):
 
         result = app.db.execute(query)
 
-        if isinstance(query, Insert) or isinstance(query, Delete):
+        if query.type in {'insert', 'delete'}:
             return {'_base': [str(x) for x in result[0]]}, []
 
         logging.warn(str(query))
