@@ -10,7 +10,7 @@ from pinnacledb.components.datatype import Artifact, DataType
 from pinnacledb.components.model import ObjectModel
 from pinnacledb.components.schema import Schema
 from pinnacledb.components.table import Table
-from pinnacledb.ext.pillow.encoder import pil_image
+from pinnacledb.ext.pillow.encoder import image_type, pil_image
 
 try:
     import torch
@@ -198,3 +198,30 @@ def test_column_encoding(db):
     ).execute()
 
     db['test'].select("x", "y", "img").execute()
+
+
+@pytest.mark.parametrize("db", [DBConfig.mongodb_empty], indirect=True)
+def test_refer_to_system(db):
+    db.datatypes['image'] = image_type(identifier='image', encodable='artifact')
+
+    import PIL.Image
+    import PIL.PngImagePlugin
+
+    img = PIL.Image.open('test/material/data/test.png')
+
+    db.artifact_store.put_bytes(db.datatypes['image'].encoder(img), file_id='12345')
+
+    r = {
+        '_leaves': {
+            'my_artifact': {
+                '_path': 'pinnacledb/components/datatype/LazyArtifact',
+                'file_id': '12345',
+                'datatype': "?db.load(datatype, image)",
+            }
+        },
+        'img': '?my_artifact',
+    }
+
+    r = Document.decode(r, db=db).unpack()
+
+    assert isinstance(r['img'], PIL.PngImagePlugin.PngImageFile)

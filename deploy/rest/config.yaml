@@ -1,0 +1,231 @@
+components:
+  - model
+  - listener
+  - vector_index
+  - datatype
+
+leaves:
+  query:
+    MongoQuery:
+      _path: pinnacledb/backends/mongodb/query/parse_query
+      query:
+        type: code
+      documents:
+        type: json
+        default: []
+  code:
+    Code:
+      _path: pinnacledb/Code
+      identifier:
+        type: str
+      code:
+        type: str
+        default: |
+          from pinnacledb import code
+
+          @code
+          def my_code(x):
+            return x
+  lazy_artifact:
+    LazyArtifact:
+      _path: pinnacledb/components/datatype/LazyArtifact
+      identifier:
+        type: str
+      file_id:
+        type: blob
+  vector_index:
+    VectorIndex:
+      _path: pinnacledb/VectorIndex
+      identifier:
+        type: str
+      measure:
+        type: str
+        choices:
+          - cosine
+          - dot
+          - l2
+      indexing_listener:
+        type: listener
+      compatible_listener:
+        type: listener
+        optional: True
+  datatype:
+    image:
+      _path: pinnacledb/ext/pillow/image_type
+      identifier:
+        type: str
+      media_type:
+        type: str
+        default: image/png
+    vector:
+      _path: pinnacledb/vector
+      identifier:
+        type: str
+      shape:
+        type: int
+  stack:
+    Stack:
+      _path: pinnacledb/Stack
+      identifier:
+        type: str
+      components:
+        type: [model, listener, vector_index]
+  listener:
+    Listener:
+      _path: pinnacledb/Listener
+      identifier:
+        type: str
+      key:
+        type: str
+      select:
+        type: query
+        optional: True
+  model:
+    ObjectModel: 
+      _path: pinnacledb/ObjectModel
+      identifier:
+        type: str
+      object:
+        type: lazy_artifact
+      datatype:
+        type: datatype
+        optional: True
+      predict_kwargs:
+        type: json
+        optional: True
+        default: {}
+      signature:
+        type: str
+        optional: True
+        default: "*args,**kwargs"
+    SequentialModel:
+      _path: pinnacledb/SequentialModel
+      identifier:
+        type: str
+      models:
+        type: model
+        sequence: True
+    QueryModel:
+      _path: pinnacledb/QueryModel
+      identifier:
+        type: str
+      select:
+        type: query
+        optional: True
+        default:
+          documents:
+          - {"<key-1>": "$my_value"}
+          - {"_outputs": 0, "_id": 0}
+          query: | 
+            <collection_name>.like(documents[0], vector_index='<index_id>').find({}, documents[1]).limit(10)
+    CodeModel:
+      _path: pinnacledb/CodeModel
+      identifier:
+        type: str
+      object:
+        type: code
+      datatype:
+        type: datatype
+        optional: True
+      predict_kwargs:
+        type: json
+        optional: True
+        default: {}
+      signature:
+        type: str
+        optional: True
+        default: "*args,**kwargs"
+    RetrievalPrompt: 
+      _path: pinnacledb/ext/llm/prompt/RetrievalPrompt
+      select:
+        type: query
+        prompt_explanation:
+          type: str
+          default: |
+            HERE ARE SOME FACTS SEPARATED BY '---' IN OUR DATA
+            REPOSITORY WHICH WILL HELP YOU ANSWER THE QUESTION.
+        prompt_introduction:
+          type: str
+          default: |
+            HERE IS THE QUESTION WHICH YOU SHOULD ANSWER BASED
+            ONLY ON THE PREVIOUS FACTS
+        join:
+          type: str
+          default: "\n---\n"
+    SklearnEstimator:
+      _path: pinnacledb/ext/sklearn/Estimator
+      identifier:
+        type: str
+      object:
+        type: lazy_artifact
+      preprocess:
+        type: code
+        optional: True
+      postprocess:
+        type: code
+        optional: True
+    OpenAIEmbedding:
+      _path: pinnacledb/ext/openai/OpenAIEmbedding
+      identifier:
+        type: str
+      model: 
+        type: str
+      openai_api_key:
+        type: str
+        optional: True
+      openai_api_base:
+        type: str
+        optional: True
+    OpenAIChatCompletion:
+      _path: pinnacledb/ext/openai/OpenAIChatCompletion
+      identifier:
+        type: str
+      model: 
+        type: str
+      openai_api_key:
+        type: str
+        optional: True
+      openai_api_base:
+        type: str
+        optional: True
+    SentenceTransformer:
+      _path: pinnacledb/ext/sentence_transformers/SentenceTransformer
+      identifier:
+        type: str
+      model: 
+        type: str
+      device: 
+        type: str
+        default: cpu
+      predict_kwargs:
+        type: json
+        default:
+          show_progress_bar: true
+      postprocess:
+        type: code
+        default: |
+          from pinnacledb import code
+
+          @code
+          def my_code(x):
+            return x.tolist()
+      signature:
+        type: str
+        default: singleton
+
+presets:
+  datatype:
+    pickle:
+      _path: pinnacledb/components/datatype/get_serializer
+      identifier: pickle_lazy
+      method: pickle
+      encodable: lazy_artifact
+    dill:
+      _path: pinnacledb/components/datatype/get_serializer
+      identifier: dill_lazy
+      method: dill
+      encodable: lazy_artifact
+    image:
+      _path: pinnacledb/ext/pillow/encoder/image_type
+      identifier: image
+      media_type: image/png
