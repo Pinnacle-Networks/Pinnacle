@@ -9,7 +9,6 @@ from pinnacledb.base.document import _OUTPUTS_KEY
 from pinnacledb.components.model import Mapping
 from pinnacledb.misc.annotations import merge_docstrings
 from pinnacledb.misc.server import request_server
-from pinnacledb.rest.utils import parse_query
 
 from ..jobs.job import Job
 from .component import Component, ComponentTuple
@@ -38,15 +37,6 @@ class Listener(Component):
     :param identifier: A string used to identify the model.
     """
 
-    ui_schema: t.ClassVar[t.List[t.Dict]] = [
-        {'name': 'identifier', 'type': 'str', 'default': ''},
-        {'name': 'key', 'type': 'json'},
-        {'name': 'model', 'type': 'component/model'},
-        {'name': 'select', 'type': 'json', 'default': SELECT_TEMPLATE},
-        {'name': 'active', 'type': 'bool', 'default': True},
-        {'name': 'predict_kwargs', 'type': 'json', 'default': {}},
-    ]
-
     key: ModelInputType
     model: Model
     select: Query
@@ -55,19 +45,6 @@ class Listener(Component):
     identifier: str = ''
 
     type_id: t.ClassVar[str] = 'listener'
-
-    @classmethod
-    def handle_integration(cls, kwargs):
-        """Method to handle integration.
-
-        :param kwargs: Integration keyword arguments.
-        """
-        if 'select' in kwargs and isinstance(kwargs['select'], dict):
-            kwargs['select'] = parse_query(
-                query=kwargs['select']['query'],
-                documents=kwargs['select']['documents'],
-            )
-        return kwargs
 
     def __post_init__(self, db, artifacts):
         if self.identifier == '':

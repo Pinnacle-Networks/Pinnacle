@@ -11,7 +11,6 @@ from pinnacledb import logging
 from pinnacledb.backends.base.metadata import MetaDataStore, NonExistentMetadataError
 from pinnacledb.backends.sqlalchemy.db_helper import get_db_config
 from pinnacledb.base.document import Document
-from pinnacledb.components.component import Component as _Component
 from pinnacledb.misc.colors import Colors
 
 if t.TYPE_CHECKING:
@@ -180,12 +179,12 @@ class SQLAlchemyMetadata(MetaDataStore):
         :param identifier: the identifier of the component
         :param version: the version of the component
         """
-        unique_id = _Component.make_unique_id(type_id, identifier, version)
+        uuid = self._get_component_uuid(type_id, identifier, version)
         with self.session_context() as session:
             stmt = (
                 select(self.parent_child_association_table)
                 .where(
-                    self.parent_child_association_table.c.child_id == unique_id,
+                    self.parent_child_association_table.c.child_id == uuid,
                 )
                 .limit(1)
             )
