@@ -9,7 +9,7 @@ Datalayer(self,
      databackend: pinnacledb.backends.base.data_backend.BaseDataBackend,
      metadata: pinnacledb.backends.base.metadata.MetaDataStore,
      artifact_store: pinnacledb.backends.base.artifacts.ArtifactStore,
-     compute: pinnacledb.backends.base.compute.ComputeBackend = <pinnacledb.backends.local.compute.LocalComputeBackend object at 0x12d58cd50>)
+     compute: pinnacledb.backends.base.compute.ComputeBackend = <pinnacledb.backends.local.compute.LocalComputeBackend object at 0x1459d8790>)
 ```
 | Parameter | Description |
 |-----------|-------------|
