@@ -1,11 +1,14 @@
+import threading
 from test.db_config import DBConfig
 
 import numpy as np
 import pandas as pd
+import PIL
 import pytest
 import torch
 
 from pinnacledb.base.document import Document
+from pinnacledb.base.exceptions import UnsupportedDatatype
 from pinnacledb.components.table import Table
 from pinnacledb.misc.auto_schema import infer_datatype, infer_schema
 
@@ -45,6 +48,15 @@ def test_infer_datatype():
         infer_datatype(pd.DataFrame({"col1": [1, 2], "col2": [3, 4]})).identifier
         == "DEFAULT"
     )
+
+    assert (
+        infer_datatype(PIL.Image.open('test/material/data/test.png')).identifier
+        == 'pil_image'
+    )
+
+    with pytest.raises(UnsupportedDatatype):
+        thread = threading.Thread(target=lambda x: x)
+        infer_datatype(thread)
 
 
 def test_infer_schema_mongo(data):
