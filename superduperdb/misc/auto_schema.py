@@ -27,6 +27,7 @@ def register_module(module_name):
 
 register_module("pinnacledb.ext.numpy.encoder")
 register_module("pinnacledb.ext.torch.encoder")
+register_module("pinnacledb.ext.pillow.encoder")
 
 
 DEFAULT_DATATYPE = DataType(
@@ -129,6 +130,8 @@ def infer_schema(
 
     if identifier is None:
         raise ValueError("Could not infer schema identifier")
+
+    identifier = "AUTO:" + identifier
 
     return Schema(identifier=identifier, fields=schema_data)  # type: ignore
 
