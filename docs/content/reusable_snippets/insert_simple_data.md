@@ -7,20 +7,14 @@ import TabItem from '@theme/TabItem';
 <!-- TABS -->
 # Insert simple data
 
-In order to create data, we need to create a `Schema` for encoding our special `Datatype` column(s) in the databackend.
+After turning on auto_schema, we can directly insert data, and pinnacledb will automatically analyze the data type, and match the construction of the table and datatype.
 
+```python
+from pinnacledb import Document
 
-<Tabs>
-    <TabItem value="MongoDB" label="MongoDB" default>
-        ```python
-        from pinnacledb import Document
-        
-        ids, _ = db.execute(table_or_collection.insert_many(datas))        
-        ```
-    </TabItem>
-    <TabItem value="SQL" label="SQL" default>
-        ```python
-        ids, _ = db.execute(table_or_collection.insert(datas))        
-        ```
-    </TabItem>
-</Tabs>
+table_or_collection = db['documents']
+
+ids = db.execute(table_or_collection.insert([Document(data) for data in datas]))
+select = table_or_collection.select()
+```
+
