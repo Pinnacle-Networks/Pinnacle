@@ -8,6 +8,7 @@ from pinnacledb.base.code import Code
 from pinnacledb.components.component import ensure_initialized
 from pinnacledb.components.datatype import DataType, dill_lazy
 from pinnacledb.components.model import Model, Signature, _DeviceManaged
+from pinnacledb.components.vector_index import vector
 from pinnacledb.misc.annotations import merge_docstrings
 
 DEFAULT_PREDICT_KWARGS = {
@@ -49,6 +50,13 @@ class SentenceTransformer(Model, _DeviceManaged):
         if self.object is None:
             self.object = _SentenceTransformer(self.model, device=self.device)
 
+        if self.datatype is None:
+            sample = self.predict_one('Test')
+            self.datatype = vector(
+                identifier=f'{self.identifier}/datatype',
+                shape=(len(sample),),
+            )
+
     def init(self):
         """Initialize the model."""
         super().init()
@@ -61,18 +69,6 @@ class SentenceTransformer(Model, _DeviceManaged):
         """
         self.object = self.object.to(device)
         self.object._target_device = device
-
-    def _deep_flat_encode(self, cache):
-        from pinnacledb.base.document import _deep_flat_encode
-
-        r = dict(self.dict())
-        r['dict'] = _deep_flat_encode(r['dict'], cache)
-        r['id'] = self.id
-        cache[self.id] = r
-        del cache[r['dict']['object']]
-        del r['dict']['object']
-        assert 'object' not in r['dict']
-        return self.id
 
     @ensure_initialized
     def predict_one(self, X, *args, **kwargs):
