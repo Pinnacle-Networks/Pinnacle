@@ -286,13 +286,13 @@ const sidebars = {
       items: [
         {
           type: 'link',
-          label: 'API Reference', // The link label
-          href: 'https://docs.pinnacledb.com/apisource/pinnacledb.html', // The external URL
+          label: 'Change log',
+          href: 'https://raw.githubusercontent.com/SuperDuperDB/pinnacledb/main/CHANGELOG.md',
         },
         {
           type: 'link',
-          label: 'Change log', // The link label
-          href: 'https://raw.githubusercontent.com/SuperDuperDB/pinnacledb/main/CHANGELOG.md', // The external URL
+          label: 'Source on GitHub',
+          href: 'https://github.com/SuperDuperDB/pinnacledb', 
         },
       ],
     },
