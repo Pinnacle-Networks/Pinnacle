@@ -22,7 +22,7 @@ from pinnacledb.base.enums import DBType
 from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.base.variables import Variable
 from pinnacledb.components.component import Component, ensure_initialized
-from pinnacledb.components.datatype import DataType, dill_lazy
+from pinnacledb.components.datatype import DataType, dill_serializer
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.schema import Schema
 from pinnacledb.jobs.job import ComponentJob, Job
@@ -1135,7 +1135,7 @@ class ObjectModel(_ObjectModel):
     """
 
     _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, 'DataType']]] = (
-        ('object', dill_lazy),
+        ('object', dill_serializer),
     )
 
 
