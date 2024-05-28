@@ -5,10 +5,10 @@ from sentence_transformers import SentenceTransformer as _SentenceTransformer
 
 from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.base.code import Code
+from pinnacledb.base.enums import DBType
 from pinnacledb.components.component import ensure_initialized
 from pinnacledb.components.datatype import DataType, dill_lazy
 from pinnacledb.components.model import Model, Signature, _DeviceManaged
-from pinnacledb.components.vector_index import vector
 from pinnacledb.misc.annotations import merge_docstrings
 
 DEFAULT_PREDICT_KWARGS = {
@@ -52,10 +52,7 @@ class SentenceTransformer(Model, _DeviceManaged):
 
         if self.datatype is None:
             sample = self.predict_one('Test')
-            self.datatype = vector(
-                identifier=f'{self.identifier}/datatype',
-                shape=(len(sample),),
-            )
+            self.shape = (len(sample),)
 
     def init(self):
         """Initialize the model."""
@@ -100,3 +97,22 @@ class SentenceTransformer(Model, _DeviceManaged):
         if self.postprocess is not None:
             results = self.postprocess(results)  # type: ignore[operator]
         return results
+
+    def pre_create(self, db):
+        """Pre creates the model.
+
+        If the datatype is not set and the datalayer is an IbisDataBackend,
+        the datatype is set to ``sqlvector`` or ``vector``.
+
+        :param db: The datalayer instance.
+        """
+        super().pre_create(db)
+        if self.datatype is not None:
+            return
+
+        from pinnacledb.components.vector_index import sqlvector, vector
+
+        if db.databackend.db_type == DBType.SQL:
+            self.datatype = sqlvector(shape=self.shape)
+        else:
+            self.datatype = vector(shape=self.shape)
