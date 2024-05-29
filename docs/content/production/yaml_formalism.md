@@ -1,13 +1,7 @@
 # YAML/ JSON formalism
 
-`pinnacledb` includes a mapping back and forth to YAML/ JSON formats.
+`pinnacledb` includes a mapping back and forth from Python to YAML/ JSON formats.
 The mapping is fairly self-explanatory after reading the example below.
-Note that an important wrinkle, is that the parameters in `dict: ...`
-are passed to the imported `cls.handle_integration()` before being
-passed onto the `__init__` method of the class. This allows
-the class to deal with items which aren't easily expressible directly 
-in YAML (JSON) format. For items which are not possible to express
-as JSON, the `_BaseEncodable` class and descendants is used.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -17,59 +11,43 @@ import TabItem from '@theme/TabItem';
     <TabItem value="YAML" label="YAML" default>
 
         ```yaml
-        identifier: "test"
+        _base: "?my_vector_index"
         _leaves:
-          - leaf_type: "component"
-            cls: "vector"
-            module: "pinnacledb.components.vector_index"
-            dict:
-              shape: 384
-              identifier: "my-vec"
-        
-          - leaf_type: "component"
-            cls: "SentenceTransformer"
-            module: "pinnacledb.ext.sentence_transformers.model"
-            dict:
-              identifier: "test"
-              datatype: "_component/datatype/my-vec"
-              predict_kwargs:
-                show_progress_bar: true
-              signature: "*args,**kwargs"
-              model: "all-MiniLM-L6-v2"
-              device: "cpu"
-              postprocess: |
-                from pinnacledb import code
-                @code
-                def my_code(x):
-                    return x.tolist()
-        
-          - leaf_type: "component"
-            cls: "Listener"
-            module: "pinnacledb.components.listener"
-            dict:
-              identifier: "my-listener"
-              key: "txt"
-              model: "_component/model/test"
-              select:
-                documents: []
-                query: "documents.find()"
-              active: true
-              predict_kwargs: {}
-        
-          - leaf_type: "component"
-            cls: "VectorIndex"
-            module: "pinnacledb.components.vector_index"
-            dict:
-              identifier: "my-index"
-              indexing_listener: "_component/listener/my-listener"
-              compatible_listener: null
-              measure: "cosine"
+          postprocess:
+            _path: pinnacledb/base/code/Code
+            code: '
+              from pinnacledb import code
+
+              @code
+              def postprocess(x):
+                  return x.tolist()
+              '
+          my_vector:
+            _path: pinnacledb/components/vector_index/vector
+            shape: 384
+          sentence_transformer:
+            _path: pinnacledb/ext/sentence_transformers/model/SentenceTransformer
+            datatype: "?my_vector"
+            model: "all-MiniLM-L6-v2"
+            postprocess: "?postprocess"
+          my_query:
+            _path: pinnacledb/backends/mongodb/query/parse_query
+            query: "documents.find()"
+          my_listener:
+            _path: pinnacledb/components/listener/Listener
+            model: "?sentence_transformer"
+            select: "?my_query"
+            key: "X"
+          my_vector_index:
+            _path: pinnacledb/components/vector_index/VectorIndex
+            indexing_listener: "?my_listener"
+            measure: cosine
         ```
 
         Then from the commmand line:
 
         ```bash
-        pinnacledb apply --manifest='<path_to_yaml>.yml'
+        pinnacledb apply --manifest='<path_to_config>.yaml'
         ```
 
     </TabItem>
@@ -77,87 +55,70 @@ import TabItem from '@theme/TabItem';
 
         ```json
         {
-          "identifier": "test",
-          "_leaves": [
-            {
-              "leaf_type": "component",
-              "cls": "vector",
-              "module": "pinnacledb.components.vector_index",
-              "dict": {
-                "shape": 384,
-                "identifier": "my-vec"
-              }
+          "_base": "?my_vector_index",
+          "_leaves": {
+            "postprocess": {
+              "_path": "pinnacledb/base/code/Code",
+              "code": "from pinnacledb import code\n\n@code\ndef postprocess(x):\n    return x.tolist()"
             },
-            {
-              "leaf_type": "component",
-              "cls": "SentenceTransformer",
-              "module": "pinnacledb.ext.sentence_transformers.model",
-              "dict": {
-                "identifier": "test",
-                "datatype": "_component/datatype/my-vec",
-                "predict_kwargs": {
-                  "show_progress_bar": true
-                },
-                "signature": "*args,**kwargs",
-                "model": "all-MiniLM-L6-v2",
-                "device": "cpu",
-                "postprocess": "from pinnacledb import code\n\n@code\ndef my_code(x):\n    return x.tolist()\n"
-              }
+            "my_vector": {
+              "_path": "pinnacledb/components/vector_index/vector",
+              "shape": 384
             },
-            {
-              "leaf_type": "component",
-              "cls": "Listener",
-              "module": "pinnacledb.components.listener",
-              "dict": {
-                "identifier": "my-listener",
-                "key": "txt",
-                "model": "_component/model/test",
-                "select": {
-                  "documents": [],
-                  "query": [
-                    "documents.find()"
-                  ]
-                },
-                "active": true,
-                "predict_kwargs": {}
-              }
+            "sentence_transformer": {
+              "_path": "pinnacledb/ext/sentence_transformers/model/SentenceTransformer",
+              "datatype": "?my_vector",
+              "model": "all-MiniLM-L6-v2",
+              "postprocess": "?postprocess"
             },
-            {
-              "leaf_type": "component",
-              "cls": "VectorIndex",
-              "module": "pinnacledb.components.vector_index",
-              "dict": {
-                "identifier": "my-index",
-                "indexing_listener": "_component/listener/my-listener",
-                "compatible_listener": null,
-                "measure": "cosine"
-              }
+            "my_query": {
+              "_path": "pinnacledb/backends/mongodb/query/parse_query",
+              "query": "documents.find()"
+            },
+            "my_listener": {
+              "_path": "pinnacledb/components/listener/Listener",
+              "model": "?sentence_transformer",
+              "select": "?my_query"
+            },
+            "my_vector_index": {
+              "_path": "pinnacledb/components/vector_index/VectorIndex",
+              "indexing_listener": "?my_listener",
+              "measure": "cosine"
             }
-          ]
+          }
         }
         ```
 
         Then from the command line:
 
         ```bash
-        pinnacledb apply --manifest='<path_to_yaml>.yml'
+        pinnacledb apply --manifest='<path_to_config>.json'
         ```
 
     </TabItem>
     <TabItem value="Python" label="Python" default>
 
         ```python
-
         from pinnacledb import pinnacle
         from pinnacledb.components.vector_index import vector
         from pinnacledb.ext.sentence_transformers.model import SentenceTransformer
         from pinnacledb.components.listener import Listener
         from pinnacledb.components.vector_index import VectorIndex
+        from pinnacledb.base.code import Code
         from pinnacledb import Stack
 
-        from pinnacledb.backends.mongodb import Collection
+
+        db = pinnacle('mongomock://')
 
         datatype = vector(shape=384, identifier="my-vec")
+
+
+        def postprocess(x):
+            return x.tolist()
+
+
+        postprocess = Code.from_object(postprocess)
+
 
         model = SentenceTransformer(
             identifier="test",
@@ -166,14 +127,14 @@ import TabItem from '@theme/TabItem';
             signature="*args,**kwargs",
             model="all-MiniLM-L6-v2",
             device="cpu",
-            postprocess=lambda x: x.tolist(),
+            postprocess=postprocess,
         )
 
         listener = Listener(
             identifier="my-listener",
             key="txt",
             model=model,
-            select=Collection('documents').find(),
+            select=db['documents'].find(),
             active=True,
             predict_kwargs={}
         )
@@ -184,14 +145,8 @@ import TabItem from '@theme/TabItem';
             measure="cosine"
         )
 
-        db = pinnacle()
-
-        db.apply(
-            Stack(
-                identifier='test',
-                components=[vector_index],
-            )
-        )
+        db.apply(vector_index)
         ```
+      
     </TabItem>
 </Tabs>

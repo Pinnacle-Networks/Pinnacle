@@ -17,15 +17,6 @@ def test_select_data(setup):
     assert len(result) == 2
 
 
-def test_presets(setup):
-    result = curl_get(
-        '/db/show',
-        params={'type_id': 'datatype'},
-    )
-    print(result)
-    assert 'image' in result
-
-
 CODE = """
 from pinnacledb import code
 
@@ -73,11 +64,15 @@ def test_insert_image(setup):
     query = {
         '_path': 'pinnacledb/backends/mongodb/query/parse_query',
         '_leaves': {
+            'image_type': {
+                '_path': 'pinnacledb/ext/pillow/encoder/image_type',
+                'encodable': 'artifact',
+            },
             'my_artifact': {
                 '_path': 'pinnacledb/components/datatype/LazyArtifact',
                 'file_id': file_id,
-                'datatype': "?db.load(datatype, image)",
-            }
+                'datatype': "?image_type",
+            },
         },
         'query': 'coll.insert_one(documents[0])',
         'documents': [{'img': '?my_artifact'}],
@@ -103,7 +98,7 @@ def test_insert_image(setup):
 
     db = pinnacle()
 
-    result = [Document.decode(r, db=db).unpack() for r in result]
+    result = [Document.decode(r[0], db=db).unpack() for r in result]
 
     assert len(result) == 3
 
