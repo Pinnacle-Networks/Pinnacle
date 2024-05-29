@@ -5,4 +5,4 @@ of high-quality API-hosted LLM services.
 
 | Class | Description | GitHub | API-docs |
 | --- | --- | --- | --- |
-| `pinnacledb.ext.anthropic.AnthropicCompletions` | Completes a prompt with natural language (LLM) | [Code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/anthropic/model.py) | ... |
+| `pinnacledb.ext.anthropic.AnthropicCompletions` | Completes a prompt with natural language (LLM) | [Code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/anthropic/model.py) | [Docs](/docs/api/ext/anthropic/model#anthropiccompletions) |

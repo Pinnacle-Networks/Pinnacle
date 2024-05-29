@@ -5,8 +5,8 @@ vectors ready for downstream tasks, including vector-search
 
 Here is an overview of pre-packaged embedding models:
 
-| Class | Description |
-| --- | --- |
-| `pinnacledb.ext.sentence_transformers.SentenceTransformer` | ... |
-| `pinnacledb.ext.openai.OpenAIEmbeddings` | ... |
-| `pinnacledb.ext.cohere.CohereEmbeddings` | ... |
+| Class | 
+| --- | 
+| `pinnacledb.ext.sentence_transformers.SentenceTransformer` |
+| `pinnacledb.ext.openai.OpenAIEmbeddings` | 
+| `pinnacledb.ext.cohere.CohereEmbeddings` |

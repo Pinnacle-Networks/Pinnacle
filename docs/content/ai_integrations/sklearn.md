@@ -6,5 +6,5 @@ Read more about this [here](/docs/docs/walkthrough/ai_models#scikit-learn).
 
 | Class | Description | GitHub | API-docs |
 | --- | --- | --- | --- |
-| `pinnacledb.ext.sklearn.model.Estimator` | Wraps a scikit-learn estimator | [Code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/sklearn/model.py) | ... |
-| `pinnacledb.ext.sklearn.model.SklearnTrainer` | May be attached to an `Estimator` for training | [Code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/sklearn/model.py) | ... |
+| `pinnacledb.ext.sklearn.model.Estimator` | Wraps a scikit-learn estimator | [Code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/sklearn/model.py) | [Docs](/docs/api/ext/sklearn/model#estimator) |
+| `pinnacledb.ext.sklearn.model.SklearnTrainer` | May be attached to an `Estimator` for training | [Code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/sklearn/model.py) | [Docs](/docs/api/ext/sklearn/model#sklearntrainer) |

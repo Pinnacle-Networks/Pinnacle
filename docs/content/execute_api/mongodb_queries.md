@@ -13,9 +13,5 @@ client.my_db.my_collection.find_one()
 with `pinnacledb` one would write:
 
 ```python
-from pinnacledb.backends.mongodb import Collection
-
-my_collection = Collection('my_collection')
-
-result = db.execute(my_collection.find_one())
+result = db['my_collection'].find_one().execute()
 ```

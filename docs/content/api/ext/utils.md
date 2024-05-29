@@ -39,29 +39,3 @@ get_key(key_name: str) -> str
 
 Get an environment variable.
 
-## `pinnacledecode` 
-
-```python
-pinnacledecode(r: Any,
-     encoders: Union[Dict[str,
-     ForwardRef('DataType')],
-     ForwardRef('LoadDict')])
-```
-| Parameter | Description |
-|-----------|-------------|
-| r | The object to decode. |
-| encoders | The encoders to use. |
-
-Decode a pinnacle encoded object.
-
-## `pinnacleencode` 
-
-```python
-pinnacleencode(object)
-```
-| Parameter | Description |
-|-----------|-------------|
-| object | The object to encode. |
-
-Encode an object using pinnacle.
-

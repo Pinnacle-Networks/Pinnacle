@@ -222,9 +222,8 @@ def extract_docstrings():
             continue
         exec(f'import pinnacledb.ext.{subpackage}')
         package = eval(f'pinnacledb.ext.{subpackage}')
-        members += list_all_members(
-            package=package, prefix=f'pinnacledb.ext.{subpackage}'
-        )
+        tmp = list_all_members(package=package, prefix=f'pinnacledb.ext.{subpackage}')
+        members.extend(tmp)
     from pinnacledb.misc.special_dicts import MongoStyleDict
 
     lookup = MongoStyleDict({})

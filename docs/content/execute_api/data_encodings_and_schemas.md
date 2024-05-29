@@ -7,7 +7,7 @@ sidebar_position: 2
 `pinnacledb` has flexible support for data-types. In both MongoDB and SQL databases,
 one can uses `pinnacledb.DataType` to define one's own data-types.
 
-If no-datatypes are provided, `pinnacledb` uses fallbacks to encode and decode data.
+If no-datatypes are provided, `pinnacledb` [uses fallbacks](./auto_data_types.md) to encode and decode data.
 To gain more-control, developers may use the `DataType` and `Schema` components.
 
 ## `DataType` abstraction
