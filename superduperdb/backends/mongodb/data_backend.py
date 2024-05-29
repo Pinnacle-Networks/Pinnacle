@@ -10,6 +10,7 @@ from pinnacledb.backends.base.data_backend import BaseDataBackend
 from pinnacledb.backends.ibis.field_types import FieldType
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
 from pinnacledb.backends.mongodb.metadata import MongoMetaDataStore
+from pinnacledb.base import variables
 from pinnacledb.base.enums import DBType
 from pinnacledb.components.datatype import DataType
 from pinnacledb.misc.colors import Colors
@@ -38,7 +39,9 @@ class MongoDataBackend(BaseDataBackend):
 
         :param collection_name: Which collection to get the query builder for
         """
-        if collection_name.startswith('?'):
+        if isinstance(
+            collection_name, variables.Variable
+        ) or collection_name.startswith('?'):
             return MongoQuery(identifier=collection_name, db=self.datalayer)
         item_gotten = self._db[collection_name]
         if isinstance(

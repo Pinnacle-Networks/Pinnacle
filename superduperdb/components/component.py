@@ -13,7 +13,6 @@ import yaml
 
 from pinnacledb import logging
 from pinnacledb.base.leaf import Leaf
-from pinnacledb.base.variables import _find_variables_with_path
 from pinnacledb.jobs.job import ComponentJob, Job
 from pinnacledb.misc.annotations import merge_docstrings
 
@@ -113,6 +112,7 @@ class Component(Leaf):
 
     def init(self, db=None):
         """Method to help initiate component field dependencies."""
+        self.db = self.db or db
         self.unpack(db=db)
 
     def unpack(self, db=None):
