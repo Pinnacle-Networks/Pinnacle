@@ -1,4 +1,3 @@
-import dataclasses as dc
 import typing as t
 
 from pinnacledb.components.component import Component
