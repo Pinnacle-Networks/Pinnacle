@@ -12,7 +12,7 @@ from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import Mapping, ModelInputType
 from pinnacledb.ext.utils import str_shape
 from pinnacledb.jobs.job import FunctionJob
-from pinnacledb.misc.annotations import component, merge_docstrings
+from pinnacledb.misc.annotations import component
 from pinnacledb.misc.special_dicts import MongoStyleDict
 from pinnacledb.vector_search.base import VectorIndexMeasureType
 from pinnacledb.vector_search.update_tasks import copy_vectors
@@ -22,8 +22,6 @@ if t.TYPE_CHECKING:
     from pinnacledb.jobs.job import Job
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True)
 class VectorIndex(Component):
     """
     A component carrying the information to apply a vector index.

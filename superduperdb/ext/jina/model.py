@@ -8,11 +8,8 @@ from pinnacledb.backends.query_dataset import QueryDataset
 from pinnacledb.components.model import APIBaseModel
 from pinnacledb.components.vector_index import sqlvector, vector
 from pinnacledb.ext.jina.client import JinaAPIClient
-from pinnacledb.misc.annotations import merge_docstrings
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True)
 class Jina(APIBaseModel):
     """Cohere predictor.
 
@@ -27,8 +24,6 @@ class Jina(APIBaseModel):
         self.client = JinaAPIClient(model_name=self.identifier, api_key=self.api_key)
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True)
 class JinaEmbedding(Jina):
     """Jina embedding predictor.
 

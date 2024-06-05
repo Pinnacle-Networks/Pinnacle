@@ -4,7 +4,6 @@ import typing as t
 
 from pinnacledb.base.leaf import Leaf
 from pinnacledb.components.schema import Schema
-from pinnacledb.misc.annotations import merge_docstrings
 
 
 class VariableError(Exception):
@@ -75,8 +74,6 @@ def _replace_variables(x, **kwargs):
     return x
 
 
-@merge_docstrings
-@dc.dataclass
 class Variable(Leaf):
     """Mechanism for allowing "free variables" in a leaf object.
 

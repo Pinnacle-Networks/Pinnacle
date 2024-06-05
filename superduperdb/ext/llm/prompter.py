@@ -4,7 +4,6 @@ import typing as t
 
 from pinnacledb.components.model import QueryModel
 from pinnacledb.ext.utils import format_prompt
-from pinnacledb.misc.annotations import merge_docstrings
 
 
 @dc.dataclass
@@ -52,8 +51,6 @@ PROMPT_INTRODUCTION = (
 )
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True)
 class RetrievalPrompt(QueryModel):
     """Retrieve a prompt based on data recalled from the database.
 

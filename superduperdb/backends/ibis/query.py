@@ -15,7 +15,6 @@ from pinnacledb.backends.base.query import (
 from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.components.schema import Schema
-from pinnacledb.misc.annotations import merge_docstrings
 from pinnacledb.misc.special_dicts import SuperDuperFlatEncode
 
 if t.TYPE_CHECKING:
@@ -90,8 +89,6 @@ def _model_update_impl(
     return db[f'_outputs.{predict_id}'].insert(documents)
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True, repr=False)
 class IbisQuery(Query):
     """A query that can be executed on an Ibis database."""
 

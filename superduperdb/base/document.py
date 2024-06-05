@@ -12,7 +12,6 @@ from pinnacledb.components.datatype import (
     _BaseEncodable,
 )
 from pinnacledb.components.schema import SCHEMA_KEY, Schema, get_schema
-from pinnacledb.misc.annotations import merge_docstrings
 from pinnacledb.misc.reference import parse_reference
 from pinnacledb.misc.special_dicts import MongoStyleDict, SuperDuperFlatEncode
 
@@ -189,12 +188,16 @@ class Document(MongoStyleDict):
         return out
 
 
-@merge_docstrings
 class QueryUpdateDocument(Document):
     """A document that is used to update a document in a database.
 
     This document is used to update a document in a database.
     It is a subclass of Document.
+
+    :param args: *args for `dict`
+    :param schema: The schema to use.
+    :param db: The datalayer to use.
+    :param kwargs: **kwargs for `dict`
     """
 
     @classmethod
