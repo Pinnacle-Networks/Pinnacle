@@ -23,7 +23,7 @@ from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.base.leaf import LeafMeta
 from pinnacledb.base.variables import Variable
 from pinnacledb.components.component import Component, ensure_initialized
-from pinnacledb.components.datatype import DataType, dill_lazy
+from pinnacledb.components.datatype import DataType 
 from pinnacledb.components.metric import Metric
 from pinnacledb.components.schema import Schema
 from pinnacledb.jobs.job import ComponentJob, Job
@@ -521,6 +521,10 @@ class Model(Component, metaclass=ModelMeta):
         """Instance of `Inputs` to represent model params."""
         return Inputs(list(inspect.signature(self.predict).parameters.keys()))
 
+    def _wrapper(self, data):
+        args, kwargs = self.handle_input_type(data, self.signature)
+        return self.predict(*args, **kwargs)
+
     @abstractmethod
     def predict(self, *args, **kwargs) -> int:
         """Predict on a single data point.
@@ -533,13 +537,22 @@ class Model(Component, metaclass=ModelMeta):
         """
         pass
 
-    @abstractmethod
     def predict_batches(self, dataset: t.Union[t.List, QueryDataset]) -> t.List:
         """Execute on a series of data points defined in the dataset.
 
         :param dataset: Series of data points to predict on.
         """
-        pass
+        outputs = []
+        if self.num_workers:
+            pool = multiprocessing.Pool(processes=self.num_workers)
+            for r in pool.map(self._wrapper, dataset):  # type: ignore[arg-type]
+                outputs.append(r)
+            pool.close()
+            pool.join()
+        else:
+            for i in range(len(dataset)):
+                outputs.append(self._wrapper(dataset[i]))
+        return outputs
 
     # TODO handle in job creation
     def _prepare_select_for_predict(self, select, db):
@@ -1056,15 +1069,20 @@ class IndexableNode:
         return _Node(item)
 
 
-class _ObjectModel(Model):
-    """Base class for components which can predict based on a Python object.
+class ObjectModel(Model):
+    """Model component which wraps a Model to become serializable.
+
+    Example:
+    -------
+    >>> m = ObjectModel('test', lambda x: x + 2)
+    >>> m.predict(2)
+    4
 
     :param num_workers: Number of workers to use for parallel processing
     :param object: Model/ computation object
     """
-
     num_workers: int = 0
-    object: t.Any
+    object: t.Callable
 
     @property
     def outputs(self):
@@ -1091,10 +1109,6 @@ class _ObjectModel(Model):
                 out.append(self.train_y)
         return out
 
-    def _wrapper(self, data):
-        args, kwargs = self.handle_input_type(data, self.signature)
-        return self.object(*args, **kwargs)
-
     def predict(self, *args, **kwargs):
         """Predict on a single data point.
 
@@ -1105,48 +1119,6 @@ class _ObjectModel(Model):
         :param kwargs: Keyword arguments of model
         """
         return self.object(*args, **kwargs)
-
-    def predict_batches(self, dataset: t.Union[t.List, QueryDataset]) -> t.List:
-        """Run the predict on series of Model inputs (dataset).
-
-        :param dataset: series of data points.
-        """
-        outputs = []
-        if self.num_workers:
-            pool = multiprocessing.Pool(processes=self.num_workers)
-            for r in pool.map(self._wrapper, dataset):  # type: ignore[arg-type]
-                outputs.append(r)
-            pool.close()
-            pool.join()
-        else:
-            for i in range(len(dataset)):
-                outputs.append(self._wrapper(dataset[i]))
-        return outputs
-
-
-class ObjectModel(_ObjectModel):
-    """Model component which wraps a Model to become serializable.
-
-    Example:
-    -------
-    >>> m = ObjectModel('test', lambda x: x + 2)
-    >>> m.predict(2)
-    4
-
-    """
-
-    _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, 'DataType']]] = (
-        ('object', dill_lazy),
-    )
-
-
-class CodeModel(_ObjectModel):
-    """Model component which stores a code object.
-
-    :param object: Code object
-    """
-
-    object: Code
 
 
 class APIBaseModel(Model):
