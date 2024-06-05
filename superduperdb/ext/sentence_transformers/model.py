@@ -8,15 +8,12 @@ from pinnacledb.base.enums import DBType
 from pinnacledb.components.component import ensure_initialized
 from pinnacledb.components.datatype import DataType, dill_lazy
 from pinnacledb.components.model import Model, Signature, _DeviceManaged
-from pinnacledb.misc.annotations import merge_docstrings
 
 DEFAULT_PREDICT_KWARGS = {
     'show_progress_bar': True,
 }
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True)
 class SentenceTransformer(Model, _DeviceManaged):
     """A model for sentence embeddings using `sentence-transformers`.
 

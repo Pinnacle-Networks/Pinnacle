@@ -10,11 +10,8 @@ from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.model import Trainer
 from pinnacledb.ext.torch.model import TorchModel
-from pinnacledb.misc.annotations import merge_docstrings
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True)
 class TorchTrainer(Trainer):
     """
     Configuration for the PyTorch trainer.

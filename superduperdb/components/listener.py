@@ -8,7 +8,6 @@ from pinnacledb.backends.base.query import Query
 from pinnacledb.base.document import _OUTPUTS_KEY
 from pinnacledb.base.enums import DBType
 from pinnacledb.components.model import Mapping
-from pinnacledb.misc.annotations import merge_docstrings
 from pinnacledb.misc.server import request_server
 
 from ..jobs.job import Job
@@ -22,8 +21,6 @@ if t.TYPE_CHECKING:
 SELECT_TEMPLATE = {'documents': [], 'query': '<collection_name>.find()'}
 
 
-@merge_docstrings
-@dc.dataclass(kw_only=True)
 class Listener(Component):
     """Listener component.
 
