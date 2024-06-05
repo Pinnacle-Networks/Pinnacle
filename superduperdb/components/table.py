@@ -1,4 +1,3 @@
-import dataclasses as dc
 import typing as t
 
 from pinnacledb.backends.ibis.field_types import dtype
