@@ -32,8 +32,8 @@ from pinnacledb.components.model import (
     _DeviceManaged,
     _Fittable,
 )
+from pinnacledb.components.training import Checkpoint
 from pinnacledb.ext.llm.model import BaseLLM
-from pinnacledb.ext.transformers.training import Checkpoint
 from pinnacledb.jobs.job import Job
 
 

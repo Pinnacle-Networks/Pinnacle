@@ -9,13 +9,14 @@ from pinnacledb.base.document import Document
 from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.metric import Metric
 from pinnacledb.ext.transformers import LLM
-from pinnacledb.ext.transformers.training import LLMTrainer
 
 TEST_MODEL_NAME = "facebook/opt-125m"
 try:
     import datasets
     import peft
     import trl
+
+    from pinnacledb.ext.transformers.training import LLMTrainer
 except ImportError:
     datasets = None
     peft = None
