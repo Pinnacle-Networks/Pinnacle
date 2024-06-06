@@ -7,13 +7,14 @@ from pinnacledb import pinnacle
 from pinnacledb.backends.mongodb import MongoQuery
 from pinnacledb.base.document import Document
 from pinnacledb.ext.transformers.model import LLM
-from pinnacledb.ext.transformers.training import LLMTrainer
 
 try:
     import datasets
     import peft
     import torch
     import trl
+
+    from pinnacledb.ext.transformers.training import LLMTrainer
 
     GPU_AVAILABLE = torch.cuda.is_available()
 except ImportError:
