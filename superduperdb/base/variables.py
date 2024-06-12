@@ -1,8 +1,6 @@
 import re
-import typing as t
 
 from pinnacledb.base.leaf import Leaf
-from pinnacledb.components.schema import Schema
 
 
 class VariableError(Exception):
