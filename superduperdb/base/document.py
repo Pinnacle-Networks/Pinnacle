@@ -7,7 +7,6 @@ from bson.objectid import ObjectId
 from pinnacledb.base.code import Code
 from pinnacledb.base.constant import KEY_BLOBS, KEY_BUILDS, KEY_FILES
 from pinnacledb.base.leaf import Leaf, _import_item
-from pinnacledb.base.variables import Variable
 from pinnacledb.components.component import Component
 from pinnacledb.components.datatype import (
     _ENCODABLES,
@@ -361,9 +360,6 @@ def _deep_flat_encode(
         identifier = r.pop('identifier')
         builds[identifier] = r
         return f'?{identifier}'
-
-    if isinstance(r, Variable):
-        return r.key
 
     return r
 
