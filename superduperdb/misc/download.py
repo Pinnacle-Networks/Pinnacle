@@ -13,6 +13,7 @@ from tqdm import tqdm
 
 from pinnacledb import CFG, logging
 from pinnacledb.backends.base.query import Query
+from pinnacledb.base.constant import KEY_BUILDS
 from pinnacledb.base.document import Document
 from pinnacledb.components.datatype import _BaseEncodable
 
@@ -346,7 +347,7 @@ def _gather_uris_for_document(r: Document, id_field: str = '_id'):
     datatypes = []
     # TODO: This function not be tested in UT,
     # fast fix the schema parameter to avoid type error
-    leaf_lookup = r.encode(None, leaves_to_keep=(_BaseEncodable,))['_leaves']
+    leaf_lookup = r.encode(None, leaves_to_keep=(_BaseEncodable,))[KEY_BUILDS]
     for k in leaf_lookup:
         if leaf_lookup[k].uri is None:
             continue
