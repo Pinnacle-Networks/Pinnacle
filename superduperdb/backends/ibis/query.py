@@ -12,6 +12,7 @@ from pinnacledb.backends.base.query import (
     applies_to,
     parse_query as _parse_query,
 )
+from pinnacledb.base.constant import KEY_BLOBS, KEY_BUILDS, KEY_FILES
 from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.base.exceptions import DatabackendException
 from pinnacledb.components.datatype import Encodable
@@ -265,9 +266,9 @@ class IbisQuery(Query):
     def _execute_insert(self, parent):
         documents = self._prepare_documents()
         for r in documents:
-            r.pop('_leaves')
-            r.pop('_blobs')
-            r.pop('_files')
+            r.pop(KEY_BUILDS)
+            r.pop(KEY_BLOBS)
+            r.pop(KEY_FILES)
             r.pop('_schema')
             if self.primary_id not in r:
                 pid = str(uuid.uuid4())

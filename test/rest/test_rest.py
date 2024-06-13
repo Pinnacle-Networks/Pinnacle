@@ -28,7 +28,7 @@ def my_function(x):
 
 def test_apply(setup):
     m = {
-        '_leaves': {
+        '_builds': {
             'function_body': {
                 '_path': 'pinnacledb/base/code/Code',
                 'code': CODE,
@@ -63,7 +63,7 @@ def test_insert_image(setup):
 
     query = {
         '_path': 'pinnacledb/backends/mongodb/query/parse_query',
-        '_leaves': {
+        '_builds': {
             'image_type': {
                 '_path': 'pinnacledb/ext/pillow/encoder/image_type',
                 'encodable': 'artifact',

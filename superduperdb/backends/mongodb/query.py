@@ -14,6 +14,7 @@ from pinnacledb.backends.base.query import (
     applies_to,
     parse_query as _parse_query,
 )
+from pinnacledb.base.constant import KEY_BLOBS, KEY_BUILDS, KEY_FILES
 from pinnacledb.base.cursor import SuperDuperCursor
 from pinnacledb.base.document import Document, QueryUpdateDocument
 from pinnacledb.base.leaf import Leaf
@@ -412,9 +413,9 @@ class MongoQuery(Query):
         find_args = copy.deepcopy(find_args)
         for identifier in predict_ids:
             find_args[1][f'_outputs.{identifier}'] = 1
-            find_args[1]['_leaves'] = 1
-            find_args[1]['_files'] = 1
-            find_args[1]['_blobs'] = 1
+            find_args[1][KEY_BUILDS] = 1
+            find_args[1][KEY_FILES] = 1
+            find_args[1][KEY_BLOBS] = 1
             find_args[1]['_source'] = 1
         x = type(self)(
             db=self.db,

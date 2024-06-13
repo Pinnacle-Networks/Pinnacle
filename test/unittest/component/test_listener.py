@@ -7,6 +7,7 @@ import pytest
 from pinnacledb import Document
 from pinnacledb.backends.ibis.field_types import dtype
 from pinnacledb.backends.mongodb.query import MongoQuery
+from pinnacledb.base.constant import KEY_BLOBS
 from pinnacledb.components.listener import Listener
 from pinnacledb.components.model import ObjectModel
 from pinnacledb.components.schema import Schema
@@ -25,7 +26,7 @@ def test_listener_serializes_properly():
     # check that the result is JSON-able
     import json
 
-    r.pop('_blobs')
+    r.pop(KEY_BLOBS)
     print(json.dumps(r, indent=2))
 
 
