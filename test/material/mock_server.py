@@ -6,13 +6,13 @@ import PIL.Image
 from pinnacledb import ObjectModel
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.pinnacle import pinnacle
-from pinnacledb.components.stack import Stack
+from pinnacledb.components.application import Application
 from pinnacledb.ext.numpy import array
 from pinnacledb.ext.pillow.encoder import image_type
 from pinnacledb.rest.app import build_app
 from pinnacledb.server.app import SuperDuperApp
 
-m = Stack(
+m = Application(
     'test_stack',
     components=[
         ObjectModel(
