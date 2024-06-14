@@ -14,7 +14,6 @@ from pinnacledb.backends.local.compute import LocalComputeBackend
 from pinnacledb.backends.mongodb.query import MongoQuery
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.base.document import Document
-from pinnacledb.base.variables import Variable
 from pinnacledb.components.dataset import Dataset
 from pinnacledb.components.datatype import DataType, pickle_decode, pickle_encode
 from pinnacledb.components.metric import Metric
@@ -369,7 +368,7 @@ def test_query_model(db):
     q = (
         MongoQuery(table='documents', db=db)
         .like(
-            {'x': Variable(identifier='X')},
+            {'x': '<var:X>'},
             vector_index='test_vector_search',
             n=3,
         )
