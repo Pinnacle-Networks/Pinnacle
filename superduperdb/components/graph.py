@@ -99,8 +99,8 @@ class IndexableNode:
         :param select: Query query
         :param identifier: Unique identifier
         """
-        from pinnacledb.components.listener import Listener
         from pinnacledb.components.application import Application
+        from pinnacledb.components.listener import Listener
 
         nodes = list(nx.topological_sort(self.parent_graph))
         input_node = next(

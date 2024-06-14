@@ -1,18 +1,21 @@
-from pinnacledb import Component
 import typing as t
+
+from pinnacledb import Component
 
 
 class Trigger(Component):
     """Trigger a function when a condition is met.
 
     ***Note that this feature deploys on SuperDuperDB Enterprise.***
-    
+
     :param on: When to trigger the function `{'insert', 'update', 'delete'}`.
     :param condition: Additional condition to trigger the function.
     """
+
     table: str
     on: str = 'insert'
     condition: t.Optional[t.Callable] = None
 
-    def if_change(self, ids):
+    def pull(self, ids):
+        """Pull the trigger."""
         raise NotImplementedError
