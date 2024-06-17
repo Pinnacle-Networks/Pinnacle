@@ -39,7 +39,7 @@ def build_app(app: pinnacleapp.SuperDuperApp):
         tmp = {
             'application': {
                 tid: {
-                    '_path': f'pinnacledb/applications/{tid}',
+                    '_path': f'pinnacledb.applications.{tid}',
                     'identifier': {'type': 'str'},
                     **app.db.show(type_id='template', identifier=tid, version=-1)[
                         'info'
@@ -120,7 +120,7 @@ def build_app(app: pinnacleapp.SuperDuperApp):
     ):
         if '_path' not in query:
             databackend = app.db.databackend.__module__.split('.')[-2]
-            query['_path'] = f'pinnacledb/backends/{databackend}/query/parse_query'
+            query['_path'] = f'pinnacledb.backends.{databackend}.query.parse_query'
 
         q = Document.decode(query, db=app.db).unpack()
 
