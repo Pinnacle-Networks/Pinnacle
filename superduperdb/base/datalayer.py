@@ -32,6 +32,7 @@ from pinnacledb.misc.annotations import deprecated
 from pinnacledb.misc.colors import Colors
 from pinnacledb.misc.data import ibatch
 from pinnacledb.misc.download import download_content, download_from_one
+from pinnacledb.misc.retry import db_retry
 from pinnacledb.misc.special_dicts import recursive_update
 from pinnacledb.vector_search.base import BaseVectorSearcher, VectorItem
 from pinnacledb.vector_search.interface import FastVectorSearcher
@@ -301,6 +302,7 @@ class Datalayer:
             type_id=type_id, identifier=identifier, version=version
         )
 
+    @db_retry(connector='databackend')
     def execute(self, query: Query, *args, **kwargs) -> ExecuteResult:
         """Execute a query on the database.
 
