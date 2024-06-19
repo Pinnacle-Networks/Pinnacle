@@ -1,6 +1,5 @@
 from pinnacledb import CFG
 from pinnacledb.server import app as pinnacleapp
-from pinnacledb import pinnacle
 
 from .daemon import Daemon
 
@@ -9,12 +8,19 @@ assert isinstance(
 ), "cluster.crontab.uri should be set with a valid uri"
 port = int(CFG.cluster.crontab.uri.split(':')[-1])
 
-def set_daemon(db):
+
+def _set_daemon(db):
     return {'daemon': Daemon(db)}
 
-app = pinnacleapp.SuperDuperApp('crontab', port=port, init_hook=set_daemon)
-    
+
+app = pinnacleapp.SuperDuperApp('crontab', port=port, init_hook=_set_daemon)
+
+
 def build_service(app: pinnacleapp.SuperDuperApp):
+    """Build the crontab service.
+
+    :param app: SuperDuperApp instance.
+    """
 
     @app.add('/crontab/remove', method='post')
     def crontab_remove(identifier: str):
@@ -25,7 +31,7 @@ def build_service(app: pinnacleapp.SuperDuperApp):
         app.daemon.add_job(identifier)
 
     @app.add('/crontab/show', method='get')
-    def crontab_add():
+    def crontab_show():
         return app.daemon.list_jobs()
 
     return app
