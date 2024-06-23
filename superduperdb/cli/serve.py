@@ -1,6 +1,8 @@
 import json
 import typing as t
 
+from pinnacledb import pinnacle
+
 from . import command
 
 
@@ -95,3 +97,11 @@ def rest():
     from pinnacledb.rest.app import app
 
     app.start()
+
+
+@command(help='Start a stream')
+def subscribe(identifier: str, version: t.Optional[int] = None):
+    """Run a stream."""
+    db = pinnacle()
+    subscriber = db.load('subscriber', identifier, version=version)
+    subscriber.run()
