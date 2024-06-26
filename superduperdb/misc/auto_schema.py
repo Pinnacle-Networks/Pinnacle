@@ -33,7 +33,7 @@ register_module("pinnacledb.ext.pillow.encoder")
 
 DEFAULT_DATATYPE = get_serializer(
     identifier='DEFAULT',
-    method='dill',
+    method='pickle',
     encodable='encodable',
 )
 
