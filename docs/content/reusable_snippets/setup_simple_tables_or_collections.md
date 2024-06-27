@@ -14,16 +14,33 @@ import DownloadButton from '../downloadButton.js';
 <Tabs>
     <TabItem value="MongoDB" label="MongoDB" default>
         ```python
-        # If our data is in a format natively supported by MongoDB, we don't need to do anything.
-        from pinnacledb.backends.mongodb import Collection
+        # If data is in a format natively supported by MongoDB, we don't need to do anything.
+        # However to manually specify datatypes, do as below
+        from pinnacledb import Schema
+        from pinnacledb.ext.pillow import pil_image
+        from pinnacledb.components.datatype import pickle_serializer
         
-        table_or_collection = Collection('documents')
-        select = table_or_collection.find({})        
+        fields = {
+            'serialized_content': pickle_serializer,
+            'img_content': pil_image_hybrid,
+        }
+        
+        schema = Schema(identifier="my-schema", fields=fields)
+        db.apply(schema)
+
+        # Now assert `Document` instances, specifying this schema
+        db['documents'].insert_many([
+            Document({
+                'serialized_content': item,
+                'img_content': img,
+            }, schema='my-schema')
+            for item, img in data
+        ])
         ```
     </TabItem>
     <TabItem value="SQL" label="SQL" default>
         ```python
-        from pinnacledb.backends.ibis import Table
+        from pinnacledb import Table
         from pinnacledb import Schema, DataType
         from pinnacledb.backends.ibis.field_types import dtype
         
@@ -40,8 +57,12 @@ import DownloadButton from '../downloadButton.js';
         table_or_collection = Table('documents', schema=schema)
         
         db.apply(table_or_collection)
+
+        db['documents'].insert([
+            {'prompt', prompt, 'response': response}
+            for prompt, response in data
+        ])
         
-        select = table_or_collection.select("id", "prompt", "response")        
         ```
     </TabItem>
 </Tabs>
