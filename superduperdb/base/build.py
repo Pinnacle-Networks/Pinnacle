@@ -1,3 +1,4 @@
+import importlib
 import re
 import typing as t
 
@@ -9,9 +10,7 @@ from pinnacledb.backends.base.backends import data_backends, metadata_stores
 from pinnacledb.backends.base.data_backend import BaseDataBackend, DataBackendProxy
 from pinnacledb.backends.base.metadata import MetaDataStoreProxy
 from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
-from pinnacledb.backends.local.compute import LocalComputeBackend
 from pinnacledb.backends.mongodb.artifacts import MongoArtifactStore
-from pinnacledb.backends.ray.compute import RayComputeBackend
 from pinnacledb.base.datalayer import Datalayer
 from pinnacledb.misc.anonymize import anonymize_url
 
@@ -141,11 +140,13 @@ def build_compute(compute):
     :param compute: Compute uri.
     """
     logging.info("Connecting to compute client:", compute)
+    spath = compute._path.split('.')
+    path, cls = '.'.join(spath[:-1]), spath[-1]
 
-    if compute is None:
-        return LocalComputeBackend()
+    module = importlib.import_module(path)
+    compute_cls = getattr(module, cls)
 
-    return RayComputeBackend(compute)
+    return compute_cls(compute.uri)
 
 
 def build_datalayer(cfg=None, databackend=None, **kwargs) -> Datalayer:
@@ -167,7 +168,7 @@ def build_datalayer(cfg=None, databackend=None, **kwargs) -> Datalayer:
     assert metadata
 
     artifact_store = _build_artifact_store(cfg.artifact_store, databackend)
-    compute = build_compute(cfg.cluster.compute.uri)
+    compute = build_compute(cfg.cluster.compute)
 
     datalayer = Datalayer(
         databackend=databackend,
