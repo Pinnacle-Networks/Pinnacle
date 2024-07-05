@@ -23,7 +23,6 @@ if t.TYPE_CHECKING:
     from pinnacledb.base.datalayer import Datalayer
     from pinnacledb.components.dataset import Dataset
     from pinnacledb.components.datatype import DataType
-    from pinnacledb.components.plugin import Plugin
 
 
 def _build_info_from_path(path: str):
@@ -376,12 +375,11 @@ class Component(Leaf):
         |_files/*
         ```
         """
+        if path is None:
+            path = f"./{self.identifier}"
 
         if not os.path.exists(path):
             os.makedirs(path)
-
-        if path is None:
-            path = f"./{self.identifier}"
 
         r = self.encode(defaults=defaults, metadata=metadata)
 
