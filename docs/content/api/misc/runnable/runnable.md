@@ -1,6 +1,6 @@
-**`pinnacledb.misc.runnable.runnable`** 
+**`pinnacle.misc.runnable.runnable`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/runnable/runnable.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/runnable/runnable.py)
 
 ## `Event` 
 

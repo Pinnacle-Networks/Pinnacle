@@ -1,6 +1,6 @@
-**`pinnacledb.backends.query_dataset`** 
+**`pinnacle.backends.query_dataset`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/query_dataset.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/query_dataset.py)
 
 ## `query_dataset_factory` 
 
@@ -20,7 +20,7 @@ created, otherwise a ``QueryDataset`` object is created.
 
 ```python
 CachedQueryDataset(self,
-     select: pinnacledb.backends.base.query.Query,
+     select: pinnacle.backends.base.query.Query,
      mapping: Optional[ForwardRef('Mapping')] = None,
      ids: Optional[List[str]] = None,
      fold: Optional[str] = 'train',
@@ -69,7 +69,7 @@ The document will be removed from the cache after fetching it from the cache.
 
 ```python
 QueryDataset(self,
-     select: pinnacledb.backends.base.query.Query,
+     select: pinnacle.backends.base.query.Query,
      mapping: Optional[ForwardRef('Mapping')] = None,
      ids: Optional[List[str]] = None,
      fold: Optional[str] = 'train',

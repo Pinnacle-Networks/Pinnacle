@@ -11,8 +11,8 @@ import DownloadButton from '../downloadButton.js';
 # Setup tables or collections
 
 ```python
-from pinnacledb.components.table import Table
-from pinnacledb import Schema
+from pinnacle.components.table import Table
+from pinnacle import Schema
 
 schema = Schema(identifier="schema", fields={"x": datatype})
 table_or_collection = Table("documents", schema=schema)

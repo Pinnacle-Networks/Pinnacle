@@ -1,6 +1,6 @@
-**`pinnacledb.vector_search.base`** 
+**`pinnacle.vector_search.base`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/vector_search/base.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/vector_search/base.py)
 
 ## `cosine` 
 

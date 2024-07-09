@@ -1,17 +1,17 @@
-**`pinnacledb.misc.download`** 
+**`pinnacle.misc.download`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/download.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/download.py)
 
 ## `download_content` 
 
 ```python
 download_content(db,
-     query: Union[pinnacledb.backends.base.query.Query,
+     query: Union[pinnacle.backends.base.query.Query,
      Dict],
      ids: Optional[Sequence[str]] = None,
-     documents: Optional[List[pinnacledb.base.document.Document]] = None,
+     documents: Optional[List[pinnacle.base.document.Document]] = None,
      raises: bool = True,
-     n_workers: Optional[int] = None) -> Optional[Sequence[pinnacledb.base.document.Document]]
+     n_workers: Optional[int] = None) -> Optional[Sequence[pinnacle.base.document.Document]]
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -40,7 +40,7 @@ download_content(None, None, ids=["0"], documents=[d]))
 ## `download_from_one` 
 
 ```python
-download_from_one(r: pinnacledb.base.document.Document)
+download_from_one(r: pinnacle.base.document.Document)
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -53,7 +53,7 @@ This function will find all URIs in the document and download them.
 ## `gather_uris` 
 
 ```python
-gather_uris(documents: Sequence[pinnacledb.base.document.Document],
+gather_uris(documents: Sequence[pinnacle.base.document.Document],
      gather_ids: bool = True) -> Tuple[List[str],
      List[str],
      List[Any],

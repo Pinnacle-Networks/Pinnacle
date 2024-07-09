@@ -12,21 +12,21 @@ and is subclassed by:
 
 | class | framework |
 | --- | --- |
-| `pinnacledb.ext.sklearn.Estimator` | [Scikit-Learn](https://scikit-learn.org/stable/) |
-| `pinnacledb.ext.transformers.Pipeline` | [Hugging Face's `transformers`](https://huggingface.co/docs/transformers/index) |
-| `pinnacledb.ext.torch.TorchModel` | [PyTorch](https://pytorch.org/) |
-| `pinnacledb.ext.openai.OpenAI` | [OpenAI](https://api.openai.com) |
-| `pinnacledb.ext.cohere.Cohere` | [Cohere](https://cohere.com) |
-| `pinnacledb.ext.anthropic.Anthropic` | [Anthropic](https://anthropic.com) |
-| `pinnacledb.ext.jina.Jina` | [Jina](https://jina.ai/embeddings) |
+| `pinnacle.ext.sklearn.Estimator` | [Scikit-Learn](https://scikit-learn.org/stable/) |
+| `pinnacle.ext.transformers.Pipeline` | [Hugging Face's `transformers`](https://huggingface.co/docs/transformers/index) |
+| `pinnacle.ext.torch.TorchModel` | [PyTorch](https://pytorch.org/) |
+| `pinnacle.ext.openai.OpenAI` | [OpenAI](https://api.openai.com) |
+| `pinnacle.ext.cohere.Cohere` | [Cohere](https://cohere.com) |
+| `pinnacle.ext.anthropic.Anthropic` | [Anthropic](https://anthropic.com) |
+| `pinnacle.ext.jina.Jina` | [Jina](https://jina.ai/embeddings) |
 
 The `Model` class is subclassed by:
 
 | class | framework |
 | --- | --- |
-| `pinnacledb.ext.sklearn.Estimator` | [Scikit-Learn](https://scikit-learn.org/stable/) |
-| `pinnacledb.ext.transformers.Pipeline` | [Hugging Face's `transformers`](https://huggingface.co/docs/transformers/index) |
-| `pinnacledb.ext.torch.TorchModel` | [PyTorch](https://pytorch.org/) |
+| `pinnacle.ext.sklearn.Estimator` | [Scikit-Learn](https://scikit-learn.org/stable/) |
+| `pinnacle.ext.transformers.Pipeline` | [Hugging Face's `transformers`](https://huggingface.co/docs/transformers/index) |
+| `pinnacle.ext.torch.TorchModel` | [PyTorch](https://pytorch.org/) |
 
 `Model` instances implement `self.predict`, but also hold import data, such as model weights, parameters or hyperparameters.
 In addition, `Model` may implement `self.fit` functionality - model training and calibration.

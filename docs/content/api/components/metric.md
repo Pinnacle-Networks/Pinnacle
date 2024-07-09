@@ -1,6 +1,6 @@
-**`pinnacledb.components.metric`** 
+**`pinnacle.components.metric`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/metric.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/metric.py)
 
 ## `Metric` 
 
@@ -8,7 +8,7 @@
 Metric(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
      object: Callable) -> None

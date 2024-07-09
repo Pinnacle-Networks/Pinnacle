@@ -2,12 +2,12 @@ import dataclasses as dc
 import typing as t
 from pprint import pprint
 
-from pinnacledb import ObjectModel
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.constant import KEY_BUILDS
-from pinnacledb.base.document import Document
-from pinnacledb.base.leaf import Leaf
-from pinnacledb.components.component import Component
+from pinnacle import ObjectModel
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.constant import KEY_BUILDS
+from pinnacle.base.document import Document
+from pinnacle.base.leaf import Leaf
+from pinnacle.components.component import Component
 
 
 class Test(Leaf):
@@ -116,8 +116,8 @@ def test_component_with_document():
 
 
 def test_find_variables():
-    from pinnacledb import Document
-    from pinnacledb.backends.mongodb import MongoQuery
+    from pinnacle import Document
+    from pinnacle.backends.mongodb import MongoQuery
 
     r = Document({'txt': '<var:test>'})
 

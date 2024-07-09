@@ -1,6 +1,6 @@
-**`pinnacledb.ext.utils`** 
+**`pinnacle.ext.utils`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/utils.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/ext/utils.py)
 
 ## `str_shape` 
 

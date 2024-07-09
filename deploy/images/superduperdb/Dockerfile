@@ -4,7 +4,7 @@
 # Global Parameters
 # ---------------
 # BUILD_ENV choses whether to use local source (sandbox) or released wheel (pypi).
-ARG BUILD_ENV=pinnacledb
+ARG BUILD_ENV=pinnacle
 ARG RUNNER=cpu
 
 # ---------------
@@ -54,7 +54,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 
-# Add SuperDuperDB User
+# Add pinnacle.io User
 # ---------------
 ENV NB_USER=pinnacle \
     NB_UID=1000 \
@@ -81,7 +81,7 @@ RUN python -m pip install --upgrade pip setuptools
 
 # Install jupyterlab dependencies
 # ---------------
-COPY ./deploy/images/pinnacledb/jupyter_requirements.txt ./jupyter_requirements.txt
+COPY ./deploy/images/pinnacle/jupyter_requirements.txt ./jupyter_requirements.txt
 RUN python -m pip install -r ./jupyter_requirements.txt
 
 
@@ -93,7 +93,7 @@ FROM common-stage AS build_sandbox
 # Install the requirements. To be used in conjuction with "make testenv_init" for development.
 ONBUILD ARG EXTRA_REQUIREMENTS_FILE=deploy/installations/testenv_requirements.txt
 ONBUILD USER pinnacle
-ONBUILD WORKDIR ${HOME}/pinnacledb
+ONBUILD WORKDIR ${HOME}/pinnacle
 ONBUILD COPY --chown=pinnacle ./pyproject.toml ./pyproject.toml
 ONBUILD COPY --chown=pinnacle ./Makefile ./Makefile
 ONBUILD COPY --chown=pinnacle ./deploy/testenv/requirements.txt ./requirements.txt
@@ -109,8 +109,8 @@ ONBUILD RUN make install_devkit
 FROM common-stage AS build_nightly
 
 # Install the latest commit from local repo.
-ONBUILD COPY --chown=pinnacle ./ ${HOME}/pinnacledb
-ONBUILD WORKDIR ${HOME}/pinnacledb
+ONBUILD COPY --chown=pinnacle ./ ${HOME}/pinnacle
+ONBUILD WORKDIR ${HOME}/pinnacle
 ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip python -m pip install --user ./ \
     # Purge pip cache to reduce image size.
     && pip cache purge
@@ -124,11 +124,11 @@ ONBUILD RUN --mount=type=cache,uid=1000,target=/home/pinnacle/.cache/pip python 
 # -------------------------------
 # Build Release (Production)
 # -------------------------------
-FROM common-stage AS build_pinnacledb
+FROM common-stage AS build_pinnacle
 
 # Install the latest release from pypi
 # TODO: to be updated when we create the release branch.
-ONBUILD RUN python -m pip install --user pinnacledb \
+ONBUILD RUN python -m pip install --user pinnacle \
     # Purge pip cache to reduce image size.
     && pip cache purge
 

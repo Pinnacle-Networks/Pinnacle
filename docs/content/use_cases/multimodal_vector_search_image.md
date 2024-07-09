@@ -15,17 +15,17 @@ import DownloadButton from '../downloadButton.js';
 
 :::note
 If you would like to use the production features 
-of SuperDuperDB, then you should set the relevant 
+of pinnacle, then you should set the relevant 
 connections and configurations in a configuration 
 file. Otherwise you are welcome to use "development" mode 
-to get going with SuperDuperDB quickly.
+to get going with pinnacle quickly.
 :::
 
 ```python
 import os
 
-os.makedirs('.pinnacledb', exist_ok=True)
-os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
+os.makedirs('.pinnacle', exist_ok=True)
+os.environ['SUPERDUPER_CONFIG'] = '.pinnacle/config.yaml'
 ```
 
 
@@ -151,7 +151,7 @@ os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
     </TabItem>
 </Tabs>
 ```python
-with open(os.environ['SUPERDUPERDB_CONFIG'], 'w') as f:
+with open(os.environ['SUPERDUPER_CONFIG'], 'w') as f:
     f.write(CFG)
 ```
 
@@ -159,7 +159,7 @@ with open(os.environ['SUPERDUPERDB_CONFIG'], 'w') as f:
 ## Start your cluster
 
 :::note
-Starting a SuperDuperDB cluster is useful in production and model development
+Starting a pinnacle cluster is useful in production and model development
 if you want to enable scalable compute, access to the models by multiple users for collaboration, 
 monitoring.
 
@@ -170,7 +170,7 @@ If you don't need this, then it is simpler to start in development mode.
 <Tabs>
     <TabItem value="Experimental Cluster" label="Experimental Cluster" default>
         ```python
-        !python -m pinnacledb local-cluster up        
+        !python -m pinnacle local-cluster up        
         ```
     </TabItem>
     <TabItem value="Docker-Compose" label="Docker-Compose" default>
@@ -181,10 +181,10 @@ If you don't need this, then it is simpler to start in development mode.
     </TabItem>
 </Tabs>
 <!-- TABS -->
-## Connect to SuperDuperDB
+## Connect to pinnacle
 
 :::note
-Note that this is only relevant if you are running SuperDuperDB in development mode.
+Note that this is only relevant if you are running pinnacle in development mode.
 Otherwise refer to "Configuring your production system".
 :::
 
@@ -192,20 +192,20 @@ Otherwise refer to "Configuring your production system".
 <Tabs>
     <TabItem value="MongoDB" label="MongoDB" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('mongodb://localhost:27017/documents')        
         ```
     </TabItem>
     <TabItem value="SQLite" label="SQLite" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         db = pinnacle('sqlite://my_db.db')        
         ```
     </TabItem>
     <TabItem value="MySQL" label="MySQL" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'pinnacle'
         password = 'pinnacle'
@@ -218,7 +218,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Oracle" label="Oracle" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'sa'
         password = 'Pinnacle#1'
@@ -231,7 +231,7 @@ Otherwise refer to "Configuring your production system".
     <TabItem value="PostgreSQL" label="PostgreSQL" default>
         ```python
         !pip install psycopg2
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'postgres'
         password = 'postgres'
@@ -245,7 +245,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Snowflake" label="Snowflake" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = "pinnacleuser"
         password = "pinnaclepassword"
@@ -262,7 +262,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Clickhouse" label="Clickhouse" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'default'
         password = ''
@@ -274,21 +274,21 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="DuckDB" label="DuckDB" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('duckdb://mydb.duckdb')        
         ```
     </TabItem>
     <TabItem value="Pandas" label="Pandas" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle(['my.csv'], metadata_store=f'mongomock://meta')        
         ```
     </TabItem>
     <TabItem value="MongoMock" label="MongoMock" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('mongomock:///test_db')        
         ```
@@ -301,7 +301,7 @@ Otherwise refer to "Configuring your production system".
 <Tabs>
     <TabItem value="Image" label="Image" default>
         ```python
-        !curl -O https://pinnacledb-public-demo.s3.amazonaws.com/images.zip && unzip images.zip
+        !curl -O https://pinnacle-public-demo.s3.amazonaws.com/images.zip && unzip images.zip
         import os
         from PIL import Image
         
@@ -317,10 +317,10 @@ datas = [{'img': d} for d in data[:100]]
 <!-- TABS -->
 ## Insert simple data
 
-After turning on auto_schema, we can directly insert data, and pinnacledb will automatically analyze the data type, and match the construction of the table and datatype.
+After turning on auto_schema, we can directly insert data, and pinnacle will automatically analyze the data type, and match the construction of the table and datatype.
 
 ```python
-from pinnacledb import Document
+from pinnacle import Document
 
 table_or_collection = db['documents']
 
@@ -336,13 +336,13 @@ We define the output data type of a model as a vector for vector transformation.
 <Tabs>
     <TabItem value="MongoDB" label="MongoDB" default>
         ```python
-        from pinnacledb.components.vector_index import vector
+        from pinnacle.components.vector_index import vector
         output_datatpye = vector(shape=(1024,))        
         ```
     </TabItem>
     <TabItem value="SQL" label="SQL" default>
         ```python
-        from pinnacledb.components.vector_index import sqlvector
+        from pinnacle.components.vector_index import sqlvector
         output_datatpye = sqlvector(shape=(1024,))        
         ```
     </TabItem>
@@ -355,8 +355,8 @@ Then define two models, one for text embedding and one for image embedding.
         ```python
         !pip install git+https://github.com/openai/CLIP.git
         import clip
-        from pinnacledb import vector
-        from pinnacledb.ext.torch import TorchModel
+        from pinnacle import vector
+        from pinnacle.ext.torch import TorchModel
         
         # Load the CLIP model and obtain the preprocessing function
         model, preprocess = clip.load("RN50", device='cpu')
@@ -399,7 +399,7 @@ vector_index_name = 'my-vector-index'
 <Tabs>
     <TabItem value="2-Modalities" label="2-Modalities" default>
         ```python
-        from pinnacledb import VectorIndex, Listener
+        from pinnacle import VectorIndex, Listener
         
         jobs, _ = db.add(
             VectorIndex(

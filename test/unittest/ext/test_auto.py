@@ -1,10 +1,10 @@
-from pinnacledb.components.model import ObjectModel
+from pinnacle.components.model import ObjectModel
 
 
 def test_auto():
     import torch as torch_native
 
-    from pinnacledb.ext.auto import torch
+    from pinnacle.ext.auto import torch
 
     m = torch.nn.Linear(2, 4, identifier='my-linear')
 

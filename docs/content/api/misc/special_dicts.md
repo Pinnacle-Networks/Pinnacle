@@ -1,6 +1,6 @@
-**`pinnacledb.misc.special_dicts`** 
+**`pinnacle.misc.special_dicts`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/special_dicts.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/special_dicts.py)
 
 ## `diff` 
 

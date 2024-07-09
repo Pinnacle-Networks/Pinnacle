@@ -1,6 +1,6 @@
-**`pinnacledb.vector_search.atlas`** 
+**`pinnacle.vector_search.atlas`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/vector_search/atlas.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/vector_search/atlas.py)
 
 ## `MongoAtlasVectorSearcher` 
 

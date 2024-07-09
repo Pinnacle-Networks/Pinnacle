@@ -5,9 +5,9 @@ import typing as t
 
 import pytest
 
-from pinnacledb import CFG
-from pinnacledb.components.component import Component
-from pinnacledb.components.datatype import (
+from pinnacle import CFG
+from pinnacle.components.component import Component
+from pinnacle.components.datatype import (
     DataType,
     file_serializer,
 )

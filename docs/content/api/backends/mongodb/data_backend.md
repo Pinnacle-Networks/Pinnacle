@@ -1,6 +1,6 @@
-**`pinnacledb.backends.mongodb.data_backend`** 
+**`pinnacle.backends.mongodb.data_backend`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/mongodb/data_backend.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/mongodb/data_backend.py)
 
 ## `MongoDataBackend` 
 

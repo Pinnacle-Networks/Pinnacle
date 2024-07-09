@@ -1,4 +1,4 @@
-from pinnacledb.ext.llamacpp.model import LlamaCpp, LlamaCppEmbedding
+from pinnacle.ext.llamacpp.model import LlamaCpp, LlamaCppEmbedding
 
 
 class _MockedLlama:

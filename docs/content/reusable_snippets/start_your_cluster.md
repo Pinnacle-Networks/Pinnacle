@@ -11,7 +11,7 @@ import DownloadButton from '../downloadButton.js';
 # Start your cluster
 
 :::note
-Starting a SuperDuperDB cluster is useful in production and model development
+Starting a pinnacle cluster is useful in production and model development
 if you want to enable scalable compute, access to the models by multiple users for collaboration, 
 monitoring.
 
@@ -22,7 +22,7 @@ If you don't need this, then it is simpler to start in development mode.
 <Tabs>
     <TabItem value="Experimental Cluster" label="Experimental Cluster" default>
         ```python
-        !python -m pinnacledb local-cluster up        
+        !python -m pinnacle local-cluster up        
         ```
     </TabItem>
     <TabItem value="Docker-Compose" label="Docker-Compose" default>

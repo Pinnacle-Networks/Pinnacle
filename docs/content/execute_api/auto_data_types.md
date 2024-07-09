@@ -3,9 +3,9 @@
 A major challenge in uniting classical databases with AI, 
 is that the types of data used in AI are often not supported by your database.
 
-To solve this problem, `pinnacledb` has the abstractions [`DataType`](../apply_api/datatype.md) and [`Schema`](../apply_api/schema.md).
+To solve this problem, `pinnacle` has the abstractions [`DataType`](../apply_api/datatype.md) and [`Schema`](../apply_api/schema.md).
 
-To save developers time, by default, `pinnacledb` recognizes the type of data and constructs a `Schema` based on this inference.
+To save developers time, by default, `pinnacle` recognizes the type of data and constructs a `Schema` based on this inference.
 To learn more about setting these up manually read [the following page](./data_encodings_and_schemas.md).
 
 ## Basic usage
@@ -13,14 +13,14 @@ To learn more about setting these up manually read [the following page](./data_e
 To learn about this feature, try these lines of code, based on sample image data we've prepared.
 
 ```bash
-curl -O https://pinnacledb-public-demo.s3.amazonaws.com/images.zip && unzip images.zip
+curl -O https://pinnacle-public-demo.s3.amazonaws.com/images.zip && unzip images.zip
 ```
 
 ```python
 import os
 import PIL.Image
 
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 
 db = pinnacle('mongomock://test')
 

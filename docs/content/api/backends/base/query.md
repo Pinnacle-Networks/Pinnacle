@@ -1,6 +1,6 @@
-**`pinnacledb.backends.base.query`** 
+**`pinnacle.backends.base.query`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/base/query.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/base/query.py)
 
 ## `applies_to` 
 
@@ -18,7 +18,7 @@ Decorator to check if the query matches the accepted flavours.
 ```python
 parse_query(query: Union[str,
      list],
-     builder_cls: Optional[Type[pinnacledb.backends.base.query.Query]] = None,
+     builder_cls: Optional[Type[pinnacle.backends.base.query.Query]] = None,
      documents: Sequence[Any] = (),
      db: Optional[ForwardRef('Datalayer')] = None)
 ```
@@ -37,7 +37,7 @@ Parse a string query into a query object.
 Model(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      parts: Sequence[Union[Tuple,
      str]] = ()) -> None
 ```
@@ -56,7 +56,7 @@ A model helper class for create a query to predict.
 Query(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      parts: Sequence[Union[Tuple,
      str]] = ()) -> None

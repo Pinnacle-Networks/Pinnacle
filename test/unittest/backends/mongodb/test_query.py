@@ -4,12 +4,12 @@ from test.db_config import DBConfig
 import numpy as np
 import pytest
 
-from pinnacledb.backends.mongodb import query as q
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.config import BytesEncoding
-from pinnacledb.base.document import Document
-from pinnacledb.components.schema import Schema
-from pinnacledb.ext.numpy.encoder import array
+from pinnacle.backends.mongodb import query as q
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.config import BytesEncoding
+from pinnacle.base.document import Document
+from pinnacle.components.schema import Schema
+from pinnacle.ext.numpy.encoder import array
 
 
 @pytest.fixture

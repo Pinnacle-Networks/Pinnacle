@@ -1,6 +1,6 @@
-**`pinnacledb.backends.local.artifacts`** 
+**`pinnacle.backends.local.artifacts`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/local/artifacts.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/local/artifacts.py)
 
 ## `FileSystemArtifactStore` 
 

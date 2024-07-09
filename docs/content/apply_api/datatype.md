@@ -9,7 +9,7 @@
 Default `DataTypes`, called "serializers":
 
 ```python
-from pinnacledb.components.datatype import serializers
+from pinnacle.components.datatype import serializers
 
 pickle_serializer = serializers['pickle']
 ```
@@ -17,7 +17,7 @@ pickle_serializer = serializers['pickle']
 Build your own `DataType` which saves data directly in the database:
 
 ```python
-from pinnacledb import DataType
+from pinnacle import DataType
 
 dt = DataType(
     'my-datatype',

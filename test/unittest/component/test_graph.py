@@ -3,8 +3,8 @@ from test.db_config import DBConfig
 import networkx as nx
 import pytest
 
-from pinnacledb import ObjectModel
-from pinnacledb.components.graph import Graph, document_node, input_node
+from pinnacle import ObjectModel
+from pinnacle.components.graph import Graph, document_node, input_node
 
 
 @pytest.fixture

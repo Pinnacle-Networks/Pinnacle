@@ -1,6 +1,6 @@
-**`pinnacledb.rest.utils`** 
+**`pinnacle.rest.utils`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/rest/utils.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/rest/utils.py)
 
 ## `parse_query` 
 

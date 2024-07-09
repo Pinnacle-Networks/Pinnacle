@@ -5,20 +5,20 @@ const darkCodeTheme = require('prism-react-renderer').themes.vsDark;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'SuperDuperDB documentation',
+  title: 'pinnacle.io documentation',
   tagline: 'Bringing AI to your data-store',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://docs.pinnacledb.com',
+  url: 'https://docs.pinnacle.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'SuperDuperDB', // Usually your GitHub org/user name.
-  projectName: 'pinnacledb', // Usually your repo name.
+  organizationName: 'pinnacle.io', // Usually your GitHub org/user name.
+  projectName: 'pinnacle', // Usually your repo name.
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -122,7 +122,7 @@ const config = {
     {
       src: 'https://main.d1eg28j9pwrt0l.amplifyapp.com/widget.js',
       id: 'my-api',
-      'data-api-key': 'pinnacledb',
+      'data-api-key': 'pinnacle',
       async: true,
     },
     {
@@ -196,7 +196,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/SuperDuperDB/pinnacledb/blob/main/docs/hr',
+            'https://github.com/pinnacle.io/pinnacle/blob/main/docs/hr',
         },
         blog: false,
         theme: {
@@ -223,10 +223,10 @@ const config = {
       navbar: {
         title: '',
         logo: {
-          alt: 'SuperDuperDB',
-          src: 'img/SuperDuperDB_logo_color_dark_noborder.svg',
-          srcDark: 'img/SuperDuperDB_logo_color.svg',
-          href: 'https://pinnacledb.com',
+          alt: 'pinnacle.io',
+          src: 'img/pinnacle.io_logo_color_dark_noborder.svg',
+          srcDark: 'img/pinnacle.io_logo_color.svg',
+          href: 'https://pinnacle.com',
           target: '_self',
           // width: 250,
           // height: 34,
@@ -249,22 +249,22 @@ const config = {
             position: 'left',
           },
           {
-            to: 'https://blog.pinnacledb.com/',
+            to: 'https://blog.pinnacle.com/',
             label: 'Blog',
             position: 'left',
           },
           {
-            href: 'https://github.com/SuperDuperDB/pinnacle-community-apps/',
+            href: 'https://github.com/pinnacle.io/pinnacle-community-apps/',
             label: 'Community Apps',
             position: 'left',
           },
           {
-            href: 'https://www.question-the-docs.pinnacledb.com/',
+            href: 'https://www.question-the-docs.pinnacle.com/',
             label: 'Ask our docs',
             position: 'left',
           },
           {
-            href: 'https://github.com/SuperDuperDB/pinnacledb',
+            href: 'https://github.com/pinnacle.io/pinnacle',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
@@ -279,7 +279,7 @@ const config = {
             items: [
               {
                 label: 'Website',
-                href: 'https://pinnacledb.com',
+                href: 'https://pinnacle.com',
               },
               {
                 label: 'Documentation',
@@ -291,7 +291,7 @@ const config = {
               },
               {
                 label: 'Blog',
-                to: 'https://blog.pinnacledb.com/',
+                to: 'https://blog.pinnacle.com/',
               },
             ],
           },
@@ -300,15 +300,15 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/SuperDuperDB/pinnacledb',
+                href: 'https://github.com/pinnacle.io/pinnacle',
               },
               {
                 label: 'Issues',
-                href: 'https://github.com/SuperDuperDB/pinnacledb/issues',
+                href: 'https://github.com/pinnacle.io/pinnacle/issues',
               },
               {
                 label: 'Discussions',
-                href: 'https://github.com/SuperDuperDB/pinnacledb/discussions',
+                href: 'https://github.com/pinnacle.io/pinnacle/discussions',
               },
             ],
           },
@@ -317,24 +317,24 @@ const config = {
             items: [
               {
                 label: 'LinkedIn',
-                href: 'https://www.linkedin.com/company/pinnacledb/',
+                href: 'https://www.linkedin.com/company/pinnacle/',
               },
               {
                 label: 'Slack',
-                href: 'https://pinnacledb.slack.com/',
+                href: 'https://pinnacle.slack.com/',
               },
               {
                 label: 'X / Twitter',
-                href: 'https://twitter.com/pinnacledb',
+                href: 'https://twitter.com/pinnacle',
               },
               {
                 label: 'Youtube',
-                href: 'https://www.youtube.com/@SuperDuperDB',
+                href: 'https://www.youtube.com/@pinnacle.io',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} SuperDuperDB, Inc.`,
+        copyright: `Copyright © ${new Date().getFullYear()} pinnacle.io, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -343,7 +343,7 @@ const config = {
       metadata: [
         {
           property: 'og:image',
-          content: 'https://docs.pinnacledb.com/img/superDuperDB_img.png',
+          content: 'https://docs.pinnacle.com/img/superDuperDB_img.png',
         },
       ],
       announcementBar: {

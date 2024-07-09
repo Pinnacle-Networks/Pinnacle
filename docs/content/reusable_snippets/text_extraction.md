@@ -2,7 +2,7 @@
 # <tab: PDF>
 from PyPDF2 import PdfReader
 
-from pinnacledb import model
+from pinnacle import model
 
 
 @model(flatten=True, model_update_kwargs={'document_embedded': False})

@@ -2,9 +2,9 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.components.model import ObjectModel
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.components.model import ObjectModel
 
 
 @pytest.fixture()

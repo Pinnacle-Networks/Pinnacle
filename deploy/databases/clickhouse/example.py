@@ -1,4 +1,4 @@
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 
 user = 'default'
 password = ''

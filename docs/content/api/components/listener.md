@@ -1,13 +1,13 @@
-**`pinnacledb.components.listener`** 
+**`pinnacle.components.listener`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/listener.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/listener.py)
 
 ## `Listener` 
 
 ```python
 Listener(self,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      identifier: str = '',
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
@@ -16,10 +16,10 @@ Listener(self,
      Tuple[List[str],
      Dict[str,
      str]]],
-     model: pinnacledb.components.model.Model,
-     select: pinnacledb.backends.base.query.Query,
+     model: pinnacle.components.model.Model,
+     select: pinnacle.backends.base.query.Query,
      active: bool = True,
-     predict_kwargs: Optional[Dict] = <factory>) -> None
+     predict_kwargs: Optional[Dict] = None) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|

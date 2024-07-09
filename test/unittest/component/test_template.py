@@ -2,10 +2,10 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.components.component import Component
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.model import ObjectModel
-from pinnacledb.components.template import QueryTemplate, Template
+from pinnacle.components.component import Component
+from pinnacle.components.listener import Listener
+from pinnacle.components.model import ObjectModel
+from pinnacle.components.template import QueryTemplate, Template
 
 
 @pytest.mark.parametrize('db', [DBConfig.mongodb], indirect=True)

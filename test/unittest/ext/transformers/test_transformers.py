@@ -9,10 +9,10 @@ except ImportError:
 
 from test.db_config import DBConfig
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document as D
-from pinnacledb.components.dataset import Dataset
-from pinnacledb.ext.transformers.model import (
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document as D
+from pinnacle.components.dataset import Dataset
+from pinnacle.ext.transformers.model import (
     TextClassificationPipeline,
     TransformersTrainer,
 )

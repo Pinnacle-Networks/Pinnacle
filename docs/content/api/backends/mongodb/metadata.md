@@ -1,6 +1,6 @@
-**`pinnacledb.backends.mongodb.metadata`** 
+**`pinnacle.backends.mongodb.metadata`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/mongodb/metadata.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/mongodb/metadata.py)
 
 ## `MongoMetaDataStore` 
 

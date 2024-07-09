@@ -1,13 +1,13 @@
 # Training models directly on your datastore
 
 `Model` instances may be trained if a `trainer` is set on the `Model` when `db.apply` is called.
-When models are trained, if `CFG.cluster.compute` has been configured with a `ray` scheduler, then `pinnacledb` deploys [a job on the connected `ray` cluster](../production_features/non_blocking_ray_jobs).
+When models are trained, if `CFG.cluster.compute` has been configured with a `ray` scheduler, then `pinnacle` deploys [a job on the connected `ray` cluster](../production_features/non_blocking_ray_jobs).
 
 ## Basic pattern
 
 ```python
-from pinnacledb.ext.<framework> import <Framework>Trainer
-from pinnacledb.ext.<framework> import <ModelCls>
+from pinnacle.ext.<framework> import <Framework>Trainer
+from pinnacle.ext.<framework> import <ModelCls>
 
 db.apply(
     <ModelCls>(
@@ -33,7 +33,7 @@ Not all `Model` types are trainable. We support training for the following frame
 See [here]
 
 ```python
-from pinnacledb.ext.sklearn import Estimator
+from pinnacle.ext.sklearn import Estimator
 from sklearn.svm import SVC
 
 m = Estimator(SVC(C=0.05))
@@ -49,8 +49,8 @@ m.fit(
 ### Transformers
 
 ```python
-from pinnacledb.ext.transformers import Pipeline
-from pinnacledb import pinnacle
+from pinnacle.ext.transformers import Pipeline
+from pinnacle import pinnacle
 
 m = Pipeline(task='sentiment-analysis')
 
@@ -67,7 +67,7 @@ m.fit(
 
 ```python
 import torch
-from pinnacledb.ext.torch import Module
+from pinnacle.ext.torch import Module
 
 model = Module(
     'my-classifier',
@@ -80,7 +80,7 @@ model.fit(
     X='<input>',
     db=db,
     select=<query>,  # MongoDB, Ibis or SQL query
-    batch_size=100,  # any **kwargs supported by `pinnacledb.ext.torch.TorchTrainerConfiguration`
+    batch_size=100,  # any **kwargs supported by `pinnacle.ext.torch.TorchTrainerConfiguration`
     num_workers=4,
 )
 ``` -->

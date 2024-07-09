@@ -16,8 +16,8 @@ import DownloadButton from '../downloadButton.js';
         ```python
         key = 'txt'
         import sentence_transformers
-        from pinnacledb import vector, Listener
-        from pinnacledb.ext.sentence_transformers import SentenceTransformer
+        from pinnacle import vector, Listener
+        from pinnacle.ext.sentence_transformers import SentenceTransformer
         
         pinnaclemodel = SentenceTransformer(
             identifier="embedding",
@@ -40,8 +40,8 @@ import DownloadButton from '../downloadButton.js';
         key = 'image'
         import torchvision.models as models
         from torchvision import transforms
-        from pinnacledb.ext.torch import TorchModel
-        from pinnacledb import Listener
+        from pinnacle.ext.torch import TorchModel
+        from pinnacle import Listener
         from PIL import Image
         
         class TorchVisionEmbedding:
@@ -81,8 +81,8 @@ import DownloadButton from '../downloadButton.js';
         import torch
         import clip
         from torchvision import transforms
-        from pinnacledb import ObjectModel
-        from pinnacledb import Listener
+        from pinnacle import ObjectModel
+        from pinnacle import Listener
         
         import torch
         import clip
@@ -125,7 +125,7 @@ import DownloadButton from '../downloadButton.js';
         key = 'random'
         
         import numpy as np
-        from pinnacledb import pinnacle, ObjectModel, Listener
+        from pinnacle import pinnacle, ObjectModel, Listener
         
         def random(*args, **kwargs):
             return np.random.random(1024).tolist()
@@ -145,7 +145,7 @@ import DownloadButton from '../downloadButton.js';
     <TabItem value="Custom" label="Custom" default>
         ```python
         import numpy as np
-        from pinnacledb import pinnacle, ObjectModel, Listener
+        from pinnacle import pinnacle, ObjectModel, Listener
         
         key = 'custom'
         

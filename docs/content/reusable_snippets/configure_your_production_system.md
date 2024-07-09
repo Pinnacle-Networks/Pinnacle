@@ -12,17 +12,17 @@ import DownloadButton from '../downloadButton.js';
 
 :::note
 If you would like to use the production features 
-of SuperDuperDB, then you should set the relevant 
+of pinnacle, then you should set the relevant 
 connections and configurations in a configuration 
 file. Otherwise you are welcome to use "development" mode 
-to get going with SuperDuperDB quickly.
+to get going with pinnacle quickly.
 :::
 
 ```python
 import os
 
-os.makedirs('.pinnacledb', exist_ok=True)
-os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
+os.makedirs('.pinnacle', exist_ok=True)
+os.environ['SUPERDUPER_CONFIG'] = '.pinnacle/config.yaml'
 ```
 
 
@@ -148,7 +148,7 @@ os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
     </TabItem>
 </Tabs>
 ```python
-with open(os.environ['SUPERDUPERDB_CONFIG'], 'w') as f:
+with open(os.environ['SUPERDUPER_CONFIG'], 'w') as f:
     f.write(CFG)
 ```
 

@@ -26,8 +26,8 @@ table_or_collection
 ## MongoDB
 
 ```python
-from pinnacledb.ext.pillow import pil_image
-from pinnacledb import Document
+from pinnacle.ext.pillow import pil_image
+from pinnacle import Document
 
 my_image = PIL.Image.open('test/material/data/test_image.png')
 

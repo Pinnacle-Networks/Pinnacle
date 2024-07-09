@@ -7,17 +7,17 @@ import numpy as np
 import pytest
 from sklearn.metrics import accuracy_score, f1_score
 
-from pinnacledb.backends.base.data_backend import BaseDataBackend
-from pinnacledb.backends.base.query import Query
-from pinnacledb.backends.ibis.field_types import FieldType
-from pinnacledb.backends.local.compute import LocalComputeBackend
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.base.document import Document
-from pinnacledb.components.dataset import Dataset
-from pinnacledb.components.datatype import DataType, pickle_decode, pickle_encode
-from pinnacledb.components.metric import Metric
-from pinnacledb.components.model import (
+from pinnacle.backends.base.data_backend import BaseDataBackend
+from pinnacle.backends.base.query import Query
+from pinnacle.backends.ibis.field_types import FieldType
+from pinnacle.backends.local.compute import LocalComputeBackend
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.document import Document
+from pinnacle.components.dataset import Dataset
+from pinnacle.components.datatype import DataType, pickle_decode, pickle_encode
+from pinnacle.components.metric import Metric
+from pinnacle.components.model import (
     Mapping,
     Model,
     ObjectModel,
@@ -27,7 +27,7 @@ from pinnacledb.components.model import (
     Validation,
     _Fittable,
 )
-from pinnacledb.jobs.job import ComponentJob
+from pinnacle.jobs.job import ComponentJob
 
 
 # ------------------------------------------
@@ -106,7 +106,7 @@ def test_pm_core_predict(predict_mixin):
         assert predict_mixin.predict(5) == return_self(5)
 
 
-@patch('pinnacledb.components.model.ComponentJob')
+@patch('pinnacle.components.model.ComponentJob')
 def test_pm_create_predict_job(mock_job, predict_mixin):
     mock_db = MagicMock()
     mock_select = MagicMock()
@@ -211,7 +211,7 @@ def test_pm_predict_with_select_ids(monkeypatch, predict_mixin):
     with patch.object(predict_mixin, 'object') as my_object:
         my_object.return_value = {'out': 2}
         # Check the base predict function with output_schema
-        from pinnacledb.components.schema import Schema
+        from pinnacle.components.schema import Schema
 
         predict_mixin.datatype = None
         predict_mixin.output_schema = schema = MagicMock(spec=Schema)

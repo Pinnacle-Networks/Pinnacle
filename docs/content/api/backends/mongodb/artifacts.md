@@ -1,6 +1,6 @@
-**`pinnacledb.backends.mongodb.artifacts`** 
+**`pinnacle.backends.mongodb.artifacts`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/mongodb/artifacts.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/mongodb/artifacts.py)
 
 ## `upload_folder` 
 

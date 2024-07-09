@@ -3,7 +3,7 @@
 Connecting:
 
 ```python
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 
 db = pinnacle('mysql://<mysql-uri>')
 ```

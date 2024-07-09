@@ -1,6 +1,6 @@
-**`pinnacledb.components.application`** 
+**`pinnacle.components.application`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/application.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/application.py)
 
 ## `Application` 
 
@@ -8,10 +8,10 @@
 Application(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
-     template: Union[pinnacledb.components.template.Template,
+     template: Union[pinnacle.components.template.Template,
      str] = None,
      kwargs: Dict) -> None
 ```

@@ -6,17 +6,17 @@ tags:
 
 # Configure
 
-SuperDuperDB provides a range of configurable options for setting
+pinnacle provides a range of configurable options for setting
 up your environment:
 
 Configurations can either be injected:
 
-- in a YAML file specified by the `SUPERDUPERDB_CONFIG_FILE` environment variable or
-- through environment variables starting with `SUPERDUPERDB_`:
-- as `**kwargs` when calling the [`pinnacledb.pinnacle`](./connecting.md) function (note this is only for development purposes).
+- in a YAML file specified by the `SUPERDUPER_CONFIG_FILE` environment variable or
+- through environment variables starting with `SUPERDUPER_`:
+- as `**kwargs` when calling the [`pinnacle.pinnacle`](./connecting.md) function (note this is only for development purposes).
 
 Here are the configurable settings and their project defaults 
-(remaining configurations can be viewed in [`pinnacledb.base.config`](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/config.py)). Note that as much or as little of this configuration can be specified. The remaining 
+(remaining configurations can be viewed in [`pinnacle.base.config`](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/config.py)). Note that as much or as little of this configuration can be specified. The remaining 
 configurations will then take on their default values.
 
 
@@ -79,7 +79,7 @@ downloads:
 fold_probability: 0.05
 
 # Where lance indexes will be saved
-lance_home: .pinnacledb/vector_indices
+lance_home: .pinnacle/vector_indices
 
 # Log level to be shown to stdout
 log_level: INFO
@@ -99,7 +99,7 @@ retries:
 
 As an example, to reconfigure the URI of the data_backend we have two options:
 
-A configuration file `.pinnacledb/config.yaml` with this content only:
+A configuration file `.pinnacle/config.yaml` with this content only:
 
 ```yaml
 data_backend: mongodb://localhost:27018/documents
@@ -108,11 +108,11 @@ data_backend: mongodb://localhost:27018/documents
 ... or
 
 ```bash
-$ export SUPERDUPERDB_DATA_BACKEND='mongodb://localhost:27018/documents'
+$ export SUPERDUPER_DATA_BACKEND='mongodb://localhost:27018/documents'
 ```
 
 You may view the configuration used by the system with:
 
 ```bash
-python -m pinnacledb config
+python -m pinnacle config
 ```

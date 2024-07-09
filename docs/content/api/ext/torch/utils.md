@@ -1,6 +1,6 @@
-**`pinnacledb.ext.torch.utils`** 
+**`pinnacle.ext.torch.utils`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/torch/utils.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/ext/torch/utils.py)
 
 ## `device_of` 
 

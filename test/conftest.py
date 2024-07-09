@@ -8,23 +8,23 @@ from typing import Iterator
 
 import pytest
 
-import pinnacledb as s
-from pinnacledb import CFG, logging
-from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
-from pinnacledb.backends.mongodb.query import MongoQuery
+import pinnacle as s
+from pinnacle import CFG, logging
+from pinnacle.backends.ibis.field_types import dtype
+from pinnacle.backends.mongodb.data_backend import MongoDataBackend
+from pinnacle.backends.mongodb.query import MongoQuery
 
 # ruff: noqa: E402
-from pinnacledb.base import config as _config, pinnacle
-from pinnacledb.base.build import build_datalayer
-from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.base.document import Document
-from pinnacledb.components.dataset import Dataset
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.schema import Schema
-from pinnacledb.components.table import Table
-from pinnacledb.components.vector_index import VectorIndex
-from pinnacledb.ext.pillow.encoder import pil_image
+from pinnacle.base import config as _config, pinnacle
+from pinnacle.base.build import build_datalayer
+from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.document import Document
+from pinnacle.components.dataset import Dataset
+from pinnacle.components.listener import Listener
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
+from pinnacle.components.vector_index import VectorIndex
+from pinnacle.ext.pillow.encoder import pil_image
 
 from .db_config import DBConfig
 
@@ -34,8 +34,8 @@ _config._CONFIG_IMMUTABLE = False
 try:
     import torch
 
-    from pinnacledb.ext.torch.encoder import tensor
-    from pinnacledb.ext.torch.model import TorchModel
+    from pinnacle.ext.torch.encoder import tensor
+    from pinnacle.ext.torch.model import TorchModel
 except ImportError:
     torch = None
 
@@ -85,7 +85,7 @@ def patch_mongomock(monkeypatch):
     import pymongo
     from mongomock import Collection, Database, MongoClient
 
-    from pinnacledb.backends.base.backends import CONNECTIONS
+    from pinnacle.backends.base.backends import CONNECTIONS
 
     monkeypatch.setattr(gridfs, 'Collection', Collection)
     monkeypatch.setattr(gridfs.grid_file, 'Collection', Collection)
@@ -97,8 +97,8 @@ def patch_mongomock(monkeypatch):
 
 @pytest.fixture
 def test_db(request) -> Iterator[Datalayer]:
-    from pinnacledb import CFG
-    from pinnacledb.base.build import build_datalayer
+    from pinnacle import CFG
+    from pinnacle.base.build import build_datalayer
 
     # mongodb instead of localhost is required for CFG compatibility with docker-host
     db_name = CFG.data_backend.split('/')[-1]

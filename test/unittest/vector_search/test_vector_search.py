@@ -4,10 +4,10 @@ import uuid
 import numpy as np
 import pytest
 
-from pinnacledb import CFG
-from pinnacledb.vector_search.base import VectorItem
-from pinnacledb.vector_search.in_memory import InMemoryVectorSearcher
-from pinnacledb.vector_search.lance import LanceVectorSearcher
+from pinnacle import CFG
+from pinnacle.vector_search.base import VectorItem
+from pinnacle.vector_search.in_memory import InMemoryVectorSearcher
+from pinnacle.vector_search.lance import LanceVectorSearcher
 
 
 @pytest.fixture

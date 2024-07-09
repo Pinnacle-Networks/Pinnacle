@@ -5,13 +5,13 @@ from test.db_config import DBConfig
 import numpy as np
 import pytest
 
-from pinnacledb import ObjectModel, Schema, pinnacle
-from pinnacledb.base.document import Document
-from pinnacledb.components.datatype import pickle_encoder
-from pinnacledb.components.table import Table
+from pinnacle import ObjectModel, Schema, pinnacle
+from pinnacle.base.document import Document
+from pinnacle.components.datatype import pickle_encoder
+from pinnacle.components.table import Table
 
 if t.TYPE_CHECKING:
-    from pinnacledb.base.datalayer import Datalayer
+    from pinnacle.base.datalayer import Datalayer
 
 
 @pytest.mark.parametrize("db", DBConfig.EMPTY_CASES, indirect=True)
@@ -62,7 +62,7 @@ def test_wrap_as_application_from_db(db: "Datalayer"):
 
     pprint(db.show())
 
-    from pinnacledb.components.application import Application
+    from pinnacle.components.application import Application
 
     app = Application.build_from_db(identifier="app", db=db)
 

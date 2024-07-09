@@ -1,6 +1,6 @@
-**`pinnacledb.jobs.job`** 
+**`pinnacle.jobs.job`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/jobs/job.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/jobs/job.py)
 
 ## `job` 
 

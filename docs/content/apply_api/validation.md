@@ -10,7 +10,7 @@
 ***Usage pattern***
 
 ```python
-from pinnacledb import Validation
+from pinnacle import Validation
 
 validation = Validation(
     datasets=[dataset_1, ...],

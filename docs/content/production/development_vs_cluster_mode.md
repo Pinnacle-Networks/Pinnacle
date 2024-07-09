@@ -1,8 +1,8 @@
 # Developer vs. production mode
 
-Please refer to the [architecture](../fundamentals/architecture.md) page for a detailed description of the `pinnacledb` architecture.
+Please refer to the [architecture](../fundamentals/architecture.md) page for a detailed description of the `pinnacle` architecture.
 
-There are several important services in a `pinnacledb` setup which may be run in-process, or in their 
+There are several important services in a `pinnacle` setup which may be run in-process, or in their 
 own micro-services and containers:
 
 - `jupyter` notebook/ client
@@ -15,14 +15,14 @@ own micro-services and containers:
 
 ## Development mode
 
-With the default settings of `pinnacledb`, all of these items run in a single process.
+With the default settings of `pinnacle`, all of these items run in a single process.
 This is great for:
 
 - Debugging
 - Prototyping
 - Experimentation
 - Exploration
-- Querying `pinnacledb`
+- Querying `pinnacle`
 
 ## Production
 
@@ -30,7 +30,7 @@ There are several gradations of a more productionized deployment.
 In the most distributed case we have:
 
 - A `jupyter` environment running in its own process
-- A [distributed **Ray** cluster](non_blocking_ray_jobs), with scheduler and workers configured to work with `pinnacledb`
+- A [distributed **Ray** cluster](non_blocking_ray_jobs), with scheduler and workers configured to work with `pinnacle`
 - A [**change-data-capture** service](change_data_capture)
 - A [**vector-search** service](vector_comparison_service), which finds similar vectors, given an input vector
 - A [**REST** server](./rest_api)

@@ -1,6 +1,6 @@
-**`pinnacledb.misc.runnable.queue_chunker`** 
+**`pinnacle.misc.runnable.queue_chunker`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/runnable/queue_chunker.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/runnable/queue_chunker.py)
 
 ## `QueueChunker` 
 

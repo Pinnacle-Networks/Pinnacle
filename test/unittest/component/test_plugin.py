@@ -5,10 +5,10 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.components.plugin import Plugin
+from pinnacle.components.plugin import Plugin
 
 PYTHON_CODE = """
-from pinnacledb import Model
+from pinnacle import Model
 
 class PModel(Model):
     def predict(self) -> int:
@@ -58,17 +58,17 @@ def create_import_plugin(tempdirname):
         "_base": "?plugin",
         "_builds": {
             "file_lazy": {
-                "_path": "pinnacledb.components.datatype.get_serializer",
+                "_path": "pinnacle.components.datatype.get_serializer",
                 "method": "file",
                 "encodable": "lazy_file",
             },
             "file_id": {
-                "_path": "pinnacledb.components.datatype.LazyFile",
+                "_path": "pinnacle.components.datatype.LazyFile",
                 "datatype": "?file_lazy",
                 "x": "&:file:p_import:file_id",
             },
             "plugin": {
-                "_path": "pinnacledb.components.plugin.Plugin",
+                "_path": "pinnacle.components.plugin.Plugin",
                 "path": "?file_id",
             },
         },

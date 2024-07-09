@@ -3,7 +3,7 @@ import os
 import pytest
 import vcr
 
-from pinnacledb.ext.jina import JinaEmbedding
+from pinnacle.ext.jina import JinaEmbedding
 
 CASSETTE_DIR = 'test/integration/ext/jina/cassettes'
 

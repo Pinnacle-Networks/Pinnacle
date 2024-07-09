@@ -16,6 +16,8 @@ SEARCH_STRING_CAP="SuperDuperDB"
 REPLACE_STRING_CAP="pinnacle.io"
 SEARCH_STRING_BIG="SUPERDUPERDB"
 REPLACE_STRING_BIG="SUPERDUPER"
+ERROR="pinnacle.ioponents"
+CORRECT="pinnacle.components"
 
 # Iterate over each directory and perform the search and replace
 for DIRECTORY in "${DIRECTORIES[@]}"; do
@@ -26,6 +28,7 @@ for DIRECTORY in "${DIRECTORIES[@]}"; do
                 sed -i '' "s/$SEARCH_STRING/$REPLACE_STRING/g" "$FILE"
                 sed -i '' "s/$SEARCH_STRING_CAP/$REPLACE_STRING_CAP/g" "$FILE"
                 sed -i '' "s/$SEARCH_STRING_BIG/$REPLACE_STRING_BIG/g" "$FILE"
+                sed -i '' "s/$ERROR/$CORRECT/g" "$FILE"
                 echo "Replaced in: $FILE"
             fi
         done
@@ -42,6 +45,7 @@ find "$DIRECTORY" -type f \( -name "*.py" -o -name "*.md" -o -name "*.ipynb" -o 
         sed -i '' "s/$SEARCH_STRING/$REPLACE_STRING/g" "$FILE"
         sed -i '' "s/$SEARCH_STRING_BIG/$REPLACE_STRING_BIG/g" "$FILE"
         sed -i '' "s/$SEARCH_STRING_CAP/pinnacle/g" "$FILE"
+        sed -i '' "s/$ERROR/$CORRECT/g" "$FILE"
         sed -i '' "s/<factory>/None/g" "$FILE"
         echo "Replaced in: $FILE"
     fi
@@ -67,6 +71,11 @@ sed -i '' "s/$SEARCH_STRING/$REPLACE_STRING/g" "Makefile"
 sed -i '' "s/$SEARCH_STRING_WEB/$REPLACE_STRING_WEB/g" "Makefile"
 sed -i '' "s/$SEARCH_STRING_CAP/$REPLACE_STRING_CAP/g" "Makefile"
 sed -i '' "s/$SEARCH_STRING_BIG/$REPLACE_STRING_BIG/g" "Makefile"
+
+sed -i '' "s/$SEARCH_STRING/$REPLACE_STRING/g" "deploy/images/pinnacledb/Dockerfile"
+sed -i '' "s/$SEARCH_STRING_WEB/$REPLACE_STRING_WEB/g" "deploy/images/pinnacledb/Dockerfile"
+sed -i '' "s/$SEARCH_STRING_CAP/$REPLACE_STRING_CAP/g" "deploy/images/pinnacledb/Dockerfile"
+sed -i '' "s/$SEARCH_STRING_BIG/$REPLACE_STRING_BIG/g" "deploy/images/pinnacledb/Dockerfile"
 
 mv docs/static/img/pinnacledb.gif docs/static/img/pinnacle.gif
 mv docs/content/reusable_snippets/connect_to_pinnacledb.md docs/content/reusable_snippets/connect_to_pinnacle.md

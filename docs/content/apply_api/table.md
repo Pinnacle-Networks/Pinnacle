@@ -12,7 +12,7 @@
 (Learn how to build a `Schema` [here](schema))
 
 ```python
-from pinnacledb.backends.ibis import Table
+from pinnacle.backends.ibis import Table
 
 table = Table(
     'my-table',

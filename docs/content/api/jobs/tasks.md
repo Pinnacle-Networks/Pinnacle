@@ -1,6 +1,6 @@
-**`pinnacledb.jobs.tasks`** 
+**`pinnacle.jobs.tasks`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/jobs/tasks.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/jobs/tasks.py)
 
 ## `callable_job` 
 

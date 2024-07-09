@@ -215,17 +215,17 @@ def list_all_members(package, prefix=None, seen=None):
 
 
 def extract_docstrings():
-    import pinnacledb
+    import pinnacle
 
-    members = list_all_members(package=pinnacledb)
-    for subpackage in os.listdir('pinnacledb/ext'):
+    members = list_all_members(package=pinnacle)
+    for subpackage in os.listdir('pinnacle/ext'):
         if subpackage.startswith('_') or subpackage == 'utils.py':
             continue
-        exec(f'import pinnacledb.ext.{subpackage}')
-        package = eval(f'pinnacledb.ext.{subpackage}')
-        tmp = list_all_members(package=package, prefix=f'pinnacledb.ext.{subpackage}')
+        exec(f'import pinnacle.ext.{subpackage}')
+        package = eval(f'pinnacle.ext.{subpackage}')
+        tmp = list_all_members(package=package, prefix=f'pinnacle.ext.{subpackage}')
         members.extend(tmp)
-    from pinnacledb.misc.special_dicts import MongoStyleDict
+    from pinnacle.misc.special_dicts import MongoStyleDict
 
     lookup = MongoStyleDict({})
 

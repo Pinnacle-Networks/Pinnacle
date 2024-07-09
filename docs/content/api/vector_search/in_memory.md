@@ -1,6 +1,6 @@
-**`pinnacledb.vector_search.in_memory`** 
+**`pinnacle.vector_search.in_memory`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/vector_search/in_memory.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/vector_search/in_memory.py)
 
 ## `InMemoryVectorSearcher` 
 

@@ -4,8 +4,8 @@ sidebar_position: 15
 
 # Working with external data sources
 
-SuperDuperDB supports data added from external data-sources.
-When doing this, `pinnacledb` supports:
+pinnacle supports data added from external data-sources.
+When doing this, `pinnacle` supports:
 
 - web URLs
 - URIs of objects in `s3` buckets

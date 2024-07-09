@@ -1,6 +1,6 @@
-**`pinnacledb.misc.server`** 
+**`pinnacle.misc.server`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/server.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/server.py)
 
 ## `request_server` 
 

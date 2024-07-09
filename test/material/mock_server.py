@@ -3,14 +3,14 @@ import random
 import lorem
 import PIL.Image
 
-from pinnacledb import ObjectModel
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.pinnacle import pinnacle
-from pinnacledb.components.application import Application
-from pinnacledb.ext.numpy import array
-from pinnacledb.ext.pillow.encoder import image_type
-from pinnacledb.rest.app import build_app
-from pinnacledb.server.app import SuperDuperApp
+from pinnacle import ObjectModel
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.pinnacle import pinnacle
+from pinnacle.components.application import Application
+from pinnacle.ext.numpy import array
+from pinnacle.ext.pillow.encoder import image_type
+from pinnacle.rest.app import build_app
+from pinnacle.server.app import SuperDuperApp
 
 m = Application(
     'test_stack',
@@ -28,7 +28,7 @@ m = Application(
     ],
 )
 
-from pinnacledb.base.document import Document
+from pinnacle.base.document import Document
 
 collection = MongoQuery(table='documents')
 data = [
@@ -39,7 +39,7 @@ db = pinnacle('mongomock://test')
 db.execute(collection.insert_many(data))
 db.add(m)
 
-from pinnacledb.ext.openai import OpenAIChatCompletion
+from pinnacle.ext.openai import OpenAIChatCompletion
 
 m = OpenAIChatCompletion(identifier='gpt-3.5-turbo')
 

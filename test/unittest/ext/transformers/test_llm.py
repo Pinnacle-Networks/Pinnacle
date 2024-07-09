@@ -3,7 +3,7 @@ from test.unittest.ext.llm.utils import check_llm_as_listener_model, check_predi
 
 import pytest
 
-from pinnacledb.ext.transformers import LLM
+from pinnacle.ext.transformers import LLM
 
 TEST_MODEL_NAME = "facebook/opt-125m"
 

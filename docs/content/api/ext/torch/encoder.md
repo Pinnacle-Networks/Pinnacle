@@ -1,6 +1,6 @@
-**`pinnacledb.ext.torch.encoder`** 
+**`pinnacle.ext.torch.encoder`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/torch/encoder.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/ext/torch/encoder.py)
 
 ## `tensor` 
 

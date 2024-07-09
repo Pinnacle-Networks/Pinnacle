@@ -1,7 +1,7 @@
 # Sentence-Transformers
 
-`pinnacledb` allows users to work with self-hosted embedding models via "[Sentence-Transformers](https://sbert.net/)".
+`pinnacle` allows users to work with self-hosted embedding models via "[Sentence-Transformers](https://sbert.net/)".
 
 | Class | Description | GitHub | API-docs |
 | --- | --- | --- | --- |
-| `pinnacledb.ext.sentence_transformers.model.SentenceTransformer` | Embeds a piece of text with a model hosted locally | [Code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/sentence_transformers/model.py) | [Docs](/docs/api/ext/sentence_transformers/model#sentencetransformer) |
+| `pinnacle.ext.sentence_transformers.model.SentenceTransformer` | Embeds a piece of text with a model hosted locally | [Code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/ext/sentence_transformers/model.py) | [Docs](/docs/api/ext/sentence_transformers/model#sentencetransformer) |

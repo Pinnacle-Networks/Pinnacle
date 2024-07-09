@@ -15,17 +15,17 @@ import DownloadButton from '../downloadButton.js';
 
 :::note
 If you would like to use the production features 
-of SuperDuperDB, then you should set the relevant 
+of pinnacle, then you should set the relevant 
 connections and configurations in a configuration 
 file. Otherwise you are welcome to use "development" mode 
-to get going with SuperDuperDB quickly.
+to get going with pinnacle quickly.
 :::
 
 ```python
 import os
 
-os.makedirs('.pinnacledb', exist_ok=True)
-os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
+os.makedirs('.pinnacle', exist_ok=True)
+os.environ['SUPERDUPER_CONFIG'] = '.pinnacle/config.yaml'
 ```
 
 
@@ -151,7 +151,7 @@ os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
     </TabItem>
 </Tabs>
 ```python
-with open(os.environ['SUPERDUPERDB_CONFIG'], 'w') as f:
+with open(os.environ['SUPERDUPER_CONFIG'], 'w') as f:
     f.write(CFG)
 ```
 
@@ -159,7 +159,7 @@ with open(os.environ['SUPERDUPERDB_CONFIG'], 'w') as f:
 ## Start your cluster
 
 :::note
-Starting a SuperDuperDB cluster is useful in production and model development
+Starting a pinnacle cluster is useful in production and model development
 if you want to enable scalable compute, access to the models by multiple users for collaboration, 
 monitoring.
 
@@ -170,7 +170,7 @@ If you don't need this, then it is simpler to start in development mode.
 <Tabs>
     <TabItem value="Experimental Cluster" label="Experimental Cluster" default>
         ```python
-        !python -m pinnacledb local-cluster up        
+        !python -m pinnacle local-cluster up        
         ```
     </TabItem>
     <TabItem value="Docker-Compose" label="Docker-Compose" default>
@@ -181,10 +181,10 @@ If you don't need this, then it is simpler to start in development mode.
     </TabItem>
 </Tabs>
 <!-- TABS -->
-## Connect to SuperDuperDB
+## Connect to pinnacle
 
 :::note
-Note that this is only relevant if you are running SuperDuperDB in development mode.
+Note that this is only relevant if you are running pinnacle in development mode.
 Otherwise refer to "Configuring your production system".
 :::
 
@@ -192,20 +192,20 @@ Otherwise refer to "Configuring your production system".
 <Tabs>
     <TabItem value="MongoDB" label="MongoDB" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('mongodb://localhost:27017/documents')        
         ```
     </TabItem>
     <TabItem value="SQLite" label="SQLite" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         db = pinnacle('sqlite://my_db.db')        
         ```
     </TabItem>
     <TabItem value="MySQL" label="MySQL" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'pinnacle'
         password = 'pinnacle'
@@ -218,7 +218,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Oracle" label="Oracle" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'sa'
         password = 'Pinnacle#1'
@@ -231,7 +231,7 @@ Otherwise refer to "Configuring your production system".
     <TabItem value="PostgreSQL" label="PostgreSQL" default>
         ```python
         !pip install psycopg2
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'postgres'
         password = 'postgres'
@@ -245,7 +245,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Snowflake" label="Snowflake" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = "pinnacleuser"
         password = "pinnaclepassword"
@@ -262,7 +262,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Clickhouse" label="Clickhouse" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'default'
         password = ''
@@ -274,21 +274,21 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="DuckDB" label="DuckDB" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('duckdb://mydb.duckdb')        
         ```
     </TabItem>
     <TabItem value="Pandas" label="Pandas" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle(['my.csv'], metadata_store=f'mongomock://meta')        
         ```
     </TabItem>
     <TabItem value="MongoMock" label="MongoMock" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('mongomock:///test_db')        
         ```
@@ -301,7 +301,7 @@ Otherwise refer to "Configuring your production system".
 <Tabs>
     <TabItem value="Text" label="Text" default>
         ```python
-        !curl -O https://pinnacledb-public-demo.s3.amazonaws.com/text.json
+        !curl -O https://pinnacle-public-demo.s3.amazonaws.com/text.json
         import json
         
         with open('text.json', 'r') as f:
@@ -310,7 +310,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="PDF" label="PDF" default>
         ```python
-        !curl -O https://pinnacledb-public-demo.s3.amazonaws.com/pdfs.zip && unzip -o pdfs.zip
+        !curl -O https://pinnacle-public-demo.s3.amazonaws.com/pdfs.zip && unzip -o pdfs.zip
         import os
         
         data = [f'pdfs/{x}' for x in os.listdir('./pdfs') if x.endswith('.pdf')]        
@@ -324,10 +324,10 @@ datas = [{'x': d} for d in data]
 <!-- TABS -->
 ## Insert simple data
 
-After turning on auto_schema, we can directly insert data, and pinnacledb will automatically analyze the data type, and match the construction of the table and datatype.
+After turning on auto_schema, we can directly insert data, and pinnacle will automatically analyze the data type, and match the construction of the table and datatype.
 
 ```python
-from pinnacledb import Document
+from pinnacle import Document
 
 table_or_collection = db['documents']
 
@@ -349,7 +349,7 @@ won't be necessary.
 <Tabs>
     <TabItem value="Text" label="Text" default>
         ```python
-        from pinnacledb import model
+        from pinnacle import model
         
         CHUNK_SIZE = 200
         
@@ -363,7 +363,7 @@ won't be necessary.
     <TabItem value="PDF" label="PDF" default>
         ```python
         !pip install -q "unstructured[pdf]"
-        from pinnacledb import model
+        from pinnacle import model
         from unstructured.partition.pdf import partition_pdf
         
         CHUNK_SIZE = 500
@@ -380,7 +380,7 @@ won't be necessary.
 Now we apply this chunker to the data by wrapping the chunker in `Listener`:
 
 ```python
-from pinnacledb import Listener
+from pinnacle import Listener
 
 upstream_listener = Listener(
     model=chunker,
@@ -413,7 +413,7 @@ select = upstream_listener.outputs_select
     <TabItem value="OpenAI" label="OpenAI" default>
         ```python
         !pip install openai
-        from pinnacledb.ext.openai import OpenAIEmbedding
+        from pinnacle.ext.openai import OpenAIEmbedding
         
         embedding_model = OpenAIEmbedding(identifier='text-embedding-ada-002')        
         ```
@@ -421,7 +421,7 @@ select = upstream_listener.outputs_select
     <TabItem value="JinaAI" label="JinaAI" default>
         ```python
         import os
-        from pinnacledb.ext.jina import JinaEmbedding
+        from pinnacle.ext.jina import JinaEmbedding
         
         os.environ["JINA_API_KEY"] = "jina_xxxx"
          
@@ -432,9 +432,9 @@ select = upstream_listener.outputs_select
     <TabItem value="Sentence-Transformers" label="Sentence-Transformers" default>
         ```python
         !pip install sentence-transformers
-        from pinnacledb import vector
+        from pinnacle import vector
         import sentence_transformers
-        from pinnacledb.ext.sentence_transformers import SentenceTransformer
+        from pinnacle.ext.sentence_transformers import SentenceTransformer
         
         embedding_model = SentenceTransformer(
             identifier="embedding",
@@ -447,8 +447,8 @@ select = upstream_listener.outputs_select
     </TabItem>
     <TabItem value="Transformers" label="Transformers" default>
         ```python
-        from pinnacledb import vector
-        from pinnacledb.components.model import Model, ensure_initialized, Signature
+        from pinnacle import vector
+        from pinnacle.components.model import Model, ensure_initialized, Signature
         from transformers import AutoTokenizer, AutoModel
         import torch
         
@@ -483,13 +483,13 @@ select = upstream_listener.outputs_select
     </TabItem>
 </Tabs>
 ```python
-print(len(embedding_model.predict("What is SuperDuperDB")))
+print(len(embedding_model.predict("What is pinnacle")))
 ```
 
 ## Create vector-index
 
 ```python
-from pinnacledb import VectorIndex, Listener
+from pinnacle import VectorIndex, Listener
 
 vector_index_name = 'vector-index'
 
@@ -508,7 +508,7 @@ query_table_or_collection = select.table_or_collection
 ```
 
 ```python
-query = "Tell me about the SuperDuperDB"
+query = "Tell me about the pinnacle"
 ```
 
 <!-- TABS -->
@@ -519,7 +519,7 @@ item = {indexing_key: '<var:query>'}
 ```
 
 ```python
-from pinnacledb.components.model import QueryModel
+from pinnacle.components.model import QueryModel
 
 vector_search_model = QueryModel(
     identifier="VectorSearch",
@@ -542,7 +542,7 @@ vector_search_model.predict(query=query)
     <TabItem value="OpenAI" label="OpenAI" default>
         ```python
         !pip install openai
-        from pinnacledb.ext.openai import OpenAIChatCompletion
+        from pinnacle.ext.openai import OpenAIChatCompletion
         
         llm = OpenAIChatCompletion(identifier='llm', model='gpt-3.5-turbo')        
         ```
@@ -550,7 +550,7 @@ vector_search_model.predict(query=query)
     <TabItem value="Anthropic" label="Anthropic" default>
         ```python
         !pip install anthropic
-        from pinnacledb.ext.anthropic import AnthropicCompletions
+        from pinnacle.ext.anthropic import AnthropicCompletions
         import os
         
         os.environ["ANTHROPIC_API_KEY"] = "sk-xxx"
@@ -566,7 +566,7 @@ vector_search_model.predict(query=query)
     <TabItem value="vLLM" label="vLLM" default>
         ```python
         !pip install vllm
-        from pinnacledb.ext.vllm import VllmModel
+        from pinnacle.ext.vllm import VllmModel
         
         predict_kwargs = {
             "max_tokens": 1024,
@@ -589,7 +589,7 @@ vector_search_model.predict(query=query)
     <TabItem value="Transformers" label="Transformers" default>
         ```python
         !pip install transformers datasets bitsandbytes accelerate
-        from pinnacledb.ext.transformers import LLM
+        from pinnacle.ext.transformers import LLM
         
         llm = LLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2", load_in_8bit=True, device_map="cuda", identifier="llm", predict_kwargs=dict(max_new_tokens=128))        
         ```
@@ -599,21 +599,21 @@ vector_search_model.predict(query=query)
         !pip install llama_cpp_python
         # !huggingface-cli download TheBloke/Mistral-7B-Instruct-v0.2-GGUF mistral-7b-instruct-v0.2.Q4_K_M.gguf --local-dir . --local-dir-use-symlinks False
         
-        from pinnacledb.ext.llamacpp.model import LlamaCpp
+        from pinnacle.ext.llamacpp.model import LlamaCpp
         llm = LlamaCpp(identifier="llm", model_name_or_path="mistral-7b-instruct-v0.2.Q4_K_M.gguf")        
         ```
     </TabItem>
 </Tabs>
 ```python
 # test the llm model
-llm.predict("Tell me about the SuperDuperDB")
+llm.predict("Tell me about the pinnacle")
 ```
 
 ## Answer question with LLM
 
 ```python
-from pinnacledb import model
-from pinnacledb.components.graph import Graph, input_node
+from pinnacle import model
+from pinnacle.components.graph import Graph, input_node
 
 prompt_template = (
     "Use the following context snippets, these snippets are not ordered!, Answer the question based on this context.\n"
@@ -655,7 +655,7 @@ You can now load the model elsewhere and make predictions using the following co
 
 ```python
 rag = db.load("model", 'context_llm')
-print(rag.predict("Tell me about the SuperDuperDB")[0])
+print(rag.predict("Tell me about the pinnacle")[0])
 ```
 
 <DownloadButton filename="retrieval_augmented_generation.md" />

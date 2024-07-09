@@ -1,4 +1,4 @@
-from pinnacledb.misc.runnable import thread
+from pinnacle.misc.runnable import thread
 
 
 def test_has_thread():

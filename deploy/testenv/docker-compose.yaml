@@ -13,7 +13,7 @@ services:
     image: mongo:6
     hostname: mongodb
     volumes:
-      - ${SUPERDUPERDB_DATA_DIR}:/data/db
+      - ${SUPERDUPER_DATA_DIR}:/data/db
     ports:
       - "27017:27017"
     command:
@@ -99,10 +99,10 @@ services:
         - ./configs/grafana:/app.cfg
 
 
-  #  Demo SuperDuperDB Notebooks
+  #  Demo pinnacle.io Notebooks
   #  ------------------------------
   sandbox:
-    image: pinnacledb/sandbox
+    image: pinnacle/sandbox
     hostname: sandbox
     depends_on:
       mongo-init:
@@ -110,11 +110,11 @@ services:
     ports:
       - "8888:8888" # HTTP Notebooks
     volumes:
-        - ${SUPERDUPERDB_ARTIFACTS_DIR}:/artifacts:rw,z # shared between containers
-        - ../../pinnacledb:/home/pinnacle/pinnacledb/pinnacledb # shared between containers
-        - ../../test:/home/pinnacle/pinnacledb/test # shared between containers
-        - ../../examples:/home/pinnacle/pinnacledb/examples # shared between containers
-        - ../../deploy:/home/pinnacle/pinnacledb/deploy # shared between containers
+        - ${SUPERDUPER_ARTIFACTS_DIR}:/artifacts:rw,z # shared between containers
+        - ../../pinnacle:/home/pinnacle/pinnacle/pinnacle # shared between containers
+        - ../../test:/home/pinnacle/pinnacle/test # shared between containers
+        - ../../examples:/home/pinnacle/pinnacle/examples # shared between containers
+        - ../../deploy:/home/pinnacle/pinnacle/deploy # shared between containers
     env_file: users.env
     command:
       - /bin/sh

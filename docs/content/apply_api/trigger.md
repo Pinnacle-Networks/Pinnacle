@@ -2,12 +2,12 @@
 
 - Listen for update, inserts and deletes
 - Take a specific action contigent on these changes
-- Can be deployed on SuperDuperDB Enterprise
+- Can be deployed on pinnacle Enterprise
 
 ***Usage pattern***
 
 ```python
-from pinnacledb.components.trigger import Trigger
+from pinnacle.components.trigger import Trigger
 
 class MyTrigger(Trigger):
     def if_change(self, ids):

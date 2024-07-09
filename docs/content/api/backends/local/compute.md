@@ -1,6 +1,6 @@
-**`pinnacledb.backends.local.compute`** 
+**`pinnacle.backends.local.compute`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/local/compute.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/local/compute.py)
 
 ## `LocalComputeBackend` 
 

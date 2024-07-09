@@ -1,6 +1,6 @@
-**`pinnacledb.components.stack`** 
+**`pinnacle.components.stack`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/stack.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/stack.py)
 
 ## `Stack` 
 
@@ -8,10 +8,10 @@
 Stack(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
-     components: Sequence[pinnacledb.components.component.Component]) -> None
+     components: Sequence[pinnacle.components.component.Component]) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|

@@ -5,7 +5,7 @@ To connect, one specifies a list of `.csv` files:
 
 ```python
 import glob
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 
 db = pinnacle(glob.glob('*.csv'))
 ```

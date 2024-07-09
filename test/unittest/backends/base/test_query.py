@@ -3,12 +3,12 @@ from test.db_config import DBConfig
 import lorem
 import pytest
 
-from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.base.enums import DBType
-from pinnacledb.components.schema import Schema
-from pinnacledb.components.table import Table
+from pinnacle.backends.ibis.field_types import dtype
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.base.enums import DBType
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
 
 
 @pytest.fixture
@@ -171,7 +171,7 @@ def test_model(db):
 
     m.predict(torch.randn(32))
 
-    from pinnacledb.backends.base.query import Model
+    from pinnacle.backends.base.query import Model
 
     t = torch.randn(32)
 
@@ -194,7 +194,7 @@ other_thing.join(query[0]).filter(documents[0])"""
 
 
 def test_parse_and_dump():
-    from pinnacledb.backends.base.query import parse_query
+    from pinnacle.backends.base.query import parse_query
 
     q = parse_query(
         documents=[], query='collection.find().limit(5)', builder_cls=MongoQuery
@@ -242,8 +242,8 @@ def test_execute(db):
 def test_serialize_with_image():
     import PIL.Image
 
-    from pinnacledb.backends.mongodb import MongoQuery
-    from pinnacledb.ext.pillow import pil_image
+    from pinnacle.backends.mongodb import MongoQuery
+    from pinnacle.ext.pillow import pil_image
 
     img = PIL.Image.open('test/material/data/test.png')
     img = img.resize((2, 2))
@@ -380,7 +380,7 @@ def test_auto_document_wrapping(db):
 
 @pytest.mark.parametrize("db", [DBConfig.mongodb_empty], indirect=True)
 def test_model_query(db):
-    from pinnacledb.backends.base.query import Model
+    from pinnacle.backends.base.query import Model
 
     q = Model(table='my-model').predict('This is a test')
 

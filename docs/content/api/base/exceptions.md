@@ -1,6 +1,6 @@
-**`pinnacledb.base.exceptions`** 
+**`pinnacle.base.exceptions`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/exceptions.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/exceptions.py)
 
 ## `DatabackendException` 
 

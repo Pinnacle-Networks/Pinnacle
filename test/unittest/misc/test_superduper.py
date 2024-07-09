@@ -5,8 +5,8 @@ try:
 except ImportError:
     torch = None
 
-from pinnacledb import pinnacle
-from pinnacledb.base.pinnacle import SklearnTyper, TorchTyper
+from pinnacle import pinnacle
+from pinnacle.base.pinnacle import SklearnTyper, TorchTyper
 
 
 def test_sklearn_typer():

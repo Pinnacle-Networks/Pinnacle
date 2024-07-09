@@ -1,6 +1,6 @@
-**`pinnacledb.base.decorators`** 
+**`pinnacle.base.decorators`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/decorators.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/decorators.py)
 
 ## `code` 
 

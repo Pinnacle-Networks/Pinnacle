@@ -3,7 +3,7 @@
 Connecting:
 
 ```python
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 
 db = pinnacle('sqlite://<path-to-db>.db')
 ```

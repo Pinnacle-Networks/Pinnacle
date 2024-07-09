@@ -3,15 +3,15 @@ import pytest
 try:
     import torch
 
-    from pinnacledb.ext.torch.encoder import tensor
+    from pinnacle.ext.torch.encoder import tensor
 except ImportError:
     torch = None
 from test.db_config import DBConfig
 
 from sklearn.svm import SVC
 
-from pinnacledb.components.model import ObjectModel
-from pinnacledb.ext.sklearn.model import Estimator
+from pinnacle.components.model import ObjectModel
+from pinnacle.ext.sklearn.model import Estimator
 
 
 @pytest.mark.skipif(not torch, reason='Torch not installed')

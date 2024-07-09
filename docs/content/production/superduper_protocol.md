@@ -1,6 +1,6 @@
 # SuperDuper Protocol
 
-`pinnacledb` includes a protocol allowed developers to switch back and forth from Python and YAML/ JSON formats.
+`pinnacle` includes a protocol allowed developers to switch back and forth from Python and YAML/ JSON formats.
 The mapping is fairly self-explanatory after reading the examples below.
 
 ## Writing in pinnacle-protocol directly
@@ -15,32 +15,32 @@ import TabItem from '@theme/TabItem';
         _base: "?my_vector_index"
         _leaves:
           postprocess:
-            _path: pinnacledb/base/code/Code
+            _path: pinnacle/base/code/Code
             code: '
-              from pinnacledb import code
+              from pinnacle import code
 
               @code
               def postprocess(x):
                   return x.tolist()
               '
           my_vector:
-            _path: pinnacledb/components/vector_index/vector
+            _path: pinnacle.components/vector_index/vector
             shape: 384
           sentence_transformer:
-            _path: pinnacledb/ext/sentence_transformers/model/SentenceTransformer
+            _path: pinnacle/ext/sentence_transformers/model/SentenceTransformer
             datatype: "?my_vector"
             model: "all-MiniLM-L6-v2"
             postprocess: "?postprocess"
           my_query:
-            _path: pinnacledb/backends/mongodb/query/parse_query
+            _path: pinnacle/backends/mongodb/query/parse_query
             query: "documents.find()"
           my_listener:
-            _path: pinnacledb/components/listener/Listener
+            _path: pinnacle.components/listener/Listener
             model: "?sentence_transformer"
             select: "?my_query"
             key: "X"
           my_vector_index:
-            _path: pinnacledb/components/vector_index/VectorIndex
+            _path: pinnacle.components/vector_index/VectorIndex
             indexing_listener: "?my_listener"
             measure: cosine
         ```
@@ -48,7 +48,7 @@ import TabItem from '@theme/TabItem';
         Then from the commmand line:
 
         ```bash
-        pinnacledb apply --manifest='<path_to_config>.yaml'
+        pinnacle apply --manifest='<path_to_config>.yaml'
         ```
 
     </TabItem>
@@ -59,30 +59,30 @@ import TabItem from '@theme/TabItem';
           "_base": "?my_vector_index",
           "_leaves": {
             "postprocess": {
-              "_path": "pinnacledb/base/code/Code",
-              "code": "from pinnacledb import code\n\n@code\ndef postprocess(x):\n    return x.tolist()"
+              "_path": "pinnacle/base/code/Code",
+              "code": "from pinnacle import code\n\n@code\ndef postprocess(x):\n    return x.tolist()"
             },
             "my_vector": {
-              "_path": "pinnacledb/components/vector_index/vector",
+              "_path": "pinnacle.components/vector_index/vector",
               "shape": 384
             },
             "sentence_transformer": {
-              "_path": "pinnacledb/ext/sentence_transformers/model/SentenceTransformer",
+              "_path": "pinnacle/ext/sentence_transformers/model/SentenceTransformer",
               "datatype": "?my_vector",
               "model": "all-MiniLM-L6-v2",
               "postprocess": "?postprocess"
             },
             "my_query": {
-              "_path": "pinnacledb/backends/mongodb/query/parse_query",
+              "_path": "pinnacle/backends/mongodb/query/parse_query",
               "query": "documents.find()"
             },
             "my_listener": {
-              "_path": "pinnacledb/components/listener/Listener",
+              "_path": "pinnacle.components/listener/Listener",
               "model": "?sentence_transformer",
               "select": "?my_query"
             },
             "my_vector_index": {
-              "_path": "pinnacledb/components/vector_index/VectorIndex",
+              "_path": "pinnacle.components/vector_index/VectorIndex",
               "indexing_listener": "?my_listener",
               "measure": "cosine"
             }
@@ -93,20 +93,20 @@ import TabItem from '@theme/TabItem';
         Then from the command line:
 
         ```bash
-        pinnacledb apply --manifest='<path_to_config>.json'
+        pinnacle apply --manifest='<path_to_config>.json'
         ```
 
     </TabItem>
     <TabItem value="Python" label="Python" default>
 
         ```python
-        from pinnacledb import pinnacle
-        from pinnacledb.components.vector_index import vector
-        from pinnacledb.ext.sentence_transformers.model import SentenceTransformer
-        from pinnacledb.components.listener import Listener
-        from pinnacledb.components.vector_index import VectorIndex
-        from pinnacledb.base.code import Code
-        from pinnacledb import Stack
+        from pinnacle import pinnacle
+        from pinnacle.components.vector_index import vector
+        from pinnacle.ext.sentence_transformers.model import SentenceTransformer
+        from pinnacle.components.listener import Listener
+        from pinnacle.components.vector_index import VectorIndex
+        from pinnacle.base.code import Code
+        from pinnacle import Stack
 
 
         db = pinnacle('mongomock://')

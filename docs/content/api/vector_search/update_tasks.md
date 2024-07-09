@@ -1,13 +1,13 @@
-**`pinnacledb.vector_search.update_tasks`** 
+**`pinnacle.vector_search.update_tasks`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/vector_search/update_tasks.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/vector_search/update_tasks.py)
 
 ## `copy_vectors` 
 
 ```python
 copy_vectors(vector_index: str,
      query: Union[Dict,
-     pinnacledb.backends.base.query.Query],
+     pinnacle.backends.base.query.Query],
      ids: Sequence[str],
      db=typing.Optional[ForwardRef('Datalayer')])
 ```

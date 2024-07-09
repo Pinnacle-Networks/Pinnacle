@@ -1,7 +1,7 @@
 import pytest
 
-from pinnacledb.base.exceptions import RequiredPackageVersionsNotFound
-from pinnacledb.misc.annotations import requires_packages
+from pinnacle.base.exceptions import RequiredPackageVersionsNotFound
+from pinnacle.misc.annotations import requires_packages
 
 
 def test_basic_requires():

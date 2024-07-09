@@ -6,9 +6,9 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.backends.local.artifacts import FileSystemArtifactStore
-from pinnacledb.components.component import Component
-from pinnacledb.components.datatype import (
+from pinnacle.backends.local.artifacts import FileSystemArtifactStore
+from pinnacle.components.component import Component
+from pinnacle.components.datatype import (
     DataType,
     file_lazy,
     serializers,

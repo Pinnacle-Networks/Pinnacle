@@ -5,13 +5,13 @@ import lorem
 import pymongo
 import pytest
 
-import pinnacledb as s
-from pinnacledb import CFG, pinnacle
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.model import ObjectModel
-from pinnacledb.components.vector_index import VectorIndex, vector
+import pinnacle as s
+from pinnacle import CFG, pinnacle
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.components.listener import Listener
+from pinnacle.components.model import ObjectModel
+from pinnacle.components.vector_index import VectorIndex, vector
 
 try:
     client = pymongo.MongoClient(CFG.data_backend)

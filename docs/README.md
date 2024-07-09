@@ -1,4 +1,4 @@
-# SuperDuperDB Documentation Website
+# pinnacle Documentation Website
 
 This documentation website is built using [Docusaurus 3.0](https://docusaurus.io/), a modern static website generator.
 

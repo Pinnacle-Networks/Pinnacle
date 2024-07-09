@@ -4,11 +4,11 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.components.dataset import Dataset
-from pinnacledb.components.metric import Metric
-from pinnacledb.ext.transformers import LLM
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.components.dataset import Dataset
+from pinnacle.components.metric import Metric
+from pinnacle.ext.transformers import LLM
 
 TEST_MODEL_NAME = "facebook/opt-125m"
 try:
@@ -16,7 +16,7 @@ try:
     import peft
     import trl
 
-    from pinnacledb.ext.transformers.training import LLMTrainer
+    from pinnacle.ext.transformers.training import LLMTrainer
 except ImportError:
     datasets = None
     peft = None
@@ -86,7 +86,7 @@ def test_training(db, tmpdir):
         ),
     ]
 
-    from pinnacledb import Validation
+    from pinnacle import Validation
 
     validation = Validation(
         identifier="validation",

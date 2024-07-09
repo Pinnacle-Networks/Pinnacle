@@ -18,14 +18,14 @@ It also supports custom data conversion methods for transforming data, such as d
 <Tabs>
     <TabItem value="Vector" label="Vector" default>
         ```python
-        from pinnacledb import vector
+        from pinnacle import vector
         
         datatype = vector(shape=(3, ))        
         ```
     </TabItem>
     <TabItem value="Tensor" label="Tensor" default>
         ```python
-        from pinnacledb.ext.torch import tensor
+        from pinnacle.ext.torch import tensor
         import torch
         
         datatype = tensor(torch.float, shape=(32, 32, 3))        
@@ -33,7 +33,7 @@ It also supports custom data conversion methods for transforming data, such as d
     </TabItem>
     <TabItem value="Array" label="Array" default>
         ```python
-        from pinnacledb.ext.numpy import array
+        from pinnacle.ext.numpy import array
         import numpy as np
         
         datatype = array(dtype="float64", shape=(32, 32, 3))        
@@ -46,7 +46,7 @@ It also supports custom data conversion methods for transforming data, such as d
     </TabItem>
     <TabItem value="PDF" label="PDF" default>
         ```python
-        from pinnacledb import DataType
+        from pinnacle import DataType
         
         # By creating a datatype and setting its encodable attribute to “file” for saving PDF files, 
         # all datatypes encoded as “file” will have their corresponding files uploaded to the artifact store. 
@@ -57,7 +57,7 @@ It also supports custom data conversion methods for transforming data, such as d
     </TabItem>
     <TabItem value="Image" label="Image" default>
         ```python
-        from pinnacledb.ext.pillow import pil_image
+        from pinnacle.ext.pillow import pil_image
         import PIL.Image
         
         datatype = pil_image        
@@ -71,8 +71,8 @@ It also supports custom data conversion methods for transforming data, such as d
     </TabItem>
     <TabItem value="Audio" label="Audio" default>
         ```python
-        from pinnacledb.ext.numpy import array
-        from pinnacledb import DataType
+        from pinnacle.ext.numpy import array
+        from pinnacle import DataType
         import scipy.io.wavfile
         import io
         
@@ -101,7 +101,7 @@ It also supports custom data conversion methods for transforming data, such as d
     </TabItem>
     <TabItem value="Video" label="Video" default>
         ```python
-        from pinnacledb import DataType
+        from pinnacle import DataType
         
         # Create an instance of the Encoder with the identifier 'video_on_file' and load_hybrid set to False
         datatype = DataType(
@@ -112,7 +112,7 @@ It also supports custom data conversion methods for transforming data, such as d
     </TabItem>
     <TabItem value="Encodable" label="Encodable" default>
         ```python
-        from pinnacledb import DataType
+        from pinnacle import DataType
         import pandas as pd
         
         def encoder(x, info=None):
@@ -130,7 +130,7 @@ It also supports custom data conversion methods for transforming data, such as d
     </TabItem>
     <TabItem value="Artifact" label="Artifact" default>
         ```python
-        from pinnacledb import DataType
+        from pinnacle import DataType
         import numpy as np
         import pickle
         

@@ -1,6 +1,6 @@
-**`pinnacledb.backends.base.artifacts`** 
+**`pinnacle.backends.base.artifacts`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/base/artifacts.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/base/artifacts.py)
 
 ## `ArtifactSavingError` 
 

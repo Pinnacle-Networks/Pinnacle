@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from pinnacledb.base.enums import DBType
-from pinnacledb.components.datatype import (
+from pinnacle.base.enums import DBType
+from pinnacle.components.datatype import (
     DataType,
     pickle_encoder,
     pickle_lazy,

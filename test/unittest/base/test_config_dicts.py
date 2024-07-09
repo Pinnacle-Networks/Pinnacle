@@ -2,7 +2,7 @@ import io
 
 import pytest
 
-from pinnacledb.base import config_dicts
+from pinnacle.base import config_dicts
 
 
 def test_combine_config_dicts():

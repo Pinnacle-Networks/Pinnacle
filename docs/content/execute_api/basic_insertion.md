@@ -1,6 +1,6 @@
 # Basic insertion
 
-SuperDuperDB supports inserting data wrapped as dictionaries in Python.
+pinnacle supports inserting data wrapped as dictionaries in Python.
 These dictionaries may contain basic JSON-compatible data, but also 
 other data-types to be handled with `DataType` components. All data inserts are wrapped with the `Document` wrapper:
 
@@ -11,7 +11,7 @@ data = ... # an iterable of dictionaries
 For example, first get some [sample data](../reusable_snippets/get_useful_sample_data.md):
 
 ```bash
-!curl -O https://pinnacledb-public-demo.s3.amazonaws.com/text.json
+!curl -O https://pinnacle-public-demo.s3.amazonaws.com/text.json
 ```
 
 Then load the data:
@@ -59,7 +59,7 @@ If users have configured a `ray` cluster, the jobs may be monitored at the
 following uri:
 
 ```python
-from pinnacledb import CFG
+from pinnacle import CFG
 
 print(CFG.cluster.compute.uri)
 ```

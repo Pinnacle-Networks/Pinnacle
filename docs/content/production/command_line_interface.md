@@ -7,13 +7,13 @@ sidebar_position: 2
 **Start change-data-capture (CDC)**
 
 ```bash
-pinnacledb cdc
+pinnacle cdc
 ```
 
 **Start vector-searcher service**
 
 ```bash
-pinnacledb vector-searcher
+pinnacle vector-searcher
 ```
 
 **Operate a local cluster**
@@ -21,29 +21,29 @@ pinnacledb vector-searcher
 Start the cluster:
 
 ```bash
-pinnacledb local-cluster up
+pinnacle local-cluster up
 ```
 
 Attach to the cluster session:
 
 ```bash
-pinnacledb local-cluster attach
+pinnacle local-cluster attach
 ```
 
 Stop the cluster:
 
 ```bash
-pinnacledb local-cluster down
+pinnacle local-cluster down
 ```
 
 **Print important information about your installation**
 
 ```bash
-pinnacledb info
+pinnacle info
 ```
 
 **Print the current configuration**
 
 ```bash
-pinnacledb config
+pinnacle config
 ```

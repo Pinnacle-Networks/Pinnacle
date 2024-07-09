@@ -3,11 +3,11 @@ from test.db_config import DBConfig
 import numpy
 import pytest
 
-from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.base.document import Document
-from pinnacledb.components.schema import Schema
-from pinnacledb.components.table import Table
-from pinnacledb.ext.pillow.encoder import pil_image
+from pinnacle.backends.ibis.field_types import dtype
+from pinnacle.base.document import Document
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
+from pinnacle.ext.pillow.encoder import pil_image
 
 try:
     import torch
@@ -80,7 +80,7 @@ def test_renamings(db):
     indirect=True,
 )
 def test_serialize_query(db):
-    from pinnacledb.backends.ibis.query import IbisQuery
+    from pinnacle.backends.ibis.query import IbisQuery
 
     t = IbisQuery(db=db, table='documents', parts=[('select', ('id',), {})])
 

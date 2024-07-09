@@ -7,9 +7,9 @@ from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.ext.sklearn.model import Estimator, SklearnTrainer
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.ext.sklearn.model import Estimator, SklearnTrainer
 
 
 class Lookup(TransformerMixin):

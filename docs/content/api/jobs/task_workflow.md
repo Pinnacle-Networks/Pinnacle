@@ -1,13 +1,13 @@
-**`pinnacledb.jobs.task_workflow`** 
+**`pinnacle.jobs.task_workflow`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/jobs/task_workflow.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/jobs/task_workflow.py)
 
 ## `TaskWorkflow` 
 
 ```python
 TaskWorkflow(self,
      database: 'Datalayer',
-     G: 'DiGraph' = <factory>) -> None
+     G: 'DiGraph' = None) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|

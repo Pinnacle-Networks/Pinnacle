@@ -1,6 +1,6 @@
-**`pinnacledb.base.document`** 
+**`pinnacle.base.document`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/document.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/document.py)
 
 ## `Document` 
 

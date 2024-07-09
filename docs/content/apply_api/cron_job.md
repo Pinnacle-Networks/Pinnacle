@@ -1,7 +1,7 @@
 # `Cron Job`
 
 - Iterate computations, queries and actions on a crontab
-- Can be deployed on SuperDuperDB Enterprise
+- Can be deployed on pinnacle Enterprise
 
 ***Usage pattern***
 
@@ -10,7 +10,7 @@ which is loaded as an attribute of the `Component`.
 
 ```python
 import datetime
-from pinnacledb.components.cron_job import CronJob
+from pinnacle.components.cron_job import CronJob
 
 class MyCronJob(CronJob):
     table: str

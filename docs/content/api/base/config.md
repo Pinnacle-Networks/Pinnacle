@@ -1,6 +1,6 @@
-**`pinnacledb.base.config`** 
+**`pinnacle.base.config`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/config.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/config.py)
 
 ## `BaseConfig` 
 
@@ -17,8 +17,8 @@ with a dictionary of parameters.
 ```python
 CDCConfig(self,
      uri: Optional[str] = None,
-     strategy: Union[pinnacledb.base.config.PollingStrategy,
-     pinnacledb.base.config.LogBasedStrategy,
+     strategy: Union[pinnacle.base.config.PollingStrategy,
+     pinnacle.base.config.LogBasedStrategy,
      NoneType] = None) -> None
 ```
 | Parameter | Description |
@@ -44,10 +44,10 @@ Base CDC strategy dataclass.
 
 ```python
 Cluster(self,
-     compute: pinnacledb.base.config.Compute = <factory>,
-     vector_search: pinnacledb.base.config.VectorSearch = <factory>,
-     rest: pinnacledb.base.config.Rest = <factory>,
-     cdc: pinnacledb.base.config.CDCConfig = <factory>) -> None
+     compute: pinnacle.base.config.Compute = None,
+     vector_search: pinnacle.base.config.VectorSearch = None,
+     rest: pinnacle.base.config.Rest = None,
+     cdc: pinnacle.base.config.CDCConfig = None) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -63,7 +63,7 @@ Describes a connection to distributed work via Ray.
 ```python
 Compute(self,
      uri: Optional[str] = None,
-     compute_kwargs: Dict = <factory>) -> None
+     compute_kwargs: Dict = None) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -79,23 +79,23 @@ Config(self,
      envs: dataclasses.InitVar[typing.Optional[typing.Dict[str,
      str]]] = None,
      data_backend: str = 'mongodb://localhost:27017/test_db',
-     lance_home: str = '.pinnacledb/vector_indices',
+     lance_home: str = '.pinnacle/vector_indices',
      artifact_store: Optional[str] = None,
      metadata_store: Optional[str] = None,
-     cluster: pinnacledb.base.config.Cluster = <factory>,
-     retries: pinnacledb.base.config.Retry = <factory>,
-     downloads: pinnacledb.base.config.Downloads = <factory>,
+     cluster: pinnacle.base.config.Cluster = None,
+     retries: pinnacle.base.config.Retry = None,
+     downloads: pinnacle.base.config.Downloads = None,
      fold_probability: float = 0.05,
-     log_level: pinnacledb.base.config.LogLevel = <LogLevel.INFO: 'INFO'>,
-     logging_type: pinnacledb.base.config.LogType = <LogType.SYSTEM: 'SYSTEM'>,
-     bytes_encoding: pinnacledb.base.config.BytesEncoding = <BytesEncoding.BYTES: 'Bytes'>,
+     log_level: pinnacle.base.config.LogLevel = <LogLevel.INFO: 'INFO'>,
+     logging_type: pinnacle.base.config.LogType = <LogType.SYSTEM: 'SYSTEM'>,
+     bytes_encoding: pinnacle.base.config.BytesEncoding = <BytesEncoding.BYTES: 'Bytes'>,
      auto_schema: bool = True) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|
 | envs | The envs datas |
 | data_backend | The URI for the data backend |
-| lance_home | The home directory for the Lance vector indices, Default: .pinnacledb/vector_indices |
+| lance_home | The home directory for the Lance vector indices, Default: .pinnacle/vector_indices |
 | artifact_store | The URI for the artifact store |
 | metadata_store | The URI for the metadata store |
 | cluster | Settings distributed computing and change data capture |
@@ -107,7 +107,7 @@ Config(self,
 | bytes_encoding | The encoding of bytes in the data backend |
 | auto_schema | Whether to automatically create the schema. If True, the schema will be created if it does not exist. |
 
-The data class containing all configurable pinnacledb values.
+The data class containing all configurable pinnacle values.
 
 ## `Downloads` 
 
@@ -115,7 +115,7 @@ The data class containing all configurable pinnacledb values.
 Downloads(self,
      folder: Optional[str] = None,
      n_workers: int = 0,
-     headers: Dict = <factory>,
+     headers: Dict = None,
      timeout: Optional[int] = None) -> None
 ```
 | Parameter | Description |

@@ -1,12 +1,12 @@
-# Core SuperDuperDB usage
+# Core pinnacle usage
 
-In this section we walk through how to perform the key operations with SuperDuperDB.
+In this section we walk through how to perform the key operations with pinnacle.
 There are three key patterns C-A-E:
 
 ***Connect***
 
 ```python
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 db = pinnacle('<data-connection>')
 ```
 

@@ -14,7 +14,7 @@ In AI, typical types of data are:
 - **...bespoke in house data**
 
 Most databases don't support any data other than numbers and text.
-SuperDuperDB enables the use of these more interesting data-types using the `Document` wrapper.
+pinnacle enables the use of these more interesting data-types using the `Document` wrapper.
 
 ### `Document`
 
@@ -35,7 +35,7 @@ Here is an example of applying an `DataType` to add an image to a `Document`:
 ```python
 import pickle
 import PIL.Image
-from pinnacledb import DataType, Document
+from pinnacle import DataType, Document
 
 image = PIL.Image.open('my_image.jpg')
 
@@ -71,7 +71,7 @@ my_image_encoder = DataType(
 ```
 
 The `encodable` specifies the type of the output of the `__call__` method, 
-which will be a subclass of `pinnacledb.components.datatype._BaseEncodable`.
+which will be a subclass of `pinnacle.components.datatype._BaseEncodable`.
 These encodables become leaves in the tree defines by a `Document`.
 
 ### `Schema`

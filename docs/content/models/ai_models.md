@@ -8,12 +8,12 @@ There are 4 key AI `Model` sub classes, see [here](../apply_api/model) for detai
 
 | Path | Description |
 | --- | ---
-| `pinnacledb.components.model.ObjectModel` | Wraps a Python object to compute outputs |
-| `pinnacledb.components.model.APIModel` | Wraps a model hosted behind an API to compute outputs |
-| `pinnacledb.components.model.QueryModel` | Maps a Database select query with a free variable over inputs |
-| `pinnacledb.components.model.SequentialModel` | Computes outputs sequentially for a sequence of `Model` instances |
+| `pinnacle.components.model.ObjectModel` | Wraps a Python object to compute outputs |
+| `pinnacle.components.model.APIModel` | Wraps a model hosted behind an API to compute outputs |
+| `pinnacle.components.model.QueryModel` | Maps a Database select query with a free variable over inputs |
+| `pinnacle.components.model.SequentialModel` | Computes outputs sequentially for a sequence of `Model` instances |
 
-As well as these key sub-classes, we have classes in the `pinnacledb.ext.*` subpackages:
+As well as these key sub-classes, we have classes in the `pinnacle.ext.*` subpackages:
 See [here](../ai_integrations/) for more information.
 
 Whenever one of these `Model` descendants is instantiated, and `db.apply(model)` is called, 
@@ -27,7 +27,7 @@ several things can (do) happen:
 <!-- ### Scikit-Learn
 
 ```python
-from pinnacledb.ext.sklearn import Estimator
+from pinnacle.ext.sklearn import Estimator
 from sklearn.svm import SVC
 
 db.add(Estimator(SVC()))
@@ -36,8 +36,8 @@ db.add(Estimator(SVC()))
 ### Transformers
 
 ```pytho
-from pinnacledb.ext.transformers import Pipeline
-from pinnacledb import pinnacle
+from pinnacle.ext.transformers import Pipeline
+from pinnacle import pinnacle
 
 db.add(Pipeline(task='sentiment-analysis'))
 ```
@@ -46,7 +46,7 @@ There is also support for building the pipeline in separate stages with a high d
 The following is a speech-to-text model published by [facebook research](https://arxiv.org/abs/2010.05171) and shared [on Hugging-Face](https://huggingface.co/facebook/s2t-small-librispeech-asr):
 
 ```python
-from pinnacledb.ext.transformers import Pipeline
+from pinnacle.ext.transformers import Pipeline
 from transformers import Speech2TextProcessor, Speech2TextForConditionalGeneration
 
 model = Speech2TextForConditionalGeneration.from_pretrained("facebook/s2t-small-librispeech-asr")
@@ -69,7 +69,7 @@ db.add(transcriber)
 
 ```python
 import torch
-from pinnacledb.ext.torch import Module
+from pinnacle.ext.torch import Module
 
 model = Module(
     identifier='my-classifier',
@@ -85,7 +85,7 @@ db.add(model)
   
 | Name | Function |
 | --- | --- |
-| `identifier` | A unique name for `pinnacledb`, for later use and recall |
+| `identifier` | A unique name for `pinnacle`, for later use and recall |
 | `object` | The model-object, including parameters and hyper-parameters providing heavy lifting |
 | `preprocess` | `Callable` which processes individual rows/records/fields from the database prior to passing to the model |
 | `postprocess` | `Callable` applied to individual rows/items or output |
@@ -95,7 +95,7 @@ db.add(model)
 
 ## Using AI APIs 
 
-In SuperDuperDB, developers are able to interact with popular AI API providers, in a way very similar to 
+In pinnacle, developers are able to interact with popular AI API providers, in a way very similar to 
 [integrating with AI open-source or home-grown models](./ai_models.md). Instantiating a model from 
 these providers is similar to instantiating a `Model`:
 
@@ -114,7 +114,7 @@ these providers is similar to instantiating a `Model`:
 **Usage**
 
 ```python
-from pinnacledb.ext.openai import OpenAI<ModelType> as ModelCls
+from pinnacle.ext.openai import OpenAI<ModelType> as ModelCls
 
 db.add(Modelcls(identifier='my-model', **kwargs))
 ```
@@ -131,7 +131,7 @@ db.add(Modelcls(identifier='my-model', **kwargs))
 **Usage**
 
 ```python
-from pinnacledb.ext.cohere import Cohere<ModelType> as ModelCls
+from pinnacle.ext.cohere import Cohere<ModelType> as ModelCls
 
 db.add(Modelcls(identifier='my-model', **kwargs))
 ```
@@ -147,7 +147,7 @@ db.add(Modelcls(identifier='my-model', **kwargs))
 **Usage**
 
 ```python
-from pinnacledb.ext.anthropic import Anthropic<ModelType> as ModelCls
+from pinnacle.ext.anthropic import Anthropic<ModelType> as ModelCls
 
 db.add(Modelcls(identifier='my-model', **kwargs))
 ```
@@ -163,7 +163,7 @@ db.add(Modelcls(identifier='my-model', **kwargs))
 **Usage**
 
 ```python
-from pinnacledb.ext.jina import JinaEmbedding
+from pinnacle.ext.jina import JinaEmbedding
 
 db.add(JinaEmbedding(identifier='jina-embeddings-v2-base-en', api_key='JINA_API_KEY')) # You can also set JINA_API_KEY as environment variable
 ``` -->

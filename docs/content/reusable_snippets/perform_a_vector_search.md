@@ -11,7 +11,7 @@ import DownloadButton from '../downloadButton.js';
 # Perform a vector search
 
 ```python
-from pinnacledb import Document
+from pinnacle import Document
 
 def get_sample_item(key, sample_datapoint, datatype=None):
     if not isinstance(datatype, DataType):

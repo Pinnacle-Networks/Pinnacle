@@ -1,6 +1,6 @@
-**`pinnacledb.misc.serialization`** 
+**`pinnacle.misc.serialization`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/serialization.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/serialization.py)
 
 ## `asdict` 
 

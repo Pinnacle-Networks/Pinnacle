@@ -15,17 +15,17 @@ import DownloadButton from '../downloadButton.js';
 
 :::note
 If you would like to use the production features 
-of SuperDuperDB, then you should set the relevant 
+of pinnacle, then you should set the relevant 
 connections and configurations in a configuration 
 file. Otherwise you are welcome to use "development" mode 
-to get going with SuperDuperDB quickly.
+to get going with pinnacle quickly.
 :::
 
 ```python
 import os
 
-os.makedirs('.pinnacledb', exist_ok=True)
-os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
+os.makedirs('.pinnacle', exist_ok=True)
+os.environ['SUPERDUPER_CONFIG'] = '.pinnacle/config.yaml'
 ```
 
 
@@ -151,7 +151,7 @@ os.environ['SUPERDUPERDB_CONFIG'] = '.pinnacledb/config.yaml'
     </TabItem>
 </Tabs>
 ```python
-with open(os.environ['SUPERDUPERDB_CONFIG'], 'w') as f:
+with open(os.environ['SUPERDUPER_CONFIG'], 'w') as f:
     f.write(CFG)
 ```
 
@@ -159,7 +159,7 @@ with open(os.environ['SUPERDUPERDB_CONFIG'], 'w') as f:
 ## Start your cluster
 
 :::note
-Starting a SuperDuperDB cluster is useful in production and model development
+Starting a pinnacle cluster is useful in production and model development
 if you want to enable scalable compute, access to the models by multiple users for collaboration, 
 monitoring.
 
@@ -170,7 +170,7 @@ If you don't need this, then it is simpler to start in development mode.
 <Tabs>
     <TabItem value="Experimental Cluster" label="Experimental Cluster" default>
         ```python
-        !python -m pinnacledb local-cluster up        
+        !python -m pinnacle local-cluster up        
         ```
     </TabItem>
     <TabItem value="Docker-Compose" label="Docker-Compose" default>
@@ -181,10 +181,10 @@ If you don't need this, then it is simpler to start in development mode.
     </TabItem>
 </Tabs>
 <!-- TABS -->
-## Connect to SuperDuperDB
+## Connect to pinnacle
 
 :::note
-Note that this is only relevant if you are running SuperDuperDB in development mode.
+Note that this is only relevant if you are running pinnacle in development mode.
 Otherwise refer to "Configuring your production system".
 :::
 
@@ -192,20 +192,20 @@ Otherwise refer to "Configuring your production system".
 <Tabs>
     <TabItem value="MongoDB" label="MongoDB" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('mongodb://localhost:27017/documents')        
         ```
     </TabItem>
     <TabItem value="SQLite" label="SQLite" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         db = pinnacle('sqlite://my_db.db')        
         ```
     </TabItem>
     <TabItem value="MySQL" label="MySQL" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'pinnacle'
         password = 'pinnacle'
@@ -218,7 +218,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Oracle" label="Oracle" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'sa'
         password = 'Pinnacle#1'
@@ -231,7 +231,7 @@ Otherwise refer to "Configuring your production system".
     <TabItem value="PostgreSQL" label="PostgreSQL" default>
         ```python
         !pip install psycopg2
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'postgres'
         password = 'postgres'
@@ -245,7 +245,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Snowflake" label="Snowflake" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = "pinnacleuser"
         password = "pinnaclepassword"
@@ -262,7 +262,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Clickhouse" label="Clickhouse" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         user = 'default'
         password = ''
@@ -274,21 +274,21 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="DuckDB" label="DuckDB" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('duckdb://mydb.duckdb')        
         ```
     </TabItem>
     <TabItem value="Pandas" label="Pandas" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle(['my.csv'], metadata_store=f'mongomock://meta')        
         ```
     </TabItem>
     <TabItem value="MongoMock" label="MongoMock" default>
         ```python
-        from pinnacledb import pinnacle
+        from pinnacle import pinnacle
         
         db = pinnacle('mongomock:///test_db')        
         ```
@@ -301,7 +301,7 @@ Otherwise refer to "Configuring your production system".
 <Tabs>
     <TabItem value="Text-Classification" label="Text-Classification" default>
         ```python
-        !curl -O https://pinnacledb-public-demo.s3.amazonaws.com/text_classification.json
+        !curl -O https://pinnacle-public-demo.s3.amazonaws.com/text_classification.json
         import json
         
         with open("text_classification.json", "r") as f:
@@ -311,7 +311,7 @@ Otherwise refer to "Configuring your production system".
     </TabItem>
     <TabItem value="Image-Classification" label="Image-Classification" default>
         ```python
-        !curl -O https://pinnacledb-public-demo.s3.amazonaws.com/images_classification.zip && unzip images_classification.zip
+        !curl -O https://pinnacle-public-demo.s3.amazonaws.com/images_classification.zip && unzip images_classification.zip
         import json
         from PIL import Image
         
@@ -341,10 +341,10 @@ After obtaining the data, we insert it into the database.
 <!-- TABS -->
 ## Insert simple data
 
-After turning on auto_schema, we can directly insert data, and pinnacledb will automatically analyze the data type, and match the construction of the table and datatype.
+After turning on auto_schema, we can directly insert data, and pinnacle will automatically analyze the data type, and match the construction of the table and datatype.
 
 ```python
-from pinnacledb import Document
+from pinnacle import Document
 
 table_or_collection = db['documents']
 
@@ -361,8 +361,8 @@ select = table_or_collection.select()
         ```python
         key = 'txt'
         import sentence_transformers
-        from pinnacledb import vector, Listener
-        from pinnacledb.ext.sentence_transformers import SentenceTransformer
+        from pinnacle import vector, Listener
+        from pinnacle.ext.sentence_transformers import SentenceTransformer
         
         pinnaclemodel = SentenceTransformer(
             identifier="embedding",
@@ -385,8 +385,8 @@ select = table_or_collection.select()
         key = 'image'
         import torchvision.models as models
         from torchvision import transforms
-        from pinnacledb.ext.torch import TorchModel
-        from pinnacledb import Listener
+        from pinnacle.ext.torch import TorchModel
+        from pinnacle import Listener
         from PIL import Image
         
         class TorchVisionEmbedding:
@@ -453,7 +453,7 @@ feature_size = len(feature)
 <Tabs>
     <TabItem value="Scikit-Learn" label="Scikit-Learn" default>
         ```python
-        from pinnacledb.ext.sklearn import Estimator, SklearnTrainer
+        from pinnacle.ext.sklearn import Estimator, SklearnTrainer
         from sklearn.svm import SVC
         
         model = Estimator(
@@ -471,8 +471,8 @@ feature_size = len(feature)
         ```python
         import torch
         from torch import nn
-        from pinnacledb.ext.torch.model import TorchModel
-        from pinnacledb.ext.torch.training import TorchTrainer
+        from pinnacle.ext.torch.model import TorchModel
+        from pinnacle.ext.torch.training import TorchTrainer
         from torch.nn.functional import cross_entropy
         
         
@@ -523,7 +523,7 @@ feature_size = len(feature)
 Define a validation for evaluating the effect after training.
 
 ```python
-from pinnacledb import Dataset, Metric, Validation
+from pinnacle import Dataset, Metric, Validation
 
 def acc(x, y):
     return sum([xx == yy for xx, yy in zip(x, y)]) / len(x)
