@@ -1,7 +1,7 @@
 # Bring your own models
 
 There are two ways to bring your own computations
-and models to SuperDuperDB.
+and models to pinnacle.
 
 1. Wrap your own Python functions
 2. Write your own `Model` sub-classes
@@ -11,14 +11,14 @@ and models to SuperDuperDB.
 This serializes a Python object or class:
 
 ```python
-from pinnacledb import model
+from pinnacle import model
 
 @model
 def my_model(x, y):
     return x + y
 ```
 
-Additional arguments may be provided to the decorator from `pinnacledb.components.model.ObjectModel`:
+Additional arguments may be provided to the decorator from `pinnacle.components.model.ObjectModel`:
 
 ```python
 @model(num_workers=4)
@@ -29,7 +29,7 @@ def my_model(x, y):
 Similarly the following snippet saves the source code of a python object instead of serializing the object:
 
 ```python
-from pinnacledb import code
+from pinnacle import code
 
 @code
 def my_other_model(x, y):
@@ -41,7 +41,7 @@ If your class has important state which should be serialized with the class,
 then use `model` otherwise you can use `codemodel`:
 
 ```python
-from pinnacledb import ObjectModel, model
+from pinnacle import ObjectModel, model
 
 @model
 class MyClass:
@@ -57,7 +57,7 @@ assert m.predict(2) == 4
 As before, additional arguments can be supplied to the decorator:
 
 ```python
-from pinnacledb import vector, DataType, model
+from pinnacle import vector, DataType, model
 
 @model(datatype=vector(shape=(32, )))
 class MyClass:
@@ -76,12 +76,12 @@ and allows functionality to be invoked "directly"
 from third-party packages:
 
 ```python
-from pinnacledb.ext.auto.sklearn.svm import SVC
+from pinnacle.ext.auto.sklearn.svm import SVC
 ```
 
 ## Create your own `Model` subclasses
 
-Developers may create their own `Model` sub-classes, and deploy these directly to `pinnacledb`.
+Developers may create their own `Model` sub-classes, and deploy these directly to `pinnacle`.
 The key methods the developers need to create are:
 
 - `predict`
@@ -93,7 +93,7 @@ The key methods the developers need to create are:
 Here is a simple sub-class of `Model`:
 
 ```python
-from pinnacledb.components.model import Model
+from pinnacle.components.model import Model
 import typing as t
 
 class CustomModel(Model):
@@ -112,14 +112,14 @@ are emitted, for consumption by the internal workings of the model
 If your model contains large data-artifacts or non-JSON-able content, then 
 these items should be labelled with [a `DataType`](../apply_api/datatype).
 
-On saving, this will allow `pinnacledb` to encode their values and save the result
+On saving, this will allow `pinnacle` to encode their values and save the result
 in `db.artifact_store`.
 
 Here is an example which includes a `numpy.array`:
 
 ```python
 import numpy as np
-from pinnacledb.ext.numpy import array
+from pinnacle.ext.numpy import array
 
 
 class AnotherModel(Model):

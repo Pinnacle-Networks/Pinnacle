@@ -1,6 +1,6 @@
 # `Model`
 
-- Wrap a standard AI model with functionality necessary for SuperDuperDB
+- Wrap a standard AI model with functionality necessary for pinnacle
 - Configure validation and training of a model on database data
 
 ***Dependencies***
@@ -28,14 +28,14 @@ by adding the parameters `datatype=...` or `output_schema=...`.
 
 ## Implementations
 
-Here are a few SuperDuperDB native implementations:
+Here are a few pinnacle native implementations:
 
 **`ObjectModel`**
 
 Use a self-built model (`object`) or function with the system:
 
 ```python
-from pinnacledb import ObjectModel
+from pinnacle import ObjectModel
 
 m = ObjectModel(
     'my-model',
@@ -47,10 +47,10 @@ db.apply(m)
 
 **`QueryModel`**
 
-Use a SuperDuperDB query to extract data from `db`
+Use a pinnacle query to extract data from `db`
 
 ```python
-from pinnacledb.components.model import QueryModel
+from pinnacle.components.model import QueryModel
 
 query = ... # build a select query
 m = QueryModel('my-query', select=query, key='<key-to-extract>')
@@ -63,7 +63,7 @@ db.apply(m)
 Request model outputs hosted behind an API:
 
 ```python
-from pinnacledb.components.model import APIModel
+from pinnacle.components.model import APIModel
 
 m = APIModel('my-api', url='http://localhost:6666?token={MY_DEV_TOKEN}&model={model}&text={text}')
 
@@ -75,7 +75,7 @@ db.apply(m)
 Make predictions on the basis of a sequence of models:
 
 ```python
-from pinnacledb.components.model import SequentialModel
+from pinnacle.components.model import SequentialModel
 
 m = SequentialModel(
     'my-sequence',

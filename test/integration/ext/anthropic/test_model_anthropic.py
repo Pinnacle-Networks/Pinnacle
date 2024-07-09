@@ -1,7 +1,7 @@
 import pytest
 import vcr
 
-from pinnacledb.ext.anthropic import AnthropicCompletions
+from pinnacle.ext.anthropic import AnthropicCompletions
 
 CASSETTE_DIR = 'test/integration/ext/anthropic/cassettes'
 

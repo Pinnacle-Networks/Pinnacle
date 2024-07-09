@@ -1,15 +1,15 @@
-**`pinnacledb.base.datalayer`** 
+**`pinnacle.base.datalayer`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/datalayer.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/datalayer.py)
 
 ## `Datalayer` 
 
 ```python
 Datalayer(self,
-     databackend: pinnacledb.backends.base.data_backend.BaseDataBackend,
-     metadata: pinnacledb.backends.base.metadata.MetaDataStore,
-     artifact_store: pinnacledb.backends.base.artifacts.ArtifactStore,
-     compute: pinnacledb.backends.base.compute.ComputeBackend = <pinnacledb.backends.local.compute.LocalComputeBackend object at 0x291ee3510>)
+     databackend: pinnacle.backends.base.data_backend.BaseDataBackend,
+     metadata: pinnacle.backends.base.metadata.MetaDataStore,
+     artifact_store: pinnacle.backends.base.artifacts.ArtifactStore,
+     compute: pinnacle.backends.base.compute.ComputeBackend = <pinnacle.backends.local.compute.LocalComputeBackend object at 0x291ee3510>)
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -18,13 +18,13 @@ Datalayer(self,
 | artifact_store | Object containing connection to Artifactstore. |
 | compute | Object containing connection to ComputeBackend. |
 
-Base database connector for SuperDuperDB.
+Base database connector for pinnacle.
 
 ## `LoadDict` 
 
 ```python
 LoadDict(self,
-     database: pinnacledb.base.datalayer.Datalayer,
+     database: pinnacle.base.datalayer.Datalayer,
      field: Optional[str] = None,
      callable: Optional[Callable] = None) -> None
 ```

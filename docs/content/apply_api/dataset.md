@@ -9,7 +9,7 @@
 (Learn how to build a model [here](model))
 
 ```python
-from pinnacledb import Listener
+from pinnacle import Listener
 
 ds = Dataset(
     'my-valid-data',
@@ -21,7 +21,7 @@ db.apply(ds)
 
 ***Explanation***
 
-- On creation `pinnacledb` queries the data from the `db.databackend` based on the `select` parameter.
+- On creation `pinnacle` queries the data from the `db.databackend` based on the `select` parameter.
 - The data queries like this is saved as a persistent blob in the `db.artifact_store`.
 - When the dataset is reloaded, the `select` query is not executed again, instead the 
   data is reloaded from the `db.artifact_store`. This ensures the `Dataset` is always "the same".

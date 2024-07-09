@@ -3,13 +3,13 @@ LLM model test cases.
 All the llm model can use the check_xxx func to test the intergration with db.
 """
 
-from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.backends.ibis.query import Schema
-from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.table import Table
+from pinnacle.backends.ibis.field_types import dtype
+from pinnacle.backends.ibis.query import Schema
+from pinnacle.backends.mongodb.data_backend import MongoDataBackend
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.components.listener import Listener
+from pinnacle.components.table import Table
 
 
 def check_predict(db, llm):
@@ -64,4 +64,4 @@ def check_llm_cdc(db, llm):
 
 
 # TODO: Expanded into a test tool class,
-# Used to test whether all model objects are normally compatible with pinnacledb
+# Used to test whether all model objects are normally compatible with pinnacle

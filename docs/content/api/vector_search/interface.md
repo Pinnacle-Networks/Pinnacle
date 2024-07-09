@@ -1,6 +1,6 @@
-**`pinnacledb.vector_search.interface`** 
+**`pinnacle.vector_search.interface`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/vector_search/interface.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/vector_search/interface.py)
 
 ## `FastVectorSearcher` 
 

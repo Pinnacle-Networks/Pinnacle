@@ -1,11 +1,11 @@
-**`pinnacledb.backends.ibis.db_helper`** 
+**`pinnacle.backends.ibis.db_helper`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/ibis/db_helper.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/ibis/db_helper.py)
 
 ## `get_db_helper` 
 
 ```python
-get_db_helper(dialect) -> pinnacledb.backends.ibis.db_helper.DBHelper
+get_db_helper(dialect) -> pinnacle.backends.ibis.db_helper.DBHelper
 ```
 | Parameter | Description |
 |-----------|-------------|

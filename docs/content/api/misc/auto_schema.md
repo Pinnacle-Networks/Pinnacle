@@ -1,11 +1,11 @@
-**`pinnacledb.misc.auto_schema`** 
+**`pinnacle.misc.auto_schema`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/auto_schema.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/auto_schema.py)
 
 ## `infer_datatype` 
 
 ```python
-infer_datatype(data: Any) -> Union[pinnacledb.components.datatype.DataType,
+infer_datatype(data: Any) -> Union[pinnacle.components.datatype.DataType,
      type,
      NoneType]
 ```
@@ -24,7 +24,7 @@ Otherwise, return the inferred datatype
 infer_schema(data: Mapping[str,
      Any],
      identifier: Optional[str] = None,
-     ibis=False) -> pinnacledb.components.schema.Schema
+     ibis=False) -> pinnacle.components.schema.Schema
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -41,7 +41,7 @@ register_module(module_name)
 ```
 | Parameter | Description |
 |-----------|-------------|
-| module_name | The module name, e.g. "pinnacledb.ext.numpy.encoder" |
+| module_name | The module name, e.g. "pinnacle.ext.numpy.encoder" |
 
 Register a module for datatype inference.
 
@@ -51,7 +51,7 @@ Only modules with a check and create function will be registered
 
 ```python
 updated_schema_data_for_ibis(schema_data) -> Dict[str,
-     pinnacledb.components.datatype.DataType]
+     pinnacle.components.datatype.DataType]
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -65,7 +65,7 @@ Convert the basic data types to Ibis data types.
 
 ```python
 updated_schema_data_for_mongodb(schema_data) -> Dict[str,
-     pinnacledb.components.datatype.DataType]
+     pinnacle.components.datatype.DataType]
 ```
 | Parameter | Description |
 |-----------|-------------|

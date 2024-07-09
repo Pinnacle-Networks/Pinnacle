@@ -13,7 +13,7 @@
 (learn how to build a model [here](model))
 
 ```python
-from pinnacledb import Listener
+from pinnacle import Listener
 m = ...  # build a model
 q = ... # build a select query
 

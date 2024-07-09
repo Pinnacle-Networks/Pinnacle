@@ -1,6 +1,6 @@
-**`pinnacledb.backends.sqlalchemy.metadata`** 
+**`pinnacle.backends.sqlalchemy.metadata`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/sqlalchemy/metadata.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/sqlalchemy/metadata.py)
 
 ## `SQLAlchemyMetadata` 
 

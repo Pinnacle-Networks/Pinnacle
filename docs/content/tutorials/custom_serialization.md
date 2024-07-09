@@ -2,14 +2,14 @@
 # Custom serialization
 
 In this tutorial, we demonstrate how developers can flexibily and portably define
-their own classes in `pinnacledb`. These may be exported with `Component.export` 
-and transported to other `pinnacledb` deployments with `db.apply`.
+their own classes in `pinnacle`. These may be exported with `Component.export` 
+and transported to other `pinnacle` deployments with `db.apply`.
 
 To make our lives difficult, we'll include a data blob in the model, which should be serialized with the 
 exported class:
 
 ```python
-!curl -O https://pinnacledb-public-demo.s3.amazonaws.com/text.json
+!curl -O https://pinnacle-public-demo.s3.amazonaws.com/text.json
 import json
 
 with open('text.json') as f:
@@ -26,7 +26,7 @@ We are free to define any of our own parameters to this class with a simple anno
 is a `dataclasses.dataclass`:
 
 ```python
-from pinnacledb import *
+from pinnacle import *
 
 
 requires_packages(['openai', None, None])
@@ -79,22 +79,22 @@ m.export('test-hg')
       "_base": "?test-hg",
       "_builds": \{
         "dill": \{
-          "_path": "pinnacledb.components.datatype.get_serializer",
+          "_path": "pinnacle.components.datatype.get_serializer",
           "method": "dill",
           "encodable": "artifact"
         \},
         "d0cd766789b72ffd8cb3d56484b02d8262dcc9b4": \{
-          "_path": "pinnacledb.components.datatype.Artifact",
+          "_path": "pinnacle.components.datatype.Artifact",
           "datatype": "?dill",
           "blob": "&:blob:d0cd766789b72ffd8cb3d56484b02d8262dcc9b4"
         \},
         "pickle": \{
-          "_path": "pinnacledb.components.datatype.get_serializer",
+          "_path": "pinnacle.components.datatype.get_serializer",
           "method": "pickle",
           "encodable": "artifact"
         \},
         "e149b30249df8e7e2785fbbb58054cbe898a3cfd": \{
-          "_path": "pinnacledb.components.datatype.Artifact",
+          "_path": "pinnacle.components.datatype.Artifact",
           "datatype": "?pickle",
           "blob": "&:blob:e149b30249df8e7e2785fbbb58054cbe898a3cfd"
         \},
@@ -126,7 +126,7 @@ The following cell works even after restarting the kernel.
 That means the exported component is now completely portable!
 
 ```python
-from pinnacledb import *
+from pinnacle import *
 
 c = Component.read('test-hg')
 

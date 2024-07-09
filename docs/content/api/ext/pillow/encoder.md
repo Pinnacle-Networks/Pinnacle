@@ -1,6 +1,6 @@
-**`pinnacledb.ext.pillow.encoder`** 
+**`pinnacle.ext.pillow.encoder`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/pillow/encoder.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/ext/pillow/encoder.py)
 
 ## `encode_pil_image` 
 

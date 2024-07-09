@@ -3,18 +3,18 @@ import pytest
 try:
     import torch
 
-    from pinnacledb.ext.torch.model import TorchModel
+    from pinnacle.ext.torch.model import TorchModel
 except ImportError:
     torch = None
 
 from test.db_config import DBConfig
 
-from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.components.datatype import DataType
-from pinnacledb.components.metric import Metric
-from pinnacledb.components.model import Validation
-from pinnacledb.ext.torch.training import TorchTrainer
+from pinnacle.backends.mongodb.data_backend import MongoDataBackend
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.components.datatype import DataType
+from pinnacle.components.metric import Metric
+from pinnacle.components.model import Validation
+from pinnacle.ext.torch.training import TorchTrainer
 
 
 class ToDict:

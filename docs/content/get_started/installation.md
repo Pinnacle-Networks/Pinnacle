@@ -7,11 +7,11 @@ sidebar_position: 2
 There are two ways to get started:
 
 - [A local `pip` installation on your system](#pip).
-- [Running the `pinnacledb` docker image](#docker-image).
+- [Running the `pinnacle` docker image](#docker-image).
 
 ## Pip
 
-`pinnacledb` is available on [PyPi.org](https://pypi.org/project/pinnacledb/).
+`pinnacle` is available on [PyPi.org](https://pypi.org/project/pinnacle/).
 
 ### Prerequisites
 
@@ -19,7 +19,7 @@ Before you begin the installation process, please make sure you have the followi
 
 #### Operating System
 
-`pinnacledb` is compatible with several Linux distributions, including:
+`pinnacle` is compatible with several Linux distributions, including:
 
 - MacOS
 - Ubuntu
@@ -27,33 +27,33 @@ Before you begin the installation process, please make sure you have the followi
 
 #### Python Ecosystem
 
-If you plan to install SuperDuperDB from source, you'll need the following:
+If you plan to install pinnacle from source, you'll need the following:
 
 - `python3.10` or `python3.11`
 - `pip` 22.0.4 or later
 
-Your experience with `pinnacledb` on Linux may vary depending on your system and compute requirements.
+Your experience with `pinnacle` on Linux may vary depending on your system and compute requirements.
 
 ### Installation
 
-To install `pinnacledb` on your system using `pip`, open your terminal and run the following command:
+To install `pinnacle` on your system using `pip`, open your terminal and run the following command:
 
 ```bash
-pip install pinnacledb
+pip install pinnacle
 ```
 
-This command will install `pinnacledb` along with a minimal set of common dependencies required for running the framework.
-If you would like to use the `pinnacledb.ext` subpackages (e.g. `pinnacledb.ext.openai`), you may build a requirements file
+This command will install `pinnacle` along with a minimal set of common dependencies required for running the framework.
+If you would like to use the `pinnacle.ext` subpackages (e.g. `pinnacle.ext.openai`), you may build a requirements file
 with this command:
 
 ```bash
-python3 -m pinnacledb requirements <list-of-extensions> > requirements.txt
+python3 -m pinnacle requirements <list-of-extensions> > requirements.txt
 ```
 
 For example, this builds a `requirements.txt` file for `openai` and `torch`:
 
 ```bash
-python3 -m pinnacledb requirements openai torch > requirements.txt
+python3 -m pinnacle requirements openai torch > requirements.txt
 ```
 
 ## Docker Image
@@ -63,10 +63,10 @@ python3 -m pinnacledb requirements openai torch > requirements.txt
 If you prefer using Docker, you can pull a pre-built Docker image from Docker Hub and run it with Docker version 19.03 or later:
 
 ```bash
-docker run -p 8888:8888 pinnacledb/pinnacledb:latest
+docker run -p 8888:8888 pinnacle/pinnacle:latest
 ```
 
-This command installs the base `pinnacledb` image. If you want to run the ready-to-use examples, you'll need to download the required  dependencies at runtime. 
+This command installs the base `pinnacle` image. If you want to run the ready-to-use examples, you'll need to download the required  dependencies at runtime. 
 
 
 #### Building the image yourself
@@ -76,8 +76,8 @@ For more control, you can build the Docker images yourself from the latest GitHu
 Clone the code:
 
 ```bash
-git clone --branch main --single-branch --depth 1 https://github.com/SuperDuperDB/pinnacledb.git
-make build_pinnacledb
+git clone --branch main --single-branch --depth 1 https://github.com/pinnacle/pinnacle.git
+make build_pinnacle
 ```
 
 #### Developer's docker image and environment
@@ -92,5 +92,5 @@ You will see something like these lines in `docker images`:
 
 ```bash
 REPOSITORY                    TAG             IMAGE ID       CREATED        SIZE
-pinnacledb/sandbox          latest          88ddab334d17   5 days ago     2.69GB
+pinnacle/sandbox          latest          88ddab334d17   5 days ago     2.69GB
 ```

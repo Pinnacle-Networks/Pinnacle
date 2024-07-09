@@ -1,11 +1,11 @@
-**`pinnacledb.base.leaf`** 
+**`pinnacle.base.leaf`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/leaf.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/leaf.py)
 
 ## `find_leaf_cls` 
 
 ```python
-find_leaf_cls(full_import_path) -> Type[pinnacledb.base.leaf.Leaf]
+find_leaf_cls(full_import_path) -> Type[pinnacle.base.leaf.Leaf]
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -19,7 +19,7 @@ Find leaf class by class full import path.
 Leaf(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>) -> None
+     uuid: str = None) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|

@@ -3,10 +3,10 @@ import os
 import pytest
 import transformers
 
-from pinnacledb import pinnacle
-from pinnacledb.backends.mongodb import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.ext.transformers.model import LLM
+from pinnacle import pinnacle
+from pinnacle.backends.mongodb import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.ext.transformers.model import LLM
 
 try:
     import datasets
@@ -14,7 +14,7 @@ try:
     import torch
     import trl
 
-    from pinnacledb.ext.transformers.training import LLMTrainer
+    from pinnacle.ext.transformers.training import LLMTrainer
 
     GPU_AVAILABLE = torch.cuda.is_available()
 except ImportError:

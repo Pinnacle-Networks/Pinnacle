@@ -1,6 +1,6 @@
-**`pinnacledb.base.config_dicts`** 
+**`pinnacle.base.config_dicts`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/config_dicts.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/config_dicts.py)
 
 ## `combine_configs` 
 

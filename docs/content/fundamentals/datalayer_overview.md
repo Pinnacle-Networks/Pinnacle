@@ -4,35 +4,35 @@ sidebar_position: 3
 
 # Datalayer
 
-The `Datalayer` is the principle point of entry in `pinnacledb` for:
+The `Datalayer` is the principle point of entry in `pinnacle` for:
 
 - Communicating with the database
 - Instructing models and other components to work together with the database
-- Accessing and storing meta-data about your `pinnacledb` models and data
+- Accessing and storing meta-data about your `pinnacle` models and data
 
 Technically, the `Datalayer` "wires together" several important backends involved in the AI workflow:
 
 - Querying the database via the **databackend**
 - Storing and retrieving serialized model-weights and other artifacts from the **artifact store**
-- Storing and retrieval important meta-data, from the **meta-data store** and information about models and other components which are to be installed with `pinnacledb`
+- Storing and retrieval important meta-data, from the **meta-data store** and information about models and other components which are to be installed with `pinnacle`
 - Performing computations over the data in the **databackend** using the models saved in the **artifact store**
 
 ```python
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 
 db = pinnacle()
 
 db.databackend
-# <pinnacledb.backends.mongodb.data_backend.MongoDataBackend at 0x1562815d0>
+# <pinnacle.backends.mongodb.data_backend.MongoDataBackend at 0x1562815d0>
 
 db.artifact_store
-# <pinnacledb.backends.mongodb.artifacts.MongoArtifactStore at 0x156869f50>
+# <pinnacle.backends.mongodb.artifacts.MongoArtifactStore at 0x156869f50>
 
 db.metadata
-# <pinnacledb.backends.mongodb.metadata.MongoMetaDataStore at 0x156866a10>
+# <pinnacle.backends.mongodb.metadata.MongoMetaDataStore at 0x156866a10>
 
 db.compute
-# <pinnacledb.backends.local.LocalComputeBackend 0x152866a10>
+# <pinnacle.backends.local.LocalComputeBackend 0x152866a10>
 ```
 
 Our aim is to make it easy to set-up each aspect of the `Datalayer` with your preferred
@@ -40,9 +40,9 @@ connections/ engines.
 
 ### Data-backend
 
-The databackend typically connects to your database (although `pinnacledb` also supports other databackends such as a directory of `pandas` dataframes), 
+The databackend typically connects to your database (although `pinnacle` also supports other databackends such as a directory of `pandas` dataframes), 
 and dispatches queries written in an query API which is compatible with that databackend, but which also includes additional aspects
-specific to `pinnacledb`.
+specific to `pinnacle`.
 
 Read more [here](../data_integrations/supported_query_APIs.md).
 
@@ -152,12 +152,12 @@ db = pinnacle('sqlite://<my-database>.db')
 ...and
 
 ```python
-from pinnacledb.backends.local.compute import LocalComputeBackend
+from pinnacle.backends.local.compute import LocalComputeBackend
 
 db = pinnacle(
     'sqlite://<my-database>.db',
     metadata_store='sqlite://<my-database>.db',
-    artifact_store='filesystem://.pinnacledb/artifacts/',
+    artifact_store='filesystem://.pinnacle/artifacts/',
     compute=LocalComputeBackend(),
 )
 ```
@@ -196,4 +196,4 @@ Validate your components (mostly models)
 
 ### `db.predict`
 
-Infer predictions from models hosted by `pinnacledb`. Read more about this and about models [here](../walkthrough/apply_models.md).
+Infer predictions from models hosted by `pinnacle`. Read more about this and about models [here](../walkthrough/apply_models.md).

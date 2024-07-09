@@ -5,19 +5,19 @@ import pytest
 import torch.nn
 import torchvision
 
-from pinnacledb import CFG
-from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.base.document import Document as D
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.schema import Schema
-from pinnacledb.ext.pillow.encoder import pil_image
-from pinnacledb.ext.torch.encoder import tensor
-from pinnacledb.ext.torch.model import TorchModel
+from pinnacle import CFG
+from pinnacle.backends.ibis.field_types import dtype
+from pinnacle.base.document import Document as D
+from pinnacle.components.listener import Listener
+from pinnacle.components.schema import Schema
+from pinnacle.ext.pillow.encoder import pil_image
+from pinnacle.ext.torch.encoder import tensor
+from pinnacle.ext.torch.model import TorchModel
 
 DO_SKIP = CFG.data_backend.startswith('mongo')
 
 
-from pinnacledb import pinnacle
+from pinnacle import pinnacle
 
 
 @pytest.fixture
@@ -57,7 +57,7 @@ def _end_2_end(db, memory_table=False):
         {'id': '4', 'health': 1, 'age': 28, 'image': im},
     ]
 
-    from pinnacledb.components.table import Table
+    from pinnacle.components.table import Table
 
     t = Table(identifier='my_table', schema=schema, db=db)
 
@@ -177,7 +177,7 @@ def test_nested_query(clean_cache):
         },
     )
 
-    from pinnacledb.components.table import Table
+    from pinnacle.components.table import Table
 
     t = Table(identifier='my_table', schema=schema)
 

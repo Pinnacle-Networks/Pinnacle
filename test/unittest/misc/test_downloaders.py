@@ -5,18 +5,18 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb import CFG
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.ext.pillow.encoder import pil_image
-from pinnacledb.misc.download import Fetcher
+from pinnacle import CFG
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.ext.pillow.encoder import pil_image
+from pinnacle.misc.download import Fetcher
 
 remote = os.environ.get('SDDB_REMOTE_TEST', 'local')
 
 
 def test_s3_and_web():
     if remote == 'remote':
-        Fetcher()('s3://pinnacledb-bucket/img/black.png')
+        Fetcher()('s3://pinnacle-bucket/img/black.png')
 
 
 @pytest.fixture

@@ -7,7 +7,7 @@
 ***Usage pattern***
 
 ```python
-from pinnacledb import Metric
+from pinnacle import Metric
 
 def example_comparison(x, y):
     return sum([xx == yy for xx, yy in zip(x, y)]) / len(x)

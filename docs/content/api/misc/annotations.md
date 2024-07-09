@@ -1,6 +1,6 @@
-**`pinnacledb.misc.annotations`** 
+**`pinnacle.misc.annotations`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/annotations.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/annotations.py)
 
 ## `merge_docstrings` 
 
@@ -79,10 +79,10 @@ replace_parameters(doc,
 
 Replace parameters in a doc-string with a placeholder.
 
-## `SuperDuperDBDeprecationWarning` 
+## `pinnacleDeprecationWarning` 
 
 ```python
-SuperDuperDBDeprecationWarning(self,
+pinnacleDeprecationWarning(self,
      /,
      *args,
      **kwargs)

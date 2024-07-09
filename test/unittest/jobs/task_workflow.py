@@ -7,8 +7,8 @@ ibis.options.interactive = True
 import numpy as np
 import pytest
 
-from pinnacledb import Document
-from pinnacledb.components.model import ObjectModel
+from pinnacle import Document
+from pinnacle.components.model import ObjectModel
 
 EMPTY_CASES = [DBConfig.sqldb_empty, DBConfig.mongodb_empty]
 

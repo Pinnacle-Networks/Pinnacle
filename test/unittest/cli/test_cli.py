@@ -1,9 +1,9 @@
 import json
 
-from pinnacledb.misc import run
+from pinnacle.misc import run
 
 
 def test_cli_info():
-    data = run.out(('python', '-m', 'pinnacledb', 'info')).strip()
+    data = run.out(('python', '-m', 'pinnacle', 'info')).strip()
     assert data.startswith('```') and data.endswith('```')
     json.loads(data[3:-3])

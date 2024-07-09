@@ -1,6 +1,6 @@
-**`pinnacledb.backends.base.metadata`** 
+**`pinnacle.backends.base.metadata`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/base/metadata.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/base/metadata.py)
 
 ## `MetaDataStore` 
 

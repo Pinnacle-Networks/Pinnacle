@@ -7,10 +7,10 @@ import PIL
 import pytest
 import torch
 
-from pinnacledb.base.document import Document
-from pinnacledb.base.exceptions import UnsupportedDatatype
-from pinnacledb.components.table import Table
-from pinnacledb.misc.auto_schema import infer_datatype, infer_schema
+from pinnacle.base.document import Document
+from pinnacle.base.exceptions import UnsupportedDatatype
+from pinnacle.components.table import Table
+from pinnacle.misc.auto_schema import infer_datatype, infer_schema
 
 
 @pytest.fixture

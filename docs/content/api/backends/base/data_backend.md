@@ -1,6 +1,6 @@
-**`pinnacledb.backends.base.data_backend`** 
+**`pinnacle.backends.base.data_backend`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/base/data_backend.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/base/data_backend.py)
 
 ## `BaseDataBackend` 
 

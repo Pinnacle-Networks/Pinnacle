@@ -16,9 +16,9 @@ import DownloadButton from '../downloadButton.js';
         ```python
         # If data is in a format natively supported by MongoDB, we don't need to do anything.
         # However to manually specify datatypes, do as below
-        from pinnacledb import Schema
-        from pinnacledb.ext.pillow import pil_image
-        from pinnacledb.components.datatype import pickle_serializer
+        from pinnacle import Schema
+        from pinnacle.ext.pillow import pil_image
+        from pinnacle.components.datatype import pickle_serializer
         
         fields = {
             'serialized_content': pickle_serializer,
@@ -40,9 +40,9 @@ import DownloadButton from '../downloadButton.js';
     </TabItem>
     <TabItem value="SQL" label="SQL" default>
         ```python
-        from pinnacledb import Table
-        from pinnacledb import Schema, DataType
-        from pinnacledb.backends.ibis.field_types import dtype
+        from pinnacle import Table
+        from pinnacle import Schema, DataType
+        from pinnacle.backends.ibis.field_types import dtype
         
         for index, data in enumerate(datas):
             data["id"] = str(index) 

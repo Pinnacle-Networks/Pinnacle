@@ -7,7 +7,7 @@ deployed to externalize vector-search from the databackend.
 Here's how to deploy it:
 
 ```python
-pinnacledb vector-searcher
+pinnacle vector-searcher
 ```
 
 Here are the endpoints:

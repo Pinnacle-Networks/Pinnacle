@@ -5,17 +5,17 @@ from pprint import pprint
 
 import numpy as np
 
-from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.base.document import Document
-from pinnacledb.base.enums import DBType
-from pinnacledb.components.component import Component
-from pinnacledb.components.datatype import (
+from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.document import Document
+from pinnacle.base.enums import DBType
+from pinnacle.components.component import Component
+from pinnacle.components.datatype import (
     DataType,
     Empty,
     _BaseEncodable,
 )
-from pinnacledb.components.schema import Schema
-from pinnacledb.components.table import Table
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
 
 
 def assert_equal(expect, actual):

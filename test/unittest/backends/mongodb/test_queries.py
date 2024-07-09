@@ -8,9 +8,9 @@ except ImportError:
 import random
 from test.db_config import DBConfig
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.components.datatype import DataType
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.components.datatype import DataType
 
 
 def get_new_data(encoder: DataType, n=10, update=False):
@@ -69,7 +69,7 @@ def test_replace(db):
 def test_insert_from_uris(db, image_url):
     import PIL
 
-    from pinnacledb.ext.pillow.encoder import pil_image
+    from pinnacle.ext.pillow.encoder import pil_image
 
     if image_url.startswith('file://'):
         image_url = image_url[7:]
@@ -89,8 +89,8 @@ def test_insert_from_uris(db, image_url):
 def test_insert_from_uris_bytes_encoding(db, image_url):
     import PIL
 
-    from pinnacledb.base.config import BytesEncoding
-    from pinnacledb.ext.pillow.encoder import pil_image
+    from pinnacle.base.config import BytesEncoding
+    from pinnacle.ext.pillow.encoder import pil_image
 
     my_pil_image = DataType(
         'my_pil_image',

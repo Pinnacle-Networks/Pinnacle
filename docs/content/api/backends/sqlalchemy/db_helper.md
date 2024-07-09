@@ -1,6 +1,6 @@
-**`pinnacledb.backends.sqlalchemy.db_helper`** 
+**`pinnacle.backends.sqlalchemy.db_helper`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/sqlalchemy/db_helper.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/sqlalchemy/db_helper.py)
 
 ## `create_clickhouse_config` 
 

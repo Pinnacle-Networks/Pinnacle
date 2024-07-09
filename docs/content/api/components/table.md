@@ -1,6 +1,6 @@
-**`pinnacledb.components.table`** 
+**`pinnacle.components.table`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/table.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/table.py)
 
 ## `Table` 
 
@@ -8,10 +8,10 @@
 Table(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
-     schema: pinnacledb.components.schema.Schema,
+     schema: pinnacle.components.schema.Schema,
      primary_id: str = 'id') -> None
 ```
 | Parameter | Description |

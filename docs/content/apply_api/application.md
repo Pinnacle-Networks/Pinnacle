@@ -11,7 +11,7 @@
 (Learn how to build a model [here](model))
 
 ```python
-from pinnacledb import Application
+from pinnacle import Application
 
 template = db.load('template', 'my_template')
 

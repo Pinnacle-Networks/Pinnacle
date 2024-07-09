@@ -14,7 +14,7 @@ import DownloadButton from '../downloadButton.js';
 <Tabs>
     <TabItem value="Scikit-Learn" label="Scikit-Learn" default>
         ```python
-        from pinnacledb.ext.sklearn import Estimator, SklearnTrainer
+        from pinnacle.ext.sklearn import Estimator, SklearnTrainer
         from sklearn.svm import SVC
         
         model = Estimator(
@@ -32,8 +32,8 @@ import DownloadButton from '../downloadButton.js';
         ```python
         import torch
         from torch import nn
-        from pinnacledb.ext.torch.model import TorchModel
-        from pinnacledb.ext.torch.training import TorchTrainer
+        from pinnacle.ext.torch.model import TorchModel
+        from pinnacle.ext.torch.training import TorchTrainer
         from torch.nn.functional import cross_entropy
         
         

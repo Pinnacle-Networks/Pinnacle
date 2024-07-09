@@ -1,6 +1,6 @@
-**`pinnacledb.backends.ibis.data_backend`** 
+**`pinnacle.backends.ibis.data_backend`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/ibis/data_backend.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/ibis/data_backend.py)
 
 ## `IbisDataBackend` 
 

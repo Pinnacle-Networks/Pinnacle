@@ -1,11 +1,11 @@
 # Execute API
 
-SuperDuperDB implements 2 main classes of `db.databackend`:
+pinnacle implements 2 main classes of `db.databackend`:
 
 - [MongoDB](../data_integrations/mongodb)
 - [SQL backends](../data_integrations/sql)
 
-Correspondingly, SuperDuperDB currently has 2 flavours of query API:
+Correspondingly, pinnacle currently has 2 flavours of query API:
 
 - [`pymongo`](https://pymongo.readthedocs.io/en/stable/)
 - [`ibis`](https://ibis-project.org/)

@@ -4,13 +4,13 @@ from typing import Any, ClassVar, Optional, Sequence
 import numpy
 import pytest
 
-from pinnacledb.ext.torch.training import TorchTrainer
+from pinnacle.ext.torch.training import TorchTrainer
 
 try:
     import torch
 
-    from pinnacledb.ext.torch.encoder import tensor
-    from pinnacledb.ext.torch.model import TorchModel
+    from pinnacle.ext.torch.encoder import tensor
+    from pinnacle.ext.torch.model import TorchModel
 except ImportError:
     torch = None
 
@@ -19,14 +19,14 @@ import dataclasses as dc
 from test.db_config import DBConfig
 from unittest.mock import MagicMock, patch
 
-from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.backends.mongodb.data_backend import MongoDataBackend
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.datalayer import Datalayer
-from pinnacledb.base.document import Document
-from pinnacledb.components.component import Component
-from pinnacledb.components.dataset import Dataset
-from pinnacledb.components.datatype import (
+from pinnacle.backends.ibis.field_types import dtype
+from pinnacle.backends.mongodb.data_backend import MongoDataBackend
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.document import Document
+from pinnacle.components.component import Component
+from pinnacle.components.dataset import Dataset
+from pinnacle.components.datatype import (
     DataType,
     LazyArtifact,
     dill_serializer,
@@ -35,10 +35,10 @@ from pinnacledb.components.datatype import (
     pickle_encoder,
     pickle_serializer,
 )
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.model import ObjectModel, _Fittable
-from pinnacledb.components.schema import Schema
-from pinnacledb.components.table import Table
+from pinnacle.components.listener import Listener
+from pinnacle.components.model import ObjectModel, _Fittable
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
 
 n_data_points = 250
 
@@ -630,7 +630,7 @@ def test_compound_component(db):
 @pytest.mark.skipif(not torch, reason='Torch not installed')
 @pytest.mark.parametrize("db", EMPTY_CASES, indirect=True)
 def test_reload_dataset(db):
-    from pinnacledb.components.dataset import Dataset
+    from pinnacle.components.dataset import Dataset
 
     if isinstance(db.databackend.type, MongoDataBackend):
         select = db['documents'].find({'_fold': 'valid'})

@@ -4,7 +4,7 @@ from test.unittest.component.datatype import utils
 
 import pytest
 
-from pinnacledb import DataType
+from pinnacle import DataType
 
 
 @pytest.fixture

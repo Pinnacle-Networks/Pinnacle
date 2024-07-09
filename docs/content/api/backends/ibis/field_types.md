@@ -1,6 +1,6 @@
-**`pinnacledb.backends.ibis.field_types`** 
+**`pinnacle.backends.ibis.field_types`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/backends/ibis/field_types.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/backends/ibis/field_types.py)
 
 ## `dtype` 
 
@@ -18,7 +18,7 @@ Ibis dtype to represent basic data types in ibis.
 ```python
 FieldType(self,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      identifier: Union[str,
      ibis.expr.datatypes.core.DataType]) -> None

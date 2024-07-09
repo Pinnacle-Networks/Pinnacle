@@ -1,6 +1,6 @@
-**`pinnacledb.base.configs`** 
+**`pinnacle.base.configs`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/configs.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/configs.py)
 
 ## `ConfigError` 
 

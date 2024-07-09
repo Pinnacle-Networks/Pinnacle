@@ -21,7 +21,7 @@ won't be necessary.
 <Tabs>
     <TabItem value="Text" label="Text" default>
         ```python
-        from pinnacledb import model
+        from pinnacle import model
         
         CHUNK_SIZE = 200
         
@@ -35,7 +35,7 @@ won't be necessary.
     <TabItem value="PDF" label="PDF" default>
         ```python
         !pip install -q "unstructured[pdf]"
-        from pinnacledb import model
+        from pinnacle import model
         from unstructured.partition.pdf import partition_pdf
         
         CHUNK_SIZE = 500
@@ -54,8 +54,8 @@ won't be necessary.
         import cv2
         import tqdm
         from PIL import Image
-        from pinnacledb.ext.pillow import pil_image
-        from pinnacledb import model, Schema
+        from pinnacle.ext.pillow import pil_image
+        from pinnacle import model, Schema
         
         
         @model(
@@ -103,7 +103,7 @@ won't be necessary.
     </TabItem>
     <TabItem value="Audio" label="Audio" default>
         ```python
-        from pinnacledb import model, Schema
+        from pinnacle import model, Schema
         
         CHUNK_SIZE = 10  # in seconds
         
@@ -123,7 +123,7 @@ won't be necessary.
 Now we apply this chunker to the data by wrapping the chunker in `Listener`:
 
 ```python
-from pinnacledb import Listener
+from pinnacle import Listener
 
 upstream_listener = Listener(
     model=chunker,

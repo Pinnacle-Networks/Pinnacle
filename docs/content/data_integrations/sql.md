@@ -4,8 +4,8 @@ sidebar_position: 3
 
 # SQL
 
-`pinnacledb` supports SQL databases via the [`ibis` project](https://ibis-project.org/).
-With `pinnacledb`, queries may be built which conform to the `ibis` API, with additional 
+`pinnacle` supports SQL databases via the [`ibis` project](https://ibis-project.org/).
+With `pinnacle`, queries may be built which conform to the `ibis` API, with additional 
 support for complex data-types and vector-searches.
 
 ## Inserting data
@@ -28,7 +28,7 @@ t.insert(dataframe.to_dict(orient='records'))
 
 ## Selecting data
 
-`pinnacledb` supports selecting data via the `ibis` query API.
+`pinnacle` supports selecting data via the `ibis` query API.
 For example:
 
 ```python
@@ -63,7 +63,7 @@ Vector-searches are either first or last in a chain of operations:
 
 ## Updating data
 
-Updates are not covered for `pinnacledb` SQL integrations.
+Updates are not covered for `pinnacle` SQL integrations.
 
 ## Deleting data
 

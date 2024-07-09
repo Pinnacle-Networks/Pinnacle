@@ -74,7 +74,7 @@ jobs:
 
     - name: Unit Testing
       run: |
-        make unit_testing pytest_arguments="--cov=pinnacledb --cov-report=xml"
+        make unit_testing pytest_arguments="--cov=pinnacle --cov-report=xml"
 
     - name: Ext Testing
       run: |

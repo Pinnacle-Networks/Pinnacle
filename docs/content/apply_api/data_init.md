@@ -5,7 +5,7 @@
 ***Usage pattern***
 
 ```python
-from pinnacledb.components.dataset import DataInit
+from pinnacle.components.dataset import DataInit
 data = [{"x": i, "y": [1, 2, 3]} for i in range(10)]
 data_init = DataInit(data=data, table="documents", identifier="test_data_init")
 

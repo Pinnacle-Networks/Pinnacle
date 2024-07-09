@@ -15,7 +15,7 @@ import DownloadButton from '../downloadButton.js';
     <TabItem value="OpenAI" label="OpenAI" default>
         ```python
         !pip install openai
-        from pinnacledb.ext.openai import OpenAIEmbedding
+        from pinnacle.ext.openai import OpenAIEmbedding
         
         embedding_model = OpenAIEmbedding(identifier='text-embedding-ada-002')        
         ```
@@ -23,7 +23,7 @@ import DownloadButton from '../downloadButton.js';
     <TabItem value="JinaAI" label="JinaAI" default>
         ```python
         import os
-        from pinnacledb.ext.jina import JinaEmbedding
+        from pinnacle.ext.jina import JinaEmbedding
         
         os.environ["JINA_API_KEY"] = "jina_xxxx"
          
@@ -34,9 +34,9 @@ import DownloadButton from '../downloadButton.js';
     <TabItem value="Sentence-Transformers" label="Sentence-Transformers" default>
         ```python
         !pip install sentence-transformers
-        from pinnacledb import vector
+        from pinnacle import vector
         import sentence_transformers
-        from pinnacledb.ext.sentence_transformers import SentenceTransformer
+        from pinnacle.ext.sentence_transformers import SentenceTransformer
         
         embedding_model = SentenceTransformer(
             identifier="embedding",
@@ -49,8 +49,8 @@ import DownloadButton from '../downloadButton.js';
     </TabItem>
     <TabItem value="Transformers" label="Transformers" default>
         ```python
-        from pinnacledb import vector
-        from pinnacledb.components.model import Model, ensure_initialized, Signature
+        from pinnacle import vector
+        from pinnacle.components.model import Model, ensure_initialized, Signature
         from transformers import AutoTokenizer, AutoModel
         import torch
         
@@ -85,7 +85,7 @@ import DownloadButton from '../downloadButton.js';
     </TabItem>
 </Tabs>
 ```python
-print(len(embedding_model.predict("What is SuperDuperDB")))
+print(len(embedding_model.predict("What is pinnacle")))
 ```
 
 <DownloadButton filename="build_text_embedding_model.md" />

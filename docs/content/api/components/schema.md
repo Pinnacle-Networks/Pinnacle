@@ -1,13 +1,13 @@
-**`pinnacledb.components.schema`** 
+**`pinnacle.components.schema`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/schema.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/schema.py)
 
 ## `get_schema` 
 
 ```python
 get_schema(db,
-     schema: Union[pinnacledb.components.schema.Schema,
-     str]) -> Optional[pinnacledb.components.schema.Schema]
+     schema: Union[pinnacle.components.schema.Schema,
+     str]) -> Optional[pinnacle.components.schema.Schema]
 ```
 | Parameter | Description |
 |-----------|-------------|
@@ -22,11 +22,11 @@ Handle schema caching and loading.
 Schema(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
      fields: Mapping[str,
-     pinnacledb.components.datatype.DataType]) -> None
+     pinnacle.components.datatype.DataType]) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|

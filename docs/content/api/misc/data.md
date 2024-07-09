@@ -1,6 +1,6 @@
-**`pinnacledb.misc.data`** 
+**`pinnacle.misc.data`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/data.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/data.py)
 
 ## `ibatch` 
 

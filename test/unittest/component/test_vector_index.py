@@ -1,4 +1,4 @@
-from pinnacledb.base.datalayer import ibatch
+from pinnacle.base.datalayer import ibatch
 
 
 def test_ibatch():
@@ -7,4 +7,4 @@ def test_ibatch():
     assert actual == expected
 
 
-# TODO: test pinnacledb.components.vector_index
+# TODO: test pinnacle.components.vector_index

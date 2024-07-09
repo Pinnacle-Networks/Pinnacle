@@ -18,7 +18,7 @@ Table can potentially include
 more columns which don't need encoding:
 
 ```python
-from pinnacledb import Schema
+from pinnacle import Schema
 
 schema = Schema(
     'my-schema',
@@ -36,7 +36,7 @@ db.apply(schema)
 All columns should be flagged with either `DataType` or `dtype`:
 
 ```python
-from pinnacledb.backends.ibis import dtype
+from pinnacle.backends.ibis import dtype
 
 schema = Schema(
     'my-schema',
@@ -74,7 +74,7 @@ need differential encoding. The `Schema` is applied to the columns of output,
 to get something which can be saved in the `db.databackend`.
 
 ```python
-from pinnacledb import ObjectModel
+from pinnacle import ObjectModel
 
 m = Model(
     'my-model',

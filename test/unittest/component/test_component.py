@@ -7,17 +7,17 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb import ObjectModel
-from pinnacledb.components.component import Component
-from pinnacledb.components.datatype import (
+from pinnacle import ObjectModel
+from pinnacle.components.component import Component
+from pinnacle.components.datatype import (
     Artifact,
     DataType,
     Empty,
     LazyArtifact,
     dill_serializer,
 )
-from pinnacledb.components.listener import Listener
-from pinnacledb.ext.torch.encoder import tensor
+from pinnacle.components.listener import Listener
+from pinnacle.ext.torch.encoder import tensor
 
 
 @pytest.fixture
@@ -114,7 +114,7 @@ def test_set_variables(db):
         select=db['docs'].find(),
     )
 
-    from pinnacledb import Document
+    from pinnacle import Document
 
     e = m.encode()
     recon = Document.decode(e).unpack()

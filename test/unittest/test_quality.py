@@ -1,8 +1,8 @@
 import re
 
-import pinnacledb as s
+import pinnacle as s
 
-CODE_ROOTS = s.ROOT / 'pinnacledb', s.ROOT / 'test'
+CODE_ROOTS = s.ROOT / 'pinnacle', s.ROOT / 'test'
 
 # DEFECTS maps defect names to functions that match a defect in a line of code.
 # The last two patterns match their own definitions :-D so 1 is the lowest possible

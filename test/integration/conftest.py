@@ -6,15 +6,15 @@ import pytest
 try:
     import torch
 
-    from pinnacledb.ext.torch.encoder import tensor
-    from pinnacledb.ext.torch.model import TorchModel
+    from pinnacle.ext.torch.encoder import tensor
+    from pinnacle.ext.torch.model import TorchModel
 except ImportError:
     torch = None
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.document import Document
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.vector_index import VectorIndex
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.document import Document
+from pinnacle.components.listener import Listener
+from pinnacle.components.vector_index import VectorIndex
 
 # Set the seeds
 random.seed(42)

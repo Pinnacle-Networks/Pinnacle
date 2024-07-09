@@ -1,13 +1,13 @@
-**`pinnacledb.base.code`** 
+**`pinnacle.base.code`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/code.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/code.py)
 
 ## `Code` 
 
 ```python
 Code(self,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      identifier: str = '',
      code: str) -> None

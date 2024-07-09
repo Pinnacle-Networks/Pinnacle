@@ -1,6 +1,6 @@
-**`pinnacledb.base.cursor`** 
+**`pinnacle.base.cursor`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/base/cursor.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/base/cursor.py)
 
 ## `SelectResult` 
 

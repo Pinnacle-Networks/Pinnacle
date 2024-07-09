@@ -1,6 +1,6 @@
-**`pinnacledb.misc.hash`** 
+**`pinnacle.misc.hash`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/misc/hash.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/misc/hash.py)
 
 ## `hash_string` 
 

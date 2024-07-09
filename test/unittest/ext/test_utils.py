@@ -1,6 +1,6 @@
 import pytest
 
-from pinnacledb.ext.utils import format_prompt, get_key
+from pinnacle.ext.utils import format_prompt, get_key
 
 
 def test_patch_environment_variable(monkeypatch):

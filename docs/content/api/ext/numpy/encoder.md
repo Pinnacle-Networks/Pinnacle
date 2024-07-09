@@ -1,6 +1,6 @@
-**`pinnacledb.ext.numpy.encoder`** 
+**`pinnacle.ext.numpy.encoder`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/numpy/encoder.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/ext/numpy/encoder.py)
 
 ## `array` 
 

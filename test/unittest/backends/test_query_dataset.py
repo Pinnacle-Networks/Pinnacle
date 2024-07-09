@@ -1,8 +1,8 @@
 import pytest
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.backends.query_dataset import QueryDataset
-from pinnacledb.components.model import Mapping
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.backends.query_dataset import QueryDataset
+from pinnacle.components.model import Mapping
 
 try:
     import torch

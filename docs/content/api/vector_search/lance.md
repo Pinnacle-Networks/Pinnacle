@@ -1,6 +1,6 @@
-**`pinnacledb.vector_search.lance`** 
+**`pinnacle.vector_search.lance`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/vector_search/lance.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/vector_search/lance.py)
 
 ## `LanceVectorSearcher` 
 

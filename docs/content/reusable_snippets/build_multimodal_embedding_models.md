@@ -17,7 +17,7 @@ Otherwise:
 <Tabs>
     <TabItem value="Text" label="Text" default>
         ```python
-        from pinnacledb.ext.sentence_transformers import SentenceTransformer
+        from pinnacle.ext.sentence_transformers import SentenceTransformer
         
         # Load the pre-trained sentence transformer model
         model = SentenceTransformer(
@@ -36,7 +36,7 @@ Otherwise:
         import warnings
         
         # Import custom modules
-        from pinnacledb.ext.torch import TorchModel, tensor
+        from pinnacle.ext.torch import TorchModel, tensor
         
         # Define a series of image transformations using torchvision.transforms.Compose
         t = transforms.Compose([
@@ -76,8 +76,8 @@ Otherwise:
         ```python
         !pip install git+https://github.com/openai/CLIP.git
         import clip
-        from pinnacledb import vector
-        from pinnacledb.ext.torch import TorchModel
+        from pinnacle import vector
+        from pinnacle.ext.torch import TorchModel
         
         # Load the CLIP model and obtain the preprocessing function
         model, preprocess = clip.load("ViT-B/32", device='cpu')
@@ -111,8 +111,8 @@ Otherwise:
         !pip install librosa
         import librosa
         import numpy as np
-        from pinnacledb import ObjectModel
-        from pinnacledb import vector
+        from pinnacle import ObjectModel
+        from pinnacle import vector
         
         def audio_embedding(audio_file):
             # Load the audio file

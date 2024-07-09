@@ -1,6 +1,6 @@
 import pytest
 
-from pinnacledb.misc.anonymize import anonymize_url
+from pinnacle.misc.anonymize import anonymize_url
 
 params = [
     (

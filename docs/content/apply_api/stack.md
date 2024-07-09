@@ -7,7 +7,7 @@
 ***Usage pattern***
 
 ```python
-from pinnacledb import Stack
+from pinnacle import Stack
 
 stack = Stack(
     'my-stack',
@@ -42,10 +42,10 @@ based on those vectors and the label set.
 from sklearn.svm import SVC
 from my_models.vision import MyTorchModule, prepare_image
 
-from pinnacledb.ext.numpy import array
-from pinnacledb.ext.sklearn import Estimator, SklearnTrainer
-from pinnacledb.ext.torch import TorchModel
-from pinnacledb import Stack, VectorIndex, Listener
+from pinnacle.ext.numpy import array
+from pinnacle.ext.sklearn import Estimator, SklearnTrainer
+from pinnacle.ext.torch import TorchModel
+from pinnacle import Stack, VectorIndex, Listener
 
 
 my_listener=Listener(

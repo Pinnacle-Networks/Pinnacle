@@ -7,7 +7,7 @@
 (Learn how to build a `Model` [here](model))
 
 ```python
-from pinnacledb.ext.<extension> import <ExtensionTrainer>
+from pinnacle.ext.<extension> import <ExtensionTrainer>
 
 trainer = <ExtensionTrainer>(
     'my-trainer',

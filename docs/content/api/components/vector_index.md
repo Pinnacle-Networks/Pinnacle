@@ -1,6 +1,6 @@
-**`pinnacledb.components.vector_index`** 
+**`pinnacle.components.vector_index`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/vector_index.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/vector_index.py)
 
 ## `sqlvector` 
 
@@ -34,13 +34,13 @@ Create an encoder for a vector (list of ints/ floats) of a given shape.
 VectorIndex(self,
      identifier: str,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: str = <factory>,
+     uuid: str = None,
      *,
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
-     indexing_listener: pinnacledb.components.listener.Listener,
-     compatible_listener: Optional[pinnacledb.components.listener.Listener] = None,
-     measure: pinnacledb.vector_search.base.VectorIndexMeasureType = <VectorIndexMeasureType.cosine: 'cosine'>,
-     metric_values: Optional[Dict] = <factory>) -> None
+     indexing_listener: pinnacle.components.listener.Listener,
+     compatible_listener: Optional[pinnacle.components.listener.Listener] = None,
+     measure: pinnacle.vector_search.base.VectorIndexMeasureType = <VectorIndexMeasureType.cosine: 'cosine'>,
+     metric_values: Optional[Dict] = None) -> None
 ```
 | Parameter | Description |
 |-----------|-------------|

@@ -5,22 +5,22 @@ from test.db_config import DBConfig
 
 import pytest
 
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.constant import KEY_BLOBS, KEY_BUILDS
-from pinnacledb.components.datatype import Artifact, DataType
-from pinnacledb.components.model import ObjectModel
-from pinnacledb.components.schema import Schema
-from pinnacledb.components.table import Table
-from pinnacledb.ext.pillow.encoder import image_type, pil_image
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.constant import KEY_BLOBS, KEY_BUILDS
+from pinnacle.components.datatype import Artifact, DataType
+from pinnacle.components.model import ObjectModel
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
+from pinnacle.ext.pillow.encoder import image_type, pil_image
 
 try:
     import torch
 
-    from pinnacledb.ext.torch.encoder import tensor
+    from pinnacle.ext.torch.encoder import tensor
 except ImportError:
     torch = None
 
-from pinnacledb.base.document import Document
+from pinnacle.base.document import Document
 
 
 @pytest.fixture
@@ -60,7 +60,7 @@ def test_flat_query_encoding():
 def test_encode_decode_flattened_document():
     import PIL.Image
 
-    from pinnacledb.ext.pillow.encoder import image_type
+    from pinnacle.ext.pillow.encoder import image_type
 
     schema = Schema(
         'my-schema', fields={'img': image_type(identifier='png', encodable='artifact')}
@@ -126,7 +126,7 @@ def test_encode_model():
 def test_decode_inline_data():
     import PIL.Image
 
-    from pinnacledb.ext.pillow.encoder import image_type
+    from pinnacle.ext.pillow.encoder import image_type
 
     it = image_type(identifier='png', encodable='artifact')
 
@@ -216,7 +216,7 @@ def test_refer_to_system(db):
     r = {
         '_builds': {
             'my_artifact': {
-                '_path': 'pinnacledb.components.datatype.LazyArtifact',
+                '_path': 'pinnacle.components.datatype.LazyArtifact',
                 'blob': '&:blob:12345',
                 'datatype': "&:component:datatype:image",
             }

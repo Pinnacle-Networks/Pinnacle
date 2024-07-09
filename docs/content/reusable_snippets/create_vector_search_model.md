@@ -15,7 +15,7 @@ item = {indexing_key: '<var:query>'}
 ```
 
 ```python
-from pinnacledb.components.model import QueryModel
+from pinnacle.components.model import QueryModel
 
 vector_search_model = QueryModel(
     identifier="VectorSearch",

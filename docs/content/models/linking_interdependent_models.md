@@ -1,6 +1,6 @@
 # Configuring models to ingest features from other models
 
-There are two ways to connect models in `pinnacledb`:
+There are two ways to connect models in `pinnacle`:
 
 - via interdependent `Listeners`
 - via the `Graph` component
@@ -13,8 +13,8 @@ a simple formalism.
 Here is an example of building a graph with 3 members:
 
 ```python
-from pinnacledb.components.graph import document_node
-from pinnacledb import ObjectModel
+from pinnacle.components.graph import document_node
+from pinnacle import ObjectModel
 
 m1 = ObjectModel('m1', object=lambda x: x + 1)
 m2 = ObjectModel('m2', object=lambda x: x + 2)

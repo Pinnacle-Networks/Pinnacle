@@ -1,6 +1,6 @@
-**`pinnacledb.ext.jina.client`** 
+**`pinnacle.ext.jina.client`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/ext/jina/client.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle/ext/jina/client.py)
 
 ## `JinaAPIClient` 
 

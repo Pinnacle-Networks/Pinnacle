@@ -19,5 +19,5 @@ con = ibis.oracle.connect(
 #con = ibis.connect(f"oracle://{user}:{password}@{host}:{port}/{database}")
 
 # ERROR ModuleNotFoundError: No module named 'ibis.backends.base'
-# from pinnacledb import pinnacle
+# from pinnacle import pinnacle
 #db = pinnacle(f"oracle://{user}:{password}@{host}:{port}/{database}")

@@ -1,19 +1,19 @@
-**`pinnacledb.components.plugin`** 
+**`pinnacle.components.plugin`** 
 
-[Source code](https://github.com/SuperDuperDB/pinnacledb/blob/main/pinnacledb/components/plugin.py)
+[Source code](https://github.com/pinnacle/pinnacle/blob/main/pinnacle.components/plugin.py)
 
 ## `Plugin` 
 
 ```python
 Plugin(self,
      db: dataclasses.InitVar[typing.Optional[ForwardRef('Datalayer')]] = None,
-     uuid: None = <factory>,
+     uuid: None = None,
      *,
      identifier: str = '',
      plugins: "t.Optional[t.List['Plugin']]" = None,
      artifacts: 'dc.InitVar[t.Optional[t.Dict]]' = None,
      path: str,
-     cache_path: str = '.pinnacledb/plugins') -> None
+     cache_path: str = '.pinnacle/plugins') -> None
 ```
 | Parameter | Description |
 |-----------|-------------|

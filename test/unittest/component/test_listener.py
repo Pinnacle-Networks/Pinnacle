@@ -4,14 +4,14 @@ from test.db_config import DBConfig
 import numpy as np
 import pytest
 
-from pinnacledb import Document
-from pinnacledb.backends.ibis.field_types import dtype
-from pinnacledb.backends.mongodb.query import MongoQuery
-from pinnacledb.base.constant import KEY_BLOBS
-from pinnacledb.components.listener import Listener
-from pinnacledb.components.model import ObjectModel
-from pinnacledb.components.schema import Schema
-from pinnacledb.components.table import Table
+from pinnacle import Document
+from pinnacle.backends.ibis.field_types import dtype
+from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.base.constant import KEY_BLOBS
+from pinnacle.components.listener import Listener
+from pinnacle.components.model import ObjectModel
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
 
 
 def test_listener_serializes_properly():
