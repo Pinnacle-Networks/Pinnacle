@@ -8,14 +8,14 @@ Additionally, the image is shipped with a variety of examples from the pinnacle.
 To build the image: 
 
 ```shell
-docker build -t pinnacle/pinnacle:latest   ./  --progress=plain
+docker build -t pinnacleio/pinnacle:latest   ./  --progress=plain
 ```
 
 
 To run the image:
 
 ```shell
-docker run -p 8888:8888 pinnacle/pinnacle:latest
+docker run -p 8888:8888 pinnacleio/pinnacle:latest
 ``` 
 
 
