@@ -11,7 +11,7 @@ except ImportError:
     unstructured = None
 
 
-TEST_URL = "https://pinnacle.io"
+TEST_URL = "https://pypi.org"
 TEST_FILE = "file://test/material/data/rhymes.md"
 
 
