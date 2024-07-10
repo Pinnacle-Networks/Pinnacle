@@ -10,7 +10,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://docs.pinnacle.com',
+  url: 'https://docs.pinnacle.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -224,9 +224,9 @@ const config = {
         title: '',
         logo: {
           alt: 'pinnacle.io',
-          src: 'img/pinnacle.io_logo_color_dark_noborder.svg',
-          srcDark: 'img/pinnacle.io_logo_color.svg',
-          href: 'https://pinnacle.com',
+          src: 'img/SuperDuperDB_logo_color.svg',
+          srcDark: 'img/SuperDuperDB_logo_white.svg',
+          href: 'https://pinnacle.io',
           target: '_self',
           // width: 250,
           // height: 34,
@@ -348,8 +348,8 @@ const config = {
       ],
       announcementBar: {
         id: 'support_us',
-        content: '🔮 We officially released v0.2 on Github! Check it out! 🔮',
-        backgroundColor: '#7628f8',
+        content: '🔮 SuperDuperDB is now Pinnacle! 🔮',
+        backgroundColor: '#5D99D5',
         textColor: '#fff',
         isCloseable: true,
       },
