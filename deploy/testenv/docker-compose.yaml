@@ -102,7 +102,7 @@ services:
   #  Demo pinnacle.io Notebooks
   #  ------------------------------
   sandbox:
-    image: pinnacle/sandbox
+    image: pinnacleio/sandbox
     hostname: sandbox
     depends_on:
       mongo-init:
