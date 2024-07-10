@@ -196,7 +196,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/pinnacle.io/pinnacle/blob/main/docs/hr',
+            'https://github.com/pinnacle-io/pinnacle/blob/main/docs/hr',
         },
         blog: false,
         theme: {
@@ -249,12 +249,12 @@ const config = {
             position: 'left',
           },
           {
-            to: 'https://blog.pinnacle.com/',
+            to: 'https://blog.pinnacle.io/',
             label: 'Blog',
             position: 'left',
           },
           {
-            href: 'https://github.com/pinnacle.io/pinnacle-community-apps/',
+            href: 'https://github.com/pinnacle-io/pinnacle-community-apps/',
             label: 'Community Apps',
             position: 'left',
           },
@@ -264,7 +264,7 @@ const config = {
             position: 'left',
           },
           {
-            href: 'https://github.com/pinnacle.io/pinnacle',
+            href: 'https://github.com/pinnacle-io/pinnacle',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
@@ -291,7 +291,7 @@ const config = {
               },
               {
                 label: 'Blog',
-                to: 'https://blog.pinnacle.com/',
+                to: 'https://blog.pinnacle.io/',
               },
             ],
           },
