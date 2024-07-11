@@ -1,4 +1,1 @@
-raise Exception(
-    '`pinnacledb>0.2` is now pinnacle. '
-    'Install with `pip install pinnacle-framework`. '
-)
+__version__ = '0.2.2'
