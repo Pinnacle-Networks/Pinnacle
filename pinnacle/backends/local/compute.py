@@ -3,19 +3,25 @@ import uuid
 
 from pinnacle import logging
 from pinnacle.backends.base.compute import ComputeBackend
-from pinnacle.jobs.queue import LocalSequentialQueue
+from pinnacle.jobs.queue import BaseQueuePublisher, LocalQueuePublisher
 
 
 class LocalComputeBackend(ComputeBackend):
     """
     A mockup backend for running jobs locally.
 
-    :param _uri: Optional uri param.
+    :param uri: Optional uri param.
+    :param queue: Optional pluggable queue.
     """
 
-    def __init__(self, _uri: t.Optional[str] = None):
+    def __init__(
+        self,
+        uri: t.Optional[str] = None,
+        queue: BaseQueuePublisher = LocalQueuePublisher(),
+    ):
         self.__outputs: t.Dict = {}
-        self.queue = LocalSequentialQueue()
+        self.uri = uri
+        self.queue = queue
 
     @property
     def remote(self) -> bool:
