@@ -20,6 +20,7 @@ from pinnacle.jobs.job import ComponentJob, Job
 
 if t.TYPE_CHECKING:
     from pinnacle import Document
+    from pinnacle.backends.base.query import Query
     from pinnacle.base.datalayer import Datalayer
     from pinnacle.components.dataset import Dataset
     from pinnacle.components.datatype import DataType
@@ -194,9 +195,15 @@ class Component(Leaf):
         self.db = self.db or db
         self.unpack(db=db)
 
-    def ready_ids(self, ids: t.List):
-        """Return ids that are ready."""
-        return ids
+    def trigger_ids(self, query: "Query", primary_ids: t.Sequence):
+        """Get trigger IDs.
+
+        Only the ids returned by this function will trigger the component.
+
+        :param query: Query object.
+        :param primary_ids: Primary IDs.
+        """
+        return []
 
     def unpack(self, db=None):
         """Method to unpack the component.
