@@ -11,7 +11,7 @@ There are two ways to get started:
 
 ## Pip
 
-`pinnacle` is available on [PyPi.org](https://pypi.org/project/pinnacle/).
+`pinnacle` is available on [PyPi.org](https://pypi.org/project/pinnacle-framework/).
 
 ### Prerequisites
 
@@ -39,7 +39,7 @@ Your experience with `pinnacle` on Linux may vary depending on your system and c
 To install `pinnacle` on your system using `pip`, open your terminal and run the following command:
 
 ```bash
-pip install pinnacle
+pip install pinnacle-framework
 ```
 
 This command will install `pinnacle` along with a minimal set of common dependencies required for running the framework.
