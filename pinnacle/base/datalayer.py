@@ -26,6 +26,7 @@ from pinnacle.base.event import Event
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import DataType, _BaseEncodable
 from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
 from pinnacle.jobs.job import Job
 from pinnacle.misc.annotations import deprecated
 from pinnacle.misc.colors import Colors
@@ -400,9 +401,7 @@ class Datalayer:
             )
 
         if auto_schema and self.cfg.auto_schema:
-            self.databackend.auto_create_table_schema(
-                db=self, table_name=insert.table, documents=insert.documents
-            )
+            self._auto_create_table(insert.table, insert.documents)
 
         inserted_ids = insert.do_execute(self)
 
@@ -418,6 +417,20 @@ class Datalayer:
                 )
 
         return inserted_ids, None
+
+    def _auto_create_table(self, table_name, documents):
+        try:
+            table = self.tables[table_name]
+            return table
+        except FileNotFoundError:
+            logging.info(f"Table {table_name} does not exist, auto creating...")
+
+        # Should we need to check all the documents?
+        document = documents[0]
+        schema = document.schema or self.infer_schema(document)
+        table = Table(identifier=table_name, schema=schema)
+        logging.info(f"Creating table {table_name} with schema {schema.fields_set}")
+        self.apply(table)
 
     def _select(self, select: Query, reference: bool = True) -> SelectResult:
         """
