@@ -1,3 +1,1 @@
-from .query import MongoQuery
-
-__all__ = ['MongoQuery']
+from pinnacle_mongodb import * # noqa

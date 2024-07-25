@@ -16,7 +16,6 @@ import tqdm
 
 from pinnacle import CFG, logging
 from pinnacle.backends.base.query import Query
-from pinnacle.backends.ibis.field_types import FieldType
 from pinnacle.backends.query_dataset import CachedQueryDataset, QueryDataset
 from pinnacle.base.document import Document
 from pinnacle.base.enums import DBType
@@ -33,7 +32,7 @@ if t.TYPE_CHECKING:
     from pinnacle.components.dataset import Dataset
 
 
-EncoderArg = t.Union[DataType, FieldType, None]
+EncoderArg = t.Union[DataType, str, None]
 ModelInputType = t.Union[str, t.List[str], t.Tuple[t.List[str], t.Dict[str, str]]]
 Signature = t.Literal['*args', '**kwargs', '*args,**kwargs', 'singleton']
 
