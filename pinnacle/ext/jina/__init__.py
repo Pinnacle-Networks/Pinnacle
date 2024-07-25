@@ -1,3 +1,1 @@
-from .model import JinaEmbedding
-
-__all__ = ['JinaEmbedding']
+from pinnacle_jina import *  # noqa
