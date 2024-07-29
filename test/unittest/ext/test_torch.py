@@ -7,10 +7,6 @@ try:
 except ImportError:
     torch = None
 
-from test.db_config import DBConfig
-
-from pinnacle.backends.mongodb.data_backend import MongoDataBackend
-from pinnacle.backends.mongodb.query import MongoQuery
 from pinnacle.components.datatype import DataType
 from pinnacle.components.metric import Metric
 from pinnacle.components.model import Validation
@@ -65,21 +61,12 @@ def model():
 
 
 @pytest.mark.skipif(not torch, reason='Torch not installed')
-@pytest.mark.parametrize(
-    'db',
-    [
-        (DBConfig.mongodb_data, {'n_data': 500}),
-        (DBConfig.sqldb_data, {'n_data': 500}),
-    ],
-    indirect=True,
-)
-def test_fit(db, valid_dataset, model):
-    m = model
+def test_fit(db, model):
+    from test.utils.setup.fake_data import add_random_data, get_valid_dataset
 
-    if isinstance(db.databackend.type, MongoDataBackend):
-        select = MongoQuery(table='documents').find()
-    else:
-        select = db['documents'].select('id', '_fold', 'x', 'y', 'z')
+    add_random_data(db, n=500)
+    valid_dataset = get_valid_dataset(db)
+    select = db['documents'].select()
     trainer = TorchTrainer(
         key=('x', 'y'),
         select=select,
@@ -96,4 +83,4 @@ def test_fit(db, valid_dataset, model):
         metrics=[Metric(identifier='acc', object=acc)],
         datasets=[valid_dataset],
     )
-    db.apply(m)
+    db.apply(model)
