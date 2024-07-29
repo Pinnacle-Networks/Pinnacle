@@ -7,7 +7,7 @@ from pinnacle import CFG, logging
 from pinnacle.backends.base.query import Query
 from pinnacle.base.document import _OUTPUTS_KEY
 from pinnacle.components.model import Mapping
-from pinnacle.misc.server import is_csn, request_server
+from pinnacle.misc.server import request_server
 
 from ..jobs.job import Job
 from .component import Component
@@ -86,7 +86,7 @@ class Listener(Component):
         self.create_output_dest(db, self.uuid, self.model)
         if self.select is not None:
             logging.info('Requesting listener setup on CDC service')
-            if CFG.cluster.cdc.uri and not is_csn('cdc'):
+            if CFG.cluster.cdc.uri:
                 logging.info('Sending request to add listener')
                 request_server(
                     service='cdc',

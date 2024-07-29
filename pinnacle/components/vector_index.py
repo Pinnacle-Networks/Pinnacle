@@ -15,14 +15,12 @@ from pinnacle.components.model import Mapping, ModelInputType
 from pinnacle.ext.utils import str_shape
 from pinnacle.jobs.job import FunctionJob
 from pinnacle.misc.annotations import component
-from pinnacle.misc.server import is_csn, request_server
+from pinnacle.misc.server import request_server
 from pinnacle.misc.special_dicts import MongoStyleDict
 from pinnacle.vector_search.base import VectorIndexMeasureType
 from pinnacle.vector_search.update_tasks import copy_vectors, delete_vectors
 
 KeyType = t.Union[str, t.List, t.Dict]
-if t.TYPE_CHECKING:
-    from pinnacle.jobs.job import Job
 
 
 class VectorIndex(Component):
@@ -185,7 +183,7 @@ class VectorIndex(Component):
         :param db: Data layer instance.
         """
         logging.info('Requesting vector index setup on CDC service')
-        if CFG.cluster.cdc.uri and not is_csn('cdc'):
+        if CFG.cluster.cdc.uri:
             logging.info('Sending request to add vector index')
             request_server(
                 service='cdc',
@@ -243,15 +241,15 @@ class VectorIndex(Component):
         return self._ready_ids(primary_ids)
 
     def _ready_ids(self, ids: t.Sequence):
-        select = self.indexing_listener.outputs_select
-        data = self.db.execute(select.select_using_ids(ids))
+        outputs = self.db[self.indexing_listener.outputs]
+        data = self.db.execute(outputs.select_using_ids(ids))
         key = self.indexing_listener.outputs_key
 
         ready_ids = []
         for d in data:
             try:
                 d[key]
-                ready_ids.append(d[select.primary_id])
+                ready_ids.append(d[outputs.primary_id])
             except KeyError:
                 continue
         return ready_ids
@@ -299,7 +297,7 @@ class VectorIndex(Component):
     def schedule_jobs(
         self,
         db: Datalayer,
-        dependencies: t.Sequence['Job'] = (),
+        dependencies: t.Sequence[str] = (),
     ) -> t.Sequence[t.Any]:
         """Schedule jobs for the vector index.
 
