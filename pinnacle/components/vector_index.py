@@ -4,7 +4,6 @@ import typing as t
 import numpy as np
 from overrides import override
 
-from pinnacle import CFG, logging
 from pinnacle.backends.base.query import Query
 from pinnacle.base.datalayer import Datalayer, DBEvent
 from pinnacle.base.document import Document
@@ -15,7 +14,6 @@ from pinnacle.components.model import Mapping, ModelInputType
 from pinnacle.ext.utils import str_shape
 from pinnacle.jobs.job import FunctionJob
 from pinnacle.misc.annotations import component
-from pinnacle.misc.server import request_server
 from pinnacle.misc.special_dicts import MongoStyleDict
 from pinnacle.vector_search.base import VectorIndexMeasureType
 from pinnacle.vector_search.update_tasks import copy_vectors, delete_vectors
@@ -171,30 +169,12 @@ class VectorIndex(Component):
         db.fast_vector_searchers[self.identifier].drop()
         del db.fast_vector_searchers[self.identifier]
 
-    @property
-    def cdc_table(self):
-        """Get table for cdc."""
-        return self.indexing_listener.outputs
-
     @override
     def post_create(self, db: "Datalayer") -> None:
         """Post-create hook.
 
         :param db: Data layer instance.
         """
-        logging.info('Requesting vector index setup on CDC service')
-        if CFG.cluster.cdc.uri:
-            logging.info('Sending request to add vector index')
-            request_server(
-                service='cdc',
-                endpoint='component/add',
-                args={'name': self.identifier, 'type_id': self.type_id},
-                type='get',
-            )
-        else:
-            logging.info(
-                'Skipping vector index setup on CDC service since no URI is set'
-            )
         db.compute.queue.declare_component(self)
 
     @property
