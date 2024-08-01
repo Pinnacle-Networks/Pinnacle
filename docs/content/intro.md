@@ -1,6 +1,14 @@
-# Welcome to pinnacle!
+---
+description: Find detailed technical documentation for Pinnacle's AI and database integration solutions. Access comprehensive guides, API references, and tutorials to effectively implement and utilize SuperDuper technologies in your projects. (Formerly SuperDuperDB)
+---
 
-Hi 👋 and welcome to the open-source pinnacle project! If you 
+<head>
+  <title>Docs - Pinnacle</title>
+</head>
+
+# Introduction to Pinnacle!
+
+Hi 👋 and welcome to the open-source Pinnacle project! If you 
 are reading this, you are probably interested in taking full control 
 of your AI-data integrations, and would like to leverage the full power
 of the open-source AI ecosystem on your databases. Well done! We agree
@@ -9,23 +17,23 @@ proper compliance with data and AI regulation, as well as unlocking
 brand new functionality which you will build by combining best-in-class
 open-source AI projects.
 
-### What is pinnacle?
+### What is Pinnacle?
 
 :::tip
-pinnacle is **a virtual AI-datalayer** where AI-models can interoperate
+Pinnacle is **a virtual AI-datalayer** where AI-models can interoperate
 directly and scalably on data in databases, datalakes, datawarehouses, 
 with zero-additional overhead compared to local computation on in-memory data.
 
-**pinnacle is open-sourced in Python under the Apache 2.0 license**
+**Pinnacle is open-sourced in Python under the Apache 2.0 license**
 :::
 
-With pinnacle, developers may:
+With Pinnacle, developers may:
 
   - connect an AI development environment directly to data
   - connect an AI production environment directly to data
   - create their own flexible platform connecting your AI and data for all AI stakeholders to collaborate on
 
-### pinnacle can handle classical AI/ machine learning paradigms...
+### Pinnacle can handle classical AI/ machine learning paradigms...
 
 - classification
 - regression
@@ -44,7 +52,7 @@ With pinnacle, developers may:
 
 ![](/img/pinnacle.gif)
 
-### What problem does pinnacle solve?
+### What problem does Pinnacle solve?
 
 AI development consists of multiple phases, tooling universes, stakeholders:
 
@@ -73,11 +81,11 @@ AI development consists of multiple phases, tooling universes, stakeholders:
     developers' and organizations' operational needs.
 :::
 
-For more information about pinnacle and why we believe it is much needed, [read this blog post](https://blog.pinnacle.io/pinnacle-the-open-source-framework-for-bringing-ai-to-your-datastore/). 
+For more information about Pinnacle and why we believe it is much needed, [read this blog post](https://blog.pinnacle.io/pinnacle-the-open-source-framework-for-bringing-ai-to-your-datastore/). 
 
-### How can developers use pinnacle?
+### How can developers use Pinnacle?
 
-pinnacle boils down to 3 key patterns:
+Pinnacle boils down to 3 key patterns:
 
 #### 1. Connect to your data
 
@@ -116,16 +124,16 @@ are able to determine themselves. Any of these things is possible:
 
 ### Why is the "DB" so important in AI?
 
-pinnacle uses the fact that AI development always starts with data, ends with data, and interfaces 
+Pinnacle uses the fact that AI development always starts with data, ends with data, and interfaces 
 with data from conception, to productionized deployment. Any environment which has a chance of uniting 
 the diverse tools and stakeholders involved in AI development, needs a single way 
-for AI models and algorithms to be connected to data. ***That way is pinnacle***.
+for AI models and algorithms to be connected to data. ***That way is Pinnacle***.
 
 :::important
-By integrating AI directly at data's source, pinnacle enables developers to avoid implementing MLops.
+By integrating AI directly at data's source, Pinnacle enables developers to avoid implementing MLops.
 :::
 
-### What integrations does pinnacle include?
+### What integrations does Pinnacle include?
 
 #### Data
 
@@ -149,11 +157,11 @@ By integrating AI directly at data's source, pinnacle enables developers to avoi
 - Transformers
 - Sentence-Transformers
 
-### What important additional aspects does pinnacle include?
+### What important additional aspects does Pinnacle include?
 
 Developers may:
 
-- Choose whether to deploy pinnacle in single blocking process or in scalable, non-blocking mode via `ray`
+- Choose whether to deploy Pinnacle in single blocking process or in scalable, non-blocking mode via `ray`
 - Choose whether to use their own self-programmed home grown models, or integrate AI APIs and open-source frameworks
 - Choose which type of data they use, including images, videos, audio, or custom datatypes
 - Automatically version and track all functionality they use
@@ -165,7 +173,7 @@ Developers may:
 - **[Streaming Inference](https://docs.pinnacle.io/docs/docs/walkthrough/daemonizing_models_with_listeners):** Have your models compute outputs automatically and immediately as new data arrives, keeping your deployment always up-to-date.
 - **[Scalable Model Training](https://docs.pinnacle.io/docs/docs/walkthrough/training_models):** Train AI models on large, diverse datasets simply by querying your training data. Ensured optimal performance via in-build computational optimizations.
 - **[Model Chaining](https://docs.pinnacle.io/docs/docs/walkthrough/linking_interdependent_models/)**: Easily set up complex workflows by connecting models and APIs to work together in an interdependent and sequential manner.
-- **[Simple, but Extendable Interface](https://docs.pinnacle.io/docs/docs/fundamentals/procedural_vs_declarative_api)**: Add and leverage any function, program, script, or algorithm from the Python ecosystem to enhance your workflows and applications. Drill down to any layer of implementation, including the inner workings of your models, while operating pinnacle with simple Python commands.
+- **[Simple, but Extendable Interface](https://docs.pinnacle.io/docs/docs/fundamentals/procedural_vs_declarative_api)**: Add and leverage any function, program, script, or algorithm from the Python ecosystem to enhance your workflows and applications. Drill down to any layer of implementation, including the inner workings of your models, while operating Pinnacle with simple Python commands.
 - **[Difficult Data Types](https://docs.pinnacle.io/docs/docs/walkthrough/encoding_special_data_types/)**: Work directly in your database with images, video, audio, and any type that can be encoded as `bytes` in Python.
 - **[Feature Storing](https://docs.pinnacle.io/docs/docs/walkthrough/encoding_special_data_types):** Turn your database into a centralized repository for storing and managing inputs and outputs of AI models of arbitrary data types, making them available in a structured format and known environment.
 - **[Vector Search](https://docs.pinnacle.io/docs/docs/walkthrough/vector_search):** No need to duplicate and migrate your data to additional specialized vector databases - turn your existing battle-tested database into a fully-fledged multi-modal vector-search database, including easy generation of vector embeddings and vector indexes of your data with preferred models and APIs.

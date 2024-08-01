@@ -267,7 +267,7 @@ const config = {
             items: [
               {
                 label: 'Website',
-                href: 'https://pinnacle.com',
+                href: 'https://pinnacle.io',
               },
               {
                 label: 'Documentation',
@@ -288,15 +288,15 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/pinnacle.io/pinnacle',
+                href: 'https://github.com/pinnacle-io/pinnacle',
               },
               {
                 label: 'Issues',
-                href: 'https://github.com/pinnacle.io/pinnacle/issues',
+                href: 'https://github.com/pinnacle-io/pinnacle/issues',
               },
               {
                 label: 'Discussions',
-                href: 'https://github.com/pinnacle.io/pinnacle/discussions',
+                href: 'https://github.com/pinnacle-io/pinnacle/discussions',
               },
             ],
           },
@@ -304,20 +304,24 @@ const config = {
             title: 'Community',
             items: [
               {
+                label: 'Join.com / Careers',
+                href: 'https://join.com/companies/pinnacle',
+              },
+              {
                 label: 'LinkedIn',
-                href: 'https://www.linkedin.com/company/pinnacle/',
+                href: 'https://www.linkedin.com/company/pinnacle-io',
               },
               {
                 label: 'Slack',
-                href: 'https://pinnacle.slack.com/',
+                href: 'https://join.slack.com/t/pinnacle-public/shared_invite/zt-2ntiwsc8l-tLnhgW0wnpLlZL800~rqAg',
               },
               {
                 label: 'X / Twitter',
-                href: 'https://twitter.com/pinnacle',
+                href: 'https://twitter.com/pinnacledb',
               },
               {
                 label: 'Youtube',
-                href: 'https://www.youtube.com/@pinnacle.io',
+                href: 'https://www.youtube.com/@pinnacle-io',
               },
             ],
           },
