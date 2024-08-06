@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer').themes.vsDark;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'pinnacle.io documentation',
+  title: 'Docs - Pinnacle',
   tagline: 'Bringing AI to your data-store',
   favicon: 'img/favicon.ico',
 
@@ -313,7 +313,7 @@ const config = {
               },
               {
                 label: 'Slack',
-                href: 'https://join.slack.com/t/pinnacle-public/shared_invite/zt-2ntiwsc8l-tLnhgW0wnpLlZL800~rqAg',
+                href: 'https://join.slack.com/t/pinnacle-public/shared_invite/zt-1yodhtx8y-KxzECued5QBtT6JFnsSNrQ',
               },
               {
                 label: 'X / Twitter',
@@ -334,8 +334,22 @@ const config = {
       },
       metadata: [
         {
-          property: 'og:image',
-          content: 'https://docs.pinnacle.com/img/superDuperDB_img.png',
+          name: 'og:image',
+          content: 'https://docs.pinnacle.io/img/og-image.png',
+        },
+        {
+          name: 'title',
+          content: 'Docs - Pinnacle',
+        },
+        {
+          name: 'description',
+          content:
+            "Find detailed technical documentation for Pinnacle's AI and database integration solutions. Access comprehensive guides, API references, and tutorials to effectively implement and utilize SuperDuper technologies in your projects. (Formerly SuperDuperDB)",
+        },
+        {
+          name: 'keywords',
+          content:
+            'pinnacle docs, Pinnacle Docs, Pinnacle documentation, PinnacleDB documentation, PinnacleDB docs, PinnacleDB, Pinnacle, Pinnacle API, Pinnacle tutorials, Pinnacle guides, Pinnacle use cases',
         },
       ],
       announcementBar: {
