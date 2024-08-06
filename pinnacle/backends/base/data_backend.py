@@ -7,6 +7,9 @@ from pinnacle.backends.base.query import Query
 from pinnacle.backends.ibis.field_types import FieldType
 from pinnacle.components.datatype import DataType
 
+if t.TYPE_CHECKING:
+    from pinnacle.components.schema import Schema
+
 
 class BaseDataBackend(ABC):
     """Base data backend for the database.
@@ -82,6 +85,14 @@ class BaseDataBackend(ABC):
         :param flatten: Whether to flatten the output destination.
         """
         pass
+
+    @abstractmethod
+    def create_table_and_schema(self, identifier: str, schema: "Schema"):
+        """Create a schema in the data-backend.
+
+        :param identifier: The identifier of the table.
+        :param mapping: The mapping of the schema.
+        """
 
     @abstractmethod
     def check_output_dest(self, predict_id) -> bool:
