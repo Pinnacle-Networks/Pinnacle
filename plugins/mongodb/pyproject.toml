@@ -32,7 +32,7 @@ source = "https://github.com/pinnacle.io/pinnacle/"
 include = ["pinnacle_mongodb*"]
 
 [tool.setuptools.dynamic]
-version = {attr = "pinnacle.__version__"}
+version = {attr = "pinnacle_mongodb.__version__"}
 
 [tool.black]
 skip-string-normalization = true

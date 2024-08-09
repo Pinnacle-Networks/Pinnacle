@@ -21,6 +21,11 @@ dynamic = ["version"]
 dependencies = [
 ]
 
+[project.optional-dependencies]
+test = [
+    "vcrpy>=5.1.0",
+]
+
 [project.urls]
 homepage = "https://www.pinnacle.com/"
 documentation = "https://docs.pinnacle.com"
@@ -30,7 +35,7 @@ source = "https://github.com/pinnacle.io/pinnacle/"
 include = ["pinnacle_vllm*"]
 
 [tool.setuptools.dynamic]
-version = {attr = "pinnacle.__version__"}
+version = {attr = "pinnacle_vllm.__version__"}
 
 [tool.black]
 skip-string-normalization = true

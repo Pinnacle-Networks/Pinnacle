@@ -30,7 +30,7 @@ source = "https://github.com/pinnacle.io/pinnacle/"
 include = ["pinnacle_sklearn*"]
 
 [tool.setuptools.dynamic]
-version = {attr = "pinnacle.__version__"}
+version = {attr = "pinnacle_sklearn.__version__"}
 
 [tool.black]
 skip-string-normalization = true
