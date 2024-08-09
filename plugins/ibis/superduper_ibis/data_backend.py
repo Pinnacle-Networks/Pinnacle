@@ -8,20 +8,20 @@ import ibis
 import pandas
 from pandas.core.frame import DataFrame
 from sqlalchemy.exc import NoSuchTableError
-
 from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
-from pinnacle.backends.ibis.db_helper import get_db_helper
-from pinnacle.backends.ibis.field_types import FieldType, dtype
-from pinnacle.backends.ibis.query import IbisQuery
-from pinnacle.backends.ibis.utils import convert_schema_to_fields
 from pinnacle.backends.local.artifacts import FileSystemArtifactStore
 from pinnacle.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacle.base.enums import DBType
 from pinnacle.components.datatype import DataType
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
+
+from pinnacle_ibis.db_helper import get_db_helper
+from pinnacle_ibis.field_types import FieldType, dtype
+from pinnacle_ibis.query import IbisQuery
+from pinnacle_ibis.utils import convert_schema_to_fields
 
 BASE64_PREFIX = 'base64:'
 INPUT_KEY = '_source'

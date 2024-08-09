@@ -1,12 +1,11 @@
 import typing as t
 
 import tqdm
-
-from pinnacle.backends.ibis.data_backend import IbisDataBackend
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.components.model import APIBaseModel
-from pinnacle.components.vector_index import sqlvector, vector
-from pinnacle.ext.jina.client import JinaAPIClient
+from pinnacle.components.vector_index import vector
+
+from pinnacle_jina.client import JinaAPIClient
 
 
 class Jina(APIBaseModel):
@@ -49,10 +48,7 @@ class JinaEmbedding(Jina):
         :param db: The datalayer to use for the model.
         """
         super().pre_create(db)
-        if isinstance(db.databackend.type, IbisDataBackend):
-            if self.datatype is None:
-                self.datatype = sqlvector(self.shape)
-        elif self.datatype is None:
+        if self.datatype is None:
             self.datatype = vector(shape=self.shape)
 
     def predict(self, X: str):
