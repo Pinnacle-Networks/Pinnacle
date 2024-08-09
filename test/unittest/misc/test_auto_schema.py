@@ -2,14 +2,12 @@ import threading
 
 import numpy as np
 import pandas as pd
-import PIL
 import pytest
-import torch
 
 from pinnacle.base.document import Document
 from pinnacle.base.exceptions import UnsupportedDatatype
 from pinnacle.components.table import Table
-from pinnacle.misc.auto_schema import infer_datatype, infer_schema
+from pinnacle.misc.auto_schema import infer_datatype
 
 
 @pytest.fixture

@@ -15,7 +15,6 @@ from sqlalchemy import (
 )
 from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.orm import sessionmaker
-
 from pinnacle import logging
 from pinnacle.backends.base.metadata import MetaDataStore, NonExistentMetadataError
 from pinnacle.backends.sqlalchemy.db_helper import get_db_config
