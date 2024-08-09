@@ -6,7 +6,6 @@ from overrides import override
 from pinnacle.base.leaf import Leaf
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import DataType
-from pinnacle.misc.annotations import component
 from pinnacle.misc.reference import parse_reference
 from pinnacle.misc.special_dicts import SuperDuperFlatEncode
 
