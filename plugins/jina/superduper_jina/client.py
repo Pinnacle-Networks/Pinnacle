@@ -4,7 +4,6 @@ import aiohttp
 import requests
 from aiohttp import ClientConnectionError, ClientResponseError
 from requests.exceptions import HTTPError
-
 from pinnacle.ext.utils import get_key
 from pinnacle.misc.retry import Retry
 

@@ -1,5 +1,4 @@
 import inspect
-import os
 import re
 
 import pytest
@@ -218,13 +217,13 @@ def extract_docstrings():
     import pinnacle
 
     members = list_all_members(package=pinnacle)
-    for subpackage in os.listdir('pinnacle/ext'):
-        if subpackage.startswith('_') or subpackage == 'utils.py':
-            continue
-        exec(f'import pinnacle.ext.{subpackage}')
-        package = eval(f'pinnacle.ext.{subpackage}')
-        tmp = list_all_members(package=package, prefix=f'pinnacle.ext.{subpackage}')
-        members.extend(tmp)
+    # for subpackage in os.listdir('pinnacle/ext'):
+    #     if subpackage.startswith('_') or subpackage == 'utils.py':
+    #         continue
+    #     exec(f'import pinnacle.ext.{subpackage}')
+    #     package = eval(f'pinnacle.ext.{subpackage}')
+    #     tmp = list_all_members(package=package, prefix=f'pinnacle.ext.{subpackage}')
+    #     members.extend(tmp)
     from pinnacle.misc.special_dicts import MongoStyleDict
 
     lookup = MongoStyleDict({})

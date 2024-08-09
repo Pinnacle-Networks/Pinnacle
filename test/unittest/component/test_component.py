@@ -16,7 +16,6 @@ from pinnacle.components.datatype import (
     dill_serializer,
 )
 from pinnacle.components.listener import Listener
-from pinnacle.ext.torch.encoder import tensor
 
 
 @pytest.fixture
@@ -82,9 +81,7 @@ def test_load_lazily(db):
 
 
 def test_export_and_read():
-    m = ObjectModel(
-        "test", object=lambda x: x + 2, datatype=tensor(dtype="float", shape=(32,))
-    )
+    m = ObjectModel("test", object=lambda x: x + 2, datatype=dill_serializer)
 
     with tempfile.TemporaryDirectory() as tmpdir:
         save_path = os.path.join(tmpdir, "tmp_save")

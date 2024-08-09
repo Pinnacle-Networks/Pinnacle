@@ -30,7 +30,7 @@ source = "https://github.com/pinnacle.io/pinnacle/"
 include = ["pinnacle_pillow*"]
 
 [tool.setuptools.dynamic]
-version = {attr = "pinnacle.__version__"}
+version = {attr = "pinnacle_pillow.__version__"}
 
 [tool.black]
 skip-string-normalization = true
