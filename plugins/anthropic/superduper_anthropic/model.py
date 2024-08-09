@@ -3,9 +3,6 @@ import typing as t
 
 import anthropic
 from anthropic import APIConnectionError, APIError, APIStatusError, APITimeoutError
-
-from pinnacle.backends.ibis.data_backend import IbisDataBackend
-from pinnacle.backends.ibis.field_types import dtype
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.model import APIBaseModel
@@ -52,8 +49,6 @@ class AnthropicCompletions(Anthropic):
         :param db: The datalayer to use for the model.
         """
         super().pre_create(db)
-        if isinstance(db.databackend.type, IbisDataBackend) and self.datatype is None:
-            self.datatype = dtype('str')
 
     @retry
     def predict(

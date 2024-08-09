@@ -3,7 +3,7 @@ import typing as t
 from pprint import pprint
 
 from pinnacle import ObjectModel
-from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.backends.base.query import Query
 from pinnacle.base.constant import KEY_BUILDS
 from pinnacle.base.document import Document
 from pinnacle.base.leaf import Leaf
@@ -79,7 +79,7 @@ def test_encode_leaf_with_children():
 
 def test_save_variables_2():
     query = (
-        MongoQuery(table='documents')
+        Query(table='documents')
         .like({'x': '<var:X>'}, vector_index='test')
         .find({'x': {'$regex': '^test/1'}})
     )
@@ -117,18 +117,17 @@ def test_component_with_document():
 
 def test_find_variables():
     from pinnacle import Document
-    from pinnacle.backends.mongodb import MongoQuery
 
     r = Document({'txt': '<var:test>'})
 
     assert r.variables == ['test']
 
-    q = MongoQuery(table='test').find_one(Document({'txt': '<var:test>'}))
+    q = Query(table='test').find_one(Document({'txt': '<var:test>'}))
 
     assert q.variables == ['test']
 
     q = (
-        MongoQuery(table='test')
+        Query(table='test')
         .like(Document({'txt': '<var:test>'}), vector_index='test')
         .find()
         .limit(5)

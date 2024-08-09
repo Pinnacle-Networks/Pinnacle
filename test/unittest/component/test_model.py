@@ -8,7 +8,6 @@ from sklearn.metrics import accuracy_score, f1_score
 
 from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.query import Query
-from pinnacle.backends.ibis.field_types import FieldType
 from pinnacle.backends.local.compute import LocalComputeBackend
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
@@ -25,6 +24,7 @@ from pinnacle.components.model import (
     Validation,
     _Fittable,
 )
+from pinnacle.components.schema import FieldType
 from pinnacle.jobs.job import ComponentJob
 
 

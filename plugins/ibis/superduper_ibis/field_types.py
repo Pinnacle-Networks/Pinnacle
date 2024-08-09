@@ -1,7 +1,6 @@
 import typing as t
 
 from ibis.expr.datatypes import DataType, dtype as _dtype
-
 from pinnacle.base.leaf import Leaf
 
 

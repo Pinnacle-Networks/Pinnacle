@@ -92,6 +92,7 @@ def _build_compute(cfg):
     :param cfg: SuperDuper config.
     """
     from pinnacle.backends.local.compute import LocalComputeBackend
+
     return LocalComputeBackend()
 
 
@@ -100,8 +101,6 @@ def build_datalayer(cfg=None, **kwargs) -> Datalayer:
     Build a Datalayer object as per ``db = pinnacle(db)`` from configuration.
 
     :param cfg: Configuration to use. If None, use ``pinnacle.CFG``.
-    :param databackend: Databacked to use.
-                        If None, use ``pinnacle.CFG.data_backend``.
     :param kwargs: keyword arguments to be adopted by the `CFG`
     """
     # Configuration

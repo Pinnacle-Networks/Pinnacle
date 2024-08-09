@@ -1,1 +1,1 @@
-from pinnacle_mongodb import * # noqa
+from pinnacle_mongodb import *  # noqa

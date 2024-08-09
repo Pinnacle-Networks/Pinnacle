@@ -4,14 +4,14 @@ import numpy as np
 import pytest
 
 from pinnacle import Document
-from pinnacle.backends.mongodb.query import MongoQuery
+from pinnacle.backends.base.query import Query
 from pinnacle.base.constant import KEY_BLOBS
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 
 
 def test_listener_serializes_properly():
-    q = MongoQuery(table='test').find({}, {})
+    q = Query(table='test').find({}, {})
     listener = Listener(
         model=ObjectModel("test", object=lambda x: x),
         select=q,

@@ -3,12 +3,11 @@ LLM model test cases.
 All the llm model can use the check_xxx func to test the intergration with db.
 """
 
-from pinnacle.backends.ibis.field_types import dtype
-from pinnacle.backends.ibis.query import Schema
 from pinnacle.backends.mongodb.data_backend import MongoDataBackend
 from pinnacle.backends.mongodb.query import MongoQuery
 from pinnacle.base.document import Document
 from pinnacle.components.listener import Listener
+from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 
 
@@ -22,25 +21,28 @@ def check_predict(db, llm):
 def check_llm_as_listener_model(db, llm):
     """Test whether the model can predict the data in the database normally"""
     collection_name = "question"
+    db.cfg.auto_schema = True
     datas = [
         Document({"question": f"1+{i}=", "id": str(i), '_fold': 'train'})
         for i in range(10)
     ]
-    if isinstance(db.databackend.type, MongoDataBackend):
-        db.execute(MongoQuery(table=collection_name).insert_many(datas))
-        select = MongoQuery(table=collection_name).find()
-    else:
-        schema = Schema(
-            identifier=collection_name,
-            fields={
-                "id": dtype("str"),
-                "question": dtype("str"),
-            },
-        )
-        table = Table(identifier=collection_name, schema=schema)
-        db.add(table)
-        db.execute(db[collection_name].insert(datas))
-        select = db[collection_name].select("id", "question")
+    db[collection_name].insert(datas).execute()
+    select = db[collection_name].select("id", "question")
+    # if isinstance(db.databackend.type, MongoDataBackend):
+    #     db.execute(MongoQuery(table=collection_name).insert_many(datas))
+    #     select = MongoQuery(table=collection_name).find()
+    # else:
+    #     schema = Schema(
+    #         identifier=collection_name,
+    #         fields={
+    #             "id": "str",
+    #             "question": "str",
+    #         },
+    #     )
+    #     table = Table(identifier=collection_name, schema=schema)
+    #     db.add(table)
+    #     db.execute(db[collection_name].insert(datas))
+    #     select = db[collection_name].select("id", "question")
 
     listener = Listener(
         select=select,
