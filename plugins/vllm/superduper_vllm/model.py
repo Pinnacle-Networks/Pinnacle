@@ -2,7 +2,6 @@ import dataclasses as dc
 import typing as t
 
 import requests
-
 from pinnacle import logging
 from pinnacle.ext.llm.model import BaseLLM, BaseLLMAPI
 

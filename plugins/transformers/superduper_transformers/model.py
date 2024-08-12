@@ -4,18 +4,6 @@ import typing as t
 import torch
 import transformers
 from datasets import Dataset as NativeDataset
-from transformers import (
-    AutoModelForCausalLM,
-    AutoModelForSequenceClassification,
-    AutoTokenizer,
-    Pipeline as BasePipeline,
-    Trainer as NativeTrainer,
-    TrainingArguments,
-    pipeline,
-    pipeline as _pipeline,
-)
-from transformers.pipelines.text_generation import ReturnType
-
 from pinnacle import logging
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
@@ -35,6 +23,17 @@ from pinnacle.components.model import (
 from pinnacle.components.training import Checkpoint
 from pinnacle.ext.llm.model import BaseLLM
 from pinnacle.jobs.job import Job
+from transformers import (
+    AutoModelForCausalLM,
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    Pipeline as BasePipeline,
+    Trainer as NativeTrainer,
+    TrainingArguments,
+    pipeline,
+    pipeline as _pipeline,
+)
+from transformers.pipelines.text_generation import ReturnType
 
 
 class _TrainerWithSaving(NativeTrainer):

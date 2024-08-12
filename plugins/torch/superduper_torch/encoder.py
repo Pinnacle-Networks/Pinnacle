@@ -2,7 +2,6 @@ import typing as t
 
 import numpy
 import torch
-
 from pinnacle.components.datatype import DataType, DataTypeFactory
 from pinnacle.ext.utils import str_shape
 from pinnacle.misc.annotations import component

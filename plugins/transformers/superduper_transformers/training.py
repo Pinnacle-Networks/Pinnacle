@@ -14,15 +14,6 @@ _, requirements = requires_packages(
 import torch
 import transformers
 from datasets import Dataset as NativeDataset
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    BitsAndBytesConfig,
-    TrainerCallback,
-    TrainingArguments,
-)
-from transformers.integrations.deepspeed import is_deepspeed_zero3_enabled
-
 from pinnacle import logging
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.build import build_datalayer
@@ -32,6 +23,14 @@ from pinnacle.components.dataset import Dataset
 from pinnacle.components.model import Trainer as SuperDuperTrainer
 from pinnacle.components.training import Checkpoint
 from pinnacle.misc.hash import random_sha1
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+    TrainerCallback,
+    TrainingArguments,
+)
+from transformers.integrations.deepspeed import is_deepspeed_zero3_enabled
 
 if t.TYPE_CHECKING:
     from pinnacle.ext.transformers.model import LLM

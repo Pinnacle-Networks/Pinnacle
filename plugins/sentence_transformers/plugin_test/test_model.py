@@ -7,7 +7,6 @@ from pinnacle_sentence_transformers import SentenceTransformer
 
 
 def test_encode_and_decode():
-
     model = SentenceTransformer(
         identifier="embedding",
         object=sentence_transformers.SentenceTransformer("all-MiniLM-L6-v2"),

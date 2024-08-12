@@ -2,14 +2,13 @@ import dataclasses as dc
 import typing as t
 
 import torch
-from torch.utils.data import DataLoader
-
 from pinnacle import logging
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.model import Trainer
 from pinnacle.ext.torch.model import TorchModel
+from torch.utils.data import DataLoader
 
 
 class TorchTrainer(Trainer):
