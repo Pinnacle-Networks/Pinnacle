@@ -6,9 +6,6 @@ import typing as t
 from contextlib import contextmanager
 
 import torch
-from torch.utils import data
-from tqdm import tqdm
-
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.component import ensure_initialized
@@ -24,6 +21,8 @@ from pinnacle.components.model import (
     _Fittable,
 )
 from pinnacle.ext.torch.utils import device_of, eval, to_device
+from torch.utils import data
+from tqdm import tqdm
 
 if t.TYPE_CHECKING:
     from pinnacle.jobs.job import Job

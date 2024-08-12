@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError
-
 from pinnacle import logging
 from pinnacle.misc.anonymize import anonymize_url
 

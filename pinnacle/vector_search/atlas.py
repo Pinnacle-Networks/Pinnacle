@@ -4,8 +4,6 @@ import re
 import typing as t
 from functools import cached_property
 
-import pymongo
-
 from pinnacle import CFG, logging
 from pinnacle.components.model import APIBaseModel
 from pinnacle.vector_search.base import BaseVectorSearcher
@@ -32,6 +30,8 @@ class MongoAtlasVectorSearcher(BaseVectorSearcher):
         measure: t.Optional[str] = None,
         output_path: t.Optional[str] = None,
     ):
+        import pymongo
+
         self.identifier = identifier
         vector_search_uri = CFG.cluster.vector_search.uri
         assert vector_search_uri, 'Vector search URI is required'

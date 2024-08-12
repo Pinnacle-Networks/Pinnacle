@@ -1,7 +1,6 @@
 import typing as t
 
 from sentence_transformers import SentenceTransformer as _SentenceTransformer
-
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.enums import DBType
 from pinnacle.components.component import ensure_initialized

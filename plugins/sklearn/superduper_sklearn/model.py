@@ -3,8 +3,6 @@ import typing as t
 
 import numpy
 from sklearn.base import BaseEstimator
-from tqdm import tqdm
-
 from pinnacle import logging
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
@@ -17,6 +15,7 @@ from pinnacle.components.model import (
     _Fittable,
 )
 from pinnacle.jobs.job import Job
+from tqdm import tqdm
 
 
 class SklearnTrainer(Trainer):

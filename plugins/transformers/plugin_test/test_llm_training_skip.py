@@ -2,7 +2,6 @@ import os
 
 import pytest
 import transformers
-
 from pinnacle import pinnacle
 from pinnacle.backends.mongodb import MongoQuery
 from pinnacle.base.document import Document
@@ -13,7 +12,6 @@ try:
     import peft
     import torch
     import trl
-
     from pinnacle.ext.transformers.training import LLMTrainer
 
     GPU_AVAILABLE = torch.cuda.is_available()
