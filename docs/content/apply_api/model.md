@@ -1,6 +1,6 @@
 # `Model`
 
-- Wrap a standard AI model with functionality necessary for pinnacle
+- Wrap a standard AI model with functionality necessary for Pinnacle
 - Configure validation and training of a model on database data
 
 ***Dependencies***
@@ -28,7 +28,7 @@ by adding the parameters `datatype=...` or `output_schema=...`.
 
 ## Implementations
 
-Here are a few pinnacle native implementations:
+Here are a few Pinnacle native implementations:
 
 **`ObjectModel`**
 
@@ -47,7 +47,7 @@ db.apply(m)
 
 **`QueryModel`**
 
-Use a pinnacle query to extract data from `db`
+Use a Pinnacle query to extract data from `db`
 
 ```python
 from pinnacle.components.model import QueryModel

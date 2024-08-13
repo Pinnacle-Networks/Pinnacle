@@ -58,8 +58,8 @@ Component(self,
 | uuid | UUID of the leaf. |
 | artifacts | A dictionary of artifacts paths and `DataType` objects |
 
-Base class for all components in pinnacle.
+Base class for all components in `pinnacle`.
 
-Class to represent pinnacle serializable entities
+Class to represent `pinnacle` serializable entities
 that can be saved into a database.
 
