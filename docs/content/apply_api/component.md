@@ -5,10 +5,10 @@ In this section we re-use the datalayer variable `db` without further explanatio
 Read more about how to build it [here](../core_api/connect) and what it is [here](../fundamentals/datalayer_overview).
 :::
 
-AI functionality in pinnacle revolves around creating AI models, 
+AI functionality in Pinnacle revolves around creating AI models, 
 and configuring them to interact with data via the datalayer.
 
-There are many decisions to be made and configured; for this pinnacle
+There are many decisions to be made and configured; for this Pinnacle
 provides the `Component` abstraction.
 
 The typical process is:
@@ -38,7 +38,7 @@ db.apply(component)
 ### 3. Reload the component (if necessary)
 
 The `.apply` command saves everything necessary to reload the component
-in the pinnacle system.
+in the Pinnacle system.
 
 ```python
 reloaded = db.load('type_id', 'identifier')   # `type_id`

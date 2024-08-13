@@ -5,7 +5,7 @@
 - `Template` is leveraged by `Application`.
 - Snapshot allows users to know that their validation comparisons are apples-to-apples
 - A `Template` is useful for sharing, migrating and distributing AI components
-- A `Template` may be applied to any pinnacle deployment
+- A `Template` may be applied to any Pinnacle deployment
 
 ***Usage pattern***
 

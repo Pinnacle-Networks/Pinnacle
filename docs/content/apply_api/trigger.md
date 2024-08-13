@@ -2,7 +2,7 @@
 
 - Listen for update, inserts and deletes
 - Take a specific action contigent on these changes
-- Can be deployed on pinnacle Enterprise
+- Can be deployed on Pinnacle Enterprise
 
 ***Usage pattern***
 
