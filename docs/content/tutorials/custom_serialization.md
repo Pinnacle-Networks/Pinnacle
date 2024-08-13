@@ -2,8 +2,8 @@
 # Custom serialization
 
 In this tutorial, we demonstrate how developers can flexibily and portably define
-their own classes in `pinnacle`. These may be exported with `Component.export` 
-and transported to other `pinnacle` deployments with `db.apply`.
+their own classes in `Pinnacle`. These may be exported with `Component.export` 
+and transported to other `Pinnacle` deployments with `db.apply`.
 
 To make our lives difficult, we'll include a data blob in the model, which should be serialized with the 
 exported class:
