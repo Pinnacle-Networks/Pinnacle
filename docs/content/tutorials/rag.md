@@ -2,7 +2,7 @@
 # Basic RAG tutorial
 
 :::info
-In this tutorial we show you how to do retrieval augmented generation (RAG) with `pinnacle`.
+In this tutorial we show you how to do retrieval augmented generation (RAG) with `Pinnacle`.
 Note that this is just an example of the flexibility and power which `Pinnacle` gives 
 to developers. `Pinnacle` is about much more than RAG and LLMs. 
 :::
