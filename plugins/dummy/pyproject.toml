@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pinnacle_mongodb"
+name = "pinnacle_dummy"
 readme = "README.md"
 license = {file = "LICENSE"}
 maintainers = [{name = "pinnacle.io, Inc.", email = "opensource@pinnacle.io"}]
@@ -19,9 +19,6 @@ keywords = [
 requires-python = ">=3.10"
 dynamic = ["version"]
 dependencies = [
-    "mongomock",
-    "pymongo",
-    "click",
 ]
 
 [project.urls]
@@ -30,10 +27,10 @@ documentation = "https://docs.pinnacle.com"
 source = "https://github.com/pinnacle.io/pinnacle/"
 
 [tool.setuptools.packages.find]
-include = ["pinnacle_mongodb*"]
+include = ["pinnacle_dummy*"]
 
 [tool.setuptools.dynamic]
-version = {attr = "pinnacle_mongodb.__version__"}
+version = {attr = "pinnacle_dummy.__version__"}
 
 [tool.black]
 skip-string-normalization = true

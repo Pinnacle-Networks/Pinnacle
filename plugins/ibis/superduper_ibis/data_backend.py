@@ -12,7 +12,6 @@ from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.backends.local.artifacts import FileSystemArtifactStore
-from pinnacle.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 from pinnacle.base.enums import DBType
 from pinnacle.components.datatype import DataType
 from pinnacle.components.schema import Schema
@@ -96,6 +95,7 @@ class IbisDataBackend(BaseDataBackend):
 
     def build_metadata(self):
         """Build metadata for the database."""
+        from pinnacle.backends.sqlalchemy.metadata import SQLAlchemyMetadata
 
         def callback():
             return self.conn.con, self.name
