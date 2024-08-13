@@ -1,9 +1,9 @@
 # SuperDuper Protocol
 
-`pinnacle` includes a protocol allowed developers to switch back and forth from Python and YAML/ JSON formats.
+`Pinnacle` includes a protocol allowed developers to switch back and forth from Python and YAML/ JSON formats.
 The mapping is fairly self-explanatory after reading the examples below.
 
-## Writing in pinnacle-protocol directly
+## Writing in Pinnacle-protocol directly
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -152,9 +152,9 @@ import TabItem from '@theme/TabItem';
     </TabItem>
 </Tabs>
 
-## Converting a `Component` to pinnacle-protocol
+## Converting a `Component` to Pinnacle-protocol
 
-All components may be converted to *pinnacle-protocol* using the `Component.encode` method:
+All components may be converted to *Pinnacle-protocol* using the `Component.encode` method:
 
 ```python
 encoding = vector_index.encode()

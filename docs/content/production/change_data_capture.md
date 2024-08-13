@@ -2,13 +2,13 @@
 sidebar_position: 4
 ---
 
-# Setting up pinnacle as a change-data-capture daemon
+# Setting up Pinnacle as a change-data-capture daemon
 
 :::info
 This functionality is currently for MongoDB only
 :::
 
-Setting-up pinnacle as a change-data-capture daemon, is a simple call:
+Setting-up Pinnacle as a change-data-capture daemon, is a simple call:
 
 ```python
 db.cdc.listen()
@@ -21,7 +21,7 @@ pinnacle cdc
 ```
 
 When `pinnacle` is configured in this way, this daemon handles all inserts to 
-pinnacle, therefore, if `pinnacle` is run in another process or service, 
+Pinnacle, therefore, if `pinnacle` is run in another process or service, 
 it's important to configure the existence of the daemon:
 
 ```python
