@@ -1,7 +1,7 @@
 # vLLM
 
 
-`pinnacle` allows users to work with self-hosted LLM models via "[vLLM](https://github.com/vllm-project/vllm)".
+`Pinnacle` allows users to work with self-hosted LLM models via "[vLLM](https://github.com/vllm-project/vllm)".
 
 | Class | Description | GitHub | API-docs |
 | --- | --- | --- | --- |

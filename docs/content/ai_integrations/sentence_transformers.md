@@ -1,6 +1,6 @@
 # Sentence-Transformers
 
-`pinnacle` allows users to work with self-hosted embedding models via "[Sentence-Transformers](https://sbert.net/)".
+`Pinnacle` allows users to work with self-hosted embedding models via "[Sentence-Transformers](https://sbert.net/)".
 
 | Class | Description | GitHub | API-docs |
 | --- | --- | --- | --- |

@@ -1,6 +1,6 @@
 # Anthropic
 
-`pinnacle` allows users to work with `anthropic` API models. The key integration is the integration 
+`Pinnacle` allows users to work with `anthropic` API models. The key integration is the integration 
 of high-quality API-hosted LLM services.
 
 | Class | Description | GitHub | API-docs |
