@@ -79,7 +79,7 @@ import DownloadButton from '../downloadButton.js';
 </Tabs>
 ```python
 # test the llm model
-llm.predict("Tell me about the pinnacle")
+llm.predict("Tell me about the Pinnacle")
 ```
 
 <DownloadButton filename="build_llm.md" />

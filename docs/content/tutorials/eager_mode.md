@@ -1,7 +1,7 @@
 
 # Eager Mode (Aplpa) 
 
-Eager Mode is an interactive way to build pinnacle applications. 
+Eager Mode is an interactive way to build Pinnacle applications. 
 
 Users can input data as usual, continuously call models, and view results.
 Once the interactive debugging and construction are complete, 

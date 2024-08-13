@@ -8,10 +8,10 @@ import DownloadButton from '../downloadButton.js';
 
 
 <!-- TABS -->
-# Connect to pinnacle
+# Connect to Pinnacle
 
 :::note
-Note that this is only relevant if you are running pinnacle in development mode.
+Note that this is only relevant if you are running Pinnacle in development mode.
 Otherwise refer to "Configuring your production system".
 :::
 
