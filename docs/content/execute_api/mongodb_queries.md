@@ -1,6 +1,6 @@
 # MongoDB select queries
 
-pinnacle supports the `pymongo` query API to build select queries.
+Pinnacle supports the `pymongo` query API to build select queries.
 There is one slight difference however, since queries built with `pymongo`'s formalism
 are executed lazily:
 

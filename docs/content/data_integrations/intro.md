@@ -1,6 +1,6 @@
 # Data integrations
 
-pinnacle integrates with 3 types of data-backend:
+Pinnacle integrates with 3 types of data-backend:
 
 - NoSQL
     - [MongoDB Community Edition](https://www.mongodb.com/try/download/community)
@@ -17,7 +17,7 @@ pinnacle integrates with 3 types of data-backend:
     - [Pandas](https://pandas.pydata.org/docs/)
 
 Although these data-backends provide very different functionality, 
-with pinnacle they are accessible via a uniform API.
+with Pinnacle they are accessible via a uniform API.
 
 However, developers should bear in mind that there are a few 
 differences between MongoDB and SQL data-backends.

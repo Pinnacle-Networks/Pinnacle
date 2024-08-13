@@ -1,6 +1,6 @@
 # (Optional) Setting up tables and encodings
 
-`pinnacle` has flexible support for data-types. In both MongoDB and SQL databases,
+Pinnacle has flexible support for data-types. In both MongoDB and SQL databases,
 one can uses `pinnacle.DataType` to define one's own data-types.
 
 If no-datatypes are provided, `pinnacle` [uses fallbacks](./auto_data_types.md) to encode and decode data.
