@@ -1,6 +1,6 @@
 # Vector-search
 
-pinnacle aims to provide first-class support for 
+Pinnacle aims to provide first-class support for 
 vector-search, including embedding computation in preparation
 and run-time, as well as executing the fast vector-comparison 
 and returning results in a way compatible with standard database

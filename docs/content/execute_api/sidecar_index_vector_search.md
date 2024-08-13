@@ -1,6 +1,6 @@
 # Sidecar vector-comparison integration
 
-For databases which don't have their own vector-search implementation, `pinnacle` offers 
+For databases which don't have their own vector-search implementation, `Pinnacle` offers 
 2 integrations:
 
 - In memory vector-search

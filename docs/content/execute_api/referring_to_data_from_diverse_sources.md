@@ -4,8 +4,8 @@ sidebar_position: 15
 
 # Working with external data sources
 
-pinnacle supports data added from external data-sources.
-When doing this, `pinnacle` supports:
+Pinnacle supports data added from external data-sources.
+When doing this, `Pinnacle` supports:
 
 - web URLs
 - URIs of objects in `s3` buckets
