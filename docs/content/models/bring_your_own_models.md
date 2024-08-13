@@ -1,7 +1,7 @@
 # Bring your own models
 
 There are two ways to bring your own computations
-and models to pinnacle.
+and models to Pinnacle.
 
 1. Wrap your own Python functions
 2. Write your own `Model` sub-classes
@@ -112,7 +112,7 @@ are emitted, for consumption by the internal workings of the model
 If your model contains large data-artifacts or non-JSON-able content, then 
 these items should be labelled with [a `DataType`](../apply_api/datatype).
 
-On saving, this will allow `pinnacle` to encode their values and save the result
+On saving, this will allow `Pinnacle` to encode their values and save the result
 in `db.artifact_store`.
 
 Here is an example which includes a `numpy.array`:

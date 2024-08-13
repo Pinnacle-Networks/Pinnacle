@@ -6,7 +6,7 @@ tags:
 
 # Configure
 
-pinnacle provides a range of configurable options for setting
+Pinnacle provides a range of configurable options for setting
 up your environment:
 
 Configurations can either be injected:
