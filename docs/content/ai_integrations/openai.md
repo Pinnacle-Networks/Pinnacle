@@ -1,6 +1,6 @@
 # OpenAI
 
-`pinnacle` allows users to work with `openai` API models.
+`Pinnacle` allows users to work with `openai` API models.
 
 | Class | Description | GitHub | API-docs |
 | --- | --- | --- | --- |

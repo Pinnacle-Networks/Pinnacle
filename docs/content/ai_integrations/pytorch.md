@@ -4,8 +4,8 @@ sidebar_position: 3
 
 # PyTorch
 
-`pinnacle` allows users to work with arbitrary `torch` models, with custom pre-, post-processing and input/ output data-types,
-as well as offering training with `pinnacle`
+`Pinnacle` allows users to work with arbitrary `torch` models, with custom pre-, post-processing and input/ output data-types,
+as well as offering training with `Pinnacle`
 
 
 | Class | Description | GitHub | API-docs |
