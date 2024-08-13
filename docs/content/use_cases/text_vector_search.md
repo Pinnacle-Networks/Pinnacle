@@ -15,10 +15,10 @@ import DownloadButton from '../downloadButton.js';
 
 :::note
 If you would like to use the production features 
-of pinnacle, then you should set the relevant 
+of Pinnacle, then you should set the relevant 
 connections and configurations in a configuration 
 file. Otherwise you are welcome to use "development" mode 
-to get going with pinnacle quickly.
+to get going with Pinnacle quickly.
 :::
 
 ```python
@@ -159,7 +159,7 @@ with open(os.environ['SUPERDUPER_CONFIG'], 'w') as f:
 ## Start your cluster
 
 :::note
-Starting a pinnacle cluster is useful in production and model development
+Starting a Pinnacle cluster is useful in production and model development
 if you want to enable scalable compute, access to the models by multiple users for collaboration, 
 monitoring.
 
@@ -181,10 +181,10 @@ If you don't need this, then it is simpler to start in development mode.
     </TabItem>
 </Tabs>
 <!-- TABS -->
-## Connect to pinnacle
+## Connect to Pinnacle
 
 :::note
-Note that this is only relevant if you are running pinnacle in development mode.
+Note that this is only relevant if you are running Pinnacle in development mode.
 Otherwise refer to "Configuring your production system".
 :::
 
@@ -324,7 +324,7 @@ datas = [{'x': d} for d in data]
 <!-- TABS -->
 ## Create datatype
 
-PinnacleDB supports automatic data conversion, so users don’t need to worry about the compatibility of different data formats (`PIL.Image`, `numpy.array`, `pandas.DataFrame`, etc.) with the database.
+Pinnacle supports automatic data conversion, so users don’t need to worry about the compatibility of different data formats (`PIL.Image`, `numpy.array`, `pandas.DataFrame`, etc.) with the database.
 
 It also supports custom data conversion methods for transforming data, such as defining the following Datatype.
 
@@ -551,7 +551,7 @@ query_table_or_collection = select.table_or_collection
 ```python
 from pinnacle import Document
 # Perform the vector search based on the query
-item = Document({indexing_key: "Tell me about the pinnacle"})
+item = Document({indexing_key: "Tell me about the Pinnacle"})
 ```
 
 ```python

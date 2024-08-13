@@ -15,10 +15,10 @@ import DownloadButton from '../downloadButton.js';
 
 :::note
 If you would like to use the production features 
-of pinnacle, then you should set the relevant 
+of Pinnacle, then you should set the relevant 
 connections and configurations in a configuration 
 file. Otherwise you are welcome to use "development" mode 
-to get going with pinnacle quickly.
+to get going with Pinnacle quickly.
 :::
 
 ```python
@@ -159,7 +159,7 @@ with open(os.environ['SUPERDUPER_CONFIG'], 'w') as f:
 ## Start your cluster
 
 :::note
-Starting a pinnacle cluster is useful in production and model development
+Starting a Pinnacle cluster is useful in production and model development
 if you want to enable scalable compute, access to the models by multiple users for collaboration, 
 monitoring.
 
@@ -181,10 +181,10 @@ If you don't need this, then it is simpler to start in development mode.
     </TabItem>
 </Tabs>
 <!-- TABS -->
-## Connect to pinnacle
+## Connect to Pinnacle
 
 :::note
-Note that this is only relevant if you are running pinnacle in development mode.
+Note that this is only relevant if you are running Pinnacle in development mode.
 Otherwise refer to "Configuring your production system".
 :::
 
@@ -317,7 +317,7 @@ datas = [{'img': d} for d in data[:100]]
 <!-- TABS -->
 ## Insert simple data
 
-After turning on auto_schema, we can directly insert data, and pinnacle will automatically analyze the data type, and match the construction of the table and datatype.
+After turning on auto_schema, we can directly insert data, and Pinnacle will automatically analyze the data type, and match the construction of the table and datatype.
 
 ```python
 from pinnacle import Document
