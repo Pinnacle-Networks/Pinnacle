@@ -11,7 +11,7 @@ import DownloadButton from '../downloadButton.js';
 # Start your cluster
 
 :::note
-Starting a pinnacle cluster is useful in production and model development
+Starting a Pinnacle cluster is useful in production and model development
 if you want to enable scalable compute, access to the models by multiple users for collaboration, 
 monitoring.
 
