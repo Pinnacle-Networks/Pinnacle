@@ -1,6 +1,6 @@
 # Cohere
 
-`Pinnacle` allows users to work with `cohere` API models.
+`pinnacle` allows users to work with `cohere` API models.
 
 
 | Class | Description | GitHub | API-docs |

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Custom Models
 
-Pinnacle provides fully flexible support for AI models from across the 
+`pinnacle` provides fully flexible support for AI models from across the 
 open-source ecosystem.
 
 Custom AI integrations may be achieved by building on to of the base `pinnacle.Model` class.

@@ -1,7 +1,7 @@
 # Llama.cpp
 
 
-`Pinnacle` allows users to work with self-hosted LLM models via "[Llama.cpp](https://github.com/ggerganov/llama.cpp)".
+`pinnacle` allows users to work with self-hosted LLM models via "[Llama.cpp](https://github.com/ggerganov/llama.cpp)".
 
 | Class | Description | GitHub | API-docs |
 | --- | --- | --- | --- |
