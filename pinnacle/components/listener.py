@@ -4,8 +4,8 @@ import typing as t
 from overrides import override
 
 from pinnacle import CFG, logging
-from pinnacle.base.event import Event
 from pinnacle.backends.base.query import Query
+from pinnacle.base.event import Event
 from pinnacle.components.model import Mapping
 from pinnacle.misc.server import request_server
 
@@ -209,7 +209,6 @@ class Listener(Component):
             return []
         from pinnacle.base.datalayer import DBEvent
         from pinnacle.base.event import Event
-        
 
         self.select.db = db
         ids = self.db.databackend.check_ready_ids(self.select, self._ready_keys)
@@ -217,7 +216,7 @@ class Listener(Component):
         event = Event(
             dest={'type_id': self.type_id, 'identifier': self.identifier},
             event_type=DBEvent.insert,
-            id=ids,
+            id=[str(id) for id in ids],
             from_type='COMPONENT',
         )
 
@@ -256,7 +255,6 @@ class Listener(Component):
         dependencies: t.Sequence[str] = (),
         overwrite: bool = False,
         events: t.Optional[t.List] = [],
-        event_type: str = 'insert',
     ) -> t.Sequence[t.Any]:
         """Schedule jobs for the listener.
 
@@ -284,6 +282,10 @@ class Listener(Component):
                     job_id=event.uuid,
                 )
             ]
+
+        # Create db events
+        if not db_events:
+            return jobs
 
         jobs += [
             self._create_predict_job(

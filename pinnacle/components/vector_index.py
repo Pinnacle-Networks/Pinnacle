@@ -10,6 +10,7 @@ from pinnacle import CFG, logging
 from pinnacle.backends.base.query import Query
 from pinnacle.base.datalayer import Datalayer, DBEvent
 from pinnacle.base.document import Document
+from pinnacle.base.event import Event
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import DataType
 from pinnacle.components.listener import Listener
@@ -366,6 +367,10 @@ class VectorIndex(Component):
                 )
             ]
 
+        # Create db events
+        if not db_events:
+            return jobs
+
         jobs += [
             self._create_predict_job(
                 db=db,
@@ -387,8 +392,6 @@ class VectorIndex(Component):
         :param db: The DB instance to process
         :param dependencies: A list of dependencies
         """
-        from pinnacle.base.event import Event
-
         assert self.indexing_listener.select is not None
 
         outputs = db[self.indexing_listener.outputs]
