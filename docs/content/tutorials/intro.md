@@ -1,7 +1,7 @@
 # Tutorials
 
 In this section we guide newcomers through the most 
-basic usage pattern in `Pinnacle`.
+basic usage pattern in Pinnacle.
 
 For more detailed, flexible and realistic use-cases, 
 refer to the [use-cases section](/use_cases).

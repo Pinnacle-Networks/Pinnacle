@@ -13,7 +13,7 @@ pinnacle(item: Optional[Any] = None,
 | item | A database or model |
 | kwargs | Additional keyword arguments to pass to the component |
 
-Pinnacle API to automatically wrap an object to a db or a component.
+`pinnacle` API to automatically wrap an object to a db or a component.
 
 Attempts to automatically wrap an item in a pinnacle.ioponent by
 using duck typing to recognize it.

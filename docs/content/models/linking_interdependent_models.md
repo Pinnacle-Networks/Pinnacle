@@ -1,6 +1,6 @@
 # Configuring models to ingest features from other models
 
-There are two ways to connect models in `Pinnacle`:
+There are two ways to connect models in Pinnacle:
 
 - via interdependent `Listeners`
 - via the `Graph` component
