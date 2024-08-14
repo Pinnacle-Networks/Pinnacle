@@ -1,6 +1,6 @@
-# Core Pinnacle usage
+# Core pinnacle usage
 
-In this section we walk through how to perform the key operations with Pinnacle.
+In this section we walk through how to perform the key operations with pinnacle.
 There are three key patterns C-A-E:
 
 ***Connect***
