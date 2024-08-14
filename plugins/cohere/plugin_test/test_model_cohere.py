@@ -2,7 +2,8 @@ import os
 
 import pytest
 import vcr
-from pinnacle.ext.cohere import CohereEmbed, CohereGenerate
+
+from pinnacle_cohere import CohereEmbed, CohereGenerate
 
 CASSETTE_DIR = os.path.join(os.path.dirname(__file__), 'cassettes')
 

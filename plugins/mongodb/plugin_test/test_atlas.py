@@ -5,11 +5,12 @@ import pymongo
 import pytest
 import pinnacle as s
 from pinnacle import CFG, pinnacle
-from pinnacle.backends.mongodb.query import MongoQuery
 from pinnacle.base.document import Document
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 from pinnacle.components.vector_index import VectorIndex, vector
+
+from pinnacle_mongodb.query import MongoQuery
 
 try:
     client = pymongo.MongoClient(CFG.data_backend)

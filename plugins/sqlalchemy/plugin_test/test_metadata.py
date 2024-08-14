@@ -2,7 +2,8 @@ from test.utils.database import metadata as metadata_utils
 
 import pytest
 from pinnacle import CFG
-from pinnacle.backends.sqlalchemy.metadata import SQLAlchemyMetadata
+
+from pinnacle_sqlalchemy.metadata import SQLAlchemyMetadata
 
 DATABASE_URL = CFG.metadata_store or "sqlite:///:memory:"
 

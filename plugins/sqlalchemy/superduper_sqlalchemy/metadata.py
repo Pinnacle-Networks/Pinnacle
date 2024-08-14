@@ -17,8 +17,9 @@ from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.orm import sessionmaker
 from pinnacle import logging
 from pinnacle.backends.base.metadata import MetaDataStore, NonExistentMetadataError
-from pinnacle.backends.sqlalchemy.db_helper import get_db_config
 from pinnacle.misc.colors import Colors
+
+from pinnacle_sqlalchemy.db_helper import get_db_config
 
 
 class SQLAlchemyMetadata(MetaDataStore):
