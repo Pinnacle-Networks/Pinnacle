@@ -16,7 +16,7 @@ cluster:
 export SUPERDUPER_CLUSTER_VECTOR_SEARCH_TYPE=native
 ```
 
-If Pinnacle detects this configuration, it uses the inbuilt mechanism 
+If `pinnacle` detects this configuration, it uses the inbuilt mechanism 
 of your `db.databackend` to perform the vector-comparison.
 
 Currently Pinnacle supports the native implementation of these databases:

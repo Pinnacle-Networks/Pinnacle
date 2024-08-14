@@ -1,6 +1,6 @@
 # Apply
 
-In Pinnacle there are three fundamental base components which you'll use for almost all functionality:
+In pinnacle there are three fundamental base components which you'll use for almost all functionality:
 
 - [`Model`](../apply_api/model)
 - [`Listener`](../apply_api/listener)
@@ -29,7 +29,7 @@ pre- and post-processing, and encoding/ decoding data into/ from the correct typ
 `db.apply(model)` tells `pinnacle` to store the model and its metadata in the system.
 
 If additional configurations, such as training parameters, are added to the `Model` then the `db.apply` command
-will also train the component on data in Pinnacle.
+will also train the component on data in pinnacle.
 
 Read more about `Model` [here](../apply_api/model).
 
@@ -41,7 +41,7 @@ Read more about `Listener` [here](../apply_api/listener).
 
 ### `VectorIndex`
 
-A `VectorIndex` wraps one or two `Listener` components, and tells Pinnacle that the outputs computed, should
+A `VectorIndex` wraps one or two `Listener` components, and tells `pinnacle` that the outputs computed, should
 be made searchable via vector-search queries.
 
 Read more about `VectorIndex` [here](../apply_api/vector_index).
@@ -49,9 +49,9 @@ Read more about `VectorIndex` [here](../apply_api/vector_index).
 ## Connecting component: `Stack`
 
 A `Stack` of AI functionality is a combination of multiple `Model`, `Listener`, and `VectorIndex` components which may be "applied" in 
-one pass to your data via Pinnacle. 
+one pass to your data via pinnacle. 
 
-On `db.add(stack)` Pinnacle performs the heavy lifting of deciding which components need to be applied 
+On `db.add(stack)` pinnacle performs the heavy lifting of deciding which components need to be applied 
 first, which need to be modified on incoming data, and which outputs need to be made searchable.
 
 Read more about `Stack` [here](../apply_api/stack).
