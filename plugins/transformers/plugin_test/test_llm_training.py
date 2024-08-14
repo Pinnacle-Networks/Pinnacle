@@ -4,14 +4,16 @@ import random
 from pinnacle.base.document import Document
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.metric import Metric
-from pinnacle.ext.transformers import LLM
+
+from pinnacle_transformers import LLM
 
 TEST_MODEL_NAME = "facebook/opt-125m"
 try:
     import datasets
     import peft
     import trl
-    from pinnacle.ext.transformers.training import LLMTrainer
+
+    from pinnacle_transformers.training import LLMTrainer
 except ImportError:
     datasets = None
     peft = None

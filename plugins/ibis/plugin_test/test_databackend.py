@@ -2,7 +2,8 @@ from test.utils.database import databackend as db_utils
 
 import pytest
 from pinnacle import CFG
-from pinnacle.backends.ibis.data_backend import IbisDataBackend
+
+from pinnacle_ibis.data_backend import IbisDataBackend
 
 
 @pytest.fixture

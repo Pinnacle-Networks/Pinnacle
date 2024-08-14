@@ -20,9 +20,10 @@ from pinnacle.components.model import (
     _DeviceManaged,
     _Fittable,
 )
-from pinnacle.ext.torch.utils import device_of, eval, to_device
 from torch.utils import data
 from tqdm import tqdm
+
+from pinnacle_torch.utils import device_of, eval, to_device
 
 if t.TYPE_CHECKING:
     from pinnacle.jobs.job import Job

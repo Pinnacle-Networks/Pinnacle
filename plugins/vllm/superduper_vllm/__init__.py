@@ -1,5 +1,6 @@
-from pinnacle.ext.vllm.model import VllmAPI, VllmModel
 from pinnacle.misc.annotations import requires_packages
+
+from pinnacle_vllm.model import VllmAPI, VllmModel
 
 __version__ = "0.3.0"
 

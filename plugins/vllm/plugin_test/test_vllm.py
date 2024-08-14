@@ -6,7 +6,8 @@ import pytest
 import vcr
 from pinnacle import pinnacle
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.ext.vllm.model import VllmAPI
+
+from pinnacle_vllm.model import VllmAPI
 
 CASSETTE_DIR = os.path.join(os.path.dirname(__file__), 'cassettes')
 

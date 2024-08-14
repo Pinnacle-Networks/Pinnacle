@@ -7,9 +7,10 @@ try:
 except ImportError:
     torch = None
 
-from pinnacle.backends.mongodb.query import MongoQuery
 from pinnacle.components.dataset import Dataset
-from pinnacle.ext.transformers.model import (
+from pinnacle_mongodb.query import MongoQuery
+
+from pinnacle_transformers.model import (
     TextClassificationPipeline,
     TransformersTrainer,
 )

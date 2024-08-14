@@ -7,8 +7,9 @@ from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.model import Trainer
-from pinnacle.ext.torch.model import TorchModel
 from torch.utils.data import DataLoader
+
+from pinnacle_torch.model import TorchModel
 
 
 class TorchTrainer(Trainer):
