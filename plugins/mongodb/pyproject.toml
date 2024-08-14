@@ -25,9 +25,9 @@ dependencies = [
 ]
 
 [project.urls]
-homepage = "https://www.pinnacle.com/"
-documentation = "https://docs.pinnacle.com"
-source = "https://github.com/pinnacle.io/pinnacle/"
+homepage = "https://pinnacle.io"
+documentation = "https://docs.pinnacle.io/docs/intro"
+source = "https://github.com/pinnacle-io/pinnacle"
 
 [tool.setuptools.packages.find]
 include = ["pinnacle_mongodb*"]
