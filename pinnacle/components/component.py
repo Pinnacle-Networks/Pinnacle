@@ -128,6 +128,8 @@ class Component(Leaf):
         from pinnacle import Template
 
         if template_name:
+            from pinnacle.base.datalayer import Datalayer
+
             assert isinstance(db, Datalayer)
             template: Template = db.load('template', template_name)
         else:
