@@ -20,12 +20,12 @@ from pinnacle.components.datatype import (
     pickle_serializer,
 )
 from pinnacle.components.listener import Listener
-from pinnacle.components.model import Model, ObjectModel, Trainer, _Fittable
+from pinnacle.components.model import Model, ObjectModel, Trainer 
 from pinnacle.components.schema import FieldType, Schema
 from pinnacle.components.table import Table
 
 
-class FakeModel(Model, _Fittable):
+class FakeModel(Model):
     """Fake model for testing."""
 
     ...
@@ -516,7 +516,7 @@ def test_replace_with_child(db):
         trainer=trainer,
     )
 
-    with patch.object(_Fittable, 'fit'):
+    with patch.object(FakeModel, 'fit'):
         db.apply(model)
 
     model_ids = db.show('model')
