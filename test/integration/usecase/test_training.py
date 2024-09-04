@@ -2,7 +2,7 @@ import typing as t
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.jobs.job import Job
 from test.utils.setup.fake_data import add_random_data
-from pinnacle.components.model import _Fittable, Trainer, Model
+from pinnacle.components.model import Trainer, Model
 from pinnacle.components.datatype import pickle_serializer
 
 if t.TYPE_CHECKING:
