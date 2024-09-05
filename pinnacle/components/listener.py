@@ -8,10 +8,10 @@ from pinnacle.backends.base.query import Query
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.event import Event
 from pinnacle.components.model import Mapping
+from pinnacle.components.trigger import Trigger
 from pinnacle.misc.server import request_server
 
 from ..jobs.job import Job
-from .component import Component
 from .model import Model, ModelInputType
 
 if t.TYPE_CHECKING:
@@ -21,7 +21,7 @@ if t.TYPE_CHECKING:
 SELECT_TEMPLATE = {'documents': [], 'query': '<collection_name>.find()'}
 
 
-class Listener(Component):
+class Listener(Trigger):
     """Listener component.
 
     Listener object which is used to process a column/key of a collection or table,
@@ -29,14 +29,12 @@ class Listener(Component):
 
     :param key: Key to be bound to the model.
     :param model: Model for processing data.
-    :param select: Object for selecting which data is processed.
     :param predict_kwargs: Keyword arguments to self.model.predict().
     :param identifier: A string used to identify the listener and it's outputs.
     """
 
     key: ModelInputType
     model: Model
-    select: t.Union[Query, None]
     predict_kwargs: t.Optional[t.Dict] = dc.field(default_factory=dict)
     type_id: t.ClassVar[str] = 'listener'
 
@@ -83,6 +81,7 @@ class Listener(Component):
         """Get select statement for outputs."""
         return self.db[self.select.table].select().outputs(self.predict_id)
 
+    # TODO do we need this?
     @property
     def cdc_table(self):
         """Get table for cdc."""
