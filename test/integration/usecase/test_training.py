@@ -1,6 +1,5 @@
 import typing as t
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.jobs.job import Job
 from test.utils.setup.fake_data import add_random_data
 from pinnacle.components.model import Trainer, Model
 from pinnacle.components.datatype import pickle_serializer
@@ -34,7 +33,6 @@ def test_training(db: "Datalayer"):
 
     add_random_data(db, 'documents', 100)
 
-    from pinnacle_sklearn import Estimator, SklearnTrainer
     from sklearn.svm import SVC
 
     model = MyModel(
