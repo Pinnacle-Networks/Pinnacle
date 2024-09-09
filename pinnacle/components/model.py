@@ -25,7 +25,6 @@ from pinnacle.components.datatype import DataType, dill_lazy
 from pinnacle.components.metric import Metric
 from pinnacle.components.schema import Schema
 from pinnacle.jobs.annotations import trigger
-from pinnacle.jobs.job import ComponentJob
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
