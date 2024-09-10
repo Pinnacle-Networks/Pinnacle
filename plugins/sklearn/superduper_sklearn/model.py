@@ -13,7 +13,6 @@ from pinnacle.components.model import (
     Signature,
     Trainer,
 )
-from pinnacle.jobs.job import Job
 from tqdm import tqdm
 
 

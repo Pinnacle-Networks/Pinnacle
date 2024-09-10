@@ -21,7 +21,6 @@ from pinnacle.components.model import (
 )
 from pinnacle.components.training import Checkpoint
 from pinnacle.ext.llm.model import BaseLLM
-from pinnacle.jobs.job import Job
 from transformers import (
     AutoModelForCausalLM,
     AutoModelForSequenceClassification,

@@ -8,7 +8,7 @@ from pinnacle import Document
 from pinnacle.backends.base.query import Query
 from pinnacle.base.constant import KEY_BLOBS
 from pinnacle.components.listener import Listener
-from pinnacle.components.model import ObjectModel, Trainer 
+from pinnacle.components.model import ObjectModel, Trainer
 
 
 class MyTrainer(Trainer):
@@ -237,7 +237,6 @@ def test_listener_chaining_with_trainer(db):
 
 
 def test_upstream_serializes(db):
-
     upstream_component = ObjectModel("upstream", object=lambda x: x)
 
     dependent_listener = Listener(
@@ -262,4 +261,4 @@ def test_upstream_serializes(db):
 
     assert 'upstream' in db.show('model')
 
-    r = db.show('listener', listener.identifier, -1)
+    _ = db.show('listener', listener.identifier, -1)
