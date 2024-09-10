@@ -20,7 +20,7 @@ from pinnacle.components.datatype import (
     pickle_serializer,
 )
 from pinnacle.components.listener import Listener
-from pinnacle.components.model import Model, ObjectModel, Trainer 
+from pinnacle.components.model import Model, ObjectModel, Trainer
 from pinnacle.components.schema import FieldType, Schema
 from pinnacle.components.table import Table
 

@@ -24,9 +24,6 @@ from tqdm import tqdm
 
 from pinnacle_torch.utils import device_of, eval, to_device
 
-if t.TYPE_CHECKING:
-    from pinnacle.jobs.job import Job
-
 
 def torchmodel(class_obj):
     """A decorator to convert a `torch.nn.Module` into a `TorchModel`.

@@ -6,8 +6,6 @@ import torch
 from pinnacle import pinnacle
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.datatype import DataType
-from pinnacle.components.metric import Metric
-from pinnacle.components.model import Validation
 
 from pinnacle_torch.model import TorchModel
 from pinnacle_torch.training import TorchTrainer
@@ -71,7 +69,6 @@ def model():
 # TODO: The training task is not executed, but it was not tested.
 @pytest.mark.skipif(not torch, reason='Torch not installed')
 def test_fit(db, model, capfd):
-    from test.utils.setup.fake_data import get_valid_dataset
 
     data = []
     for i in range(500):

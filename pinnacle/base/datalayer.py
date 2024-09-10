@@ -26,7 +26,6 @@ from pinnacle.components.component import Component
 from pinnacle.components.datatype import DataType
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
-from pinnacle.jobs.job import Job
 from pinnacle.misc.annotations import deprecated
 from pinnacle.misc.colors import Colors
 from pinnacle.misc.download import download_from_one
@@ -221,7 +220,6 @@ class Datalayer:
         :param identifier: Identifying string to component.
         :param version: (Optional) Numerical version - specify for full metadata.
         """
-
         if uuid is not None:
             return self.metadata.get_component_by_uuid(uuid)
 
@@ -295,7 +293,9 @@ class Datalayer:
         result = delete.do_execute(self)
         cdc_status = s.CFG.cluster.cdc.uri is not None
         if refresh and not cdc_status:
-            return result, self.on_event(delete, ids=result, event_type=EventType.delete)
+            return result, self.on_event(
+                delete, ids=result, event_type=EventType.delete
+            )
         return result, None
 
     def _insert(
@@ -611,7 +611,7 @@ class Datalayer:
         lookup = {(c.type_id, c.identifier): c for c in components}
         for k in lookup:
             G.add_node(k)
-            for d in lookup[k].get_children_refs(): #dependencies:
+            for d in lookup[k].get_children_refs():  # dependencies:
                 if d[:2] in lookup:
                     G.add_edge(d, lookup[k].id_tuple)
 
@@ -619,9 +619,7 @@ class Datalayer:
         for n in nodes:
             self._apply(lookup[n], parent=parent.uuid)
 
-    def _update_component(
-        self, object, parent: t.Optional[str] = None
-    ):
+    def _update_component(self, object, parent: t.Optional[str] = None):
         # TODO add update logic here to check changed attributes
         s.logging.debug(
             f'{object.type_id},{object.identifier} already exists - doing nothing'
@@ -646,9 +644,7 @@ class Datalayer:
         )
 
         if already_exists:
-            return self._update_component(
-                object, parent=parent
-            )
+            return self._update_component(object, parent=parent)
 
         if object.version is None:
             if existing_versions:
@@ -669,7 +665,8 @@ class Datalayer:
             v for v in serialized[KEY_BUILDS].values() if isinstance(v, Component)
         ]
         self._add_child_components(
-            children, parent=object,
+            children,
+            parent=object,
         )
         if children:
             serialized = self._change_component_reference_prefix(serialized)
@@ -688,7 +685,9 @@ class Datalayer:
 
         event = Event(
             event_type='apply',
-            dest=ComponentPlaceholder(type_id=object.type_id, identifier=object.identifier),
+            dest=ComponentPlaceholder(
+                type_id=object.type_id, identifier=object.identifier
+            ),
         )
         self.compute.broadcast([event])
         self._add_component_to_cache(object)

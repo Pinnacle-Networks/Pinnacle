@@ -1,8 +1,9 @@
 import typing as t
-from pinnacle.base.datalayer import Datalayer
 from test.utils.setup.fake_data import add_random_data
-from pinnacle.components.model import Trainer, Model
+
+from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.datatype import pickle_serializer
+from pinnacle.components.model import Model, Trainer
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
@@ -16,9 +17,7 @@ class MyTrainer(Trainer):
 
 
 class MyModel(Model):
-    _artifacts: t.ClassVar[t.Any] = (
-        ('estimator', pickle_serializer),
-    )
+    _artifacts: t.ClassVar[t.Any] = (('estimator', pickle_serializer),)
     estimator: t.Any
     signature: str = 'singleton'
 
@@ -30,7 +29,6 @@ class MyModel(Model):
 
 
 def test_training(db: "Datalayer"):
-
     add_random_data(db, 'documents', 100)
 
     from sklearn.svm import SVC
