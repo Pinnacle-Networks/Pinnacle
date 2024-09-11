@@ -5,6 +5,7 @@ from prettytable import PrettyTable
 
 import pinnacle as s
 from pinnacle import logging
+from pinnacle.backends.base.cluster import Cluster
 from pinnacle.backends.base.data_backend import DataBackendProxy
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.base.config import Config
@@ -135,13 +136,15 @@ def build_datalayer(cfg=None, **kwargs) -> Datalayer:
         artifact_store = _build_artifact_store(cfg.artifact_store)
     else:
         artifact_store = databackend_obj.build_artifact_store()
-    compute = _build_compute(cfg)
+
+    backend = getattr(load_plugin(cfg.cluster_engine), 'Cluster')    
+    cluster = backend.build(cfg)
 
     datalayer = Datalayer(
         databackend=databackend_obj,
         metadata=metadata_obj,
         artifact_store=artifact_store,
-        compute=compute,
+        cluster=cluster
     )
     # Keep the real configuration in the datalayer object.
     datalayer.cfg = cfg
@@ -164,7 +167,6 @@ def show_configuration(cfg):
         ('Data Backend', anonymize_url(cfg.data_backend)),
         ('Metadata Store', anonymize_url(cfg.metadata_store)),
         ('Artifact Store', anonymize_url(cfg.artifact_store)),
-        ('Compute', cfg.cluster.compute.uri),
     ]
     for key, value in key_values:
         if value:
