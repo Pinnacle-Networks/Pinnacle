@@ -1,9 +1,53 @@
+import click 
+import numpy
 import typing as t
 
-import numpy
-
 from pinnacle import logging
-from pinnacle.vector_search.base import BaseVectorSearcher, VectorItem, measures
+from pinnacle.backends.base.cluster import Cluster
+from pinnacle.backends.local.cache import LocalCache
+from pinnacle.backends.local.compute import LocalComputeBackend
+from pinnacle.backends.local.crontab import LocalCrontabBackend
+from pinnacle.backends.local.vector_search import LocalVectorSearchBackend
+from pinnacle.backends.local.cdc import LocalCDCBackend
+from pinnacle.backends.local.queue import LocalQueuePublisher
+from pinnacle.misc.plugins import load_plugin
+from pinnacle.backends.base.vector_search import BaseVectorSearcher, VectorItem, measures
+
+
+class LocalCluster(Cluster):
+    """Local cluster for running infra locally.
+    
+    :param compute: The compute backend.
+    :param cache: The cache backend.
+    :param queue: The queue backend.
+    :param vector_search: The vector search backend.
+    :param cdc: The change data capture backend.
+    :param crontab: The crontab backend.
+    """
+
+    @classmethod
+    def build(cls, CFG):
+        """Build the local cluster."""
+        searcher_impl = load_plugin(CFG.vector_search_engine).VectorSearcher
+        return LocalCluster(
+            compute=LocalComputeBackend(),
+            cache=LocalCache(),
+            queue=LocalQueuePublisher(),
+            vector_search=LocalVectorSearchBackend(searcher_impl=searcher_impl),
+            cdc=LocalCDCBackend(),
+            crontab=LocalCrontabBackend(),
+        )
+
+    def drop(self, force: bool = False):
+        """Drop the cluster."""
+
+        if not force:
+            if not click.confirm(
+                "Are you sure you want to drop the cache? ",
+                default=False,
+            ):
+                logging.warn("Aborting...")
+        return self.cache.drop()
 
 
 class InMemoryVectorSearcher(BaseVectorSearcher):
@@ -47,7 +91,7 @@ class InMemoryVectorSearcher(BaseVectorSearcher):
 
         self.identifier = identifier
         super().__init__(
-            identifier=identifier, dimensions=dimensions, h=h, measure=measure
+            uuid=identifier, dimensions=dimensions, h=h, measure=measure
         )
 
     def __len__(self):
