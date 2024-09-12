@@ -1,11 +1,5 @@
-from pinnacle.misc.annotations import requires_packages
+from pinnacle_vllm.model import VllmChat, VllmCompletion
 
-from pinnacle_vllm.model import VllmAPI, VllmModel
+__all__ = ["VllmChat", "VllmCompletion"]
 
-__version__ = "0.0.2"
-
-__all__ = ["VllmAPI", "VllmModel"]
-
-_, requirements = requires_packages(
-    ['vllm', None, None], ['ray', None, None], warn=True
-)
+__version__ = "0.0.1"
