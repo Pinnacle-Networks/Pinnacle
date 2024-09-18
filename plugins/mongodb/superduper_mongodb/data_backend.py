@@ -4,6 +4,7 @@ import typing as t
 import click
 import mongomock
 import pymongo
+import pymongo.collection
 from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
