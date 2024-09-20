@@ -7,6 +7,12 @@ from abc import abstractmethod
 from functools import wraps
 
 from pinnacle import CFG, logging
+from pinnacle.base.constant import (
+    KEY_BLOBS,
+    KEY_BUILDS,
+    KEY_FILES,
+    KEY_SCHEMA,
+)
 from pinnacle.base.document import Document, _unpack
 from pinnacle.base.leaf import Leaf
 
@@ -639,6 +645,10 @@ class Query(_BaseQuery):
         ]
         for r in documents:
             r = self.db.artifact_store.save_artifact(r)
+            r.pop(KEY_BUILDS)
+            r.pop(KEY_BLOBS)
+            r.pop(KEY_FILES)
+            r.pop(KEY_SCHEMA)
         return documents
 
     # TODO deprecate (self.table)
