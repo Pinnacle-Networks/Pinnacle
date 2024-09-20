@@ -10,6 +10,7 @@ from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.base.enums import DBType
 from pinnacle.components.datatype import DataType
+from pinnacle.components.schema import FieldType, Schema
 from pinnacle.misc.colors import Colors
 
 from pinnacle_mongodb.artifacts import MongoArtifactStore
@@ -237,9 +238,14 @@ class MongoDataBackend(BaseDataBackend):
 
         return infer_schema(data, identifier)
 
-    def create_table_and_schema(self, identifier: str, mapping: dict):
+    def create_table_and_schema(self, identifier: str, schema: Schema):
         """Create a table and schema in the data backend.
 
         :param identifier: The identifier for the table
         :param mapping: The mapping for the schema
         """
+        # If the data can be converted to JSON,
+        # then save it as native data in MongoDB.
+        for key, datatype in schema.fields.items():
+            if isinstance(datatype, DataType) and datatype.identifier == "json":
+                schema.fields[key] = FieldType(identifier="json")
