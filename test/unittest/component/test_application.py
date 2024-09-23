@@ -1,8 +1,8 @@
 import typing as t
 from pprint import pprint
-import pytest
 
 import numpy as np
+import pytest
 
 from pinnacle import ObjectModel, Schema, pinnacle
 from pinnacle.base.document import Document

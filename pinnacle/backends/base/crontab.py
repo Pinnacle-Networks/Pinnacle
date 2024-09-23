@@ -1,4 +1,3 @@
-from abc import abstractmethod
 from pinnacle.backends.base.backends import BaseBackend
 
 

@@ -4,19 +4,17 @@ import typing as t
 
 import numpy as np
 import tqdm
-from overrides import override
 
 from pinnacle import CFG, logging
-from pinnacle.backends.base.query import Query
+from pinnacle.base.annotations import trigger
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
+from pinnacle.components.cdc import CDC
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import DataType
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import Mapping, ModelInputType
-from pinnacle.components.cdc import CDC
 from pinnacle.ext.utils import str_shape
-from pinnacle.base.annotations import trigger
 from pinnacle.misc.annotations import component
 from pinnacle.misc.special_dicts import MongoStyleDict
 from pinnacle.vector_search.base import VectorIndexMeasureType, VectorItem
@@ -132,7 +130,7 @@ class VectorIndex(CDC):
 
         :param db: the db that creates the component.
         """
-        super().pre_create(db)  
+        super().pre_create(db)
         self.cdc_table = self.indexing_listener.outputs
 
     def __hash__(self):
@@ -145,8 +143,8 @@ class VectorIndex(CDC):
             )
         return False
 
-    # TODO consider a flag such as depends='*' 
-    # so that an "apply" trigger runs after all of the other 
+    # TODO consider a flag such as depends='*'
+    # so that an "apply" trigger runs after all of the other
     # triggers
     @trigger('apply', 'insert', 'update')
     def copy_vectors(self, ids: t.Sequence[str] | None = None):
@@ -191,13 +189,11 @@ class VectorIndex(CDC):
         for r in vectors:
             if hasattr(r['vector'], 'numpy'):
                 r['vector'] = r['vector'].numpy()
-        
+
         # TODO combine logic from backfill
         if vectors:
             searcher = self.db.cluster.vector_search[self.identifier]
-            searcher.add(
-                [VectorItem(**vector) for vector in vectors]
-            )
+            searcher.add([VectorItem(**vector) for vector in vectors])
 
     @trigger('delete')
     def delete_vectors(self, ids: t.Sequence[str] | None = None):

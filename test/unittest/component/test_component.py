@@ -7,6 +7,7 @@ import typing as t
 import pytest
 
 from pinnacle import ObjectModel
+from pinnacle.base.annotations import trigger
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import (
     Artifact,
@@ -16,7 +17,6 @@ from pinnacle.components.datatype import (
     dill_serializer,
 )
 from pinnacle.components.listener import Listener
-from pinnacle.base.annotations import trigger
 
 
 @pytest.fixture
