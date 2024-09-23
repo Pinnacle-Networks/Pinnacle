@@ -1,7 +1,6 @@
 import typing as t
 
 from pinnacle import Component
-from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.component import ensure_initialized
 from pinnacle.components.datatype import dill_serializer
 

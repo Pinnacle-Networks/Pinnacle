@@ -1,5 +1,5 @@
-from collections import defaultdict
 import typing as t
+from collections import defaultdict
 
 from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.base.event import Job

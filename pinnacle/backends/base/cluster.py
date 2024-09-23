@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
 import dataclasses as dc
+from abc import ABC, abstractmethod
 
 from pinnacle.backends.base.cache import Cache
 from pinnacle.backends.base.cdc import CDCBackend
@@ -8,14 +8,11 @@ from pinnacle.backends.base.crontab import CrontabBackend
 from pinnacle.backends.base.queue import BaseQueuePublisher
 from pinnacle.backends.base.vector_search import VectorSearchBackend
 
-from pinnacle import CFG
-from pinnacle.misc.plugins import load_plugin
-
 
 @dc.dataclass(kw_only=True)
 class Cluster(ABC):
     """Cluster object for managing the backend.
-    
+
     :param compute: The compute backend.
     :param cache: The cache backend.
     :param queue: The queue backend.
@@ -23,6 +20,7 @@ class Cluster(ABC):
     :param cdc: The change data capture backend.
     :param crontab: The crontab backend.
     """
+
     compute: ComputeBackend
     cache: Cache
     queue: BaseQueuePublisher
@@ -64,4 +62,4 @@ class Cluster(ABC):
         self.vector_search.db = value
         self.crontab.db = value
         self.cdc.db = value
-        self.vector_search.initialize()
+        # self.vector_search.initialize()

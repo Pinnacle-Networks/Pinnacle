@@ -1,4 +1,4 @@
-from abc import abstractmethod, ABC
+from abc import abstractmethod
 
 from pinnacle.backends.base.backends import BaseBackend
 from pinnacle.components.component import Component
@@ -6,7 +6,7 @@ from pinnacle.components.component import Component
 
 class Cache(BaseBackend):
     """Cache object for caching components.
-    
+
     # noqa
     """
 

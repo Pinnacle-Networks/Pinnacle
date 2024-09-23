@@ -5,10 +5,10 @@ from overrides import override
 
 from pinnacle import CFG, logging
 from pinnacle.backends.base.query import Query
-from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.model import Mapping
-from pinnacle.components.cdc import CDC
 from pinnacle.base.annotations import trigger
+from pinnacle.base.datalayer import Datalayer
+from pinnacle.components.cdc import CDC
+from pinnacle.components.model import Mapping
 
 from .model import Model, ModelInputType
 
