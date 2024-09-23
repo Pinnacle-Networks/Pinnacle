@@ -16,7 +16,7 @@ from pinnacle.components.datatype import (
     dill_serializer,
 )
 from pinnacle.components.listener import Listener
-from pinnacle.jobs.annotations import trigger
+from pinnacle.base.annotations import trigger
 
 
 @pytest.fixture

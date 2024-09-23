@@ -16,7 +16,7 @@ from pinnacle.components.listener import Listener
 from pinnacle.components.model import Mapping, ModelInputType
 from pinnacle.components.cdc import CDC
 from pinnacle.ext.utils import str_shape
-from pinnacle.jobs.annotations import trigger
+from pinnacle.base.annotations import trigger
 from pinnacle.misc.annotations import component
 from pinnacle.misc.special_dicts import MongoStyleDict
 from pinnacle.vector_search.base import VectorIndexMeasureType, VectorItem
