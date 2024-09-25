@@ -5,6 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pinnacle_sqlalchemy"
 readme = "README.md"
+description = """
+Pinnacle sqlalchemy is a metadata plugin for Pinnacle that allows you to store metadata in a SQL database.
+
+This plugin cannot be used independently; it must be used together with pinnacle_ibis.
+"""
 license = {file = "LICENSE"}
 maintainers = [{name = "pinnacle.io, Inc.", email = "opensource@pinnacle.io"}]
 keywords = [

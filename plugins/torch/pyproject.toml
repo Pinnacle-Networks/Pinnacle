@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pinnacle_torch"
 readme = "README.md"
+description = "Pinnacle allows users to work with arbitrary `torch` models, with custom pre-, post-processing and input/ output data-types, as well as offering training with pinnacle"
 license = {file = "LICENSE"}
 maintainers = [{name = "pinnacle.io, Inc.", email = "opensource@pinnacle.io"}]
 keywords = [
