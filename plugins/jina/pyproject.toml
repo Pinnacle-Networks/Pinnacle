@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pinnacle_jina"
 readme = "README.md"
+description = "Pinnacle allows users to work with Jina Embeddings models through the Jina Embedding API."
 license = {file = "LICENSE"}
 maintainers = [{name = "pinnacle.io, Inc.", email = "opensource@pinnacle.io"}]
 keywords = [

@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pinnacle_anthropic"
 readme = "README.md"
+description = "Pinnacle allows users to work with anthropic API models. The key integration is the integration of high-quality API-hosted LLM services."
 license = {file = "LICENSE"}
 maintainers = [{name = "pinnacle.io, Inc.", email = "opensource@pinnacle.io"}]
 keywords = [

@@ -5,6 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pinnacle_ibis"
 readme = "README.md"
+description = """
+Pinnacle ibis is a plugin for ibis-framework that allows you to use Pinnacle as a backend for your ibis queries.
+
+This plugin cannot be used independently; it must be used together with `pinnacle_ibis`.
+
+Pinnacle supports SQL databases via the ibis project. With pinnacle, queries may be built which conform to the ibis API, with additional support for complex data-types and vector-searches.
+"""
 license = {file = "LICENSE"}
 maintainers = [{name = "pinnacle.io, Inc.", email = "opensource@pinnacle.io"}]
 keywords = [

@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pinnacle_openai"
 readme = "README.md"
+description = "Pinnacle allows users to work with openai API models."
 license = {file = "LICENSE"}
 maintainers = [{name = "pinnacle.io, Inc.", email = "opensource@pinnacle.io"}]
 keywords = [
