@@ -10,6 +10,7 @@ from pinnacle.backends.base.backends import BaseBackend
 
 if t.TYPE_CHECKING:
     from pinnacle.components.vector_index import VectorIndex
+    from pinnacle.base.datalayer import Datalayer
 
 
 class VectorSearchBackend(BaseBackend):
