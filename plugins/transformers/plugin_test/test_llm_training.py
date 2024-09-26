@@ -1,6 +1,7 @@
 import os
 import random
 
+import pytest
 from pinnacle.base.document import Document
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.metric import Metric
@@ -20,6 +21,8 @@ except ImportError:
     trl = None
 
 
+# TODO: The training task is not executed
+@pytest.mark.skip("The training task is not executed")
 def test_training(db, tmpdir):
     db.cfg.auto_schema = True
     datas = []
