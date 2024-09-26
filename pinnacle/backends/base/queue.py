@@ -1,21 +1,18 @@
 import dataclasses as dc
-import networkx as nx
 import typing as t
+import uuid
 from abc import ABC, abstractmethod
 from collections import defaultdict
-import uuid
 
-from pinnacle import logging, CFG
+import networkx as nx
+
+from pinnacle import CFG, logging
 from pinnacle.backends.base.backends import BaseBackend
 from pinnacle.base.event import Event
 
 DependencyType = t.Union[t.Dict[str, str], t.Sequence[t.Dict[str, str]]]
 
 if t.TYPE_CHECKING:
-    from pinnacle.components.cdc import CDC
-    from pinnacle.base.datalayer import Datalayer
-    from pinnacle.components.component import Component
-    from pinnacle.components.cdc import CDC
     from pinnacle.base.datalayer import Datalayer
 
 
@@ -92,12 +89,22 @@ class BaseQueuePublisher(BaseBackend):
         :param to: Component name for events to be published.
         """
 
+    @property
+    def db(self) -> 'Datalayer':
+        return self._db
+
+    @db.setter
+    def db(self, value: 'Datalayer'):
+        self._db = value
+        self.initialize()
+
 
 class JobFutureException(Exception):
     """Exception when futures are not ready.
 
     # noqa
     """
+
     ...
 
 
@@ -182,6 +189,13 @@ def _consume_event_type(event_type, ids, table, db: 'Datalayer'):
 
 
 def consume_events(events, table: str, db=None):
+    """
+    Consume events from table queue.
+
+    :param events: List of events to be consumed.
+    :param table: Queue Table.
+    :param db: Datalayer instance.
+    """
     if table != '_apply':
         consume_streaming_events(events=events, table=table, db=db)
     else:

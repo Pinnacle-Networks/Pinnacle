@@ -19,7 +19,7 @@ from pinnacle.base.config import Config
 from pinnacle.base.constant import KEY_BUILDS
 from pinnacle.base.cursor import SuperDuperCursor
 from pinnacle.base.document import Document
-from pinnacle.base.event import Create, DeploymentPlan, Signal
+from pinnacle.base.event import Create, Signal
 from pinnacle.components.component import Component, Status
 from pinnacle.components.datatype import DataType
 from pinnacle.components.schema import Schema
@@ -451,7 +451,9 @@ class Datalayer:
         print('\n----------------')
         print('CREATION EVENTS:')
         print('----------------')
-        steps = {c.component['uuid'] : str(i) for i, c in enumerate(unique_create_events)}
+        steps = {
+            c.component['uuid']: str(i) for i, c in enumerate(unique_create_events)
+        }
         for i, c in enumerate(unique_create_events):
             if c.parent:
                 print(f'[{i}]: {c.huuid}: create ~ [{steps[c.parent]}]')
@@ -464,7 +466,9 @@ class Datalayer:
         steps = {j.job_id: str(i) for i, j in enumerate(unique_job_events)}
         for i, j in enumerate(unique_job_events):
             if j.dependencies:
-                print(f'[{i}]: {j.huuid}: {j.method} ~ [{",".join([steps[d] for d in j.dependencies])}]')
+                print(
+                    f'[{i}]: {j.huuid}: {j.method} ~ [{",".join([steps[d] for d in j.dependencies])}]'
+                )
             else:
                 print(f'[{i}]: {j.huuid}: {j.method}')
         print('\n')
@@ -481,8 +485,7 @@ class Datalayer:
                 default=False,
             ):
                 return object
-
-        self.cluster.queue.publish(events=events)
+        self.cluster.queue.publish(events=events[::-1])
         return object
 
     def remove(
