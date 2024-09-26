@@ -6,6 +6,8 @@ import uuid
 from abc import abstractmethod
 from functools import wraps
 
+import numpy
+
 from pinnacle import CFG, logging
 from pinnacle.base.constant import (
     KEY_BLOBS,

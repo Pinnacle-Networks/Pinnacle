@@ -2,19 +2,9 @@
 import typing as t
 from abc import ABC, abstractmethod
 
-from pinnacle.vector_search.atlas import MongoAtlasVectorSearcher
-from pinnacle.vector_search.lance import LanceVectorSearcher
-from pinnacle.vector_search.qdrant import QdrantVectorSearcher
-
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
     from pinnacle.components.component import Component
-
-vector_searcher_implementations = {
-    "lance": LanceVectorSearcher,
-    "mongodb+srv": MongoAtlasVectorSearcher,
-    "qdrant": QdrantVectorSearcher,
-}
 
 
 class BaseBackend(ABC):
