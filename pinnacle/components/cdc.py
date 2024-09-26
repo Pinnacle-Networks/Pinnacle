@@ -1,7 +1,8 @@
-import networkx as nx
 import typing as t
 
-from pinnacle import Component, CFG
+import networkx as nx
+
+from pinnacle import CFG, Component
 
 if t.TYPE_CHECKING:
     pass
@@ -91,9 +92,8 @@ def build_streaming_graph(table, db: 'Datalayer'):
 
 
 if __name__ == '__main__':
+    from pinnacle import Listener, pinnacle
     from pinnacle.components.model import ObjectModel
-    from pinnacle import Listener
-    from pinnacle import pinnacle
 
     db = pinnacle('mongomock://test')
 
