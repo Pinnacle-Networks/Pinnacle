@@ -2,8 +2,7 @@ import sys
 
 import click
 
-from pinnacle.cli import app, apply, info
-from pinnacle.cli.serve import cdc, local_cluster, ray_serve, vector_search
+from pinnacle.cli import app, apply 
 
 __all__ = (
     'apply',
