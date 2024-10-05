@@ -2,15 +2,11 @@ import sys
 
 import click
 
-from pinnacle.cli import app, apply 
+from pinnacle.cli import app, main
 
 __all__ = (
-    'apply',
-    'info',
-    'local_cluster',
-    'vector_search',
-    'cdc',
-    'ray_serve',
+    'app',
+    'main',
 )
 
 
