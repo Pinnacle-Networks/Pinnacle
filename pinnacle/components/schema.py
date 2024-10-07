@@ -1,8 +1,6 @@
 import typing as t
 from functools import cached_property
 
-from overrides import override
-
 from pinnacle.base.leaf import Leaf
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import DataType
