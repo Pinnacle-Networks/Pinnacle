@@ -7,7 +7,7 @@ from pinnacle import CFG
 from pinnacle.base.document import Document
 
 CFG.auto_schema = True
-CFG.cluster.rest.uri = 'localhost:8000'
+CFG.rest.uri = 'localhost:8000'
 from pinnacle.rest.deployed_app import app
 
 from .mock_client import setup as _setup, teardown
