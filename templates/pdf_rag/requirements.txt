@@ -1,0 +1,3 @@
+pinnacle==0.0.4.dev
+openai>=1.1.2
+httpx
