@@ -15,7 +15,7 @@ from pinnacle.base.datalayer import Datalayer
 
 @pytest.fixture
 def db() -> Iterator[Datalayer]:
-    db = pinnacle()
+    db = pinnacle(force_apply=True)
 
     yield db
     db.drop(force=True, data=True)
