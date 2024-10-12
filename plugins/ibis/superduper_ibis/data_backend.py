@@ -12,11 +12,11 @@ from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.backends.local.artifacts import FileSystemArtifactStore
+from pinnacle.base import exceptions
 from pinnacle.base.enums import DBType
 from pinnacle.components.datatype import DataType
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
-from pinnacle.base import exceptions
 
 from pinnacle_ibis.db_helper import get_db_helper
 from pinnacle_ibis.field_types import FieldType, dtype
@@ -66,6 +66,7 @@ class IbisDataBackend(BaseDataBackend):
         self.conn = conn
         self.name = name
         self.in_memory = in_memory
+        self.overwrite = False
         self._setup(conn)
 
     def _setup(self, conn):
