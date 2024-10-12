@@ -16,6 +16,7 @@ from pinnacle.base.enums import DBType
 from pinnacle.components.datatype import DataType
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
+from pinnacle.base import exceptions
 
 from pinnacle_ibis.db_helper import get_db_helper
 from pinnacle_ibis.field_types import FieldType, dtype
@@ -264,7 +265,12 @@ class IbisDataBackend(BaseDataBackend):
 
         :param identifier: The identifier of the table or collection.
         """
-        return self.conn.table(identifier)
+        try:
+            return self.conn.table(identifier)
+        except ibis.common.exceptions.IbisError:
+            raise exceptions.TableNotFoundError(
+                f'Table {identifier} not found in database'
+            )
 
     def disconnect(self):
         """Disconnect the client."""
