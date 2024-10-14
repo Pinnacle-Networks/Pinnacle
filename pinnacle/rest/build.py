@@ -9,6 +9,7 @@ from pinnacle import logging
 from pinnacle.backends.base.query import Query
 from pinnacle.base.document import Document
 from pinnacle.components.component import Component
+from pinnacle.components.template import Template
 from pinnacle.rest.base import SuperDuperApp
 
 from .utils import rewrite_artifacts
@@ -83,7 +84,7 @@ def build_rest_app(app: SuperDuperApp):
 
     @app.add('/db/show_template', method='get')
     def db_show_template(identifier: str, type_id: str = 'template'):
-        template = app.db.load(type_id=type_id, identifier=identifier)
+        template: Template = app.db.load(type_id=type_id, identifier=identifier)
         return template.form_template
 
     @app.add('/db/metadata/show_jobs', method='get')
