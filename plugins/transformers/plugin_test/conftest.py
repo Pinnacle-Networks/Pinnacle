@@ -7,7 +7,7 @@ from pinnacle.base.datalayer import Datalayer
 
 @pytest.fixture
 def db() -> Iterator[Datalayer]:
-    db = pinnacle("mongomock://test_db")
+    db = pinnacle("mongomock://test_db", force_apply=True)
 
     yield db
     db.drop(force=True, data=True)
