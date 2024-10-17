@@ -3,7 +3,7 @@ import typing as t
 
 from bson import ObjectId
 
-from pinnacle import logging
+from pinnacle import CFG, logging
 from pinnacle.base.exceptions import UnsupportedDatatype
 from pinnacle.components.datatype import (
     DataType,
@@ -12,7 +12,7 @@ from pinnacle.components.datatype import (
     get_serializer,
     json_serializer,
 )
-from pinnacle.components.schema import Schema
+from pinnacle.components.schema import FieldType, Schema
 
 
 def register_module(module_name):
@@ -71,7 +71,7 @@ def infer_datatype(data: t.Any) -> t.Optional[t.Union[DataType, type]]:
     for factory in DataTypeFactory.__subclasses__():
         if factory.check(data):
             datatype = factory.create(data)
-            assert isinstance(datatype, DataType)
+            assert isinstance(datatype, DataType) or isinstance(datatype, FieldType)
             logging.debug(f"Inferred datatype: {datatype.identifier} for data: {data}")
             break
 
@@ -150,9 +150,11 @@ class JsonDataTypeFactory(DataTypeFactory):
             return False
 
     @staticmethod
-    def create(data: t.Any) -> DataType:
+    def create(data: t.Any) -> DataType | FieldType:
         """Create a JSON datatype.
 
         :param data: The data object
         """
+        if CFG.json_native:
+            return FieldType(identifier='json')
         return json_serializer
