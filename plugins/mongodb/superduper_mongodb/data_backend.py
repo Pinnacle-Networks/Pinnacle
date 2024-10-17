@@ -10,7 +10,7 @@ from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.base.enums import DBType
 from pinnacle.components.datatype import DataType
-from pinnacle.components.schema import FieldType, Schema
+from pinnacle.components.schema import Schema
 from pinnacle.misc.colors import Colors
 
 from pinnacle_mongodb.artifacts import MongoArtifactStore
@@ -248,6 +248,4 @@ class MongoDataBackend(BaseDataBackend):
         """
         # If the data can be converted to JSON,
         # then save it as native data in MongoDB.
-        for key, datatype in schema.fields.items():
-            if isinstance(datatype, DataType) and datatype.identifier == "json":
-                schema.fields[key] = FieldType(identifier="json")
+        pass
