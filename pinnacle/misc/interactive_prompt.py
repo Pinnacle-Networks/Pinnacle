@@ -1,14 +1,16 @@
 import pprint
 import sys
 
-from pinnacle import logging
+from pinnacle import CFG, logging
 from pinnacle.base.cursor import SuperDuperCursor
 
 
-def _prompt():
+def _prompt(data_backend: str | None = None):
     from pinnacle import pinnacle
 
-    db = pinnacle()
+    data_backend = data_backend or CFG.data_backend
+
+    db = pinnacle(data_backend)
     values = {'db': db}
 
     while True:
@@ -53,7 +55,7 @@ def _prompt():
             try:
                 exec(f'result = model.{rest}', values)
             except Exception as e:
-                logging.error(e)
+                logging.error(str(e))
                 continue
 
             pprint.pprint(values['result'])
@@ -65,7 +67,7 @@ def _prompt():
         try:
             exec(f'result = db["{table}"].{rest}.execute()', values)
         except Exception as e:
-            logging.error(e)
+            logging.error(str(e))
             continue
         if isinstance(values['result'], SuperDuperCursor):
             for r in values['result']:
