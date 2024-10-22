@@ -2,14 +2,13 @@ import dataclasses as dc
 import os
 import typing as t
 
-from pinnacle import logging
 from pinnacle.base.constant import KEY_BLOBS, KEY_FILES
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document, QueryUpdateDocument
 from pinnacle.base.leaf import Leaf
 from pinnacle.base.variables import _replace_variables
 from pinnacle.components.component import Component, _build_info_from_path
-from pinnacle.components.datatype import pickle_serializer
+from pinnacle.components.table import Table
 from pinnacle.misc.special_dicts import SuperDuperFlatEncode
 
 from .component import ensure_initialized
@@ -91,14 +90,14 @@ class Template(_BaseTemplate):
 
     :param data: Sample data to test the template.
     :param requirements: pip requirements for the template.
+    :param default_table: Default table to be used with the template.
     """
-
-    _artifacts: t.ClassVar[t.Tuple[str]] = (('data', pickle_serializer),)
 
     type_id: t.ClassVar[str] = "template"
 
     data: t.List[t.Dict] | None = None
-    requirements: t.Optional[t.List[str]] = None
+    requirements: t.List[str] | None = None
+    default_table: Table | None = None
 
     def _pre_create(self, db: Datalayer) -> None:
         """Run before the object is created."""
@@ -107,15 +106,6 @@ class Template(_BaseTemplate):
         self.files = list(self.template.get(KEY_FILES, {}).keys())
         db.artifact_store.save_artifact(self.template)
         self.init(db)
-        if self.data is not None:
-            if not db.cfg.auto_schema:
-                logging.warn('Auto schema is disabled. Skipping data insertion.')
-                return
-            db[self.default_table].insert(self.data).execute()
-
-    @property
-    def default_table(self):
-        return f'_sample_{self.identifier}'
 
     def export(
         self,
