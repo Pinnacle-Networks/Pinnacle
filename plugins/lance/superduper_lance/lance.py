@@ -4,7 +4,6 @@ import typing as t
 import lance
 import numpy as np
 import pyarrow as pa
-
 from pinnacle import CFG
 from pinnacle.vector_search.base import (
     BaseVectorSearcher,
