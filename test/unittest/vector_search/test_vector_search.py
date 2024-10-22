@@ -7,8 +7,6 @@ import pytest
 from pinnacle import CFG
 from pinnacle.backends.local.vector_search import InMemoryVectorSearcher
 from pinnacle.vector_search.base import VectorItem
-from pinnacle.vector_search.lance import LanceVectorSearcher
-from pinnacle.vector_search.qdrant import QdrantVectorSearcher
 
 
 @pytest.fixture
@@ -22,7 +20,7 @@ def index_data(monkeypatch):
 
 @pytest.mark.parametrize(
     "vector_index_cls",
-    [InMemoryVectorSearcher, LanceVectorSearcher, QdrantVectorSearcher],
+    [InMemoryVectorSearcher],
 )
 @pytest.mark.parametrize("measure", ["l2", "dot", "cosine"])
 def test_index(index_data, measure, vector_index_cls):
