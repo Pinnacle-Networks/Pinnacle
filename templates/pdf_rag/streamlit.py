@@ -36,7 +36,7 @@ st.markdown(
 def init_db():
     from pinnacle import pinnacle
 
-    db = pinnacle("mongodb://localhost:27017/pdf_rag")
+    db = pinnacle()
     model_rag = db.load("model", "rag")
     return db, model_rag
 
