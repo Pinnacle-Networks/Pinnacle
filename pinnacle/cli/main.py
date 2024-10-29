@@ -33,9 +33,9 @@ def start(
     :param host: Host to connect to remotely
     :param headless: Toggle to ``True`` to suppress the browser.
     """
+    from pinnacle import CFG
     from pinnacle.rest.base import SuperDuperApp
     from pinnacle.rest.build import build_frontend, build_rest_app
-    from pinnacle import CFG
 
     CFG.log_colorize = False
 
