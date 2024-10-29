@@ -35,6 +35,9 @@ def start(
     """
     from pinnacle.rest.base import SuperDuperApp
     from pinnacle.rest.build import build_frontend, build_rest_app
+    from pinnacle import CFG
+
+    CFG.log_colorize = False
 
     app = SuperDuperApp('rest', port=remote_port, data_backend=data_backend)
 
