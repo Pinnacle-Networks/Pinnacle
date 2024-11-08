@@ -38,8 +38,8 @@ jobs:
         if: env.mode == 'changed'
         id: set-matrix-1
         run: |
-          # IFS=$'\n'
-          changed_files=(pinnacle/components/streamlit.py .github/workflows/ci_templates.yaml .gitignore pinnacle/__init__.py)
+          IFS=$'\n'
+          changed_files=(${{ steps.changed-files-specific.outputs.all_changed_files }})
           declare -A template_set
 
           # Check each file if it's in the templates/ directory
