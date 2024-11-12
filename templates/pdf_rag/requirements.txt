@@ -1,6 +1,6 @@
 pdf2image
 unstructured[pdf]
--e ./plugins/openai
--e ./plugins/anthropic
--e ./plugins/sentence_transformers
--e ./plugins/vllm
+pinnacle_openai
+pinnacle_anthropic
+pinnacle_sentence_transformers
+pinnacle_vllm

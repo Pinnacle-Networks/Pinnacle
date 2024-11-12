@@ -1,1 +1,1 @@
--e ./plugins/transformers
+pinnacle_transformers
