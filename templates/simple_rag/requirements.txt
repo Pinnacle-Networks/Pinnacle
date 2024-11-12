@@ -1,1 +1,1 @@
--e ./plugins/openai
+pinnacle_openai

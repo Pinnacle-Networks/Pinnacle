@@ -1,2 +1,2 @@
--e ./plugins/openai
--e ./plugins/sentence_transformers
+pinnacle_openai
+pinnacle_transformers

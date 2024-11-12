@@ -1,5 +1,5 @@
--e ./plugins/openai
--e ./plugins/anthropic
--e ./plugins/sentence_transformers
--e ./plugins/vllm
--e ./plugins/llamacpp
+pinnacle_openai
+pinnacle_anthropic
+pinnacle_sentence_transformers
+pinnacle_vllm
+pinnacle_llamacpp
