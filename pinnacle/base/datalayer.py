@@ -27,10 +27,6 @@ from pinnacle.misc.colors import Colors
 from pinnacle.misc.download import download_from_one
 from pinnacle.misc.retry import db_retry
 
-if t.TYPE_CHECKING:
-    pass
-
-
 DBResult = t.Any
 TaskGraph = t.Any
 
