@@ -1,6 +1,6 @@
 import os
 
-from pinnacle import CFG, pinnacle, templates, Template
+from pinnacle import CFG, Template, pinnacle
 
 skips = []
 
