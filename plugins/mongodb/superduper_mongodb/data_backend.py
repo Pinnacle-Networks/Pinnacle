@@ -40,6 +40,10 @@ class MongoDataBackend(BaseDataBackend):
 
         self._db = self.conn[self.name]
 
+        self.datatype_presets = {
+            'vector': 'pinnacle.components.datatype.NativeDatatype'
+        }
+
     def reconnect(self):
         """Reconnect to mongodb store."""
         # Reconnect to database.

@@ -131,7 +131,7 @@ class RestConfig(BaseConfig):
 
 
 class DataTypePresets(BaseConfig):
-    vector: str = 'pinnacle.ext.numpy.Array'
+    vector: str | None = None
 
 
 @dc.dataclass
