@@ -1,7 +1,6 @@
-from test.utils.database import artifact_store as artifact_store_utils
-
 import pytest
 from pinnacle import CFG
+from test.utils.database import artifact_store as artifact_store_utils
 
 from pinnacle_mongodb.data_backend import MongoDataBackend
 

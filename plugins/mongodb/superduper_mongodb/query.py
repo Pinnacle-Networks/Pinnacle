@@ -671,10 +671,10 @@ class MongoQuery(Query):
                 continue
             fields[key] = output_table.schema.fields[key]
 
-        from pinnacle.components.datatype import DataType
+        from pinnacle.components.datatype import BaseDataType
         from pinnacle.components.schema import Schema
 
-        fields = {k: v for k, v in fields.items() if isinstance(v, DataType)}
+        fields = {k: v for k, v in fields.items() if isinstance(v, BaseDataType)}
 
         return Schema(f"_tmp:{self.table}", fields=fields)
 
