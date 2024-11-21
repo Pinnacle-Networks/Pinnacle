@@ -16,7 +16,6 @@ from pinnacle.components.component import Component
 from pinnacle.components.datatype import (
     BaseDataType,
     Blob,
-    DataType,
     Encodable,
     FileItem,
     Native,

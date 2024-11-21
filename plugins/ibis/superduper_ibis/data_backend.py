@@ -69,9 +69,7 @@ class IbisDataBackend(BaseDataBackend):
         self.overwrite = False
         self._setup(conn)
 
-        self.datatype_presets = {
-            'vector': 'pinnacle.ext.numpy.Array'
-        }
+        self.datatype_presets = {'vector': 'pinnacle.ext.numpy.Array'}
 
     def _setup(self, conn):
         self.dialect = getattr(conn, "name", "base")
