@@ -1,6 +1,7 @@
+from test.utils.database import databackend as db_utils
+
 import pytest
 from pinnacle import CFG
-from test.utils.database import databackend as db_utils
 
 from pinnacle_mongodb.data_backend import MongoDataBackend
 
