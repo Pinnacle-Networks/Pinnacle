@@ -41,7 +41,7 @@ class MongoDataBackend(BaseDataBackend):
         self._db = self.conn[self.name]
 
         self.datatype_presets = {
-            'vector': 'pinnacle.components.datatype.NativeDatatype'
+            'vector': 'pinnacle.components.datatype.NativeVector'
         }
 
     def reconnect(self):

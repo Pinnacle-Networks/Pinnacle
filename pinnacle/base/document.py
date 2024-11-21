@@ -14,6 +14,7 @@ from pinnacle.base.leaf import Leaf, import_item
 from pinnacle.base.variables import _replace_variables
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import (
+    BaseDataType,
     Blob,
     DataType,
     Encodable,
@@ -598,7 +599,7 @@ def _schema_decode(
     decoded = {}
     for k, value in data.items():
         field = schema.fields.get(k)
-        if not isinstance(field, DataType):
+        if not isinstance(field, BaseDataType):
             decoded[k] = value
             continue
 
