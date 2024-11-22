@@ -69,6 +69,9 @@ class IbisDataBackend(BaseDataBackend):
         self.overwrite = False
         self._setup(conn)
 
+        if uri.startswith('snowflake://') or uri.startswith('sqlite://'):
+            self.bytes_encoding = 'base64'
+
         self.datatype_presets = {'vector': 'pinnacle.ext.numpy.encoder.Array'}
 
     def _setup(self, conn):
