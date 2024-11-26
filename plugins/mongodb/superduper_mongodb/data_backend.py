@@ -9,7 +9,7 @@ from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.base.enums import DBType
-from pinnacle.components.datatype import DataType
+from pinnacle.components.datatype import BaseDataType
 from pinnacle.components.schema import Schema
 from pinnacle.misc.colors import Colors
 
@@ -140,7 +140,7 @@ class MongoDataBackend(BaseDataBackend):
     def create_output_dest(
         self,
         predict_id: str,
-        datatype: t.Union[str, DataType],
+        datatype: t.Union[str, BaseDataType],
         flatten: bool = False,
     ):
         """Create an output collection for a component.

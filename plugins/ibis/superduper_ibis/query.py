@@ -11,7 +11,7 @@ from pinnacle.backends.base.query import (
 )
 from pinnacle.base.cursor import SuperDuperCursor
 from pinnacle.base.exceptions import DatabackendException
-from pinnacle.components.datatype import Encodable
+from pinnacle.components.datatype import _Encodable
 from pinnacle.components.schema import Schema
 from pinnacle.misc.special_dicts import SuperDuperFlatEncode
 
@@ -81,7 +81,7 @@ def _model_update_impl(
         d = {
             "_source": str(source_id),
             f"{CFG.output_prefix}{predict_id}": output.x
-            if isinstance(output, Encodable)
+            if isinstance(output, _Encodable)
             else output,
             "id": str(uuid.uuid4()),
         }

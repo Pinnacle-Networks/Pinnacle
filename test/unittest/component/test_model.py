@@ -12,7 +12,7 @@ from pinnacle.backends.local.compute import LocalComputeBackend
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
 from pinnacle.components.dataset import Dataset
-from pinnacle.components.datatype import DataType, pickle_decode, pickle_encode
+from pinnacle.components.datatype import pickle_serializer
 from pinnacle.components.metric import Metric
 from pinnacle.components.model import (
     Mapping,
@@ -158,7 +158,7 @@ def test_pm_predict_with_select_ids(monkeypatch, predict_mixin):
         monkeypatch.setattr(
             predict_mixin,
             'datatype',
-            DataType(identifier='test', encoder=pickle_encode, decoder=pickle_decode),
+            pickle_serializer,
         )
         predict_mixin._predict_with_select_and_ids(
             X=X, select=select, ids=ids, predict_id='test'

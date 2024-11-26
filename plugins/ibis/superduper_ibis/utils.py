@@ -1,20 +1,12 @@
 from ibis.expr.datatypes import dtype
 from pinnacle.components.datatype import (
-    Artifact,
     BaseDataType,
     File,
-    LazyArtifact,
-    LazyFile,
-    Native,
 )
 from pinnacle.components.schema import ID, FieldType, Schema
 
 SPECIAL_ENCODABLES_FIELDS = {
     File: "str",
-    LazyFile: "str",
-    Artifact: "str",
-    LazyArtifact: "str",
-    Native: "json",
 }
 
 
