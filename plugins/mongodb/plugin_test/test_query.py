@@ -5,7 +5,7 @@ import pytest
 from pinnacle.base.document import Document
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
-from pinnacle.ext.numpy.encoder import array
+from pinnacle.ext.numpy.encoder import Array
 
 from pinnacle_mongodb.query import MongoQuery
 
@@ -14,7 +14,7 @@ from pinnacle_mongodb.query import MongoQuery
 def schema(request):
     bytes_encoding = request.param if hasattr(request, 'param') else None
 
-    array_tensor = array(dtype="float64", shape=(32,), bytes_encoding=bytes_encoding)
+    array_tensor = Array(dtype="float64", shape=(32,))
     schema = Schema(
         identifier=f'documents-{bytes_encoding}',
         fields={

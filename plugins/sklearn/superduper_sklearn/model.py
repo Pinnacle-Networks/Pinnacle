@@ -6,7 +6,7 @@ from sklearn.base import BaseEstimator
 from pinnacle import logging
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.datatype import DataType, pickle_serializer
+from pinnacle.components.datatype import pickle_serializer
 from pinnacle.components.model import (
     Model,
     ModelInputType,
@@ -93,7 +93,7 @@ class SklearnTrainer(Trainer):
                 metrics.update(dataset_metrics)
 
         model.metric_values = metrics
-        db.replace(model, upsert=True)
+        db.replace(model)
 
 
 class Estimator(Model):
@@ -117,9 +117,7 @@ class Estimator(Model):
 
     """
 
-    _artifacts: t.ClassVar[t.Sequence[t.Tuple[str, DataType]]] = (
-        ('object', pickle_serializer),
-    )
+    _fields = {'object': pickle_serializer}
 
     object: BaseEstimator
     trainer: t.Optional[SklearnTrainer] = None

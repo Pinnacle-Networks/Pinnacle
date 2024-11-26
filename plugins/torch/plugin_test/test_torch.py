@@ -6,7 +6,7 @@ import pytest
 import torch
 from pinnacle import pinnacle
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.datatype import DataType
+from pinnacle.components.datatype import pickle_encoder
 
 from pinnacle_torch.model import TorchModel
 from pinnacle_torch.training import TorchTrainer
@@ -67,7 +67,7 @@ def model():
         identifier='test',
         preferred_devices=('cpu',),
         postprocess=lambda x: int(torch.sigmoid(x).item() > 0.5),
-        datatype=DataType(identifier='base'),
+        datatype=pickle_encoder,
     )
 
 

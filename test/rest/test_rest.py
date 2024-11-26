@@ -53,7 +53,7 @@ def test_apply(setup):
                 'code': CODE,
             },
             'my_function': {
-                '_path': 'pinnacle.components.model.ObjectModel',
+                '_path': 'pinnacle.components.model.ImportedModel',
                 'object': '?function_body',
                 'identifier': 'my_function',
             },

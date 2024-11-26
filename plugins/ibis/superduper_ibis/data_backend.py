@@ -14,7 +14,7 @@ from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.backends.local.artifacts import FileSystemArtifactStore
 from pinnacle.base import exceptions
 from pinnacle.base.enums import DBType
-from pinnacle.components.datatype import DataType
+from pinnacle.components.datatype import BaseDataType
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 
@@ -69,7 +69,7 @@ class IbisDataBackend(BaseDataBackend):
         self.overwrite = False
         self._setup(conn)
 
-        if uri.startswith('snowflake://') or uri.startswith('sqlite://'):
+        if uri.startswith('snowflake://'):
             self.bytes_encoding = 'base64'
 
         self.datatype_presets = {'vector': 'pinnacle.ext.numpy.encoder.Array'}
@@ -190,7 +190,7 @@ class IbisDataBackend(BaseDataBackend):
     def create_output_dest(
         self,
         predict_id: str,
-        datatype: t.Union[FieldType, DataType],
+        datatype: t.Union[FieldType, BaseDataType],
         flatten: bool = False,
     ):
         """Create a table for the output of the model.
