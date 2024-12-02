@@ -2,7 +2,7 @@ import typing as t
 from functools import cached_property
 
 from pinnacle import CFG, logging
-from pinnacle.vector_search.base import BaseVectorSearcher, VectorItem
+from pinnacle.backends.base.vector_search import BaseVectorSearcher, VectorItem
 
 if t.TYPE_CHECKING:
     from pinnacle.components.vector_index import VectorIndex
