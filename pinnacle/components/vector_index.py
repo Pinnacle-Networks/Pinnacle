@@ -6,6 +6,7 @@ import numpy as np
 import tqdm
 
 from pinnacle import CFG, logging
+from pinnacle.backends.base.vector_search import VectorIndexMeasureType, VectorItem
 from pinnacle.base.annotations import trigger
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
@@ -16,7 +17,6 @@ from pinnacle.components.model import Mapping, ModelInputType
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 from pinnacle.misc.special_dicts import MongoStyleDict
-from pinnacle.vector_search.base import VectorIndexMeasureType, VectorItem
 
 if t.TYPE_CHECKING:
     pass

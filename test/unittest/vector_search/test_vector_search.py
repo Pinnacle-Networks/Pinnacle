@@ -5,8 +5,8 @@ import numpy as np
 import pytest
 
 from pinnacle import CFG
+from pinnacle.backends.base.vector_search import VectorItem
 from pinnacle.backends.local.vector_search import InMemoryVectorSearcher
-from pinnacle.vector_search.base import VectorItem
 
 
 @pytest.fixture
