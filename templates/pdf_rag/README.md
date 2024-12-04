@@ -19,7 +19,7 @@ You need to mount a local directory to `/app/data` in the container.
 ***The PDF directory should be a sub-directory of this directory!***
 
 ```bash
-docker run -it -p 8501:8501 -v ~/.pinnacle/:/root/.pinnacle -v ./data/:/app/data pdf-rag bash
+docker run -it -p 8501:8501 -v ./data/:/app/data pdf-rag bash
 ```
 
 **Set your OpenAI or Ollama credentials**
