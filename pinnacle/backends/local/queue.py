@@ -1,5 +1,6 @@
 import typing as t
 
+from pinnacle import logging
 from pinnacle.backends.base.queue import (
     BaseQueueConsumer,
     BaseQueuePublisher,
@@ -103,6 +104,8 @@ class LocalQueueConsumer(BaseQueueConsumer):
                 while queue['_apply']:
                     event = queue['_apply'].pop(0)
                     event.execute(db)
+
+        logging.info('Consumed all events')
 
     @property
     def db(self):
