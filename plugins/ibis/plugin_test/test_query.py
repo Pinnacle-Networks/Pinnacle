@@ -1,9 +1,10 @@
+from test.utils.setup.fake_data import add_listeners, add_models, add_random_data
+
 import numpy as np
 import pytest
 from pinnacle.base.document import Document
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
-from test.utils.setup.fake_data import add_listeners, add_models, add_random_data
 
 
 def test_serialize_table():
