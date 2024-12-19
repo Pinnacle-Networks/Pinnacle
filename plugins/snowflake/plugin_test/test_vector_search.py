@@ -1,9 +1,9 @@
 import warnings
+from test.utils.usecase.vector_search import build_vector_index
 
 import pytest
 from pinnacle import CFG, pinnacle
 from pinnacle.components.datatype import Vector
-from test.utils.usecase.vector_search import build_vector_index
 
 from pinnacle_snowflake.vector_search import SnowflakeVectorSearcher
 
