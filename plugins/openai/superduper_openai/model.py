@@ -19,7 +19,8 @@ from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.model import APIBaseModel, Inputs
 from pinnacle.misc.compat import cache
-from pinnacle.misc.retry import Retry
+from pinnacle.misc.retry import Retry, safe_retry
+from pinnacle.base import exceptions
 
 retry = Retry(
     exception_types=(
@@ -61,19 +62,23 @@ class _OpenAI(APIBaseModel):
             self.client_kwargs['base_url'] = self.openai_api_base
             self.client_kwargs['default_headers'] = self.openai_api_base
 
+    @safe_retry(exceptions.MissingSecretsException)
+    def init(self, db=None):
+        """Initialize the model."""
+        super().init()
+
         # dall-e is not currently included in list returned by OpenAI model endpoint
         if self.model not in (
             mo := _available_models(json.dumps(self.client_kwargs))
         ) and self.model not in ('dall-e'):
             msg = f'model {self.model} not in OpenAI available models, {mo}'
             raise ValueError(msg)
-
         self.syncClient = SyncOpenAI(**self.client_kwargs)
 
         if 'OPENAI_API_KEY' not in os.environ and (
             'api_key' not in self.client_kwargs.keys() and self.client_kwargs
         ):
-            raise ValueError(
+            raise exceptions.MissingSecretsException(
                 'OPENAI_API_KEY not available neither in environment vars '
                 'nor in `client_kwargs`'
             )
