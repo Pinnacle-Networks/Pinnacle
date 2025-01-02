@@ -1,5 +1,10 @@
+import typing as t
+
 from pinnacle.backends.base.cdc import CDCBackend
 from pinnacle.components.cdc import CDC
+
+if t.TYPE_CHECKING:
+    from pinnacle import Component
 
 
 class LocalCDCBackend(CDCBackend):
@@ -44,7 +49,10 @@ class LocalCDCBackend(CDCBackend):
                 self.put(self.db.load(type_id=type_id, identifier=identifier))
             # TODO consider re-initialzing CDC jobs since potentially failure
 
-    def drop(self):
-        """Drop the CDC."""
+    def drop(self, component: t.Optional['Component'] = None):
+        """Drop the CDC.
+
+        :param component: Component to remove.
+        """
         self.triggers = set()
         self._trigger_uuid_mapping = {}
