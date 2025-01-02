@@ -5,6 +5,9 @@ from pinnacle import logging
 from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.base.event import Job
 
+if t.TYPE_CHECKING:
+    from pinnacle import Component
+
 
 class LocalComputeBackend(ComputeBackend):
     """
@@ -101,9 +104,11 @@ class LocalComputeBackend(ComputeBackend):
         """Initialize the compute."""
         pass
 
-    def drop(self):
-        """Drop the compute."""
-        pass
+    def drop(self, component: t.Optional['Component'] = None):
+        """Drop the compute.
+
+        :param component: Component to remove.
+        """
 
     @property
     def tasks(self) -> t.Dict[str, t.Any]:
