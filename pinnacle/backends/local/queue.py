@@ -5,7 +5,7 @@ from pinnacle import logging
 from pinnacle.backends.base.queue import (
     BaseQueueConsumer,
     BaseQueuePublisher,
-    consume_streaming_events,
+    consume_events,
 )
 from pinnacle.base.event import Event
 from pinnacle.components.cdc import CDC
@@ -101,13 +101,8 @@ class LocalQueueConsumer(BaseQueueConsumer):
         """Consume the current queue and run jobs."""
         keys = list(queue.keys())[:]
         for k in keys:
-            if k != '_apply':
-                consume_streaming_events(events=queue[k], table=k, db=db)
-                queue[k] = []
-            else:
-                while queue['_apply']:
-                    event = queue['_apply'].pop(0)
-                    event.execute(db)
+            consume_events(events=queue[k], table=k, db=db)
+            queue[k] = []
 
         logging.info('Consumed all events')
 
