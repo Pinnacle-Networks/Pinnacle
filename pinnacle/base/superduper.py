@@ -15,7 +15,7 @@ def pinnacle(item: str | None = None, **kwargs) -> t.Any:
     from pinnacle.base.build import build_datalayer
 
     if item is None:
-        return build_datalayer()
+        return build_datalayer(**kwargs)
 
     if item.startswith('mongomock://'):
         kwargs['data_backend'] = item
