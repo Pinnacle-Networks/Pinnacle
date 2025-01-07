@@ -7,7 +7,7 @@ from pinnacle.backends.base.queue import (
     BaseQueuePublisher,
     consume_events,
 )
-from pinnacle.base.event import Create, Event
+from pinnacle.base.event import Event
 from pinnacle.components.cdc import CDC
 
 if t.TYPE_CHECKING:
