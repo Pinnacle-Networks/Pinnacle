@@ -4,7 +4,7 @@ import uuid
 import numpy as np
 import pytest
 from pinnacle import CFG
-from pinnacle.vector_search.base import VectorItem
+from pinnacle.backends.base.vector_search import VectorItem
 
 from pinnacle_lance import VectorSearcher as LanceVectorSearcher
 
