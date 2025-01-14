@@ -3,3 +3,4 @@ pinnacle_anthropic
 pinnacle_sentence_transformers
 pinnacle_vllm
 pinnacle_llamacpp
+
