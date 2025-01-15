@@ -16,7 +16,7 @@ from pinnacle.backends.local.compute import LocalComputeBackend
 from pinnacle.backends.local.crontab import LocalCrontabBackend
 from pinnacle.backends.local.queue import LocalQueuePublisher
 from pinnacle.backends.local.vector_search import LocalVectorSearchBackend
-from pinnacle.misc.plugins import load_plugin
+from pinnacle.misc.importing import load_plugin
 
 
 class LocalCluster(Cluster):

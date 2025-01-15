@@ -1,3 +1,5 @@
+# TODO add more exceptions
+# for example ArtifactNotFoundError
 from pinnacle import logging
 
 

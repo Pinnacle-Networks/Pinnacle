@@ -3,9 +3,9 @@ import random
 import numpy as np
 import pytest
 from pinnacle.base.document import Document
+from pinnacle.components.datatype import Array
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
-from pinnacle.ext.numpy.encoder import Array
 
 from pinnacle_mongodb.query import MongoQuery
 

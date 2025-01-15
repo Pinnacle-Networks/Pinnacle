@@ -11,7 +11,6 @@ from pinnacle.backends.base.metadata import MetaDataStoreProxy
 from pinnacle.base.enums import DBType
 from pinnacle.components.datatype import BaseDataType
 from pinnacle.components.schema import Schema
-from pinnacle.misc.colors import Colors
 
 from pinnacle_mongodb.artifacts import MongoArtifactStore
 from pinnacle_mongodb.metadata import MongoMetaDataStore
@@ -113,8 +112,8 @@ class MongoDBDataBackend(BaseDataBackend):
         """
         if not force:
             if not click.confirm(
-                f"{Colors.RED}[!!!WARNING USE WITH CAUTION AS YOU "
-                f"WILL LOSE ALL DATA!!!]{Colors.RESET} "
+                '!!!WARNING USE WITH CAUTION AS YOU '
+                "WILL LOSE ALL DATA!!!]\n"
                 "Are you sure you want to drop the data-backend? ",
                 default=False,
             ):

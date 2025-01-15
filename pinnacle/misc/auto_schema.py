@@ -19,7 +19,7 @@ def register_module(module_name):
     """Register a module for datatype inference.
 
     Only modules with a check and create function will be registered
-    :param module_name: The module name, e.g. "pinnacle.ext.numpy.encoder"
+    :param module_name: The module name, e.g. "pinnacle_plugins.numpy.encoder"
     """
     try:
         importlib.import_module(module_name)
@@ -172,9 +172,8 @@ class JsonDataTypeFactory(DataTypeFactory):
         return json_encoder
 
 
-register_module("pinnacle.ext.numpy.encoder")
-register_module("pinnacle.ext.torch.encoder")
-register_module("pinnacle.ext.pillow.encoder")
+register_module("pinnacle_torch.encoder")
+register_module("pinnacle_pillow.encoder")
 
 
 FACTORIES = DataTypeFactory.__subclasses__()
