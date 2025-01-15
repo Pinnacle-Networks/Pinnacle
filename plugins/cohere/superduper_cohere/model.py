@@ -6,8 +6,8 @@ import tqdm
 from cohere.error import CohereAPIError, CohereConnectionError
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.components.model import APIBaseModel
-from pinnacle.ext.utils import format_prompt, get_key
 from pinnacle.misc.retry import Retry
+from pinnacle.misc.utils import format_prompt, get_key
 
 retry = Retry(exception_types=(CohereAPIError, CohereConnectionError))
 

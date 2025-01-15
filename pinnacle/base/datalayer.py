@@ -21,7 +21,6 @@ from pinnacle.components.datatype import BaseDataType
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 from pinnacle.misc.annotations import deprecated
-from pinnacle.misc.colors import Colors
 from pinnacle.misc.importing import import_object
 from pinnacle.misc.retry import db_retry
 
@@ -125,8 +124,8 @@ class Datalayer:
         :param force: Force drop.
         """
         if not force and not click.confirm(
-            f"{Colors.RED}[!!!WARNING USE WITH CAUTION AS YOU WILL"
-            f"LOSE ALL DATA!!!]{Colors.RESET} "
+            "!!!WARNING USE WITH CAUTION AS YOU WILL"
+            "LOSE ALL DATA!!!]\n"
             "Are you sure you want to drop the database? ",
             default=False,
         ):

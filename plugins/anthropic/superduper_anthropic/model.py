@@ -5,8 +5,8 @@ import anthropic
 from anthropic import APIConnectionError, APIError, APIStatusError, APITimeoutError
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.components.model import APIBaseModel
-from pinnacle.ext.utils import format_prompt, get_key
 from pinnacle.misc.retry import Retry
+from pinnacle.misc.utils import format_prompt, get_key
 
 retry = Retry(
     exception_types=(APIConnectionError, APIError, APIStatusError, APITimeoutError)

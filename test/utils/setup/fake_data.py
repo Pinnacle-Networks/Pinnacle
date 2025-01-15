@@ -5,12 +5,12 @@ import numpy as np
 # ruff: noqa: E402
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.dataset import Dataset
+from pinnacle.components.datatype import Array
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 from pinnacle.components.vector_index import VectorIndex
-from pinnacle.ext.numpy.encoder import Array
 
 GLOBAL_TEST_N_DATA_POINTS = 100
 
