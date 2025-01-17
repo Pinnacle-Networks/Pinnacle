@@ -8,6 +8,7 @@ from pinnacle import logging
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.component import ensure_initialized
+from pinnacle.components.llm.model import BaseLLM
 from pinnacle.components.model import (
     Model,
     Signature,
@@ -15,7 +16,6 @@ from pinnacle.components.model import (
     _DeviceManaged,
 )
 from pinnacle.components.training import Checkpoint
-from pinnacle.ext.llm.model import BaseLLM
 from transformers import (
     AutoModelForCausalLM,
     AutoModelForSequenceClassification,
@@ -209,10 +209,11 @@ class TextClassificationPipeline(Model, _DeviceManaged):
             model=self.model_cls.from_pretrained(self.model_name),
         )
 
-    def __post_init__(self, db, example):
+    def postinit(self):
+        """Post-initialization method."""
         if self.pipeline is None:
             self._build_pipeline()
-        super().__post_init__(db, example)
+        super().postinit()
 
     def predict(self, text: str):
         """Predict the class of a single text.

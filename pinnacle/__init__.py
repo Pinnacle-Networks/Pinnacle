@@ -53,7 +53,6 @@ __all__ = (
     'pinnacle',
     'BaseDataType',
     'Document',
-    'code',
     'ObjectModel',
     'QueryModel',
     'Validation',
