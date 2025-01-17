@@ -26,7 +26,7 @@ from transformers import (
 from transformers.integrations.deepspeed import is_deepspeed_zero3_enabled
 
 if t.TYPE_CHECKING:
-    from pinnacle.ext.transformers.model import LLM
+    from pinnacle_transformers.model import LLM
 
 
 class LLMCallback(TrainerCallback):
