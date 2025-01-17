@@ -7,7 +7,7 @@ from pinnacle.backends.base.metadata import MetaDataStore
 from pinnacle.components.component import Status
 
 
-class MongoMetaDataStore(MetaDataStore):
+class MongoDBMetaDataStore(MetaDataStore):
     """
     Metadata store for MongoDB.
 
