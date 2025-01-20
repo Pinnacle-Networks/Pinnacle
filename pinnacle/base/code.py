@@ -1,3 +1,4 @@
+# TODO remove - never used
 import inspect
 
 from pinnacle import logging

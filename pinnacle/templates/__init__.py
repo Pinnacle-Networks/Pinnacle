@@ -1,3 +1,4 @@
+# TODO move to `pinnacle.component.template.Template`
 import os
 from pathlib import Path
 
