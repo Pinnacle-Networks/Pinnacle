@@ -1,9 +1,9 @@
 import os
-from test.utils.component import datatype as datatype_utils
 
 import pytest
 
 from pinnacle.components.datatype import file
+from test.utils.component import datatype as datatype_utils
 
 
 @pytest.fixture

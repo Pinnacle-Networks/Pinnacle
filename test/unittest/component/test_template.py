@@ -1,10 +1,9 @@
-from test.utils.setup.fake_data import add_random_data
-
 from pinnacle.base.document import Document
 from pinnacle.components.component import Component
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 from pinnacle.components.template import QueryTemplate, Template
+from test.utils.setup.fake_data import add_random_data
 
 
 def test_basic_template(db):
