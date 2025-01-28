@@ -3,6 +3,8 @@
 
 Pinnacle snowflake is a vector search plugin for Pinnacle that allows you to performce vector search directly on snowflake tables.
 
+We also ship a fallback databackend implementation.
+
 ## Installation
 
 ```bash
