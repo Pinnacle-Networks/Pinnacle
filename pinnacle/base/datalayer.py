@@ -10,7 +10,7 @@ from pinnacle.backends.base.artifacts import ArtifactStore
 from pinnacle.backends.base.cluster import Cluster
 from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.backends.base.data_backend import BaseDataBackend
-from pinnacle.backends.base.metadata import MetaDataStore
+from pinnacle.backends.base.metadata import MetaDataStore, NonExistentMetadataError
 from pinnacle.backends.base.query import Query
 from pinnacle.backends.local.cluster import LocalCluster
 from pinnacle.base import apply, exceptions
@@ -629,6 +629,11 @@ class Datalayer:
                 f'Component {type_id}:{identifier}:{version} has already been removed'
             )
             return
+        except NonExistentMetadataError:    
+            logging.warn(
+                f'Component {type_id}:{identifier}:{version} has already been removed'
+            )
+            return
         except Exception as e:
             if 'not exist' in str(e):
                 logging.warn(
@@ -656,6 +661,7 @@ class Datalayer:
             identifier,
             version=version,
         )
+
         info = self.metadata.get_component(
             type_id, identifier, version=version, allow_hidden=force
         )
