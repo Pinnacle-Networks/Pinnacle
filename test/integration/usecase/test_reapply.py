@@ -1,4 +1,12 @@
+import numpy
+
 from pinnacle import Model
+from pinnacle.components.dataset import Data
+from pinnacle.components.model import model
+from pinnacle.components.schema import Schema
+from pinnacle.components.table import Table
+from pinnacle.components.template import Template
+from pinnacle.components.datatype import pickle_encoder
 
 
 class MyModel(Model):
@@ -48,3 +56,38 @@ def test_reapply(db):
     listener_2_update = build('second', '2')
 
     db.apply(listener_2_update)
+
+
+def test_template_component_deps(db):
+
+    @model
+    def test(x):
+        return x + 1
+
+    test.datatype = pickle_encoder
+
+    t = Template(
+        template=test,
+        identifier='test_template',
+        default_tables=[
+            Table(
+                'test_table',
+                schema=Schema('test_schema', fields={'x': 'str', 'y': pickle_encoder}),
+                data=Data('test_data', raw_data=[{'x': '1', 'y': numpy.random.randn(3)}])
+            )
+        ]
+    )
+
+    db.apply(t, force=True)
+
+    m = t()
+
+    db.apply(m, force=True)
+
+    db.remove('model', 'test', recursive=True, force=True)
+
+    m = t()
+
+    db.apply(m, force=True)
+
+    db.remove('model', 'test', recursive=True, force=True)
