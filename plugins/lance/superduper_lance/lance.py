@@ -4,7 +4,6 @@ import typing as t
 import lance
 import numpy as np
 import pyarrow as pa
-from pinnacle import CFG
 from pinnacle.backends.base.vector_search import (
     BaseVectorSearcher,
     VectorIndexMeasureType,
@@ -27,7 +26,13 @@ class LanceVectorSearcher(BaseVectorSearcher):
         dimensions: int,
         measure: t.Optional[str] = None,
     ):
-        self.dataset_path = os.path.join(CFG.lance_home, f'{uuid}.lance')
+        self.dataset_path = os.path.join(
+            os.environ.get(
+                'SUPERDUPER_LANCE_HOME',
+                os.path.expanduser('~/.pinnacle/vector_indices'),
+            ),
+            f"{uuid}.lance",
+        )
         self.dimensions = dimensions
         self.measure = (
             measure.name if isinstance(measure, VectorIndexMeasureType) else measure

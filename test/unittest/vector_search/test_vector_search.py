@@ -4,7 +4,6 @@ import uuid
 import numpy as np
 import pytest
 
-from pinnacle import CFG
 from pinnacle.backends.base.vector_search import VectorItem
 from pinnacle.backends.local.vector_search import InMemoryVectorSearcher
 
@@ -12,7 +11,6 @@ from pinnacle.backends.local.vector_search import InMemoryVectorSearcher
 @pytest.fixture
 def index_data(monkeypatch):
     with tempfile.TemporaryDirectory() as unique_dir:
-        monkeypatch.setattr(CFG, "lance_home", str(unique_dir))
         h = np.array([[0, 0, 1], [0, 1, 0], [1, 0, 0]])
         ids = [str(uuid.uuid4()) for _ in range(h.shape[0])]
         yield h, ids, unique_dir
