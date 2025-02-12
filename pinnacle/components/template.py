@@ -11,6 +11,7 @@ from pinnacle.base.leaf import Leaf
 from pinnacle.base.variables import _find_variables, _replace_variables
 from pinnacle.components.component import Component, _build_info_from_path
 from pinnacle.components.table import Table
+from pinnacle.misc import typing as st
 
 from .component import ensure_initialized
 
@@ -30,7 +31,7 @@ class _BaseTemplate(Component):
 
     literals: t.ClassVar[t.Tuple[str]] = ('template',)
 
-    template: t.Union[t.Dict, Component]
+    template: st.Dill
     template_variables: t.Optional[t.List[str]] = None
     types: t.Optional[t.Dict] = None
     schema: t.Optional[t.Dict] = None
@@ -204,10 +205,12 @@ class Template(_BaseTemplate):
         |_files/*
         ```
         """
+        self.init()
         assert isinstance(self.template, dict)
         blobs = self.template.pop(KEY_BLOBS, None)
         files = self.template.pop(KEY_FILES, None)
 
+        # TODO this logic is a mess
         if self.blobs or self.files:
             assert self.db is not None
             assert self.identifier in self.db.show('template')

@@ -2,7 +2,6 @@ import pytest
 from pinnacle import CFG, pinnacle
 from pinnacle.base.document import Document as D
 from pinnacle.components.listener import Listener
-from pinnacle.components.schema import FieldType, Schema
 
 
 @pytest.mark.skip
@@ -20,17 +19,13 @@ def _end_2_end(db, memory_table=False):
     import torchvision
     from pinnacle.ext.torch.encoder import tensor
     from pinnacle.ext.torch.model import TorchModel
-    from pinnacle_pillow import pil_image
 
-    schema = Schema(
-        identifier="my_table",
-        fields={
-            "id": FieldType(identifier="str"),
-            "health": FieldType(identifier="int32"),
-            "age": FieldType(identifier="int32"),
-            "image": pil_image,
-        },
-    )
+    fields = {
+        "id": "str",
+        "health": "int32",
+        "age": "int32",
+        "image": 'pinnacle_pillow.pil_image',
+    }
     im = PIL.Image.open("test/material/data/test-image.jpeg")
 
     data_to_insert = [
@@ -42,7 +37,7 @@ def _end_2_end(db, memory_table=False):
 
     from pinnacle.components.table import Table
 
-    t = Table(identifier="my_table", schema=schema, db=db)
+    t = Table(identifier="my_table", fields=fields)
 
     db.apply(t)
     t = db["my_table"]
@@ -92,7 +87,7 @@ def _end_2_end(db, memory_table=False):
         preprocess=preprocess,
         postprocess=postprocess,
         object=torchvision.models.resnet18(pretrained=False),
-        datatype=FieldType("int32"),
+        datatype='int32',
     )
 
     # Apply the torchvision model
