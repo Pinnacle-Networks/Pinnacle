@@ -1,10 +1,11 @@
 from ibis.expr.datatypes import dtype
 from pinnacle.components.datatype import (
+    ID,
     BaseDataType,
+    FieldType,
     FileItem,
-    Vector,
 )
-from pinnacle.components.schema import ID, FieldType, Schema
+from pinnacle.components.schema import Schema
 
 SPECIAL_ENCODABLES_FIELDS = {
     FileItem: "str",
@@ -31,22 +32,9 @@ def convert_schema_to_fields(schema: Schema):
     for k, v in schema.fields.items():
         if isinstance(v, FieldType):
             fields[k] = _convert_field_type_to_ibis_type(v)
-        elif not isinstance(v, BaseDataType):
-            fields[k] = v.identifier
         else:
-            if v.encodable == 'encodable':
-                fields[k] = dtype(
-                    'str'
-                    if schema.db.databackend.bytes_encoding == 'base64'
-                    else 'bytes'
-                )
-            elif isinstance(v, Vector):
-                fields[k] = dtype('json')
+            assert isinstance(schema.fields[k], BaseDataType)
 
-            elif v.encodable == 'native':
-                fields[k] = dtype(v.dtype)
-
-            else:
-                fields[k] = dtype('str')
+            fields[k] = dtype(schema.fields[k].dtype)
 
     return fields

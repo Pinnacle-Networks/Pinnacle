@@ -7,6 +7,7 @@ import typing as t
 
 from pinnacle import Component, logging
 from pinnacle.components.datatype import FileItem, file
+from pinnacle.misc import typing as st
 
 
 class Plugin(Component):
@@ -20,7 +21,7 @@ class Plugin(Component):
     type_id: t.ClassVar[str] = "plugin"
     _fields = {"path": file}
 
-    path: str
+    path: st.File
     identifier: str = ""
     cache_path: str = "~/.pinnacle/plugins"
 

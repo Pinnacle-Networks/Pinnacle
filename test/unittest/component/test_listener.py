@@ -1,5 +1,6 @@
 import dataclasses as dc
 import random
+import typing as t  # noqa: F401
 
 import numpy as np
 import pytest
@@ -8,6 +9,7 @@ from pinnacle import Application, Document
 from pinnacle.base.constant import KEY_BLOBS
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel, Trainer
+from pinnacle.misc import typing as st  # noqa: F401
 
 
 class MyTrainer(Trainer):
@@ -19,8 +21,7 @@ class MyTrainer(Trainer):
 
 
 @dc.dataclass
-class _Tmp(ObjectModel):
-    ...
+class _Tmp(ObjectModel): ...
 
 
 def test_listener_serializes_properly(db):

@@ -8,6 +8,7 @@ from pinnacle.components.plugin import Plugin
 
 PYTHON_CODE = """
 from pinnacle import Model
+import typing as t
 
 class PModel(Model):
     def predict(self, X) -> int:
