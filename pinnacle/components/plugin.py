@@ -6,7 +6,7 @@ import sys
 import typing as t
 
 from pinnacle import Component, logging
-from pinnacle.components.datatype import FileItem, file
+from pinnacle.components.datatype import FileItem
 from pinnacle.misc import typing as st
 
 
