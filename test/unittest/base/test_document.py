@@ -11,6 +11,7 @@ from pinnacle.components.datatype import (
     pickle_encoder,
     pickle_serializer,
 )
+from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
@@ -210,7 +211,7 @@ def test_refer_to_system(db):
 
 def test_encode_same_identifier():
     model = ObjectModel(identifier="a", object=lambda x: x, datatype='str')
-    listener = model.to_listener(identifier="a", key="a", select=None)
+    listener = Listener(model=model, identifier="a", key="a", select=None)
 
     encode_data = listener.encode()
     listener = Document.decode(encode_data).unpack()
