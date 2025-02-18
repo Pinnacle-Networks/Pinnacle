@@ -1,6 +1,8 @@
 from test.utils.usecase.vector_search import add_data
 
 from pinnacle import model
+from pinnacle.components.listener import Listener
+from pinnacle.components.vector_index import VectorIndex
 
 
 def test_vector_index_recovery(db):
@@ -53,7 +55,12 @@ def test_initialize_output_datatype_with_dimensions(db):
     def test(x):
         return numpy.random.randn(32)
 
-    vector_index = test.to_vector_index(key='x', select=db['documents'].select())
+    vector_index = VectorIndex(
+        identifier='vector_index',
+        indexing_listener=Listener(
+            'listener', model=test, key='x', select=db['documents'].select()
+        ),
+    )
     vector_index.pre_create(db)
 
     from pinnacle import Table
