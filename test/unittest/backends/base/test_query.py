@@ -1,5 +1,6 @@
-from pinnacle import Document
 from test.utils.database import query as query_utils
+
+from pinnacle import Document
 
 
 def test_insert(db):

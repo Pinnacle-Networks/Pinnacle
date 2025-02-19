@@ -1,5 +1,6 @@
-from pinnacle import model
 from test.utils.usecase.vector_search import add_data
+
+from pinnacle import model
 
 
 def test_vector_index_recovery(db):
