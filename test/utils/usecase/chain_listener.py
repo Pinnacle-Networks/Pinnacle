@@ -1,14 +1,21 @@
 import typing as t
 
 from pinnacle import ObjectModel
+from pinnacle.base.base import Base
 from pinnacle.components.listener import Listener
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
 
 
+class documents(Base):
+    x: int
+
+
 def build_chain_listener(db: "Datalayer"):
-    db.cfg.auto_schema = True
+
+    db.create(documents)
+
     data = [
         {"x": 1},
         {"x": 2},

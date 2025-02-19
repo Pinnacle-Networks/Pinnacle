@@ -6,8 +6,8 @@ import typing as t
 from pinnacle import CFG
 from pinnacle.base.constant import KEY_BLOBS, KEY_FILES
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.base.document import Document, QueryUpdateDocument
-from pinnacle.base.leaf import Leaf
+from pinnacle.base.document import Document
+from pinnacle.base.base import Base
 from pinnacle.base.variables import _find_variables, _replace_variables
 from pinnacle.components.component import Component, _build_info_from_path
 from pinnacle.components.table import Table
@@ -43,7 +43,7 @@ class _BaseTemplate(Component):
 
     def postinit(self):
         """Post initialization method."""
-        if isinstance(self.template, Leaf):
+        if isinstance(self.template, Base):
             self.template = self.template.encode(defaults=True, metadata=False)
         if self.substitutions is not None:
             self.substitutions = {
@@ -52,13 +52,28 @@ class _BaseTemplate(Component):
                 **self.substitutions,
             }
         if self.substitutions is not None:
-            self.template = QueryUpdateDocument(self.template).to_template(
-                **self.substitutions
-            )
+            self.template = self._document_to_template(self.template, self.substitutions)
         if self.template_variables is None:
             self.template_variables = sorted(list(set(_find_variables(self.template))))
 
         super().postinit()
+
+    @staticmethod
+    def _document_to_template(r, substitutions):
+        substitutions.setdefault(CFG.output_prefix, 'output_prefix')
+
+        def substitute(x):
+            if isinstance(x, str):
+                for k, v in substitutions.items():
+                    x = x.replace(k, f'<var:{v}>')
+                return x
+            if isinstance(x, dict):
+                return {substitute(k): substitute(v) for k, v in x.items()}
+            if isinstance(x, (list, tuple)):
+                return [substitute(v) for v in x]
+            return x
+
+        return substitute(dict(r))
 
     @ensure_initialized
     def __call__(self, **kwargs):
@@ -299,7 +314,7 @@ class QueryTemplate(_BaseTemplate):
 
     def postinit(self):
         """Post initialization method."""
-        if isinstance(self.template, Leaf):
+        if isinstance(self.template, Base):
             self.template = self.template.dict(metadata=False, defaults=False).encode()
         super().postinit()
 
