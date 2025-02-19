@@ -2,11 +2,11 @@ import numpy
 
 from pinnacle import Model
 from pinnacle.components.dataset import Data
+from pinnacle.components.datatype import pickle_encoder
 from pinnacle.components.model import model
 from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 from pinnacle.components.template import Template
-from pinnacle.components.datatype import pickle_encoder
 
 
 class MyModel(Model):
@@ -59,7 +59,6 @@ def test_reapply(db):
 
 
 def test_template_component_deps(db):
-
     @model
     def test(x):
         return x + 1
@@ -73,9 +72,11 @@ def test_template_component_deps(db):
             Table(
                 'test_table',
                 schema=Schema('test_schema', fields={'x': 'str', 'y': pickle_encoder}),
-                data=Data('test_data', raw_data=[{'x': '1', 'y': numpy.random.randn(3)}])
+                data=Data(
+                    'test_data', raw_data=[{'x': '1', 'y': numpy.random.randn(3)}]
+                ),
             )
-        ]
+        ],
     )
 
     db.apply(t, force=True)

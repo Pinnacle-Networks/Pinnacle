@@ -1,9 +1,9 @@
 import typing as t
+from test.utils.setup.fake_data import add_random_data
 
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.datatype import pickle_serializer
 from pinnacle.components.model import Model, Trainer
-from test.utils.setup.fake_data import add_random_data
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
