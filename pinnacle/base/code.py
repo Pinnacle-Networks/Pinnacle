@@ -2,7 +2,7 @@
 import inspect
 
 from pinnacle import logging
-from pinnacle.base.leaf import Leaf
+from pinnacle.base.base import Base
 
 template = """from pinnacle import code
 
@@ -10,7 +10,7 @@ template = """from pinnacle import code
 {definition}"""
 
 
-class Code(Leaf):
+class Code(Base):
     """A class to store remote code.
 
     This class stores remote code that can be executed on a remote server.

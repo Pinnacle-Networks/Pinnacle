@@ -1,10 +1,10 @@
 import typing as t
 
 from ibis.expr.datatypes import DataType, dtype as _dtype
-from pinnacle.base.leaf import Leaf
+from pinnacle.base.base import Base
 
 
-class FieldType(Leaf):
+class FieldType(Base):
     """Field type to represent the type of a field in a table.
 
     This is a wrapper around ibis.expr.datatypes.DataType to make it

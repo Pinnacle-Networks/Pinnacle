@@ -1,4 +1,4 @@
-from pinnacle import imported
+from pinnacle.base.base import imported
 
 
 @imported

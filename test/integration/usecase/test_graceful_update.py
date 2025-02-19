@@ -5,6 +5,7 @@ import numpy
 
 from pinnacle import Listener, Model, VectorIndex, logging
 from pinnacle.base.annotations import trigger
+from pinnacle.base.base import Base
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.model import Validation
 
@@ -32,8 +33,13 @@ class MyValidation(Validation):
         return 0.1
 
 
+class docs(Base):
+    x: int
+
+
 def test(db: Datalayer):
-    db.cfg.auto_schema = True
+
+    db.create(docs)
 
     db['docs'].insert([{'x': random.randrange(10)} for _ in range(10)])
 
