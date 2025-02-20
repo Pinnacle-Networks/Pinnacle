@@ -4,6 +4,7 @@ import json
 import os
 import typing as t
 
+from functools import lru_cache as cache
 import numpy
 import requests
 import tqdm
@@ -18,8 +19,7 @@ from openai._types import NOT_GIVEN
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base import exceptions
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.model import APIBaseModel, Inputs
-from pinnacle.misc.compat import cache
+from pinnacle.components.model import APIBaseModel
 from pinnacle.misc.retry import Retry, safe_retry
 
 retry = Retry(
@@ -117,11 +117,6 @@ class OpenAIEmbedding(_OpenAI):
 
     signature: str = 'singleton'
     batch_size: int = 100
-
-    @property
-    def inputs(self):
-        """The inputs of the model."""
-        return Inputs(['input'])
 
     @retry
     def predict(self, X: str):
