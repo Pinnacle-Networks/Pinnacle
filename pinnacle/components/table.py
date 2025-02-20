@@ -4,7 +4,7 @@ from pinnacle import CFG
 from pinnacle.base.annotations import trigger
 from pinnacle.components.component import Component
 from pinnacle.components.schema import Schema
-from pinnacle.misc import typing as st
+from pinnacle.misc import typing as st  # noqa: F401
 from pinnacle.misc.importing import import_object
 
 if t.TYPE_CHECKING:
@@ -55,15 +55,11 @@ class Table(Component):
         :param db: The Datalayer instance
         """
         assert self.schema is not None, "Schema must be set"
-        # TODO drop?
-        if db.databackend.in_memory:
-            if self.identifier.startswith(CFG.output_prefix):
-                db.databackend.in_memory_tables[self.identifier] = (
-                    db.databackend.create_table_and_schema(self.identifier, self.schema)
-                )
 
         try:
-            db.databackend.create_table_and_schema(self.identifier, self.schema)
+            db.databackend.create_table_and_schema(
+                self.identifier, self.schema, self.primary_id
+            )
         except Exception as e:
             if 'already exists' in str(e):
                 pass
