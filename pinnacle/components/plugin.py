@@ -3,7 +3,6 @@ import os
 import shutil
 import subprocess
 import sys
-import typing as t
 
 from pinnacle import Component, logging
 from pinnacle.components.datatype import FileItem

@@ -6,14 +6,13 @@ from prettytable import PrettyTable
 import pinnacle as s
 from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import DataBackendProxy
+from pinnacle.backends.local.artifacts import (
+    FileSystemArtifactStore,
+)
 from pinnacle.base.config import Config
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.misc.anonymize import anonymize_url
 from pinnacle.misc.importing import load_plugin
-
-from pinnacle.backends.local.artifacts import (
-    FileSystemArtifactStore,
-)
 
 
 class _Loader:

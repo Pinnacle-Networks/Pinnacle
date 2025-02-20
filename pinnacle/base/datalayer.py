@@ -15,9 +15,9 @@ from pinnacle.backends.base.metadata import (
 )
 from pinnacle.backends.base.query import Query
 from pinnacle.base import apply, exceptions
+from pinnacle.base.base import Base
 from pinnacle.base.config import Config
 from pinnacle.base.document import Document
-from pinnacle.base.base import Base
 from pinnacle.components.component import Component
 from pinnacle.components.datatype import ComponentType, LeafType
 from pinnacle.components.table import Table
@@ -168,7 +168,8 @@ class Datalayer:
         )
 
     def pre_insert(
-        self, items: t.List[Base],
+        self,
+        items: t.List[Base],
     ):
         """Pre-insert hook for data insertion.
 

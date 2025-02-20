@@ -18,9 +18,9 @@ from types import MethodType
 
 from pinnacle import CFG, logging
 from pinnacle.backends.base.metadata import NonExistentMetadataError
+from pinnacle.base.base import Base
 from pinnacle.base.constant import KEY_BLOBS, KEY_BUILDS, KEY_FILES, KEY_PATH
 from pinnacle.base.document import Document, _unpack
-from pinnacle.base.base import Base
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer

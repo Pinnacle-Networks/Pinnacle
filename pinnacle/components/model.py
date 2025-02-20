@@ -18,8 +18,8 @@ from pinnacle.backends.base.metadata import NonExistentMetadataError
 from pinnacle.backends.base.query import Query
 from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.annotations import trigger
-from pinnacle.base.document import Document
 from pinnacle.base.base import Base
+from pinnacle.base.document import Document
 from pinnacle.components.component import Component, ComponentMeta, ensure_initialized
 from pinnacle.components.metric import Metric
 from pinnacle.components.schema import Schema
@@ -1161,4 +1161,3 @@ class ModelRouter(Model):
         self.example = self.models[self.model].example
         self.signature = self.models[self.model].signature
         self.models[self.model].init()
-
