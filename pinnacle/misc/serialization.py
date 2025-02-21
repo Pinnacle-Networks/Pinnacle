@@ -42,7 +42,7 @@ def asdict(obj, *, copy_method=copy.copy) -> t.Dict[str, t.Any]:
 
 def _asdict_inner(obj, dict_factory, copy_method, top=False) -> t.Any:
     from pinnacle.base.base import Base
-    from pinnacle.components.datatype import Saveable
+    from pinnacle.base.datatype import Saveable
 
     if type(obj) in _ATOMIC_TYPES:
         return obj

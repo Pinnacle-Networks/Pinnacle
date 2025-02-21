@@ -6,9 +6,9 @@ import uuid
 from pinnacle import logging
 from pinnacle.base.base import Base
 from pinnacle.base.exceptions import DatabackendError
+from pinnacle.base.schema import Schema
 from pinnacle.components.cdc import CDC
 from pinnacle.components.component import Component
-from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 from pinnacle.misc.importing import import_object
 
@@ -103,21 +103,21 @@ class MetaDataStore:
                 primary_id='uuid',
                 uuid='def',
                 component=True,
-                path='pinnacle.backends.base.metadata.ParentChildAssociations',
+                path='pinnacle.base.metadata.ParentChildAssociations',
             ).encode(),
             ('Table', 'ArtifactRelations'): Table(
                 identifier='ArtifactRelations',
                 primary_id='uuid',
                 uuid='ghi',
                 component=True,
-                path='pinnacle.backends.base.metadata.ArtifactRelations',
+                path='pinnacle.base.metadata.ArtifactRelations',
             ).encode(),
             ('Table', 'Job'): Table(
                 identifier='Job',
                 primary_id='job_id',
                 uuid='jkl',
                 component=True,
-                path='pinnacle.backends.base.metadata.Job',
+                path='pinnacle.base.metadata.Job',
             ).encode(),
         }
 

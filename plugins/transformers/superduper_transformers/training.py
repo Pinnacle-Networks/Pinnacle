@@ -8,10 +8,10 @@ import torch
 import transformers
 from datasets import Dataset as NativeDataset
 from pinnacle import logging
-from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.build import build_datalayer
 from pinnacle.base.config import Config
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.model import Trainer as SuperDuperTrainer
 from pinnacle.components.training import Checkpoint

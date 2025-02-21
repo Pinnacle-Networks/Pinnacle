@@ -2,7 +2,7 @@ import typing as t
 
 import numpy
 import torch
-from pinnacle.components.datatype import BaseDataType, DataTypeFactory
+from pinnacle.base.datatype import BaseDataType, DataTypeFactory
 from pinnacle.misc.utils import str_shape
 
 if t.TYPE_CHECKING:

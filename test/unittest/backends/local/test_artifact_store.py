@@ -2,7 +2,7 @@ from test.utils.database import artifact_store as artifact_store_utils
 
 import pytest
 
-from pinnacle.backends.local.artifacts import FileSystemArtifactStore
+from pinnacle.base.artifacts import FileSystemArtifactStore
 
 
 @pytest.fixture

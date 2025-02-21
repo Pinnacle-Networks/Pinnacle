@@ -3,7 +3,7 @@ import typing as t
 
 import anthropic
 from anthropic import APIConnectionError, APIError, APIStatusError, APITimeoutError
-from pinnacle.backends.query_dataset import QueryDataset
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.model import APIBaseModel
 from pinnacle.misc.retry import Retry
 from pinnacle.misc.utils import format_prompt, get_key

@@ -5,8 +5,8 @@ import typing as t
 from functools import cached_property
 
 from pinnacle import CFG
+from pinnacle.base.datatype import BaseDataType
 from pinnacle.base.encoding import EncodeContext
-from pinnacle.components.datatype import BaseDataType
 from pinnacle.misc.special_dicts import dict_to_ascii_table
 
 if t.TYPE_CHECKING:
@@ -28,7 +28,7 @@ class Schema(BaseDataType):
 
         :param fields: The fields of the schema
         """
-        from pinnacle.components.datatype import INBUILT_DATATYPES
+        from pinnacle.base.datatype import INBUILT_DATATYPES
 
         fields = {k: INBUILT_DATATYPES[fields[k]] for k in fields}
         return Schema(fields)  # type: ignore[arg-type]

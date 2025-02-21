@@ -1,7 +1,7 @@
 import typing as t
 
 from sentence_transformers import SentenceTransformer as _SentenceTransformer
-from pinnacle.backends.query_dataset import QueryDataset
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.component import ensure_initialized
 from pinnacle.components.model import Model, Signature, _DeviceManaged
 

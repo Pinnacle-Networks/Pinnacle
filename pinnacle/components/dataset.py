@@ -5,11 +5,11 @@ from functools import cached_property
 
 import numpy
 
-from pinnacle.backends.base.query import Query
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
+from pinnacle.base.query import Query
+from pinnacle.base.schema import Schema
 from pinnacle.components.component import Component, ensure_initialized
-from pinnacle.components.schema import Schema
 
 
 class Dataset(Component):
@@ -92,7 +92,6 @@ class RemoteData(Component):
     :param getter: Function to fetch data.
     """
 
-    type_id: t.ClassVar[str] = 'dataset'
     getter: t.Callable
 
     def __post_init__(self, db):
@@ -113,7 +112,6 @@ class Data(Component):
     :param raw_data: The raw data.
     """
 
-    type_id: t.ClassVar[str] = 'data'
     raw_data: t.Any
 
     @property

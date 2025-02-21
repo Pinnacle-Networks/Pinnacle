@@ -9,11 +9,9 @@ from pinnacle.backends.base.vector_search import VectorItem
 from pinnacle.base.annotations import trigger
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
+from pinnacle.base.schema import Schema
 from pinnacle.components.cdc import CDC
-from pinnacle.components.component import Component
 from pinnacle.components.listener import Listener
-from pinnacle.components.model import Mapping
-from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 from pinnacle.misc.special_dicts import MongoStyleDict
 
@@ -47,7 +45,7 @@ def backfill_vector_search(db, vi, searcher):
     :param vi: Identifier of vector index.
     :param searcher: FastVectorSearch instance to load model outputs as vectors.
     """
-    from pinnacle.components.datatype import _BaseEncodable
+    from pinnacle.base.datatype import _BaseEncodable
 
     logging.info(f"Loading vectors of vector-index: '{vi.identifier}'")
 
@@ -117,17 +115,6 @@ class VectorIndex(CDC):
         """Post-initialization method."""
         self.cdc_table = self.cdc_table or self.indexing_listener.outputs
         super().postinit()
-
-    # TODO why this?
-    def __hash__(self):
-        return hash((self.type_id, self.identifier))
-
-    def __eq__(self, other: t.Any):
-        if isinstance(other, Component):
-            return (
-                self.identifier == other.identifier and self.type_id and other.type_id
-            )
-        return False
 
     def _pre_create(self, db: Datalayer, startup_cache: t.Dict = {}):
         assert isinstance(self.indexing_listener, Listener)
@@ -263,10 +250,9 @@ class VectorIndex(CDC):
                 )
 
         model = models[model_name]
-        data = Mapping(key, model.signature)(document)
-        args, kwargs = model.handle_input_type(data, model.signature)
+        assert model.signature == 'singleton'
         return (
-            model.predict(*args, **kwargs),
+            model.predict(document[key]),
             model.identifier,
             key,
         )

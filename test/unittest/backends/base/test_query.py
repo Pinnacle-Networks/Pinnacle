@@ -1,5 +1,5 @@
-from pinnacle.backends.base.query import parse_query
 from pinnacle.base import Base
+from pinnacle.base.query import parse_query
 from pinnacle.components.table import Table
 
 

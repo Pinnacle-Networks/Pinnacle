@@ -8,11 +8,11 @@ import pytest
 
 from pinnacle import ObjectModel, Table
 from pinnacle.base.annotations import trigger
-from pinnacle.components.component import Component
-from pinnacle.components.datatype import (
+from pinnacle.base.datatype import (
     Blob,
     dill_serializer,
 )
+from pinnacle.components.component import Component
 from pinnacle.components.listener import Listener
 
 

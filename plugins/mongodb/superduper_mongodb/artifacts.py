@@ -6,7 +6,7 @@ from pathlib import Path
 import click
 import gridfs
 from pinnacle import CFG, logging
-from pinnacle.backends.base.artifacts import ArtifactStore
+from pinnacle.base.artifacts import ArtifactStore
 from tqdm import tqdm
 
 from pinnacle_mongodb.utils import connection_callback

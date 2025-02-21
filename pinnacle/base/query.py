@@ -17,10 +17,10 @@ import uuid
 from types import MethodType
 
 from pinnacle import CFG, logging
-from pinnacle.backends.base.metadata import NonExistentMetadataError
 from pinnacle.base.base import Base
 from pinnacle.base.constant import KEY_BLOBS, KEY_BUILDS, KEY_FILES, KEY_PATH
 from pinnacle.base.document import Document, _unpack
+from pinnacle.base.metadata import NonExistentMetadataError
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
@@ -534,6 +534,7 @@ class Query(_BaseQuery):
         'update': [],
         'delete': [],
         'replace': [],
+        'missing_outputs': [],
         'select': [
             'filter',
             'outputs',
@@ -727,7 +728,7 @@ class Query(_BaseQuery):
         query = '\n'.join(queries)
         return Document(
             {
-                '_path': 'pinnacle.backends.base.query.parse_query',
+                '_path': 'pinnacle.base.query.parse_query',
                 'documents': documents,
                 'query': query,
             }

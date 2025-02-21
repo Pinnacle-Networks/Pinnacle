@@ -3,4 +3,4 @@ auto_schema: false
 force_apply: true
 json_native: false
 datatype_presets:
-  vector: pinnacle.components.datatype.Array
+  vector: pinnacle.base.datatype.Array

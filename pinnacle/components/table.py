@@ -2,12 +2,9 @@ import typing as t
 
 from pinnacle import CFG
 from pinnacle.base.annotations import trigger
+from pinnacle.base.schema import Schema
 from pinnacle.components.component import Component
-from pinnacle.components.schema import Schema
-<<<<<<< HEAD
 from pinnacle.misc import typing as st  # noqa: F401
-=======
->>>>>>> 02aeb36fb (Add changes necessary for services)
 from pinnacle.misc.importing import import_object
 
 if t.TYPE_CHECKING:

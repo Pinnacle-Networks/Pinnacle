@@ -8,9 +8,9 @@ from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 from pinnacle import pinnacle
-from pinnacle.backends.base.query import Query
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
+from pinnacle.base.query import Query
 
 from pinnacle_sklearn.model import Estimator, SklearnTrainer
 

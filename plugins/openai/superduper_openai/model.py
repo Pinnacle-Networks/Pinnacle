@@ -16,9 +16,9 @@ from openai import (
     RateLimitError,
 )
 from openai._types import NOT_GIVEN
-from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base import exceptions
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.model import APIBaseModel
 from pinnacle.misc.retry import Retry, safe_retry
 

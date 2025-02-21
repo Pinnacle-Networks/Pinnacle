@@ -3,8 +3,8 @@ import typing as t
 
 import torch
 from pinnacle import logging
-from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.model import Trainer
 from torch.utils.data import DataLoader

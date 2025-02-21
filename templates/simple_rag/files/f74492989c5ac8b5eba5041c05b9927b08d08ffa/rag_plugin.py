@@ -1,5 +1,5 @@
 from pinnacle import Model
-from pinnacle.backends.base.query import Query
+from pinnacle.base.query import Query
 
 import typing as t
 

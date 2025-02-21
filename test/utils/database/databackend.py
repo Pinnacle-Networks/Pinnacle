@@ -1,6 +1,6 @@
 from pinnacle.backends.base.data_backend import BaseDataBackend
-from pinnacle.components.datatype import FieldType
-from pinnacle.components.schema import Schema
+from pinnacle.base.datatype import FieldType
+from pinnacle.base.schema import Schema
 
 
 def test_list_tables_or_collections(databackend: BaseDataBackend):

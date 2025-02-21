@@ -6,7 +6,7 @@ from prettytable import PrettyTable
 import pinnacle as s
 from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import DataBackendProxy
-from pinnacle.backends.local.artifacts import (
+from pinnacle.base.artifacts import (
     FileSystemArtifactStore,
 )
 from pinnacle.base.config import Config

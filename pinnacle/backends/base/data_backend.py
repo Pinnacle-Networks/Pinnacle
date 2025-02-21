@@ -3,12 +3,12 @@ import typing as t
 from abc import ABC, abstractmethod
 
 from pinnacle import CFG, logging
-from pinnacle.backends.base.query import Query
 from pinnacle.base.constant import KEY_BLOBS, KEY_BUILDS, KEY_FILES
 from pinnacle.base.document import Document
+from pinnacle.base.query import Query
 
 if t.TYPE_CHECKING:
-    from pinnacle.components.schema import Schema
+    from pinnacle.base.schema import Schema
 
 
 class BaseDataBackend(ABC):

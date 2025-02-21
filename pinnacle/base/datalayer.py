@@ -5,21 +5,21 @@ import click
 
 import pinnacle as s
 from pinnacle import CFG, logging
-from pinnacle.backends.base.artifacts import ArtifactStore
 from pinnacle.backends.base.cluster import Cluster
 from pinnacle.backends.base.data_backend import BaseDataBackend
-from pinnacle.backends.base.metadata import (
+from pinnacle.base import apply, exceptions
+from pinnacle.base.artifacts import ArtifactStore
+from pinnacle.base.base import Base
+from pinnacle.base.config import Config
+from pinnacle.base.datatype import ComponentType, LeafType
+from pinnacle.base.document import Document
+from pinnacle.base.metadata import (
     MetaDataStore,
     NonExistentMetadataError,
     UniqueConstraintError,
 )
-from pinnacle.backends.base.query import Query
-from pinnacle.base import apply, exceptions
-from pinnacle.base.base import Base
-from pinnacle.base.config import Config
-from pinnacle.base.document import Document
+from pinnacle.base.query import Query
 from pinnacle.components.component import Component
-from pinnacle.components.datatype import ComponentType, LeafType
 from pinnacle.components.table import Table
 
 
@@ -276,7 +276,6 @@ class Datalayer:
         :param recursive: Toggle to remove all descendants of the component.
         :param force: Force skip confirmation (use with caution).
         """
-        # TODO: versions = [version] if version is not None else ...
         if version is not None:
             return self._remove_component_version(
                 component, identifier, version=version, force=force, recursive=recursive
@@ -415,6 +414,10 @@ class Datalayer:
         force: bool = False,
         recursive: bool = False,
     ):
+        # TODO - change this logic for a not version-by-version deletion
+        if version is None:
+            return
+
         try:
             r = self.metadata.get_component(component, identifier, version=version)
         except NonExistentMetadataError:
@@ -463,7 +466,9 @@ class Datalayer:
 
         children = object.sort_components(children)[::-1]
         for c in children:
-            assert isinstance(c.version, int)
+            if c.version is None:
+                logging.warn(f'Found uninitialized component {c.huuid}, skipping...')
+                continue
             try:
                 self._remove_component_version(
                     c.component,

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from pinnacle.components.datatype import (
+from pinnacle.base.datatype import (
     BaseDataType,
     pickle_encoder,
     pickle_serializer,

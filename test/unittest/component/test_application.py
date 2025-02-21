@@ -5,8 +5,8 @@ import numpy as np
 import pytest
 
 from pinnacle import ObjectModel, Schema, pinnacle
+from pinnacle.base.datatype import pickle_encoder
 from pinnacle.base.document import Document
-from pinnacle.components.datatype import pickle_encoder
 from pinnacle.components.listener import Listener
 from pinnacle.components.table import Table
 

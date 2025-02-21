@@ -1,12 +1,12 @@
 from ibis.expr.datatypes import dtype
 from pinnacle import CFG
-from pinnacle.components.datatype import (
+from pinnacle.base.datatype import (
     ID,
     BaseDataType,
     FieldType,
     FileItem,
 )
-from pinnacle.components.schema import Schema
+from pinnacle.base.schema import Schema
 
 SPECIAL_ENCODABLES_FIELDS = {
     FileItem: "str",

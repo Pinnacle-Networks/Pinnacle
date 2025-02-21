@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-from pinnacle.backends.base.artifacts import ArtifactStore
+from pinnacle.base.artifacts import ArtifactStore
 
 
 def test_bytes(artifact_store: ArtifactStore):

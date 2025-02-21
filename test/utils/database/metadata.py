@@ -2,8 +2,8 @@ import uuid
 
 import pytest
 
-from pinnacle.backends.base.metadata import MetaDataStore
 from pinnacle.base.event import Job
+from pinnacle.base.metadata import MetaDataStore
 
 
 def test_component(metadata: MetaDataStore):

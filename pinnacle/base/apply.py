@@ -5,12 +5,12 @@ import click
 from rich.console import Console
 
 from pinnacle import Component, logging
-from pinnacle.backends.base.metadata import NonExistentMetadataError
-from pinnacle.backends.base.query import Query
+from pinnacle.base.datatype import Blob
 from pinnacle.base.document import Document
 from pinnacle.base.event import Create, Signal, Update
+from pinnacle.base.metadata import NonExistentMetadataError
+from pinnacle.base.query import Query
 from pinnacle.components.component import Status
-from pinnacle.components.datatype import Blob
 from pinnacle.misc.tree import dict_to_tree
 
 if t.TYPE_CHECKING:
