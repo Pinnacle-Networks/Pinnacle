@@ -4,9 +4,9 @@ import typing as t
 import numpy
 from sklearn.base import BaseEstimator
 from pinnacle import logging
-from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.datatype import pickle_serializer
+from pinnacle.base.datatype import pickle_serializer
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.model import (
     Model,
     ModelInputType,

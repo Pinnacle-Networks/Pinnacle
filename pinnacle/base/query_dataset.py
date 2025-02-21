@@ -1,6 +1,6 @@
 import typing as t
 
-from pinnacle.backends.base.query import Query
+from pinnacle.base.query import Query
 from pinnacle.misc.special_dicts import MongoStyleDict
 
 if t.TYPE_CHECKING:

@@ -4,7 +4,7 @@ import typing as t
 import cohere
 import tqdm
 from cohere.error import CohereAPIError, CohereConnectionError
-from pinnacle.backends.query_dataset import QueryDataset
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.model import APIBaseModel
 from pinnacle.misc.retry import Retry
 from pinnacle.misc.utils import format_prompt, get_key

@@ -1,6 +1,6 @@
 import PIL.Image
-from pinnacle.backends.base.query import Query
 from pinnacle.base.document import Document
+from pinnacle.base.query import Query
 
 from pinnacle_pillow import pil_image
 

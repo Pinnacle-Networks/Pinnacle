@@ -5,8 +5,8 @@ import pymongo
 import pytest
 import pinnacle as s
 from pinnacle import CFG, pinnacle
+from pinnacle.base.datatype import Vector
 from pinnacle.base.document import Document
-from pinnacle.components.datatype import Vector
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 from pinnacle.components.vector_index import VectorIndex

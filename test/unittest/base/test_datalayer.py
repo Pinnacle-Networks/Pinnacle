@@ -8,13 +8,13 @@ import numpy
 import pytest
 
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.component import Component
-from pinnacle.components.dataset import Dataset
-from pinnacle.components.datatype import (
+from pinnacle.base.datatype import (
     BaseDataType,
     Blob,
     dill_serializer,
 )
+from pinnacle.components.component import Component
+from pinnacle.components.dataset import Dataset
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import Model, ObjectModel, Trainer
 from pinnacle.components.table import Table

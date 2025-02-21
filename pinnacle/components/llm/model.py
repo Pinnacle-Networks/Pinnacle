@@ -6,7 +6,6 @@ from functools import reduce
 from logging import WARNING, getLogger
 
 from pinnacle import logging
-from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.components.component import ensure_initialized
 from pinnacle.components.llm.prompter import Prompter
 from pinnacle.components.model import Model
@@ -60,9 +59,7 @@ class BaseLLM(Model):
         return self._generate(x, **kwargs)
 
     @ensure_initialized
-    def predict_batches(
-        self, dataset: t.Union[t.List, QueryDataset], **kwargs
-    ) -> t.Sequence:
+    def predict_batches(self, dataset: t.List, **kwargs) -> t.Sequence:
         """Generate text from a dataset.
 
         :param dataset: The dataset to generate text from.

@@ -6,8 +6,8 @@ import click
 from bson.objectid import ObjectId
 from pinnacle import CFG, logging
 from pinnacle.backends.base.data_backend import BaseDataBackend
-from pinnacle.backends.base.query import Query
-from pinnacle.components.schema import Schema
+from pinnacle.base.query import Query
+from pinnacle.base.schema import Schema
 
 from pinnacle_mongodb.artifacts import MongoDBArtifactStore
 from pinnacle_mongodb.utils import connection_callback
@@ -60,7 +60,7 @@ class MongoDBDataBackend(BaseDataBackend):
         from mongomock import MongoClient as MockClient
 
         if isinstance(self.conn, MockClient):
-            from pinnacle.backends.local.artifacts import (
+            from pinnacle.base.artifacts import (
                 FileSystemArtifactStore,
             )
 
@@ -153,7 +153,7 @@ class MongoDBDataBackend(BaseDataBackend):
         """Delete data from the table."""
         return self._database[table].delete_many(condition)
 
-    def missing_outputs(self, table, predict_id: str):
+    def missing_outputs(self, query, predict_id: str):
         """Get the missing outputs for the prediction."""
         key = f'{CFG.output_prefix}{predict_id}'
         lookup = [
@@ -167,7 +167,7 @@ class MongoDBDataBackend(BaseDataBackend):
             },
             {'$match': {key: {'$size': 0}}},
         ]
-        collection = self._database[table]
+        collection = self._database[query.table]
         results = list(collection.aggregate(lookup))
         return [r['_id'] for r in results]
 

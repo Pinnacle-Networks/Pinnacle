@@ -2,7 +2,7 @@ import os
 import sys
 
 from pinnacle import Schema, Table
-from pinnacle.components.datatype import file
+from pinnacle.base.datatype import file
 
 
 pdf_folder = sys.argv[1]

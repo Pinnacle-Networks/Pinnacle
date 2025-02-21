@@ -1,7 +1,7 @@
 import typing as t
 
 import tqdm
-from pinnacle.backends.query_dataset import QueryDataset
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.model import APIBaseModel
 
 from pinnacle_jina.client import JinaAPIClient

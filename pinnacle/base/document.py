@@ -4,17 +4,17 @@ import typing as t
 from collections import namedtuple
 
 from pinnacle import CFG, logging
-from pinnacle.backends.base.artifacts import ArtifactStore
+from pinnacle.base.artifacts import ArtifactStore
 from pinnacle.base.base import Base
 from pinnacle.base.constant import (
     KEY_BLOBS,
     KEY_BUILDS,
     KEY_FILES,
 )
+from pinnacle.base.datatype import Saveable
 from pinnacle.base.encoding import EncodeContext
+from pinnacle.base.schema import Schema
 from pinnacle.base.variables import _replace_variables
-from pinnacle.components.datatype import Saveable
-from pinnacle.components.schema import Schema
 from pinnacle.misc.special_dicts import MongoStyleDict
 
 if t.TYPE_CHECKING:
@@ -195,7 +195,7 @@ class _TmpDB:
         self.db = db
 
     def __getitem__(self, item):
-        from pinnacle.backends.base.query import Query
+        from pinnacle.base.query import Query
 
         return Query(table=item, parts=(), db=None)
 

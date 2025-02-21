@@ -2,7 +2,7 @@ import typing as t
 from test.utils.setup.fake_data import add_random_data
 
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.datatype import pickle_serializer
+from pinnacle.base.datatype import pickle_serializer
 from pinnacle.components.model import Model, Trainer
 from pinnacle.misc import typing as st  # noqa: F401
 

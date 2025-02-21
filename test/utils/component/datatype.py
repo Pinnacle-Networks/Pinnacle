@@ -6,10 +6,10 @@ from pprint import pprint
 import numpy as np
 
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.datatype import BaseDataType, pickle_serializer
 from pinnacle.base.document import Document
+from pinnacle.base.schema import Schema
 from pinnacle.components.component import Component
-from pinnacle.components.datatype import BaseDataType, pickle_serializer
-from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 
 

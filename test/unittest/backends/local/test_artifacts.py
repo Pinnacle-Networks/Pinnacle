@@ -5,9 +5,9 @@ import typing as t
 
 import pytest
 
-from pinnacle.backends.local.artifacts import FileSystemArtifactStore
+from pinnacle.base.artifacts import FileSystemArtifactStore
+from pinnacle.base.datatype import INBUILT_DATATYPES
 from pinnacle.components.component import Component
-from pinnacle.components.datatype import INBUILT_DATATYPES
 from pinnacle.misc import typing as st
 
 

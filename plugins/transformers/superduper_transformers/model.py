@@ -5,8 +5,8 @@ import torch
 import transformers
 from datasets import Dataset as NativeDataset
 from pinnacle import logging
-from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.component import ensure_initialized
 from pinnacle.components.llm.model import BaseLLM
 from pinnacle.components.model import (

@@ -6,7 +6,7 @@ import pytest
 import torch
 from pinnacle import pinnacle
 from pinnacle.base.datalayer import Datalayer
-from pinnacle.components.datatype import pickle_encoder
+from pinnacle.base.datatype import pickle_encoder
 
 from pinnacle_torch.model import TorchModel
 from pinnacle_torch.training import TorchTrainer

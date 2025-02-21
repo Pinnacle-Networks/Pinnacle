@@ -6,8 +6,8 @@ import typing as t
 from contextlib import contextmanager
 
 import torch
-from pinnacle.backends.query_dataset import QueryDataset
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.component import ensure_initialized
 from pinnacle.components.model import (
     CallableInputs,

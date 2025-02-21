@@ -6,14 +6,14 @@ import numpy as np
 import pytest
 
 from pinnacle.base.constant import KEY_BLOBS, KEY_BUILDS
-from pinnacle.base.document import Document
-from pinnacle.components.datatype import (
+from pinnacle.base.datatype import (
     pickle_encoder,
     pickle_serializer,
 )
+from pinnacle.base.document import Document
+from pinnacle.base.schema import Schema
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
-from pinnacle.components.schema import Schema
 from pinnacle.components.table import Table
 
 
@@ -46,7 +46,7 @@ def test_flat_query_encoding(db):
 
 def test_encode_decode_flattened_document():
     data = np.array([1, 2, 3])
-    from pinnacle.components.datatype import pickle_serializer
+    from pinnacle.base.datatype import pickle_serializer
 
     schema = Schema({'data': pickle_serializer})
 

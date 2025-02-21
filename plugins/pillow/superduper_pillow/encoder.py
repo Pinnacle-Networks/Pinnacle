@@ -4,7 +4,7 @@ import typing as t
 import PIL.Image
 import PIL.JpegImagePlugin
 import PIL.PngImagePlugin
-from pinnacle.components.datatype import (
+from pinnacle.base.datatype import (
     BaseDataType,
     DataTypeFactory,
     _Artifact,

@@ -1,4 +1,4 @@
-from pinnacle.components.datatype import dill_serializer
+from pinnacle.base.datatype import dill_serializer
 from pinnacle.components.model import ObjectModel
 
 

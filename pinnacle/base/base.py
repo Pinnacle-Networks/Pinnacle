@@ -98,8 +98,8 @@ class Base(metaclass=BaseMeta):
     @lazy_classproperty
     def class_schema(cls):
         fields = {}
-        from pinnacle.components.datatype import INBUILT_DATATYPES
-        from pinnacle.components.schema import Schema
+        from pinnacle.base.datatype import INBUILT_DATATYPES
+        from pinnacle.base.schema import Schema
 
         named_fields = cls._new_fields
         for f in named_fields:
@@ -126,7 +126,7 @@ class Base(metaclass=BaseMeta):
         :param blob_ref: Blob reference identifier.
         :param db: Datalayer instance.
         """
-        from pinnacle.components.datatype import DEFAULT_SERIALIZER, Blob
+        from pinnacle.base.datatype import DEFAULT_SERIALIZER, Blob
 
         bytes_ = Blob(identifier=blob_ref.split(':')[-1], db=db).unpack()
         return DEFAULT_SERIALIZER.decode_data(bytes_)

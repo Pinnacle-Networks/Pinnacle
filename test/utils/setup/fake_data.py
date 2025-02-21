@@ -2,11 +2,12 @@ import random
 
 import numpy as np
 
-# ruff: noqa: E402
-from pinnacle.backends.base.metadata import NonExistentMetadataError
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.datatype import Array
+
+# ruff: noqa: E402
+from pinnacle.base.metadata import NonExistentMetadataError
 from pinnacle.components.dataset import Dataset
-from pinnacle.components.datatype import Array
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 from pinnacle.components.table import Table

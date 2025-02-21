@@ -3,13 +3,13 @@ import typing as t
 import numpy
 
 from pinnacle import logging
-from pinnacle.backends.base.metadata import NonExistentMetadataError
 from pinnacle.backends.base.vector_search import (
     BaseVectorSearcher,
     VectorItem,
     VectorSearchBackend,
     measures,
 )
+from pinnacle.base.metadata import NonExistentMetadataError
 
 if t.TYPE_CHECKING:
     from pinnacle import Component, VectorIndex

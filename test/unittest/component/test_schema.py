@@ -3,7 +3,7 @@ import typing as t
 import pytest
 
 from pinnacle import Component, Schema, Table
-from pinnacle.components.datatype import (
+from pinnacle.base.datatype import (
     Blob,
     FileItem,
     dill_serializer,
