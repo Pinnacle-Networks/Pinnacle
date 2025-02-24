@@ -10,7 +10,6 @@ from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.component import ensure_initialized
 from pinnacle.components.model import (
-    CallableInputs,
     Model,
     Signature,
     _DeviceManaged,
@@ -130,8 +129,6 @@ class TorchModel(Model, _DeviceManaged):
 
     """
 
-    _fields = {'object': 'default'}
-
     object: torch.nn.Module
     preprocess: t.Optional[t.Callable] = None
     preprocess_signature: Signature = 'singleton'
@@ -171,13 +168,6 @@ class TorchModel(Model, _DeviceManaged):
             self.preprocess_signature = signature
         else:
             self.forward_signature = signature
-
-    @property
-    def inputs(self) -> CallableInputs:
-        """Get the inputs callable for the model."""
-        return CallableInputs(
-            self.object.forward if not self.preprocess else self.preprocess, {}
-        )
 
     def to(self, device):
         """Move the model to a device.
