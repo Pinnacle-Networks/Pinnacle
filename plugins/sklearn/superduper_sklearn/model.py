@@ -9,8 +9,6 @@ from pinnacle.base.datatype import pickle_serializer
 from pinnacle.base.query_dataset import QueryDataset
 from pinnacle.components.model import (
     Model,
-    ModelInputType,
-    Signature,
     Trainer,
 )
 from tqdm import tqdm
@@ -29,7 +27,7 @@ class SklearnTrainer(Trainer):
     y_preprocess: t.Optional[t.Callable] = None
 
     @staticmethod
-    def _get_data_from_dataset(dataset, X: ModelInputType):
+    def _get_data_from_dataset(dataset, X):
         # X is the same input type as with `db.predict_in_db` etc.
         # However in `sklearn` there are only 2 possibilities
         # ('x', 'y') and 'x'
@@ -123,7 +121,6 @@ class Estimator(Model):
     trainer: t.Optional[SklearnTrainer] = None
     preprocess: t.Optional[t.Callable] = None
     postprocess: t.Optional[t.Callable] = None
-    signature: Signature = 'singleton'
 
     def predict(self, X):
         """Predict on a single input.

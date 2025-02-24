@@ -4,8 +4,8 @@ import typing as t
 import numpy
 
 from pinnacle import Listener, Model, VectorIndex, logging
+from pinnacle.base import Base
 from pinnacle.base.annotations import trigger
-from pinnacle.base.base import Base
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.components.model import Validation
 
@@ -66,7 +66,9 @@ def test(db: Datalayer):
     assert db.show('MyModel', 'my-model') == [0]
 
     component = build_vi()
-    component.indexing_listener.select = db['other'].select()
+    t = db['docs']
+    q = t.filter(t['x'] > 3)
+    component.indexing_listener.select = q
 
     db.apply(component)
 
