@@ -12,6 +12,7 @@ from pinnacle.base.datatype import (
 )
 from pinnacle.base.document import Document
 from pinnacle.base.schema import Schema
+from pinnacle.components.component import Component
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
 from pinnacle.components.table import Table
@@ -142,7 +143,7 @@ def test_encode_model(db):
 
     pprint.pprint(encoded_r)
 
-    decoded_r = Document.decode(encoded_r)
+    decoded_r = ObjectModel.decode(encoded_r)
 
     print(decoded_r)
 
@@ -212,7 +213,7 @@ def test_encode_same_identifier():
     listener = Listener(model=model, identifier="a", key="a", select=None)
 
     encode_data = listener.encode()
-    listener = Document.decode(encode_data).unpack()
+    listener = Component.decode(encode_data)
 
     assert listener.identifier == "a"
     assert listener.model.identifier == "a"
