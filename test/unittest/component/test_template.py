@@ -4,7 +4,7 @@ from pinnacle.base.document import Document
 from pinnacle.components.component import Component
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
-from pinnacle.components.template import QueryTemplate, Template
+from pinnacle.components.template import Template
 
 
 def test_basic_template(db):
@@ -103,19 +103,6 @@ def test_template_export(db):
         r = db['documents'].outputs(listener.predict_id).execute()
         r = Document(list(r)[0].unpack())
         assert r[listener.outputs] == r['y'] + 2
-
-
-def test_query_template(db):
-    add_random_data(db)
-    table = db['documents']
-    q = table.filter(table['this'] == 'is a <var:test>').limit('<var:limit>')
-    t = QueryTemplate('select_lim', template=q)
-
-    assert set(t.template_variables).issuperset({'limit', 'test'})
-    assert (
-        t.template['query'].split('\n')[-1]
-        == 'documents.filter(query[0]).limit("<var:limit>")'
-    )
 
 
 def test_cross_reference(db):
