@@ -3,11 +3,11 @@ import dataclasses as dc
 import json
 import re
 import typing as t
-from functools import cached_property
 
 from pinnacle import CFG, logging
 from pinnacle.base.datatype import BaseDataType
 from pinnacle.base.encoding import EncodeContext
+from pinnacle.misc.importing import isreallyinstance
 from pinnacle.misc.special_dicts import dict_to_ascii_table
 
 if t.TYPE_CHECKING:
@@ -44,7 +44,9 @@ class Schema(BaseDataType):
     @property
     def trivial(self):
         """Determine if the schema contains only trivial fields."""
-        return not any([isinstance(v, BaseDataType) for v in self.fields.values()])
+        return not any(
+            [isreallyinstance(v, BaseDataType) for v in self.fields.values()]
+        )
 
     def __repr__(self):
         return dict_to_ascii_table(self.fields)
@@ -138,6 +140,7 @@ class Schema(BaseDataType):
                 ):
                     assert isinstance(value, str), msg
                     value = json.loads(value)
+
                 decoded[k] = field.decode_data(value, builds=builds, db=db)
 
         return decoded
