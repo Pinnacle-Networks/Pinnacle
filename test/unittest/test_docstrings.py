@@ -219,9 +219,9 @@ def extract_docstrings():
     #     package = eval(f'pinnacle.ext.{subpackage}')
     #     tmp = list_all_members(package=package, prefix=f'pinnacle.ext.{subpackage}')
     #     members.extend(tmp)
-    from pinnacle.misc.special_dicts import MongoStyleDict
+    from pinnacle.misc.special_dicts import DeepKeyedDict
 
-    lookup = MongoStyleDict({})
+    lookup = DeepKeyedDict({})
 
     for m, module, item, child, type, doc in members:
         try:

@@ -9,7 +9,7 @@ from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.document import Document
 from pinnacle.base.query import Query
 from pinnacle.base.schema import Schema
-from pinnacle.components.component import Component, ensure_initialized
+from pinnacle.components.component import Component, ensure_setup
 
 
 class Dataset(Component):
@@ -37,17 +37,20 @@ class Dataset(Component):
     def postinit(self):
         """Post initialization method."""
         self._data = None
+        if self.raw_data is None and self.pin:
+            data = self._load_data(self.db)
+            self.raw_data = [r.encode() for r in data]
         super().postinit()
 
     @property
-    @ensure_initialized
+    @ensure_setup
     def data(self):
         """Property representing the dataset's data."""
         return self._data
 
-    def init(self):
+    def setup(self):
         """Initialization method."""
-        super().init()
+        super().setup()
         if self.pin:
             assert self.raw_data is not None
             if self.schema is not None:
@@ -59,11 +62,6 @@ class Dataset(Component):
                 self._data = self.raw_data
         else:
             self._data = self._load_data(self.db)
-
-    def _pre_create(self, db: 'Datalayer', startup_cache: t.Dict = {}) -> None:
-        if self.raw_data is None and self.pin:
-            data = self._load_data(db)
-            self.raw_data = [r.encode() for r in data]
 
     def _load_data(self, db: 'Datalayer'):
         assert db is not None, 'Database must be set'
