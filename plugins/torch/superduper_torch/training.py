@@ -9,7 +9,7 @@ from pinnacle.components.dataset import Dataset
 from pinnacle.components.model import Trainer
 from torch.utils.data import DataLoader
 
-from pinnacle_torch.model import TorchModel
+from pinnacle_torch.model import BasicDataset, TorchModel
 
 
 class TorchTrainer(Trainer):
@@ -57,6 +57,9 @@ class TorchTrainer(Trainer):
         return (optimizer,)
 
     def _create_loader(self, dataset):
+        dataset = BasicDataset(
+            dataset, transform=self.transform, signature=self.signature
+        )
         return torch.utils.data.DataLoader(
             dataset,
             **self.loader_kwargs,
@@ -161,7 +164,7 @@ class TorchTrainer(Trainer):
                     self.append_metrics(all_metrics)
                     self.log(fold='VALID', iteration=iteration, **all_metrics)
                     if self.saving_criterion():
-                        db.replace(model)
+                        db.apply(model, force=True, jobs=False)
                     stop = self.stopping_criterion(iteration)
                     if stop:
                         return

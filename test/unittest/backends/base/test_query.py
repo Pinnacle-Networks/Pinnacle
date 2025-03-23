@@ -1,4 +1,5 @@
 from pinnacle.base import Base
+from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.query import parse_query
 from pinnacle.components.table import Table
 
@@ -46,9 +47,11 @@ class UseToSave(Base):
     x: ToSave
 
 
-def test_encode_decode_data(db):
+def test_encode_decode_data(db: Datalayer):
 
-    db.insert([UseToSave(x=ToSave(i)) for i in range(10)])
+    data = [UseToSave(x=ToSave(i)) for i in range(10)]
+
+    db.insert(data)
 
     results = db['UseToSave'].execute()
 

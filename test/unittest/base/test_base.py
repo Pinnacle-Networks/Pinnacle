@@ -3,7 +3,7 @@ import json
 import typing as t
 from pprint import pprint
 
-from pinnacle import CFG, ObjectModel, model
+from pinnacle import CFG, ObjectModel
 from pinnacle.base.base import Base
 from pinnacle.base.constant import KEY_BLOBS, KEY_BUILDS
 from pinnacle.base.document import Document
