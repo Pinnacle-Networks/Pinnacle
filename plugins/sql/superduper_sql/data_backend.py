@@ -16,8 +16,8 @@ from pinnacle.base.artifacts import FileSystemArtifactStore
 from pinnacle.base.query import Query, QueryPart
 from pinnacle.base.schema import Schema
 
-from pinnacle_ibis.db_helper import get_db_helper
-from pinnacle_ibis.utils import convert_schema_to_fields
+from pinnacle_sql.db_helper import get_db_helper
+from pinnacle_sql.utils import convert_schema_to_fields
 
 BASE64_PREFIX = "base64:"
 # TODO make this a global variable in main project
