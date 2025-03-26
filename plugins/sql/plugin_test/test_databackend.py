@@ -4,12 +4,12 @@ import pytest
 from pinnacle import CFG
 from pinnacle.misc.importing import load_plugin
 
-from pinnacle_ibis.data_backend import IbisDataBackend
+from pinnacle_sql.data_backend import IbisDataBackend
 
 
 @pytest.fixture
 def databackend():
-    plugin = load_plugin('ibis')
+    plugin = load_plugin('sql')
     backend = IbisDataBackend(CFG.data_backend, plugin=plugin)
     yield backend
     backend.drop(True)
