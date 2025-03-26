@@ -9,7 +9,6 @@ from pinnacle.backends.base.data_backend import BaseDataBackend
 from pinnacle.base.query import Query
 from pinnacle.base.schema import Schema
 
-from pinnacle_mongodb.artifacts import MongoDBArtifactStore
 from pinnacle_mongodb.utils import connection_callback
 
 OPS_MAP = {
@@ -54,19 +53,6 @@ class MongoDBDataBackend(BaseDataBackend):
         conn, _ = self.connection_callback()
         self.conn = conn
         self._database = self.conn[self.name]
-
-    def build_artifact_store(self):
-        """Build the artifact store for the data backend."""
-        from mongomock import MongoClient as MockClient
-
-        if isinstance(self.conn, MockClient):
-            from pinnacle.base.artifacts import (
-                FileSystemArtifactStore,
-            )
-
-            os.makedirs(f"/tmp/{self.name}", exist_ok=True)
-            return FileSystemArtifactStore(f"/tmp/{self.name}")
-        return MongoDBArtifactStore(self.conn, f"_filesystem:{self.name}")
 
     def drop_table(self, name: str):
         """Drop the table or collection.
