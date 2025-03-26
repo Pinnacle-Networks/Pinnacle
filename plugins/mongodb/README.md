@@ -25,10 +25,6 @@ pip install pinnacle_mongodb
 | Class | Description |
 |---|---|
 | `pinnacle_mongodb.data_backend.MongoDataBackend` | Data backend for MongoDB. |
-| `pinnacle_mongodb.metadata.MongoMetaDataStore` | Metadata store for MongoDB. |
-| `pinnacle_mongodb.query.MongoQuery` | A query class for MongoDB. |
-| `pinnacle_mongodb.query.BulkOp` | A bulk operation for MongoDB. |
-| `pinnacle_mongodb.artifacts.MongoArtifactStore` | Artifact store for MongoDB. |
 
 
 
@@ -55,45 +51,3 @@ db = pinnacle('mongodb://localhost:27017/documents')
 from pinnacle import pinnacle
 db = pinnacle('mongodb+srv://<username>:<password>@<cluster-url>/<database>')
 ```
-
-## Query examples
-
-### Inserts
-
-```python
-db['my-collection'].insert_many([{'my-field': ..., ...}
-    for _ in range(20)
-]).execute()
-```
-
-### Updates
-
-```python
-db['my-collection'].update_many(
-    {'<my>': '<filter>'},
-    {'$set': ...},
-).execute()
-```
-
-### Selects
-
-```python
-db['my-collection'].find({}, {'_id': 1}).limit(10).execute()
-```
-
-### Vector-search
-
-Vector-searches may be integrated with `.find`.
-
-```python
-db['my-collection'].like({'img': <my_image>}, vector_index='my-index-name').find({}, {'img': 1}).execute()
-```
-
-Read more about vector-search [here](../fundamentals/vector_search_algorithm.md).
-
-### Deletes
-
-```python
-db['my-collection'].delete_many({}).execute()
-```
-
