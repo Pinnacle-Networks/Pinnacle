@@ -15,7 +15,6 @@ from pinnacle.misc.files import check_secrets, load_secrets
 from pinnacle.misc.importing import import_object
 from pinnacle.misc.plugins import load_plugin
 
-
 TABLE_PREFIX = 'SUPERDUPER_'
 
 try:
