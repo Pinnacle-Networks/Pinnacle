@@ -2,11 +2,11 @@ from ibis.expr.datatypes import dtype
 from pinnacle import CFG
 from pinnacle.base.datatype import (
     ID,
+    Array,
     BaseDataType,
     FieldType,
     FileItem,
     Vector,
-    Array,
 )
 from pinnacle.base.schema import Schema
 
