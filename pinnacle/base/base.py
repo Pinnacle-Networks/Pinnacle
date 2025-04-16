@@ -108,8 +108,8 @@ class Base(metaclass=BaseMeta):
 
     @lazy_classproperty
     def table(cls):
-        from pinnacle.components.table import Table
         from pinnacle import Component
+        from pinnacle.components.table import Table
         from pinnacle.misc.importing import isreallyinstance
 
         return Table(
