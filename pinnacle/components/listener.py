@@ -1,7 +1,7 @@
 import dataclasses as dc
 import typing as t
 
-from pinnacle import CFG
+from pinnacle import CFG, Document
 from pinnacle.base.annotations import trigger
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.query import Query
@@ -62,6 +62,7 @@ class Listener(CDC):
     @property
     def predict_id(self):
         """Predict ID property."""
+        # TODO: Truncate predict_id to within 40 characters
         return f'{self.identifier}__{self.uuid}'
 
     # TODO deprecate this
@@ -158,6 +159,7 @@ class Listener(CDC):
             return
         primary_id = self.select.primary_id.execute()
         output_primary_id = self.db[self.outputs].primary_id.execute()
+        documents = [Document(d.unpack()) for d in documents]
         ids = [r[primary_id] for r in documents]
 
         inputs = self.model._map_inputs(self.model.signature, documents, self.key)

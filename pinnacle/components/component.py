@@ -14,7 +14,7 @@ import networkx
 from pinnacle import logging
 from pinnacle.base.annotations import trigger
 from pinnacle.base.base import Base, BaseMeta
-from pinnacle.base.constant import KEY_BLOBS, KEY_FILES
+from pinnacle.base.constant import KEY_BLOBS, KEY_FILES, LENGTH_UUID
 from pinnacle.base.event import Job
 from pinnacle.misc.annotations import lazy_classproperty
 from pinnacle.misc.importing import isreallyinstance
@@ -154,10 +154,9 @@ class Component(Base, metaclass=ComponentMeta):
         """Get UUID."""
         t = self.get_merkle_tree(breaks=True)
         breaking = hash_item(
-            [self.component, self.identifier]
-            + [t[k][:32] for k in self.breaks if k in t]
+            [self.component, self.identifier] + [t[k] for k in self.breaks if k in t]
         )
-        return breaking[:32]
+        return breaking[:LENGTH_UUID]
 
     def get_merkle_tree(self, breaks: bool):
         """Get the merkle tree of the component.
