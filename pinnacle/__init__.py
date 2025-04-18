@@ -2,6 +2,7 @@
 from .base import config, config_settings, configs, logger
 from .base.pinnacle import pinnacle
 
+# Ensure CFG is imported or defined
 CFG = configs.CFG
 ROOT = config_settings.ROOT
 
@@ -40,10 +41,10 @@ from .components.template import Template
 from .components.vector_index import VectorIndex
 
 REQUIRES = [
-    'pinnacle=={}'.format(__version__),
+    f'pinnacle=={__version__}',
 ]
 
-__all__ = (
+__all__ = [
     'CFG',
     'ROOT',
     'config',
@@ -68,10 +69,9 @@ __all__ = (
     'Table',
     'Application',
     'Template',
-    'Application',
     'Component',
     'trigger',
     'pickle_serializer',
     'dill_serializer',
     'Streamlit',
-)
+]
