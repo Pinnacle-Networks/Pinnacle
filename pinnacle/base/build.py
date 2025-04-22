@@ -4,6 +4,7 @@ import typing as t
 from prettytable import PrettyTable
 
 from pinnacle import CFG, logging
+from pinnacle.backends.base.cache import Cache
 from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.backends.base.data_backend import DataBackendProxy
 from pinnacle.backends.local.cache import LocalCache
