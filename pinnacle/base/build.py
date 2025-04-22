@@ -3,14 +3,11 @@ import typing as t
 
 from prettytable import PrettyTable
 
-import pinnacle as s
 from pinnacle import CFG, logging
 from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.backends.base.data_backend import DataBackendProxy
-from pinnacle.base.artifacts import (
-    FileSystemArtifactStore,
-)
-from pinnacle.base.config import Config
+from pinnacle.backends.local.cache import LocalCache
+from pinnacle.base.artifacts import FileSystemArtifactStore
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.misc.anonymize import anonymize_url
 from pinnacle.misc.importing import load_plugin
@@ -75,7 +72,7 @@ def _build_databackend(uri):
 
 def build_datalayer(
     cfg=None, compute: ComputeBackend | None = None, **kwargs
-) -> Datalayer:
+) -> 'Datalayer':
     """
     Build a Datalayer object as per ``db = pinnacle(db)`` from configuration.
 
@@ -84,6 +81,12 @@ def build_datalayer(
     """
     # Configuration
     # ------------------------------
+    # Lazy imports to avoid circular dependencies
+    import pinnacle as s
+    from pinnacle.base.config import Config  # Assuming Config class exists
+    from pinnacle.base.datalayer import Datalayer  # Assuming Datalayer class exists
+    from pinnacle.misc.importing import load_plugin
+
     # Use the provided configuration or fall back to the default configuration.
     if s.CFG.cluster_engine != 'local':
         plugin = load_plugin(s.CFG.cluster_engine)
@@ -94,23 +97,36 @@ def build_datalayer(
     cfg = (cfg or CFG)(**kwargs)
 
     cfg = t.cast(Config, cfg)
-    databackend_obj = _build_databackend(cfg.data_backend)
 
+    # Lazy imports for builder functions to avoid circular dependencies
+    databackend_obj = _build_databackend(cfg.data_backend)
     artifact_store = _build_artifact_store()
 
-    backend = getattr(load_plugin(cfg.cluster_engine), 'Cluster')
-    cluster = backend.build(cfg, compute=compute)
+    # Create the cache
+    cache = None
+    if CFG.cache and CFG.cache.startswith('redis'):
+        cache = load_plugin('redis').Cache(uri=CFG.cache)
+    elif CFG.cache:
+        assert CFG.cache == 'in-process'
+        cache = LocalCache()
+    # --------------
 
+    # Create datalayer without the cluster
     datalayer = Datalayer(
         databackend=databackend_obj,
         artifact_store=artifact_store,
-        cluster=cluster,
+        cache=cache,
     )
+
+    # Create the cluster
+    backend = getattr(load_plugin(cfg.cluster_engine), 'Cluster')
+    cluster = backend.build(cfg, compute=compute, db=datalayer)
+
+    # Initialize the data layer with the cluster
+    datalayer.initialize(cluster)
+
     # Keep the real configuration in the datalayer object.
     datalayer.cfg = cfg
-
-    if kwargs.get('initialize_cluster', True):
-        datalayer.cluster.initialize()
 
     show_configuration(cfg)
     return datalayer
