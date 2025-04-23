@@ -3,8 +3,9 @@ import typing as t
 
 from prettytable import PrettyTable
 
+import pinnacle as s
+from pinnacle.base.config import Config
 from pinnacle import CFG, logging
-from pinnacle.backends.base.cache import Cache
 from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.backends.base.data_backend import DataBackendProxy
 from pinnacle.backends.local.cache import LocalCache
@@ -82,11 +83,6 @@ def build_datalayer(
     """
     # Configuration
     # ------------------------------
-    # Lazy imports to avoid circular dependencies
-    import pinnacle as s
-    from pinnacle.base.config import Config  # Assuming Config class exists
-    from pinnacle.base.datalayer import Datalayer  # Assuming Datalayer class exists
-    from pinnacle.misc.importing import load_plugin
 
     # Use the provided configuration or fall back to the default configuration.
     if s.CFG.cluster_engine != 'local':
