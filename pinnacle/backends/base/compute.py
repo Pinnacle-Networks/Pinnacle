@@ -5,7 +5,6 @@ from pinnacle.backends.base.backends import BaseBackend
 from pinnacle.misc.importing import isreallysubclass
 
 if t.TYPE_CHECKING:
-    from pinnacle.base.datalayer import Datalayer
     from pinnacle.base.event import Job
     from pinnacle.components.component import Component
 
