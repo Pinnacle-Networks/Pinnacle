@@ -3,6 +3,7 @@ import time
 from abc import ABC, abstractmethod
 
 import click
+import deprecated
 
 from pinnacle import logging
 from pinnacle.backends.base.cdc import CDCBackend
@@ -58,6 +59,17 @@ class Cluster(ABC):
         :param kwargs: additional parameters
         """
         pass
+
+    @deprecated.deprecated(reason="Do we need this function ?")
+    def load_custom_plugins(self):
+        """Load user plugins."""
+        from pinnacle import logging
+
+        if 'Plugin' in self._db.show('Table'):
+            logging.info("Found custom plugins - loading...")
+            for plugin in self._db.show('Plugin'):
+                logging.info(f"Loading plugin: {plugin}")
+                plugin = self._db.load('Plugin', plugin)
 
     def initialize(self):
         """Initialize the cluster."""
