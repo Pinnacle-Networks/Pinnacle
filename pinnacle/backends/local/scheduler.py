@@ -1,14 +1,12 @@
 import threading
 import typing as t
 
-from pinnacle import logging
 from pinnacle.backends.base.backends import Bookkeeping
-from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.backends.base.scheduler import (
     BaseScheduler,
     consume_events,
 )
-from pinnacle.base.event import Event
+from pinnacle.base import Base
 from pinnacle.components.cdc import CDC
 from pinnacle.misc.importing import isreallyinstance
 
@@ -75,7 +73,7 @@ class LocalScheduler(Bookkeeping, BaseScheduler):
                 with self.lock:
                     self.Q[component, identifier] = []
 
-    def publish(self, events: t.List[Event]):
+    def publish(self, events: t.List[Base]):
         """
         Publish events to local queue.
 

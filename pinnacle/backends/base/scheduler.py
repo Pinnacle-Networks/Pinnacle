@@ -8,13 +8,13 @@ import networkx as nx
 
 from pinnacle import CFG, logging
 from pinnacle.backends.base.backends import BaseBackend
-from pinnacle.backends.base.compute import ComputeBackend
-from pinnacle.base.event import Event, Job
+from pinnacle.base.base import Base
 
 DependencyType = t.Union[t.Dict[str, str], t.Sequence[t.Dict[str, str]]]
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
+    from pinnacle.base.metadata import Job
 
 BATCH_SIZE = 100
 
@@ -28,7 +28,7 @@ class BaseScheduler(BaseBackend):
     """
 
     @abstractmethod
-    def publish(self, events: t.List[Event]):
+    def publish(self, events: t.List[Base]):
         """
         Publish events to local queue.
 
@@ -98,7 +98,7 @@ def _consume_event_type(event_type, ids, table, db: 'Datalayer'):
     logging.debug(table)
     # components: t.List['CDC'] = _get_cdcs_on_table(table, db)
     context = str(uuid.uuid4())
-    jobs: t.List[Job] = []
+    jobs: t.List['Job'] = []
     job_lookup: t.DefaultDict = defaultdict(dict)
     logging.info(f'Consuming {event_type} events on {table}')
 
@@ -139,7 +139,7 @@ def _consume_event_type(event_type, ids, table, db: 'Datalayer'):
     db.cluster.compute.release_futures(context)
 
 
-def consume_events(events: t.List[Event], table: str, db: 'Datalayer'):
+def consume_events(events: t.List[Base], table: str, db: 'Datalayer'):
     """
     Consume events from table queue.
 
