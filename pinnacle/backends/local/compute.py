@@ -3,7 +3,7 @@ from collections import defaultdict
 
 from pinnacle import logging
 from pinnacle.backends.base.compute import ComputeBackend
-from pinnacle.base.event import Job
+from pinnacle.base.metadata import Job
 
 if t.TYPE_CHECKING:
     from pinnacle import Component
