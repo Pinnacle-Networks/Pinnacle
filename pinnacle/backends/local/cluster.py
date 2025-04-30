@@ -10,7 +10,6 @@ from pinnacle.backends.base.vector_search import (
     VectorItem,
     measures,
 )
-from pinnacle.backends.local.cache import LocalCache
 from pinnacle.backends.local.cdc import LocalCDCBackend
 from pinnacle.backends.local.compute import LocalComputeBackend
 from pinnacle.backends.local.crontab import LocalCrontabBackend
@@ -34,15 +33,8 @@ class LocalCluster(Cluster):
     def build(cls, CFG, **kwargs):
         """Build the local cluster."""
         searcher_impl = load_plugin(CFG.vector_search_engine).VectorSearcher
-        cache = None
-        if CFG.cache and CFG.cache.startswith('redis'):
-            cache = load_plugin('redis').Cache(uri=CFG.cache)
-        elif CFG.cache:
-            assert CFG.cache == 'in-process'
-            cache = LocalCache()
 
         return LocalCluster(
-            cache=cache,
             scheduler=LocalScheduler(),
             compute=LocalComputeBackend(),
             vector_search=LocalVectorSearchBackend(searcher_impl=searcher_impl),
@@ -61,5 +53,3 @@ class LocalCluster(Cluster):
                 default=False,
             ):
                 logging.warn("Aborting...")
-        if self.cache is not None:
-            return self.cache.drop()

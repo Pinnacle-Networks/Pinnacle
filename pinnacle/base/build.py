@@ -12,6 +12,7 @@ from pinnacle.base.artifacts import (
 )
 from pinnacle.base.config import Config
 from pinnacle.base.datalayer import Datalayer
+from pinnacle.base.metadata import MetaDataStore
 from pinnacle.misc.anonymize import anonymize_url
 from pinnacle.misc.importing import load_plugin
 
@@ -62,6 +63,7 @@ class _DataBackendLoader(_Loader):
         r'^mssql://': ('sql', 'base'),
         r'^mysql://': ('sql', 'base'),
         r'^redis://': ('redis', 'base'),
+        r'^inmemory://': ('inmemory', 'base'),
     }
 
 
@@ -98,18 +100,30 @@ def build_datalayer(
 
     artifact_store = _build_artifact_store()
 
+    metadata = _build_databackend(cfg.metadata_store or cfg.data_backend)
+
     backend = getattr(load_plugin(cfg.cluster_engine), 'Cluster')
+
     cluster = backend.build(cfg, compute=compute)
+
+    metadata = Datalayer(
+        databackend=metadata,
+        cluster=None,
+        artifact_store=artifact_store,
+        metadata=None,
+    )
 
     datalayer = Datalayer(
         databackend=databackend_obj,
         artifact_store=artifact_store,
         cluster=cluster,
+        metadata=metadata,
     )
     # Keep the real configuration in the datalayer object.
     datalayer.cfg = cfg
 
     if kwargs.get('initialize_cluster', True):
+        assert datalayer.cluster is not None
         datalayer.cluster.initialize()
 
     show_configuration(cfg)
@@ -126,9 +140,9 @@ def show_configuration(cfg):
     table = PrettyTable()
     table.field_names = ["Configuration", "Value"]
     key_values = [
-        ('Data Backend', anonymize_url(cfg.data_backend)),
-        ('Artifact Store', anonymize_url(cfg.artifact_store)),
-        ('Cache', anonymize_url(cfg.cache)),
+        ('DataBackend', anonymize_url(cfg.data_backend)),
+        ('ArtifactStore', anonymize_url(cfg.artifact_store)),
+        ('Metadata', anonymize_url(cfg.metadata_store)),
     ]
     for key, value in key_values:
         if value:
