@@ -5,7 +5,6 @@ from abc import ABC, abstractmethod
 
 import click
 
-from pinnacle.backends.base.cache import Cache
 from pinnacle.backends.base.cdc import CDCBackend
 from pinnacle.backends.base.compute import ComputeBackend
 from pinnacle.backends.base.crontab import CrontabBackend
@@ -17,7 +16,6 @@ from pinnacle.backends.base.vector_search import VectorSearchBackend
 class Cluster(ABC):
     """Cluster object for managing the backend.
 
-    :param cache: The cache backend.
     :param scheduler: The scheduler backend.
     :param vector_search: The vector search backend.
     :param compute: The compute backend.
@@ -25,7 +23,6 @@ class Cluster(ABC):
     :param crontab: The crontab backend.
     """
 
-    cache: Cache
     scheduler: BaseScheduler
     vector_search: VectorSearchBackend
     compute: ComputeBackend
