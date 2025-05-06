@@ -24,7 +24,7 @@ from pinnacle_snowflake.schema import pinnacle_to_snowflake_schema
 # Hybrid tables are a feature of Snowflake which are a proxy
 # for transactional tables.
 create_table = """
-CREATE OR REPLACE HYBRID TABLE "{identifier}" (
+CREATE OR REPLACE TABLE "{identifier}" (
     {schema}
 );
 """
