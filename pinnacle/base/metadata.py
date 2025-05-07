@@ -14,9 +14,8 @@ from pinnacle.base.schema import Schema
 from pinnacle.components.cdc import CDC
 from pinnacle.components.component import Component, init_status
 from pinnacle.components.table import Table
-from pinnacle.misc.importing import import_object
-from pinnacle.misc.utils import merge_dicts
 from pinnacle.misc.importing import import_object, isreallyinstance
+from pinnacle.misc.utils import merge_dicts
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer
