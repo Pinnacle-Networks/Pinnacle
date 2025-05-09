@@ -2,8 +2,10 @@ import random
 
 import numpy as np
 
+from pinnacle.base import exceptions
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.datatype import Array
+
 # ruff: noqa: E402
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.listener import Listener

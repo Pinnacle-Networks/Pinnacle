@@ -9,6 +9,7 @@ from pinnacle.backends.base.vector_search import (
     VectorSearchBackend,
     measures,
 )
+from pinnacle.base import exceptions
 
 if t.TYPE_CHECKING:
     from pinnacle import VectorIndex
