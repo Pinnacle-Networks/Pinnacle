@@ -4,9 +4,7 @@ import numpy as np
 
 from pinnacle.base.datalayer import Datalayer
 from pinnacle.base.datatype import Array
-
 # ruff: noqa: E402
-from pinnacle.base.metadata import NonExistentMetadataError
 from pinnacle.components.dataset import Dataset
 from pinnacle.components.listener import Listener
 from pinnacle.components.model import ObjectModel
@@ -136,7 +134,7 @@ def add_vector_index(
     try:
         i_list = db.load("Listener", "vector-x")
         c_list = db.load("Listener", "vector-y")
-    except NonExistentMetadataError:
+    except exceptions.NotFound:
         i_list, c_list, _ = add_listeners(db)
 
         db.apply(i_list)
