@@ -3,14 +3,12 @@ import typing as t
 import numpy
 
 from pinnacle import logging
-from pinnacle.backends.base.backends import Bookkeeping
 from pinnacle.backends.base.vector_search import (
     BaseVectorSearcher,
     VectorItem,
     VectorSearchBackend,
     measures,
 )
-from pinnacle.base.metadata import NonExistentMetadataError
 
 if t.TYPE_CHECKING:
     from pinnacle import VectorIndex
@@ -75,7 +73,7 @@ class LocalVectorSearchBackend(VectorSearchBackend):
                         )
                         logging.error(traceback.format_exc())
                         continue
-            except NonExistentMetadataError:
+            except exceptions.NotFound:
                 pass
 
     def find_nearest_from_array(
