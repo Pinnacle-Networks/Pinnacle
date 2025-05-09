@@ -9,7 +9,8 @@ from pinnacle import CFG, Component, logging
 from pinnacle.base import exceptions
 from pinnacle.base.document import Document
 from pinnacle.base.event import Create, Signal, Update
-from pinnacle.components.component import ready_status
+from pinnacle.base.metadata import NonExistentMetadataError
+from pinnacle.components.component import running_status
 from pinnacle.misc.tree import dict_to_tree
 
 if t.TYPE_CHECKING:
@@ -217,7 +218,7 @@ def _apply(
         if current.hash == object.hash:
             apply_status = 'same'
             object.version = current.version
-            object.status = ready_status()
+            object.status = running_status()
         elif current.uuid == object.uuid:
             apply_status = 'update'
             object.version = current.version
@@ -310,11 +311,11 @@ def _apply(
 
     if not these_job_events:
         if not CFG.json_native:
-            metadata_event.data['status'] = json.dumps(ready_status())
+            metadata_event.data['status'] = json.dumps(running_status())
         else:
-            metadata_event.data['status'] = ready_status()
+            metadata_event.data['status'] = running_status()
 
-        object.status = ready_status()
+        object.status = running_status()
 
     create_events[metadata_event.huuid] = metadata_event
     job_events.update({jj.huuid: jj for jj in these_job_events})
