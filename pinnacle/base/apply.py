@@ -9,7 +9,6 @@ from pinnacle import CFG, Component, logging
 from pinnacle.base import exceptions
 from pinnacle.base.document import Document
 from pinnacle.base.event import Create, Signal, Update
-from pinnacle.base.metadata import NonExistentMetadataError
 from pinnacle.components.component import running_status
 from pinnacle.misc.tree import dict_to_tree
 

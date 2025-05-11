@@ -17,11 +17,16 @@ from pinnacle import logging
 from pinnacle.base.annotations import trigger
 from pinnacle.base.base import Base, BaseMeta
 from pinnacle.base.constant import KEY_BLOBS, KEY_FILES, LENGTH_UUID
-from pinnacle.base.status import init_status, JOB_PHASE_PENDING, JOB_PHASE_FAILED, running_status, JOB_PHASE_RUNNING
+from pinnacle.base.status import (
+    JOB_PHASE_FAILED,
+    JOB_PHASE_PENDING,
+    JOB_PHASE_RUNNING,
+    init_status,
+    running_status,
+)
 from pinnacle.misc.annotations import lazy_classproperty
 from pinnacle.misc.importing import isreallyinstance
 from pinnacle.misc.utils import hash_item
-
 
 if t.TYPE_CHECKING:
     from pinnacle.base.datalayer import Datalayer

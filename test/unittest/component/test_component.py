@@ -14,7 +14,7 @@ from pinnacle.base.datatype import (
     _Artifact,
     dill_serializer,
 )
-from pinnacle.base.metadata import Job, JOB_PHASE_FAILED
+from pinnacle.base.metadata import JOB_PHASE_FAILED, Job
 from pinnacle.components.component import Component
 from pinnacle.components.listener import Listener
 
