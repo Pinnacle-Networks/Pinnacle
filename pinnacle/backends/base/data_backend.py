@@ -11,6 +11,7 @@ from pinnacle.base.document import Document
 from pinnacle.base.query import Query
 
 if t.TYPE_CHECKING:
+    from pinnacle.base.datalayer import Datalayer
     from pinnacle.base.event import CreateTable
     from pinnacle.base.schema import Schema
 
