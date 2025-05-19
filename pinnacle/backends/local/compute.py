@@ -3,8 +3,8 @@ from collections import defaultdict
 
 from pinnacle import logging
 from pinnacle.backends.base.compute import ComputeBackend
-from pinnacle.base.metadata import JOB_PHASE_FAILED, Job
-from pinnacle.base.status import JOB_PHASE_RUNNING, JOB_PHASE_SUCCESS
+from pinnacle.base.metadata import STATUS_FAILED, Job
+from pinnacle.base.status import STATUS_RUNNING, STATUS_SUCCESS
 
 if t.TYPE_CHECKING:
     from pinnacle import Component
