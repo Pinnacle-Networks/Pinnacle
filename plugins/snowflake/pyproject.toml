@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pinnacle_snowflake"
-readme = "README.md"
+readme = "README.md" 
 description = """
 Pinnacle snowflake is a plugin for snowflake-framework that allows you to use Pinnacle as a backend for your snowflake queries.
 
