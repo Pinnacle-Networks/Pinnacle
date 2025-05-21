@@ -1,6 +1,8 @@
 import typing as t
 
 from pinnacle import CFG, logging
+from pinnacle.base.annotations import trigger
+from pinnacle.base.status import STATUS_RUNNING
 
 from .component import Component
 
