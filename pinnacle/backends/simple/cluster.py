@@ -5,9 +5,8 @@ import os
 
 from pinnacle import logging
 from pinnacle.backends.base.cluster import Cluster
-from pinnacle.backends.local.cache import LocalCache
 from pinnacle.backends.local.cdc import LocalCDCBackend
-from pinnacle.backends.simple.compute import SimpleComputeBackend, SimpleComputeClient
+from pinnacle.backends.simple.compute import SimpleComputeClient
 from pinnacle.backends.local.crontab import LocalCrontabBackend
 from pinnacle.backends.simple.scheduler import SimpleScheduler
 from pinnacle.backends.local.vector_search import LocalVectorSearchBackend
@@ -29,15 +28,8 @@ class SimpleCluster(Cluster):
     def build(cls, CFG, **kwargs):
         """Build the local cluster."""
         searcher_impl = load_plugin(CFG.vector_search_engine).VectorSearcher
-        cache = None
-        if CFG.cache and CFG.cache.startswith('redis'):
-            cache = load_plugin('redis').Cache(uri=CFG.cache)
-        elif CFG.cache:
-            assert CFG.cache == 'in-process'
-            cache = LocalCache()
 
         return SimpleCluster(
-            cache=cache,
             scheduler=SimpleScheduler(),
             compute=SimpleComputeClient(),
             vector_search=LocalVectorSearchBackend(searcher_impl=searcher_impl),
@@ -52,9 +44,7 @@ class SimpleCluster(Cluster):
         """
         if not force:
             if not click.confirm(
-                "Are you sure you want to drop the cache? ",
+                "Are you sure you want to drop the cluster? ",
                 default=False,
             ):
                 logging.warn("Aborting...")
-        if self.cache is not None:
-            return self.cache.drop()
