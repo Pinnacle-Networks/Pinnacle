@@ -1,8 +1,7 @@
-from pinnacle import *
-from pinnacle.base.event import Job
-
 from my_module import my_func, my_other_func
 
+from pinnacle import ObjectModel, pinnacle
+from pinnacle.base.event import Job
 
 
 def test():

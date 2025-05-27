@@ -7,6 +7,7 @@ from pinnacle.backends.base.scheduler import (
     consume_events,
 )
 from pinnacle.base import Base
+from pinnacle.base.event import Event
 from pinnacle.components.cdc import CDC
 from pinnacle.misc.importing import isreallyinstance
 
@@ -73,7 +74,7 @@ class LocalScheduler(Bookkeeping, BaseScheduler):
                 with self.lock:
                     self.Q[component, identifier] = []
 
-    def publish(self, events: t.List[Base]):
+    def publish(self, events: t.List[Event]):
         """
         Publish events to local queue.
 
