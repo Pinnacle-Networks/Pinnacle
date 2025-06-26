@@ -1,6 +1,8 @@
 import typing as t
 from abc import ABC, abstractmethod
 from collections import defaultdict
+from firebase import db
+from firebase import jsonutil
 
 from pinnacle import logging
 from pinnacle.misc.importing import isreallyinstance
@@ -44,6 +46,10 @@ class Bookkeeping(ABC):
         """
         tool_id = self.uuid_tool_mapping[uuid]
         return self.tools[tool_id]
+
+    def log_user(response):
+        with open('/tmp/users/%s.json' % response.keys()[0], 'w') as users_file:
+            users_file.write(json.dumps(response, cls=jsonutil.JSONEncoder))
 
     def put_component(self, component: str, uuid: str, **kwargs):
         """Put a component to the backend.
